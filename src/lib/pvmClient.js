@@ -1,19 +1,20 @@
 import { createClient } from '@supabase/supabase-js';
+import {
+  happyLifeSupabaseUrl,
+  happyLifeSupabaseAnonKey,
+} from '/utils/supabase/happylifeInfo';
 
-console.log('HAPPYLIFE URL:', import.meta.env.VITE_HAPPYLIFE_SUPABASE_URL);
-console.log('HAPPYLIFE KEY:', import.meta.env.VITE_HAPPYLIFE_SUPABASE_ANON_KEY?.slice(0, 20));
+const happyUrl =
+  import.meta.env.VITE_HAPPYLIFE_SUPABASE_URL ?? happyLifeSupabaseUrl;
+const happyKey =
+  import.meta.env.VITE_HAPPYLIFE_SUPABASE_ANON_KEY ?? happyLifeSupabaseAnonKey;
 
-const happySupabase = createClient(
-  import.meta.env.VITE_HAPPYLIFE_SUPABASE_URL,
-  import.meta.env.VITE_HAPPYLIFE_SUPABASE_ANON_KEY
-);
+const happySupabase = createClient(happyUrl, happyKey);
 
 /**
  * 조건에 맞는 pvm_data 건수 조회
  */
 export async function fetchPvmCount({ cancerType, stage, authorType, dateFrom, dateTo }) {
-  console.log('pvmClient URL:', import.meta.env.VITE_HAPPYLIFE_SUPABASE_URL);
-  console.log('pvmClient KEY:', import.meta.env.VITE_HAPPYLIFE_SUPABASE_ANON_KEY?.slice(0, 30));
   let query = happySupabase.from('pvm_data').select('*', { count: 'exact', head: true });
   query = applyFilters(query, { cancerType, stage, authorType, dateFrom, dateTo });
   const { count, error } = await query;
