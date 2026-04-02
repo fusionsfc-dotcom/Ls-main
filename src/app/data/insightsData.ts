@@ -14,7 +14,7 @@ export const insightsData: InsightItem[] = [
     category: 'Healthcare Strategy Research',
     title: '유방암 환자 니즈 기반\n치료 단계별 케어 전략 리포트\n– PVM 데이터 기반 병원 운영 혁신 가이드 –',
     date: 'April 2026',
-    excerpt: '300건 중 100건 환자 질문 데이터 분석. 환자는 치료보다 “치료를 버티는 방법”을 묻고 있습니다. 이 리포트는 환자 질문 데이터를 기반으로 병원의 실제 운영 전략을 재정의합니다.',
+    excerpt: '2026년 3월 620건의 데이터 분석 결과. 환자는 치료보다 “치료를 버티는 방법”을 더 많이 묻고 있습니다. 이 리포트는 환자 질문 데이터를 기반으로 병원의 실제 운영 전략을 재정의합니다.',
     readTime: '24 min read',
     highlights: ['Executive Summary', '니즈 TOP 5', '감정 데이터', '병원 실행 전략'],
     isFeatured: true,

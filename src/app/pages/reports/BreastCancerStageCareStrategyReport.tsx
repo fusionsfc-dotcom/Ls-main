@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { ArrowLeft, Download, ArrowRight, TrendingUp } from 'lucide-react';
+import { ArrowLeft, Download, TrendingUp } from 'lucide-react';
 import { SEO } from '../../components/SEO';
 
 type SummaryCard = {
@@ -27,6 +27,13 @@ type StrategyBlock = {
   title: string;
   구성: string[];
   KPI: string[];
+};
+
+type DepartmentCareGuide = {
+  title: string;
+  voiceQuotes: string[];
+  careDirection: string;
+  actions: string[];
 };
 
 const NAVY_950 = '#0E1B3D';
@@ -127,6 +134,91 @@ export function BreastCancerStageCareStrategyReport() {
     },
   ];
 
+  const departmentCareGuides: DepartmentCareGuide[] = [
+    {
+      title: '1. 진료부 (의학적 의사결정 및 결과 해석)',
+      voiceQuotes: [
+        '“결과지에 Hot spot이 보인다는데 전이인가요? 잠이 안 와요.”',
+        '“온코 검사 400만 원인데, 안 하면 항암 안 해도 되나요?”',
+      ],
+      careDirection: '불안 해소를 위한 수치 구체화',
+      actions: [
+        '영상 검사 결과(본스캔, MRI)에 대한 전문 용어를 환자 눈높이에서 해석해주는 ‘결과지 리뷰 세션’ 운영.',
+        '고가의 비급여 검사(온코타입DX, ctDNA) 시, 통계적 이득과 경제적 부담 사이에서 환자가 합리적 선택을 할 수 있도록 의사결정 보조 도구 제공.',
+      ],
+    },
+    {
+      title: '2. 간호부 (부작용 모니터링 및 자가 케어 교육)',
+      voiceQuotes: [
+        '“열이 38도인데 응급실 가야 하나요?”',
+        '“손톱에서 진물이 나는데 밴드 붙여도 될까요?”',
+        '“주사 맞은 배에 멍이 너무 커요.”',
+      ],
+      careDirection: '즉각적인 대처 가이드라인(Triage) 제공',
+      actions: [
+        '항암 주기별 ‘응급 상황 매뉴얼’ 배포 (발열, 호흡곤란 등 수치별 대응법).',
+        '항암 독성으로 인한 피부/손발톱 변색 및 손상 시, 감염 예방을 위한 소독법 및 전용 보호제 사용법 교육.',
+        '졸라덱스 등 피하 주사 후 멍 관리(냉찜질 시기 등) 안내.',
+      ],
+    },
+    {
+      title: '3. 영양부 (근거 중심의 식이 제한 해소)',
+      voiceQuotes: [
+        '“석류나 콩 절대 먹으면 안 되나요? 논문 결과는 어떤가요?”',
+        '“항암 중인데 회 한 점은 정말 안 될까요?”',
+        '“모든 음식이 쓰고 짜서 못 먹겠어요.”',
+      ],
+      careDirection: '금기(No)보다 대안(Helpful) 중심의 식단',
+      actions: [
+        '호르몬 양성 환자를 위한 식물성 에스트로겐(석류, 콩) 섭취 허용 범위에 대한 의학적 가이드라인 제시.',
+        '항암 부작용인 미각 변화(금속 맛, 쓴맛)를 극복할 수 있는 신맛 활용 레시피 및 단백질 보충 가이드.',
+        '면역 저하기 날음식 섭취에 대한 주치의 협진 기준 안내.',
+      ],
+    },
+    {
+      title: '4. 물리치료 및 운동프로그램 (기능 회복 및 림프 관리)',
+      voiceQuotes: [
+        '“수술 2주 차인데 팔이 귀 옆까지 안 붙어요. 억지로 올려도 되나요?”',
+        '“팔이 묵직하고 붓는 느낌인데 림프부종 시작인가요?”',
+        '“근손실 올까 봐 무서운데 어떤 운동이 안전할까요?”',
+      ],
+      careDirection: '단계별 가동범위(ROM) 확보 및 부종 예방',
+      actions: [
+        '수술 방식(부분/전절제, 곽청술 여부)에 따른 주차별 맞춤형 스트레칭 프로그램 운영.',
+        '림프부종 전조증상 자가 진단법(둘레 측정 등) 및 예방적 마사지 교육.',
+        '항암 중 전신 통증(관절통, 근육통)을 고려한 저강도 근력 유지 프로그램 설계.',
+      ],
+    },
+    {
+      title: '5. 생활상담 및 심리 케어 (정서적 지지와 사회 복귀)',
+      voiceQuotes: [
+        '“약 먹고 우울해서 자꾸 눈물이 나요.”',
+        '“회사 복귀했는데 동료들 시선이 너무 부담스러워요.”',
+        '“자꾸 까먹는 ‘항암뇌’ 증상, 언제쯤 좋아질까요?”',
+      ],
+      careDirection: '인지 기능 저하(Chemo Brain) 대응 및 정서 안정',
+      actions: [
+        '항호르몬제 부작용으로 인한 우울/불안 시 정신건강의학과 협진 프로세스 활성화.',
+        '기억력 저하를 겪는 환우를 위한 메모 습관화 등 ‘항암뇌 극복 워크숍’ 진행.',
+        '사회 복귀를 앞둔 환우 대상의 체력 안배 및 정서적 스트레스 관리 상담.',
+      ],
+    },
+    {
+      title: '6. 생활재활프로그램 (삶의 질 향상 및 외형 관리)',
+      voiceQuotes: [
+        '“삭발 후 두피가 너무 뜨겁고 아파요.”',
+        '“눈썹이 안 나서 모나리자 같아요. 문신 언제 가능할까요?”',
+        '“수술 후 입을 만한 편한 보정 속옷 추천해 주세요.”',
+      ],
+      careDirection: '자존감 회복을 위한 뷰티 & 라이프 케어',
+      actions: [
+        '탈모 초기 두피 열감 완화 및 모낭염 예방을 위한 두피 케어 클래스.',
+        '항암 종료 후 시기별 미용 시술(파마, 염색, 문신) 가능 시점 안내.',
+        '수술 부위 자극을 최소화하면서 가슴 모양을 잡아주는 보정 속옷 큐레이션 및 착용법 지도.',
+      ],
+    },
+  ];
+
   const handleDownload = () => {
     window.print();
   };
@@ -135,7 +227,7 @@ export function BreastCancerStageCareStrategyReport() {
     <div className="min-h-screen bg-white">
       <SEO
         title="유방암 환자 니즈 기반 치료 단계별 케어 전략 리포트 – PVM 데이터 기반 병원 운영 혁신 가이드 –"
-        description="300건 중 100건 환자 질문 데이터 분석. 환자는 치료보다 “치료를 버티는 방법”을 묻고 있습니다. 병원의 실제 운영 전략을 재정의합니다."
+        description="2026년 3월 620건의 데이터 분석 결과. 환자는 치료보다 “치료를 버티는 방법”을 더 많이 묻고 있습니다. 병원의 실제 운영 전략을 재정의합니다."
         url="https://www.lsconsulting.co.kr/report/breast-cancer-stage-care-strategy"
       />
 
@@ -168,7 +260,7 @@ export function BreastCancerStageCareStrategyReport() {
               치료 단계별 케어 전략
             </h1>
             <p className="text-xl lg:text-2xl mb-8 leading-relaxed text-gray-300">
-              300건 중 100건 데이터 분석 결과
+              2026년 3월 620건의 데이터 분석 결과
               <br />
               환자는 치료보다 “치료를 버티는 방법”을 더 많이 묻고 있습니다.
               <br />
@@ -184,13 +276,6 @@ export function BreastCancerStageCareStrategyReport() {
               <button onClick={handleDownload} className="inline-flex items-center justify-center px-8 py-4 rounded-lg font-semibold transition-all hover:opacity-90" style={{ backgroundColor: BLUE, color: 'white' }}>
                 리포트 다운로드
               </button>
-              <Link
-                to="/consultation"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-lg font-semibold transition-all hover:bg-white hover:text-[#0F2B46] border-2"
-                style={{ borderColor: '#FFFFFF', color: '#FFFFFF' }}
-              >
-                병원 맞춤 컨설팅 문의
-              </Link>
             </div>
           </div>
         </section>
@@ -450,23 +535,13 @@ export function BreastCancerStageCareStrategyReport() {
             <div className="space-y-8">
               {hospitalStrategies.map((s, idx) => (
                 <div key={s.title} className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: NAVY_900 }}>
-                  <div className="flex items-start justify-between gap-6 flex-wrap">
-                    <div>
-                      <div className="text-sm font-semibold mb-2" style={{ color: BLUE }}>
-                        STRATEGY {idx + 1}
-                      </div>
-                      <h3 className="text-2xl lg:text-3xl font-bold leading-snug" style={{ color: NAVY_900 }}>
-                        {s.title}
-                      </h3>
+                  <div>
+                    <div className="text-sm font-semibold mb-2" style={{ color: BLUE }}>
+                      STRATEGY {idx + 1}
                     </div>
-                    <Link
-                      to="/consultation"
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all hover:opacity-90"
-                      style={{ backgroundColor: BLUE, color: 'white' }}
-                    >
-                      병원 맞춤 컨설팅 문의
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
+                    <h3 className="text-2xl lg:text-3xl font-bold leading-snug" style={{ color: NAVY_900 }}>
+                      {s.title}
+                    </h3>
                   </div>
                   <div className="grid lg:grid-cols-2 gap-6 mt-8">
                     <div className="p-6 rounded-xl border-2" style={{ borderColor: '#EAEAEA', backgroundColor: '#F8F9FA' }}>
@@ -499,6 +574,65 @@ export function BreastCancerStageCareStrategyReport() {
                         ))}
                       </ul>
                     </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 px-8 lg:px-16" style={{ backgroundColor: '#F8F9FA' }}>
+          <div className="max-w-[1200px] mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-4" style={{ color: NAVY_950 }}>
+                병원 실행 가이드
+              </h2>
+              <p className="text-xl text-gray-600 max-w-[900px] mx-auto leading-relaxed">
+                부서별 통합케어 솔루션(환자 보이스 기반) 실행안을 제안합니다
+              </p>
+            </div>
+            <div className="space-y-8">
+              {departmentCareGuides.map((d) => (
+                <div key={d.title} className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: NAVY_900 }}>
+                  <div className="mb-6">
+                    <h3 className="text-xl lg:text-2xl font-bold leading-snug" style={{ color: NAVY_900 }}>
+                      {d.title}
+                    </h3>
+                  </div>
+                  <div className="p-6 rounded-xl border-2 mb-6" style={{ borderColor: NAVY_900, backgroundColor: '#F8F9FA' }}>
+                    <div className="text-sm font-semibold mb-3" style={{ color: NAVY_900 }}>
+                      환자의 목소리
+                    </div>
+                    <div className="space-y-3">
+                      {d.voiceQuotes.map((q) => (
+                        <div key={q} className="text-base lg:text-lg font-semibold leading-relaxed" style={{ color: NAVY_950 }}>
+                          {q}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="p-6 rounded-xl border-2 mb-6" style={{ borderColor: '#EAEAEA', backgroundColor: '#F8F9FA' }}>
+                    <div className="text-sm font-semibold mb-2" style={{ color: NAVY_900 }}>
+                      케어 방향
+                    </div>
+                    <div className="text-xl font-bold leading-relaxed" style={{ color: NAVY_950 }}>
+                      {d.careDirection}
+                    </div>
+                  </div>
+                  <div className="p-6 rounded-xl border-2" style={{ borderColor: '#EAEAEA', backgroundColor: '#F8F9FA' }}>
+                    <div className="text-sm font-semibold mb-3" style={{ color: NAVY_900 }}>
+                      실행안
+                    </div>
+                    <ul className="space-y-3">
+                      {d.actions.map((x) => (
+                        <li key={x} className="flex items-start gap-3">
+                          <span className="mt-2 w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: BLUE }} />
+                          <span className="text-base font-semibold leading-relaxed" style={{ color: NAVY_900 }}>
+                            {x}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               ))}
