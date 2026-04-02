@@ -11,12 +11,23 @@ export interface InsightItem {
 
 export const insightsData: InsightItem[] = [
   {
+    category: 'Monthly Cancer Voice Report',
+    title: '간암 환자 온라인 니즈 분석 및\n요양·한방병원 의료서비스 강화 전략',
+    date: 'March 2026',
+    excerpt:
+      '2026년 3월 온라인 커뮤니티 DB 264건 분석. 이식·수술, 통증·영양, 보호자 정서까지 요양·한방병원 실행 우선순위와 블로그 토픽을 제시합니다.',
+    readTime: '26 min read',
+    highlights: ['264건 분석', '부서별 전략 6파트', '우선순위 매트릭스', '콘텐츠 토픽 6선'],
+    isFeatured: true,
+    link: '/reports/liver-cancer-2026-03',
+  },
+  {
     category: 'Healthcare Strategy Research',
     title: '유방암 환자 니즈 기반\n치료 단계별 케어 전략 리포트\n– PVM 데이터 기반 병원 운영 혁신 가이드 –',
     date: 'April 2026',
     excerpt: '2026년 3월 620건의 데이터 분석 결과. 환자는 치료보다 “치료를 버티는 방법”을 더 많이 묻고 있습니다. 이 리포트는 환자 질문 데이터를 기반으로 병원의 실제 운영 전략을 재정의합니다.',
     readTime: '24 min read',
-    highlights: ['Executive Summary', '니즈 TOP 5', '감정 데이터', '병원 실행 전략'],
+    highlights: ['Executive Summary', '데이터 시각화', '부서별 실행 초점', '병원 실행 가이드'],
     isFeatured: true,
     link: '/report/breast-cancer-stage-care-strategy'
   },

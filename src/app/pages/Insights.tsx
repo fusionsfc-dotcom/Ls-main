@@ -98,12 +98,12 @@ export function Insights() {
             Latest Reports & Insights
           </h2>
           <div className="grid gap-6">
-            {currentInsights.map((insight, index) => {
+            {currentInsights.map((insight) => {
               const isFeaturedPost = insight.isFeatured;
               
               return (
                 <Link
-                  key={index}
+                  key={insight.link}
                   to={insight.link}
                   className="group cursor-pointer block"
                 >

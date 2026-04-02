@@ -26,6 +26,7 @@ import { PatientDischargeTransferStructure } from './pages/reports/PatientDischa
 import { CancerTreatmentTypeCareStrategy } from './pages/reports/CancerTreatmentTypeCareStrategy';
 import { RadiotherapyPatientAnalysis } from './pages/reports/RadiotherapyPatientAnalysis';
 import { BreastCancerStageCareStrategyReport } from './pages/reports/BreastCancerStageCareStrategyReport';
+import { LiverCancerReport202603 } from './pages/reports/LiverCancerReport202603';
 import { PvmReport } from '../pages/PvmReport';
 import { ReportGenerator } from '../pages/ReportGenerator';
 
@@ -61,6 +62,7 @@ function AppContent() {
           <Route path="/report/cancer-treatment-type-care-strategy" element={<CancerTreatmentTypeCareStrategy />} />
           <Route path="/report/radiotherapy-patient-analysis" element={<RadiotherapyPatientAnalysis />} />
           <Route path="/report/breast-cancer-stage-care-strategy" element={<BreastCancerStageCareStrategyReport />} />
+          <Route path="/reports/liver-cancer-2026-03" element={<LiverCancerReport202603 />} />
           <Route path="/insights/pvm-report" element={<PvmReport />} />
           <Route path="/admin/report-generator" element={<ReportGenerator />} />
           <Route path="/consultation" element={<Consultation />} />
