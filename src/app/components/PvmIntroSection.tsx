@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Database, TrendingUp, Target, Users, FileText, BarChart3, Lock, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell } from 'recharts';
+import { PUBLIC_SAMPLE_REPORT_LINKS } from '../constants/publicSampleReportLinks';
 
 export function PvmIntroSection() {
   // 카운터 애니메이션을 위한 커스텀 훅
@@ -358,18 +359,9 @@ export function PvmIntroSection() {
               
               <div className="space-y-4">
                 {[
-                  {
-                    title: '유방암 환자 니즈 기반 치료 단계별 케어 전략 리포트',
-                    link: '/report/breast-cancer-stage-care-strategy',
-                  },
-                  {
-                    title: '간암 환자 온라인 니즈 분석 및 요양·한방병원 의료서비스 강화 전략',
-                    link: '/reports/liver-cancer-2026-03',
-                  },
-                  { title: '2026년 2월 폐암 환자 온라인 니즈 분석', link: '/insights/report/202602' },
-                  { title: '암 환자는 언제 병원을 바꾸는가', link: '/research/pvm-hospital-switch' },
-                  { title: '암환자 질문 유형 기반 병원 운영 실행 보고서', link: '/research/patient-persona-execution' },
-                ].map((report, index) => (
+                  { title: '유방암 환자 니즈 기반 치료 단계별 케어 전략 리포트', link: PUBLIC_SAMPLE_REPORT_LINKS[0] },
+                  { title: '간암 환자 온라인 니즈 분석 및 요양·한방병원 의료서비스 강화 전략', link: PUBLIC_SAMPLE_REPORT_LINKS[1] },
+                ].map((report) => (
                   <Link
                     key={report.link}
                     to={report.link}

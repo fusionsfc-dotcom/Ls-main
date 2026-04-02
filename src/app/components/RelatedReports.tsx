@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import { ArrowRight, Calendar } from 'lucide-react';
 import { insightsData, InsightItem } from '../data/insightsData';
+import { GuardedReportLink } from './auth/GuardedReportLink';
 
 interface RelatedReportsProps {
   currentReportLink: string;
@@ -35,9 +36,9 @@ export function RelatedReports({ currentReportLink, maxItems = 3 }: RelatedRepor
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {displayReports.map((report, index) => (
-            <Link
-              key={index}
+          {displayReports.map((report) => (
+            <GuardedReportLink
+              key={report.link}
               to={report.link}
               className="group block bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-all duration-300"
             >
@@ -82,7 +83,7 @@ export function RelatedReports({ currentReportLink, maxItems = 3 }: RelatedRepor
                 <span className="text-sm" style={{ color: 'var(--navy-900)' }}>자세히 보기</span>
                 <ArrowRight className="w-4 h-4" style={{ color: 'var(--navy-900)' }} />
               </div>
-            </Link>
+            </GuardedReportLink>
           ))}
         </div>
       </div>

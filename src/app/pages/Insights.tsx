@@ -1,10 +1,10 @@
-import { Link } from 'react-router';
 import { Calendar, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useRef } from 'react';
 import { projectId, publicAnonKey } from '/utils/supabase/info';
 import { insightsData } from '../data/insightsData';
 import { PvmIntroSection } from '../components/PvmIntroSection';
 import { SEO } from '../components/SEO';
+import { GuardedReportLink } from '../components/auth/GuardedReportLink';
 
 export function Insights() {
   const [email, setEmail] = useState('');
@@ -102,7 +102,7 @@ export function Insights() {
               const isFeaturedPost = insight.isFeatured;
               
               return (
-                <Link
+                <GuardedReportLink
                   key={insight.link}
                   to={insight.link}
                   className="group cursor-pointer block"
@@ -173,7 +173,7 @@ export function Insights() {
                       <span>{insight.readTime}</span>
                     </div>
                   </div>
-                </Link>
+                </GuardedReportLink>
               );
             })}
           </div>
