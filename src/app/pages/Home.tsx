@@ -1,7 +1,6 @@
 import { Link } from 'react-router';
 import { ArrowRight, Lightbulb, Zap, Settings, Users, Building, Target, TrendingUp, CheckCircle, Award } from 'lucide-react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import { OurClients } from '../components/OurClients';
 import { SEO } from '../components/SEO';
 import integratedModelImage from "figma:asset/eb688a884e7ee868dcb2c81b420a009ed9f29c6e.png";
 
@@ -348,9 +347,6 @@ export function Home() {
           </div>
         </div>
       </section>
-
-      {/* Our Clients Section */}
-      <OurClients />
     </div>
   );
 }

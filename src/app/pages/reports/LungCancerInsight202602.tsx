@@ -1,6 +1,5 @@
 import { Link } from 'react-router';
 import { ArrowLeft, FileText, CheckCircle2 } from 'lucide-react';
-import { OurClients } from '../../components/OurClients';
 import { SEO } from '../../components/SEO';
 
 export function LungCancerInsight202602() {
@@ -341,9 +340,6 @@ export function LungCancerInsight202602() {
           </div>
         </div>
       </section>
-
-      {/* Our Clients */}
-      <OurClients />
 
       {/* SEO */}
       <SEO />

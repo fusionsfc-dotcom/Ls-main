@@ -2,7 +2,6 @@ import { Link } from 'react-router';
 import { Calendar, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useRef } from 'react';
 import { projectId, publicAnonKey } from '/utils/supabase/info';
-import { OurClients } from '../components/OurClients';
 import { insightsData } from '../data/insightsData';
 import { PvmIntroSection } from '../components/PvmIntroSection';
 import { SEO } from '../components/SEO';
@@ -283,9 +282,6 @@ export function Insights() {
           </div>
         </div>
       </section>
-
-      {/* Our Clients Section */}
-      <OurClients />
 
       {/* SEO Section */}
       <SEO />

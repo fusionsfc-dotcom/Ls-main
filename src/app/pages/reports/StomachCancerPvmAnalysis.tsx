@@ -1,6 +1,5 @@
 import { Link } from 'react-router';
 import { ArrowLeft, AlertCircle, CheckCircle2, Activity } from 'lucide-react';
-import { OurClients } from '../../components/OurClients';
 import { SEO } from '../../components/SEO';
 import { useState } from 'react';
 import { projectId, publicAnonKey } from '/utils/supabase/info';
@@ -591,9 +590,6 @@ export function StomachCancerPvmAnalysis() {
           </div>
         </div>
       </section>
-
-      {/* Our Clients */}
-      <OurClients />
 
       {/* SEO */}
       <SEO />

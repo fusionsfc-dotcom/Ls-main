@@ -1,6 +1,5 @@
 import { Target, Users, MessageSquare, BarChart3, ArrowRight, Search, UserCheck, Activity, RefreshCw, Heart } from 'lucide-react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import { OurClients } from '../components/OurClients';
 import { Link } from 'react-router';
 
 const topImageUrl =
@@ -445,9 +444,6 @@ export function Strategy() {
           </p>
         </div>
       </section>
-
-      {/* Our Clients Section */}
-      <OurClients />
     </div>
   );
 }

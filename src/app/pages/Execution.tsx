@@ -1,6 +1,5 @@
 import { FileText, Video, MessageCircle, BookOpen, TrendingUp, Users, Link as LinkIcon } from 'lucide-react';
 import { Link } from 'react-router';
-import { OurClients } from '../components/OurClients';
 
 export function Execution() {
   return (
@@ -334,9 +333,6 @@ export function Execution() {
           </Link>
         </div>
       </section>
-
-      {/* Our Clients Section */}
-      <OurClients />
     </div>
   );
 }

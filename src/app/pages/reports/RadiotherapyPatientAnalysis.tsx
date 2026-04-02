@@ -1,6 +1,5 @@
 import { Link } from 'react-router';
 import { ArrowLeft, CheckCircle2, Target } from 'lucide-react';
-import { OurClients } from '../../components/OurClients';
 import { SEO } from '../../components/SEO';
 import { useState } from 'react';
 
@@ -416,9 +415,6 @@ export function RadiotherapyPatientAnalysis() {
         </div>
       </section>
       </div>
-
-      {/* Our Clients */}
-      <OurClients />
 
       {/* SEO */}
       <SEO />

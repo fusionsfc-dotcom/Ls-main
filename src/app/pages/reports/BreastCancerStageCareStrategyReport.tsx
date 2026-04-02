@@ -1,6 +1,5 @@
 import { Link } from 'react-router';
 import { ArrowLeft, Download, ArrowRight, TrendingUp } from 'lucide-react';
-import { OurClients } from '../../components/OurClients';
 import { SEO } from '../../components/SEO';
 
 type SummaryCard = {
@@ -551,7 +550,6 @@ export function BreastCancerStageCareStrategyReport() {
         </section>
       </div>
 
-      <OurClients />
       <SEO />
     </div>
   );

@@ -1,6 +1,5 @@
 import { Link } from 'react-router';
 import { ArrowLeft, AlertTriangle, CheckCircle2, TrendingUp, ArrowRight } from 'lucide-react';
-import { OurClients } from '../../components/OurClients';
 import { SEO } from '../../components/SEO';
 import { useState } from 'react';
 import { projectId, publicAnonKey } from '/utils/supabase/info';
@@ -506,9 +505,6 @@ export function PatientDischargeTransferStructure() {
           </div>
         </div>
       </section>
-
-      {/* Our Clients */}
-      <OurClients />
 
       {/* SEO */}
       <SEO />

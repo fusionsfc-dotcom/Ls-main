@@ -1,6 +1,5 @@
 import { Link } from 'react-router';
 import { ArrowLeft, CheckCircle2, Target, ChevronDown } from 'lucide-react';
-import { OurClients } from '../../components/OurClients';
 import { SEO } from '../../components/SEO';
 import * as Accordion from '@radix-ui/react-accordion';
 
@@ -787,9 +786,6 @@ export function CancerTreatmentTypeCareStrategy() {
           </div>
         </div>
       </section>
-
-      {/* Our Clients */}
-      <OurClients />
 
       {/* SEO */}
       <SEO />

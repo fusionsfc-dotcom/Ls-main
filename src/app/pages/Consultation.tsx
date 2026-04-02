@@ -1,7 +1,6 @@
 import { CheckCircle, ArrowRight, Zap, MessageCircle, Target, TrendingUp } from 'lucide-react';
 import { useState } from 'react';
 import { projectId, publicAnonKey } from '/utils/supabase/info';
-import { OurClients } from '../components/OurClients';
 import { SEO } from '../components/SEO';
 
 export function Consultation() {
@@ -481,9 +480,6 @@ export function Consultation() {
           </p>
         </div>
       </section>
-
-      {/* Our Clients */}
-      <OurClients />
     </div>
   );
 }

@@ -1,6 +1,4 @@
 import { Lock, Download, Database, TrendingUp, Search, BarChart3 } from 'lucide-react';
-import { OurClients } from '../components/OurClients';
-
 export function Research() {
   const dataCategories = [
     {
@@ -239,9 +237,6 @@ export function Research() {
           </div>
         </div>
       </section>
-
-      {/* Our Clients Section */}
-      <OurClients />
     </div>
   );
 }
