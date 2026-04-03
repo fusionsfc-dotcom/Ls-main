@@ -12,7 +12,8 @@ import { Insights } from './pages/Insights';
 import { Patients } from './pages/Patients';
 import { Consultation } from './pages/Consultation';
 import { AiConsult } from './pages/AiConsult';
-import { ReportDetail } from '../pages/ReportDetail';
+import { InsightsReportRoute } from './components/auth/InsightsReportRoute';
+import { ReportPasswordGate } from './components/auth/ReportPasswordGate';
 import { HospitalSwitchResearch } from './pages/HospitalSwitchResearch';
 import { PatientPersonaExecution } from './pages/PatientPersonaExecution';
 import { PvmKpiExecutionReport } from './pages/PvmKpiExecutionReport';
@@ -49,23 +50,107 @@ function AppContent() {
           <Route path="/experience" element={<Experience />} />
           <Route path="/insights" element={<Insights />} />
           <Route path="/patients" element={<Patients />} />
-          <Route path="/insights/report/:id" element={<ReportDetail />} />
+          <Route path="/insights/report/:id" element={<InsightsReportRoute />} />
           <Route path="/research/pvm-hospital-switch" element={<HospitalSwitchResearch />} />
           <Route path="/research/patient-persona-execution" element={<PatientPersonaExecution />} />
-          <Route path="/research/pvm-kpi-execution-report" element={<PvmKpiExecutionReport />} />
-          <Route path="/disease/breast-cancer-report" element={<BreastCancerReport />} />
-          <Route path="/disease/stomach-cancer-report" element={<StomachCancerReport />} />
-          <Route path="/disease/colon-cancer-report" element={<ColonCancerReport />} />
-          <Route path="/report/cancer-journey-execution-manual" element={<CancerJourneyExecutionManual />} />
-          <Route path="/report/cancer-anxiety-voice-execution" element={<CancerAnxietyVoiceExecution />} />
-          <Route path="/report/lung-cancer-insight-202602" element={<LungCancerInsight202602 />} />
-          <Route path="/report/stomach-cancer-pvm-analysis" element={<StomachCancerPvmAnalysis />} />
-          <Route path="/report/patient-discharge-transfer-structure" element={<PatientDischargeTransferStructure />} />
-          <Route path="/report/cancer-treatment-type-care-strategy" element={<CancerTreatmentTypeCareStrategy />} />
-          <Route path="/report/radiotherapy-patient-analysis" element={<RadiotherapyPatientAnalysis />} />
+          <Route
+            path="/research/pvm-kpi-execution-report"
+            element={
+              <ReportPasswordGate>
+                <PvmKpiExecutionReport />
+              </ReportPasswordGate>
+            }
+          />
+          <Route
+            path="/disease/breast-cancer-report"
+            element={
+              <ReportPasswordGate>
+                <BreastCancerReport />
+              </ReportPasswordGate>
+            }
+          />
+          <Route
+            path="/disease/stomach-cancer-report"
+            element={
+              <ReportPasswordGate>
+                <StomachCancerReport />
+              </ReportPasswordGate>
+            }
+          />
+          <Route
+            path="/disease/colon-cancer-report"
+            element={
+              <ReportPasswordGate>
+                <ColonCancerReport />
+              </ReportPasswordGate>
+            }
+          />
+          <Route
+            path="/report/cancer-journey-execution-manual"
+            element={
+              <ReportPasswordGate>
+                <CancerJourneyExecutionManual />
+              </ReportPasswordGate>
+            }
+          />
+          <Route
+            path="/report/cancer-anxiety-voice-execution"
+            element={
+              <ReportPasswordGate>
+                <CancerAnxietyVoiceExecution />
+              </ReportPasswordGate>
+            }
+          />
+          <Route
+            path="/report/lung-cancer-insight-202602"
+            element={
+              <ReportPasswordGate>
+                <LungCancerInsight202602 />
+              </ReportPasswordGate>
+            }
+          />
+          <Route
+            path="/report/stomach-cancer-pvm-analysis"
+            element={
+              <ReportPasswordGate>
+                <StomachCancerPvmAnalysis />
+              </ReportPasswordGate>
+            }
+          />
+          <Route
+            path="/report/patient-discharge-transfer-structure"
+            element={
+              <ReportPasswordGate>
+                <PatientDischargeTransferStructure />
+              </ReportPasswordGate>
+            }
+          />
+          <Route
+            path="/report/cancer-treatment-type-care-strategy"
+            element={
+              <ReportPasswordGate>
+                <CancerTreatmentTypeCareStrategy />
+              </ReportPasswordGate>
+            }
+          />
+          <Route
+            path="/report/radiotherapy-patient-analysis"
+            element={
+              <ReportPasswordGate>
+                <RadiotherapyPatientAnalysis />
+              </ReportPasswordGate>
+            }
+          />
           <Route path="/report/breast-cancer-stage-care-strategy" element={<BreastCancerStageCareStrategyReport />} />
           <Route path="/reports/liver-cancer-2026-03" element={<LiverCancerReport202603 />} />
-          <Route path="/reports/lung-cancer-2026-03" element={<LungCancerReport202603 />} />
+          <Route
+            path="/reports/lung-cancer-2026-03"
+            element={
+              <ReportPasswordGate>
+                <LungCancerReport202603 />
+              </ReportPasswordGate>
+            }
+          />
           <Route path="/insights/pvm-report" element={<PvmReport />} />
           <Route path="/admin/report-generator" element={<ReportGenerator />} />
           <Route path="/consultation" element={<Consultation />} />

@@ -1,9 +1,10 @@
 import { Link, useNavigate } from 'react-router';
 import type { ReactNode, MouseEvent } from 'react';
 import { isPublicSampleReportLink } from '../../constants/publicSampleReportLinks';
-
-const PASSWORD = '4514';
-const SESSION_KEY = 'ls_reports_pw_ok_v1';
+import {
+  REPORT_ACCESS_PASSWORD,
+  REPORT_ACCESS_SESSION_KEY,
+} from '../../constants/reportAccess';
 
 type GuardedReportLinkProps = {
   to: string;
@@ -28,7 +29,7 @@ export function GuardedReportLink({ to, className, children }: GuardedReportLink
     e.preventDefault();
 
     try {
-      const ok = sessionStorage.getItem(SESSION_KEY) === '1';
+      const ok = sessionStorage.getItem(REPORT_ACCESS_SESSION_KEY) === '1';
       if (ok) {
         navigate(to);
         return;
@@ -40,9 +41,9 @@ export function GuardedReportLink({ to, className, children }: GuardedReportLink
     const input = window.prompt('비밀번호를 입력하세요.');
     if (input === null) return;
 
-    if (input.trim() === PASSWORD) {
+    if (input.trim() === REPORT_ACCESS_PASSWORD) {
       try {
-        sessionStorage.setItem(SESSION_KEY, '1');
+        sessionStorage.setItem(REPORT_ACCESS_SESSION_KEY, '1');
       } catch {
         // ignore
       }
