@@ -11,6 +11,7 @@ import { Experience } from './pages/Experience';
 import { Insights } from './pages/Insights';
 import { Patients } from './pages/Patients';
 import { Consultation } from './pages/Consultation';
+import { AiConsult } from './pages/AiConsult';
 import { ReportDetail } from '../pages/ReportDetail';
 import { HospitalSwitchResearch } from './pages/HospitalSwitchResearch';
 import { PatientPersonaExecution } from './pages/PatientPersonaExecution';
@@ -27,6 +28,7 @@ import { CancerTreatmentTypeCareStrategy } from './pages/reports/CancerTreatment
 import { RadiotherapyPatientAnalysis } from './pages/reports/RadiotherapyPatientAnalysis';
 import { BreastCancerStageCareStrategyReport } from './pages/reports/BreastCancerStageCareStrategyReport';
 import { LiverCancerReport202603 } from './pages/reports/LiverCancerReport202603';
+import { LungCancerReport202603 } from './pages/reports/LungCancerReport202603';
 import { PvmReport } from '../pages/PvmReport';
 import { ReportGenerator } from '../pages/ReportGenerator';
 
@@ -63,12 +65,14 @@ function AppContent() {
           <Route path="/report/radiotherapy-patient-analysis" element={<RadiotherapyPatientAnalysis />} />
           <Route path="/report/breast-cancer-stage-care-strategy" element={<BreastCancerStageCareStrategyReport />} />
           <Route path="/reports/liver-cancer-2026-03" element={<LiverCancerReport202603 />} />
+          <Route path="/reports/lung-cancer-2026-03" element={<LungCancerReport202603 />} />
           <Route path="/insights/pvm-report" element={<PvmReport />} />
           <Route path="/admin/report-generator" element={<ReportGenerator />} />
           <Route path="/consultation" element={<Consultation />} />
         </Routes>
       </main>
       <Footer hidePricing={!showPricing} />
+      <AiConsult />
     </div>
   );
 }

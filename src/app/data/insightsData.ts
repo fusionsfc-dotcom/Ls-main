@@ -22,6 +22,17 @@ export const insightsData: InsightItem[] = [
     link: '/reports/liver-cancer-2026-03',
   },
   {
+    category: 'Monthly Cancer Voice Report',
+    title: '폐암 환자 온라인 니즈 분석 및\n2차 요양·재활병원 의료서비스 강화 전략',
+    date: 'April 2026',
+    excerpt:
+      '2026년 3월 폐암 커뮤니티 PVM 160건 분석. 수술·항암 이슈, 보호자 목소리, 부서별 실행 전략과 우선순위 매트릭스·블로그 토픽을 정리합니다.',
+    readTime: '24 min read',
+    highlights: ['160건 분석', '파트별 전략 7부', '우선순위 매트릭스', '콘텐츠 토픽 8선'],
+    isFeatured: true,
+    link: '/reports/lung-cancer-2026-03',
+  },
+  {
     category: 'Healthcare Strategy Research',
     title: '유방암 환자 니즈 기반\n치료 단계별 케어 전략 리포트\n– PVM 데이터 기반 병원 운영 혁신 가이드 –',
     date: 'April 2026',

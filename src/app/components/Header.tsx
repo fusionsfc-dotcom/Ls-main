@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import { ArrowRight, Menu, X, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
 
 export function Header() {
@@ -11,7 +11,6 @@ export function Header() {
     { name: '노하우', path: '/strategy' },
     { name: '서비스', path: '/execution' },
     { name: '리포트', path: '/insights' },
-    { name: '환자전용', path: '/patients' }
   ];
   
   return (
@@ -40,6 +39,14 @@ export function Header() {
                 {item.name}
               </Link>
             ))}
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('toggle-ai-consult'))}
+              className="flex items-center space-x-2 px-5 py-2.5 text-sm transition-all hover:opacity-80 rounded-full"
+              style={{ backgroundColor: 'var(--navy-100)', color: 'var(--navy-900)' }}
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>AI 암상담</span>
+            </button>
             <Link
               to="/consultation"
               className="flex items-center space-x-2 px-6 py-2.5 text-sm text-white transition-all hover:opacity-90"
@@ -81,6 +88,14 @@ export function Header() {
                 {item.name}
               </Link>
             ))}
+            <button
+              onClick={() => { setMobileMenuOpen(false); window.dispatchEvent(new CustomEvent('toggle-ai-consult')); }}
+              className="flex items-center justify-center space-x-2 px-6 py-3 text-sm transition-all hover:opacity-80 w-full rounded-lg"
+              style={{ backgroundColor: 'var(--navy-100)', color: 'var(--navy-900)' }}
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>AI 암상담</span>
+            </button>
             <Link
               to="/consultation"
               onClick={() => setMobileMenuOpen(false)}
