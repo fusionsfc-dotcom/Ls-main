@@ -37,7 +37,7 @@ export function PricingSection() {
               <div className="space-y-3 mb-8">
                 <div className="flex items-start space-x-2">
                   <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--navy-900)' }} />
-                  <span className="text-sm" style={{ color: 'var(--navy-900)' }}>월 10건 블로그 포스팅</span>
+                  <span className="text-sm" style={{ color: 'var(--navy-900)' }}>월 20건 블로그 포스팅</span>
                 </div>
                 <div className="flex items-start space-x-2">
                   <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--navy-900)' }} />
@@ -94,7 +94,7 @@ export function PricingSection() {
               <div className="space-y-3 mb-8">
                 <div className="flex items-start space-x-2">
                   <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--navy-900)' }} />
-                  <span className="text-sm" style={{ color: 'var(--navy-900)' }}>월 20건 블로그 포스팅</span>
+                  <span className="text-sm" style={{ color: 'var(--navy-900)' }}>월 60건 블로그 포스팅</span>
                 </div>
                 <div className="flex items-start space-x-2">
                   <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--navy-900)' }} />
