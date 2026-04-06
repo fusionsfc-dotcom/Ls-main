@@ -95,7 +95,7 @@ export function Home() {
     <div className="min-h-screen bg-white">
       <SEO
         title="LS컨설팅 - 데이터 기반 암병원 전략 컨설팅"
-        description="수천 건의 환자 데이터 분석(PVM)과 15년 현장 경험으로 암요양병원·한방병원의 전략, 브랜딩, 홍보, 교육을 설계합니다."
+        description="매달 1,500건+의 환자 데이터 분석(PVM)과 15년 현장 경험으로 암요양병원·한방병원의 전략, 브랜딩, 홍보, 교육을 설계합니다."
         url="https://www.lsconsulting.co.kr"
       />
 
@@ -207,7 +207,7 @@ export function Home() {
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center max-w-4xl mx-auto mb-16">
             <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight text-white mb-8">
-              수천 건의 환자 데이터가 답을 알고 있습니다
+              매달 1,500건+의 환자 데이터가 답을 알고 있습니다
             </h2>
             <p className="text-lg lg:text-xl leading-relaxed" style={{ color: 'var(--navy-300)' }}>
               PVM(Patient Voice Matrix)은 LS컨설팅이 독자 개발한 암환자 니즈 분석 시스템입니다. 환자의 검색
@@ -237,7 +237,7 @@ export function Home() {
               </div>
             </div>
             <div className="text-center space-y-2">
-              <div className="text-4xl lg:text-5xl font-bold text-white">수천 건+</div>
+              <div className="text-4xl lg:text-5xl font-bold text-white">매달 1,500건+</div>
               <div className="text-base" style={{ color: 'var(--navy-300)' }}>
                 분석된 환자 데이터
               </div>
@@ -326,7 +326,7 @@ export function Home() {
               AI가 환자의 질문에 24시간 답합니다
             </h2>
             <p className="text-lg opacity-80" style={{ color: 'var(--navy-900)' }}>
-              ChatGPT와는 다릅니다. 수천 건의 실제 환자 데이터와 15년 현장 경험이 답하는 AI입니다.
+              Claude Sonnet AI가 매달 1,500건+로 수집되는 수만 건의 데이터를 바탕으로 암 이후의 건강한 삶을 안내합니다
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -442,21 +442,13 @@ export function Home() {
           >
             15년간, 현장에서 증명해 왔습니다
           </h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-20 max-w-4xl mx-auto">
             <div className="text-center">
               <div className="text-3xl lg:text-4xl font-bold mb-1" style={{ color: 'var(--navy-900)' }}>
                 10개+
               </div>
               <div className="text-sm opacity-70" style={{ color: 'var(--navy-900)' }}>
                 개원 컨설팅 병원
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold mb-1" style={{ color: 'var(--navy-900)' }}>
-                5개
-              </div>
-              <div className="text-sm opacity-70" style={{ color: 'var(--navy-900)' }}>
-                월간 홍보대행 병원
               </div>
             </div>
             <div className="text-center">
@@ -469,7 +461,7 @@ export function Home() {
             </div>
             <div className="text-center">
               <div className="text-3xl lg:text-4xl font-bold mb-1" style={{ color: 'var(--navy-900)' }}>
-                수천 건+
+                매달 1,500건+
               </div>
               <div className="text-sm opacity-70" style={{ color: 'var(--navy-900)' }}>
                 PVM 분석 데이터
