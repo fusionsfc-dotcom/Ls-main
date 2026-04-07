@@ -121,21 +121,17 @@ export function Home() {
               className="text-5xl lg:text-7xl tracking-tight leading-tight mt-8"
               style={{ color: 'var(--navy-900)' }}
             >
-              병원장님,
-              <br />
-              환자가 진짜 원하는 것을
-              <br />
-              알고 계십니까?
+              병원의 노력이 데이터로 증명되는
+              <br className="hidden sm:block" />
+              의료시스템을 만듭니다
             </h1>
             <p
-              className="text-xl mt-8 max-w-3xl mx-auto leading-relaxed"
+              className="text-xl mt-8 max-w-4xl mx-auto leading-relaxed"
               style={{ color: 'var(--navy-600)' }}
             >
-              광고비를 늘려도 입원환자가 늘지 않는 이유,
+              환자의 건강도, 병원의 시스템도 명확한 수치(KPI)가 되어야 합니다
               <br className="hidden sm:block" />
-              직원을 늘려도 서비스가 나아지지 않는 이유.
-              <br />
-              그 답은 환자 데이터 안에 있습니다.
+              막연한 감이 아닌 객관적인 지표로 병원의 지속 가능한 성장을 이끄는 파트너, LS컨설팅
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-12">
               <Link
