@@ -6,5 +6,9 @@ dist/
 
 # Environment variables
 .env
+.DS_Store
+
+# Supabase CLI temp files
+supabase/.temp/
 .env.local
 .env.*.local
