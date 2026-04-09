@@ -33,6 +33,17 @@ export const insightsData: InsightItem[] = [
     link: '/reports/lung-cancer-2026-03',
   },
   {
+    category: 'Monthly Cancer Voice Report',
+    title: "유방암 환자의 88%는 '불안'하지만\n경험공유로 서로를 치료한다",
+    date: 'April 2026',
+    excerpt:
+      '2026년 4월 1주 유방암 커뮤니티 200건 심층분석. 경험공유·불안·부서별 실행 초점, 니즈 TOP5·핵심 인사이트를 PVM 인사이트 리포트 형식으로 정리합니다.',
+    readTime: '18 min read',
+    highlights: ['200건 분석', '경험공유 27%', '불안 88%', 'Executive Summary'],
+    isFeatured: true,
+    link: '/reports/breast-cancer-community-2026-04-w1',
+  },
+  {
     category: 'Healthcare Strategy Research',
     title: '유방암 환자 니즈 기반\n치료 단계별 케어 전략 리포트\n– PVM 데이터 기반 병원 운영 혁신 가이드 –',
     date: 'April 2026',

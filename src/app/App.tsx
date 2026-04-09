@@ -30,6 +30,7 @@ import { RadiotherapyPatientAnalysis } from './pages/reports/RadiotherapyPatient
 import { BreastCancerStageCareStrategyReport } from './pages/reports/BreastCancerStageCareStrategyReport';
 import { LiverCancerReport202603 } from './pages/reports/LiverCancerReport202603';
 import { LungCancerReport202603 } from './pages/reports/LungCancerReport202603';
+import { BreastCancerCommunityReport202604 } from './pages/reports/BreastCancerCommunityReport202604';
 import { PvmReport } from '../pages/PvmReport';
 import { ReportGenerator } from '../pages/ReportGenerator';
 
@@ -148,6 +149,14 @@ function AppContent() {
             element={
               <ReportPasswordGate>
                 <LungCancerReport202603 />
+              </ReportPasswordGate>
+            }
+          />
+          <Route
+            path="/reports/breast-cancer-community-2026-04-w1"
+            element={
+              <ReportPasswordGate>
+                <BreastCancerCommunityReport202604 />
               </ReportPasswordGate>
             }
           />
