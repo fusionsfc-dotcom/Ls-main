@@ -51,6 +51,45 @@
   --navy-200: #A3C4ED;
   --navy-100: #C7DCFB;
   --navy-50: #EBF4FF;
+
+  /* Section background system v2 */
+  --navy-25: #FAFCFE;
+
+  /* Section boundary helpers */
+  --section-divider: rgba(10, 22, 40, 0.06);
+
+  /* Subtle gradients (no images) */
+  --gradient-light-start: rgba(235, 244, 255, 1); /* --navy-50 */
+  --gradient-light-end: rgba(255, 255, 255, 1);   /* white */
+  --gradient-dark-start: rgba(10, 22, 40, 1);      /* --navy-900 */
+  --gradient-dark-end: rgba(22, 37, 64, 1);        /* --navy-800 */
+}
+
+/* === Section utility classes === */
+.section-light-gradient {
+  background: linear-gradient(
+    to bottom,
+    var(--gradient-light-start) 0%,
+    var(--gradient-light-end) 100%
+  );
+}
+
+.section-dark-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--gradient-dark-start) 0%,
+    var(--gradient-dark-end) 100%
+  );
+}
+
+.section-dark-with-shadow {
+  background-color: var(--navy-900);
+  box-shadow: inset 0 8px 16px -8px rgba(0, 0, 0, 0.15);
+}
+
+.section-divider {
+  height: 1px;
+  background-color: var(--section-divider);
 }
 
 /* Radix Accordion animations */

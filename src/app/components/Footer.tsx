@@ -1,4 +1,5 @@
-import { Link } from 'react-router';
+import React from 'react';
+import { Link, useLocation } from 'react-router';
 import { CancerInsightIndex } from './CancerInsightIndex';
 import { PricingSection } from './PricingSection';
 
@@ -6,95 +7,144 @@ interface FooterProps {
   hidePricing?: boolean;
 }
 
+const footerSections = [
+  {
+    title: '서비스',
+    links: [
+      { label: 'AI 시장 진단', path: '/services#diagnosis' },
+      { label: 'AI 업무 자동화', path: '/services#automation' },
+      { label: 'AI 웹·앱 구축', path: '/services#webapp' },
+      { label: '맞춤 SaaS 개발', path: '/services#saas' },
+      { label: 'AI 전략 컨설팅', path: '/services#consulting' },
+    ],
+  },
+  {
+    title: '대상별 안내',
+    links: [
+      { label: '의료분야', path: '/healthcare' },
+      { label: '기업분야', path: '/business' },
+    ],
+  },
+  {
+    title: '회사',
+    links: [
+      { label: '회사 소개', path: '/about' },
+      { label: '연혁', path: '/about#history' },
+      { label: '찾아오시는 길', path: '/about#location' },
+      { label: '상담/견적 신청', path: '/consultation' },
+    ],
+  },
+] as const;
+
+const contactInfo = {
+  email: 'fusionsfc@gmail.com',
+  phone: '010-9297-0940',
+  location: '제주 / 서울',
+};
+
 export function Footer({ hidePricing = false }: FooterProps) {
+  const { pathname } = useLocation();
+  const showCancerInsightIndex =
+    pathname !== '/' &&
+    pathname !== '/services' &&
+    pathname !== '/business' &&
+    pathname !== '/about' &&
+    pathname !== '/consultation';
+
   return (
     <>
-      {/* 암 환자 체감지수 섹션 */}
-      <CancerInsightIndex />
-      
-      {/* Pricing Section - 환자전용 페이지에서는 숨김 */}
+      {showCancerInsightIndex && <CancerInsightIndex />}
       {!hidePricing && <PricingSection />}
-      
-      {/* 기존 Footer */}
-      <footer className="border-t" style={{ backgroundColor: 'var(--navy-900)', borderColor: 'rgba(255, 255, 255, 0.1)' }}>
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16 py-16">
-          <div className="grid md:grid-cols-3 gap-12 mb-16">
-            {/* Left Section - Brand */}
+
+      <footer style={{ backgroundColor: 'var(--navy-900)' }}>
+        <div className="max-w-[1400px] mx-auto px-8 lg:px-16 py-20">
+
+          {/* 상단: 브랜드 */}
+          <div className="mb-14">
+            <p className="text-2xl font-bold text-white mb-3">LS컨설팅</p>
+            <p className="text-base leading-relaxed" style={{ color: 'var(--navy-300)' }}>
+              의료에서 검증된 AI 실행력으로
+              <br />
+              병원·기업·기관의 디지털 전환을 함께합니다
+            </p>
+          </div>
+
+          {/* 구분선 */}
+          <div className="border-t mb-14" style={{ borderColor: 'rgba(255,255,255,0.1)' }} />
+
+          {/* 4컬럼 링크 */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-14">
+            {footerSections.map((section) => (
+              <div key={section.title}>
+                <h4 className="text-sm font-semibold text-white mb-4">{section.title}</h4>
+                <ul className="space-y-3">
+                  {section.links.map((link) => (
+                    <li key={link.path}>
+                      <Link
+                        to={link.path}
+                        className="text-sm transition-colors hover:text-white"
+                        style={{ color: 'var(--navy-300)' }}
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+
+            {/* 연락처 컬럼 */}
             <div>
-              <h3 className="text-xl mb-4 text-white">
-                LS Consulting
-              </h3>
-              <p className="text-sm leading-relaxed text-white opacity-60">
-                암 환자 니즈 분석을 기반으로<br />
-                의료서비스 설계와 전략적 실행을<br />
-                통합 제공하는 전문 컨설팅 회사
+              <h4 className="text-sm font-semibold text-white mb-4">연락처</h4>
+              <ul className="space-y-3">
+                <li>
+                  <a
+                    href={`mailto:${contactInfo.email}`}
+                    className="text-sm transition-colors hover:text-white"
+                    style={{ color: 'var(--navy-300)' }}
+                  >
+                    {contactInfo.email}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`tel:${contactInfo.phone.replace(/-/g, '')}`}
+                    className="text-sm transition-colors hover:text-white"
+                    style={{ color: 'var(--navy-300)' }}
+                  >
+                    {contactInfo.phone}
+                  </a>
+                </li>
+                <li className="text-sm" style={{ color: 'var(--navy-300)' }}>{contactInfo.location}</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* 구분선 */}
+          <div className="border-t pt-8" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+              <p className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>
+                © LS Consulting
               </p>
-            </div>
-            
-            {/* Middle Section - Services */}
-            <div>
-              <h4 className="text-sm mb-4 text-white opacity-60">
-                메뉴
-              </h4>
-              <nav className="space-y-2">
-                <Link 
-                  to="/experience" 
-                  className="block text-sm text-white opacity-60 hover:opacity-100 transition-opacity"
+              <div className="flex gap-5">
+                <Link
+                  to="/terms"
+                  className="text-xs transition-colors hover:text-white"
+                  style={{ color: 'rgba(255,255,255,0.4)' }}
                 >
-                  소개
+                  이용약관
                 </Link>
-                <Link 
-                  to="/strategy" 
-                  className="block text-sm text-white opacity-60 hover:opacity-100 transition-opacity"
+                <Link
+                  to="/privacy"
+                  className="text-xs transition-colors hover:text-white"
+                  style={{ color: 'rgba(255,255,255,0.4)' }}
                 >
-                  노하우
+                  개인정보처리방침
                 </Link>
-                <Link 
-                  to="/execution" 
-                  className="block text-sm text-white opacity-60 hover:opacity-100 transition-opacity"
-                >
-                  서비스
-                </Link>
-                <Link 
-                  to="/insights" 
-                  className="block text-sm text-white opacity-60 hover:opacity-100 transition-opacity"
-                >
-                  리포트
-                </Link>
-                <Link 
-                  to="/patients" 
-                  className="block text-sm text-white opacity-60 hover:opacity-100 transition-opacity"
-                >
-                  환자전용
-                </Link>
-                <Link 
-                  to="/consultation" 
-                  className="block text-sm text-white opacity-60 hover:opacity-100 transition-opacity"
-                >
-                  의뢰하기
-                </Link>
-              </nav>
-            </div>
-            
-            {/* Right Section - Contact */}
-            <div>
-              <h4 className="text-sm mb-4 text-white opacity-60">
-                Contact
-              </h4>
-              <div className="space-y-2 text-sm text-white opacity-60">
-                <p>이메일: fusionsfc@gmail.com</p>
-                <p>전화: 010-9297-0940</p>
-                <p>서울특별시, 제주특별자치도</p>
               </div>
             </div>
           </div>
-          
-          {/* Bottom Copyright */}
-          <div className="pt-8 border-t" style={{ borderColor: 'rgba(255, 255, 255, 0.1)' }}>
-            <p className="text-xs text-white opacity-40">
-              © 2017 LS Consulting. All rights reserved.
-            </p>
-          </div>
+
         </div>
       </footer>
     </>

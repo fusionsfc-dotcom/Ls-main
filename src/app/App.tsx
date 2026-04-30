@@ -12,6 +12,7 @@ import { Insights } from './pages/Insights';
 import { Patients } from './pages/Patients';
 import { Consultation } from './pages/Consultation';
 import { AiConsult } from './pages/AiConsult';
+import { Services } from './pages/Services';
 import { InsightsReportRoute } from './components/auth/InsightsReportRoute';
 import { ReportPasswordGate } from './components/auth/ReportPasswordGate';
 import { HospitalSwitchResearch } from './pages/HospitalSwitchResearch';
@@ -31,13 +32,15 @@ import { BreastCancerStageCareStrategyReport } from './pages/reports/BreastCance
 import { LiverCancerReport202603 } from './pages/reports/LiverCancerReport202603';
 import { LungCancerReport202603 } from './pages/reports/LungCancerReport202603';
 import { BreastCancerCommunityReport202604 } from './pages/reports/BreastCancerCommunityReport202604';
+import { Business } from './pages/Business';
+import { Healthcare } from './pages/Healthcare';
+import { About } from './pages/About';
 import { PvmReport } from '../pages/PvmReport';
 import { ReportGenerator } from '../pages/ReportGenerator';
 
 function AppContent() {
   const location = useLocation();
-  // PricingSection은 랜딩페이지와 의뢰하기 페이지에서만 표시
-  const showPricing = location.pathname === '/' || location.pathname === '/consultation';
+  const showPricing = false;
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -45,6 +48,10 @@ function AppContent() {
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/healthcare" element={<Healthcare />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/business" element={<Business />} />
           <Route path="/research" element={<Research />} />
           <Route path="/strategy" element={<Strategy />} />
           <Route path="/execution" element={<Execution />} />
