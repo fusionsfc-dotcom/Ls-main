@@ -50,7 +50,8 @@ export function Footer({ hidePricing = false }: FooterProps) {
     pathname !== '/services' &&
     pathname !== '/business' &&
     pathname !== '/about' &&
-    pathname !== '/consultation';
+    pathname !== '/consultation' &&
+    pathname !== '/insights';
 
   return (
     <>
