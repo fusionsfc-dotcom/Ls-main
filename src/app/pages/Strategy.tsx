@@ -15,7 +15,7 @@ export function Strategy() {
             STRATEGY
           </div>
           <h1 
-            className="text-5xl lg:text-7xl leading-tight tracking-tight max-w-4xl"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl leading-tight tracking-tight max-w-4xl"
             style={{ color: 'var(--navy-900)' }}
           >
             완벽한 의료서비스는<br />

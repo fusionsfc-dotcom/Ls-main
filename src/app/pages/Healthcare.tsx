@@ -27,10 +27,10 @@ import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { medImages, homeImages } from '../data/homeImages';
 
 const fadeIn = {
-  initial: { opacity: 0, y: 24 },
+  initial: { opacity: 0, y: 60 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] as const },
 };
 
 /* ── 현실 문제 ─────────────────────────────────────── */
@@ -232,7 +232,7 @@ export function Healthcare() {
               <Stethoscope className="w-3.5 h-3.5" />
               의료 AX · Hospital Transformation
             </span>
-            <h1 className="text-5xl lg:text-7xl tracking-tight leading-[1.08] mt-8 text-white font-bold">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl tracking-tight leading-[1.15] mt-8 text-white font-bold">
               지금 병원 홈페이지,
               <br />
               <span style={{ color: 'var(--navy-300)' }}>AI 검색에 보이지</span> 않습니다

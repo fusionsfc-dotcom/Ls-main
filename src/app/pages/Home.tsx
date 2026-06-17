@@ -18,6 +18,9 @@ import { motion } from 'motion/react';
 import { SEO } from '../components/SEO';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { homeImages } from '../data/homeImages';
+import { staggerContainer, staggerItem } from '../lib/motion';
+
+const MotionLink = motion.create(Link);
 
 /* ── 3대 자체 플랫폼 ───────────────────────────────── */
 const platforms = [
@@ -117,10 +120,10 @@ const quoteEntries = [
 ] as const;
 
 const fadeIn = {
-  initial: { opacity: 0, y: 24 },
+  initial: { opacity: 0, y: 60 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] as const },
 };
 
 export function Home() {
@@ -160,7 +163,7 @@ export function Home() {
               <Sparkles className="w-3.5 h-3.5" />
               의료 · 기업 AX 전문 기업
             </span>
-            <h1 className="text-5xl lg:text-7xl tracking-tight leading-[1.08] mt-8 text-white font-bold">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl tracking-tight leading-[1.15] mt-8 text-white font-bold">
               의료와 기업의 업무를
               <br />
               <span style={{ color: 'var(--navy-300)' }}>AI로 전환</span>합니다
@@ -204,10 +207,11 @@ export function Home() {
               가능성을 말하는 회사는 많습니다. LS AX 컨설팅은 결과물로 이야기합니다.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-6" {...staggerContainer}>
             {platforms.map(({ Icon, tag, title, body, image, to }) => (
-              <Link
+              <MotionLink
                 key={title}
+                variants={staggerItem}
                 to={to}
                 className="group rounded-2xl overflow-hidden border transition-all hover:-translate-y-1 hover:shadow-xl"
                 style={{ borderColor: 'var(--navy-100)' }}
@@ -240,9 +244,9 @@ export function Home() {
                     자세히 보기 <ArrowRight className="w-4 h-4" />
                   </span>
                 </div>
-              </Link>
+              </MotionLink>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -257,9 +261,9 @@ export function Home() {
               의료와 기업, 가장 까다로운 두 현장에서 AX를 직접 만듭니다.
             </p>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-8" {...staggerContainer}>
             {domains.map(({ Icon, eyebrow, title, body, image, points, to, cta }) => (
-              <div key={title} className="bg-white rounded-2xl overflow-hidden flex flex-col shadow-sm">
+              <motion.div key={title} variants={staggerItem} className="bg-white rounded-2xl overflow-hidden flex flex-col shadow-sm">
                 <div className="relative h-56 overflow-hidden" style={{ backgroundColor: 'var(--navy-200)' }}>
                   <ImageWithFallback src={image} alt={title} className="w-full h-full object-cover" />
                   <div
@@ -302,9 +306,9 @@ export function Home() {
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -330,16 +334,16 @@ export function Home() {
               외부 서비스를 연결하는 데 그치지 않고, 자체 AI 시스템을 설계하고 운영합니다.
             </p>
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+          <motion.div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto" {...staggerContainer}>
             {stats.map(({ value, label }) => (
-              <div key={label} className="text-center">
+              <motion.div key={label} variants={staggerItem} className="text-center">
                 <div className="text-4xl lg:text-5xl font-bold text-white mb-2">{value}</div>
                 <div className="text-sm" style={{ color: 'var(--navy-300)' }}>
                   {label}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
       </section>
 
@@ -354,9 +358,9 @@ export function Home() {
               분석 따로, 개발 따로가 아닙니다. 한 호흡으로 끝까지 책임집니다.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" {...staggerContainer}>
             {process.map(({ n, title, body }) => (
-              <div key={n} className="rounded-xl p-7 border" style={{ borderColor: 'var(--navy-100)' }}>
+              <motion.div key={n} variants={staggerItem} className="rounded-xl p-7 border" style={{ borderColor: 'var(--navy-100)' }}>
                 <div className="text-3xl font-bold tabular-nums mb-4" style={{ color: 'var(--navy-300)' }}>
                   {n}
                 </div>
@@ -366,9 +370,9 @@ export function Home() {
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>
                   {body}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 

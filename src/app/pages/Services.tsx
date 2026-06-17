@@ -19,10 +19,10 @@ import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { homeImages, axImages } from '../data/homeImages';
 
 const fadeIn = {
-  initial: { opacity: 0, y: 24 },
+  initial: { opacity: 0, y: 60 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] as const },
 };
 
 /* ── AX 강점 ───────────────────────────────────────── */
@@ -175,7 +175,7 @@ export function Services() {
               <Cpu className="w-3.5 h-3.5" />
               AX · AI Transformation
             </span>
-            <h1 className="text-5xl lg:text-7xl tracking-tight leading-[1.08] mt-8 text-white font-bold">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl tracking-tight leading-[1.15] mt-8 text-white font-bold">
               AI 전환을 미루는 사이
               <br />
               <span style={{ color: 'var(--navy-300)' }}>경쟁사는 이미</span> 앞서갑니다

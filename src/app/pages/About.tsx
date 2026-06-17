@@ -28,10 +28,10 @@ import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { homeImages, axImages, medImages } from '../data/homeImages';
 
 const fadeIn = {
-  initial: { opacity: 0, y: 24 },
+  initial: { opacity: 0, y: 60 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] as const },
 };
 
 /* ── 핵심 지표 ─────────────────────────────────────── */
@@ -145,7 +145,7 @@ export function About() {
             <span className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide" style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: 'var(--navy-200)' }}>
               About · 회사소개
             </span>
-            <h1 className="text-5xl lg:text-7xl tracking-tight leading-[1.08] mt-8 text-white font-bold">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl tracking-tight leading-[1.15] mt-8 text-white font-bold">
               AI를 쓰는 회사가 아니라
               <br />
               <span style={{ color: 'var(--navy-300)' }}>AI를 만드는</span> 회사입니다

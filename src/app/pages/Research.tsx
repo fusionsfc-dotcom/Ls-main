@@ -28,7 +28,7 @@ export function Research() {
             RESEARCH CENTER
           </div>
           <h1 
-            className="text-5xl lg:text-7xl leading-tight mb-8 tracking-tight max-w-4xl"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl leading-tight mb-8 tracking-tight max-w-4xl"
             style={{ color: 'var(--navy-900)' }}
           >
             의료 서비스의 완성은<br />
