@@ -113,6 +113,13 @@ export function About() {
         title="회사소개 - LS AX 컨설팅"
         description="LS AX 컨설팅은 의료와 기업의 업무를 AI로 전환(AX)하는 전문 기업입니다. Cancer Hospital Platform, 환자재활 애플리케이션, Space AX Platform을 직접 개발해 운영하며, 자체 AI 분석 시스템과 헬스케어 SaaS를 보유합니다."
         url="https://www.lsconsulting.co.kr/about"
+        jsonLd={[
+          { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+            { '@type': 'ListItem', position: 1, name: '홈', item: 'https://www.lsconsulting.co.kr/' },
+            { '@type': 'ListItem', position: 2, name: '소개', item: 'https://www.lsconsulting.co.kr/about' },
+          ] },
+          { '@context': 'https://schema.org', '@type': 'AboutPage', name: '회사소개 · LS AX 컨설팅', url: 'https://www.lsconsulting.co.kr/about', about: { '@type': 'Organization', name: 'LS AX 컨설팅', '@id': 'https://www.lsconsulting.co.kr/#org' } },
+        ]}
       />
 
       {/* ── SECTION 1 · HERO ───────────────────────────── */}

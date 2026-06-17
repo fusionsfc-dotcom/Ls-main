@@ -107,6 +107,13 @@ export function Business() {
         title="기업 AX - 반복 업무를 자동화 시스템으로 | LS AX 컨설팅"
         description="보고·요약·정리·응대 같은 반복 업무를 AI 자동화로 전환합니다. 노드를 그릴 줄 몰라도, 말로 설명하면 시스템이 대신 일합니다. 카카오·네이버·한글·배민 등 한국 업무 환경에 맞춘 자동화."
         url="https://www.lsconsulting.co.kr/business"
+        jsonLd={[
+          { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+            { '@type': 'ListItem', position: 1, name: '홈', item: 'https://www.lsconsulting.co.kr/' },
+            { '@type': 'ListItem', position: 2, name: '기업', item: 'https://www.lsconsulting.co.kr/business' },
+          ] },
+          { '@context': 'https://schema.org', '@type': 'Service', name: '기업 AX · 업무 자동화', serviceType: ['업무 자동화 AX', '한국형 도구 연동', 'AX 플랫폼 개발', 'AI 전략 컨설팅'], areaServed: 'KR', audience: { '@type': 'Audience', audienceType: '1인사업자·중소기업·관리자' }, url: 'https://www.lsconsulting.co.kr/business', provider: { '@type': 'Organization', name: 'LS AX 컨설팅', '@id': 'https://www.lsconsulting.co.kr/#org' } },
+        ]}
       />
 
       {/* ── SECTION 1 · HERO ───────────────────────────── */}

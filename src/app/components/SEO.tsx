@@ -7,14 +7,18 @@ interface SEOProps {
   description?: string;
   image?: string;
   url?: string;
+  /** 페이지별 구조화 데이터(JSON-LD). 객체 또는 객체 배열 */
+  jsonLd?: object | object[];
 }
 
 export function SEO({
   title = 'LS AX 컨설팅 - 의료와 기업의 업무를 AI로 전환합니다',
   description = 'LS AX 컨설팅은 의료와 기업 현장의 업무를 AI로 전환(AX)하는 전문 기업입니다. 자체 개발한 플랫폼과 AI 시스템으로 진단부터 운영까지 함께합니다.',
   image,
-  url = 'https://www.lsconsulting.co.kr'
+  url = 'https://www.lsconsulting.co.kr',
+  jsonLd,
 }: SEOProps) {
+  const jsonLdList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
   const [absoluteImageUrl, setAbsoluteImageUrl] = useState('');
 
   useEffect(() => {
@@ -30,7 +34,8 @@ export function SEO({
   }, [image]);
 
   return (
-    <Helmet>
+    <>
+      <Helmet>
       {/* 기본 메타 태그 */}
       <title>{title}</title>
       <meta name="description" content={description} />
@@ -55,6 +60,16 @@ export function SEO({
       {/* 카카오톡 전용 */}
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-    </Helmet>
+      </Helmet>
+
+      {/* 페이지별 구조화 데이터 — ld+json은 body 내에 있어도 유효 */}
+      {jsonLdList.map((obj, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(obj) }}
+        />
+      ))}
+    </>
   );
 }

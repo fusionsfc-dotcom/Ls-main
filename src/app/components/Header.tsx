@@ -6,6 +6,7 @@ const headerMenus = [
   { label: 'AX', path: '/services' },
   { label: '의료', path: '/healthcare' },
   { label: '기업', path: '/business' },
+  { label: '리포트', path: '/insights' },
   { label: '소개', path: '/about' },
 ] as const;
 

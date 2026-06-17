@@ -198,6 +198,13 @@ export function Healthcare() {
         title="의료 AX - 병원 홈페이지를 AI 전환합니다 | LS AX 컨설팅"
         description="기존 병원 홈페이지는 AI 검색에 노출되지 않고 일방적인 정보만 전달합니다. LS AX 컨설팅은 HappyLifeCare 플랫폼으로 환자와 병원을 실시간 연동해, 병원 홈페이지를 AX로 전환합니다."
         url="https://www.lsconsulting.co.kr/healthcare"
+        jsonLd={[
+          { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+            { '@type': 'ListItem', position: 1, name: '홈', item: 'https://www.lsconsulting.co.kr/' },
+            { '@type': 'ListItem', position: 2, name: '의료', item: 'https://www.lsconsulting.co.kr/healthcare' },
+          ] },
+          { '@context': 'https://schema.org', '@type': 'Service', name: '의료 AX · 병원 AI 전환', serviceType: ['AI 검색 최적화 웹사이트', '온라인 홍보 전략·대행', '의료 AI 챗봇·상담', 'HappyLifeCare 플랫폼'], areaServed: 'KR', audience: { '@type': 'Audience', audienceType: '병원·의료기관' }, url: 'https://www.lsconsulting.co.kr/healthcare', provider: { '@type': 'Organization', name: 'LS AX 컨설팅', '@id': 'https://www.lsconsulting.co.kr/#org' } },
+        ]}
       />
 
       {/* ── SECTION 1 · HERO (위기감) ──────────────────── */}
