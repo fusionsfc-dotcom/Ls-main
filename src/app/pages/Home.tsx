@@ -19,6 +19,23 @@ import { SEO } from '../components/SEO';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { homeImages } from '../data/homeImages';
 import { fadeIn, staggerContainer, staggerItem, MotionLink } from '../lib/motion';
+import { FaqSection } from '../components/FaqSection';
+
+/* ── 자주 묻는 질문 (FAQPage 구조화 데이터) ────────── */
+const homeFaqs = [
+  { q: 'AX(AI 전환)가 정확히 무엇인가요?', a: 'AX는 AI Transformation의 약자로, 기업·기관의 실제 업무를 AI로 전환해 자동화·효율화하는 것을 말합니다. 단순히 AI 도구를 도입하는 게 아니라 업무 방식 자체를 AI 기반으로 바꿉니다.' },
+  { q: 'LS AX 컨설팅은 어떤 일을 하나요?', a: '의료와 기업 현장의 업무를 AI로 전환합니다. AI 시장 진단, 업무 자동화, AI 최적화 웹·앱 구축, 맞춤 SaaS·플랫폼 개발, AI 전략 컨설팅을 진단부터 운영까지 한 팀이 수행합니다.' },
+  { q: '일반 AI 도입 업체와 무엇이 다른가요?', a: '외부 AI 서비스를 연결만 하는 게 아니라, 자체 AI 시스템과 플랫폼(Cancer Hospital Platform·HappyLifeCare·Space AX)을 직접 개발해 운영합니다. 가장 까다로운 의료 현장에서 검증된 실행력이 차별점입니다.' },
+  { q: '의료(병원) 분야에서는 무엇을 도와주나요?', a: '병원 홈페이지의 AI 검색 최적화(GEO/AEO), 온라인 홍보 전략·대행, 의료 AI 챗봇, 그리고 환자-병원을 실시간 연동하는 HappyLifeCare 플랫폼 도입까지 지원합니다.' },
+  { q: '병원 홈페이지를 AX로 바꾸면 무엇이 달라지나요?', a: '환자가 AI(ChatGPT·Perplexity 등)에게 병원을 물었을 때 인용되도록 구조화하고, 일방적 정보 전달을 환자와의 양방향 연결로 바꿔 재내원·신규 유입·후기 자산을 늘립니다.' },
+  { q: 'HappyLifeCare는 무엇인가요?', a: '암 요양병원 전용 AI 통합 케어 플랫폼입니다. 환자 앱(HappyLife)과 병원 관리 시스템(HappyCare)이 24개 포인트로 실시간 연동되어, 환자 데이터 기반의 선제 케어와 자연스러운 환자 유입을 만듭니다.' },
+  { q: '기업 분야에서는 어떤 업무를 자동화하나요?', a: '보고·요약·정리·응대 같은 반복 사무 업무를 자동화합니다. 메일·파일·메시지를 읽고 → AI가 요약·분류·작성하고 → 전송·저장·보고하는 사이클을 시스템으로 전환합니다.' },
+  { q: 'IT를 몰라도 업무 자동화를 쓸 수 있나요?', a: '네. 노드를 그릴 줄 몰라도 됩니다. 말로 업무를 설명하면 자동화를 대신 설계해 드리며, 카카오 알림톡·네이버웍스·한글·배민·더존 등 한국에서 실제 쓰는 도구에 연결합니다.' },
+  { q: '비용은 어떻게 되나요?', a: '프로젝트 범위와 규모에 따라 다릅니다. AI 진단·상담을 통해 맞춤 솔루션과 예산 범위를 먼저 제안드리며, 무료 진단으로 시작할 수 있습니다.' },
+  { q: '진행 절차와 기간은 어떻게 되나요?', a: '진단 → 설계 → 구축 → 운영의 4단계로 진행합니다. 무료 진단으로 시작해 범위에 따라 수 주~수 개월이 걸리며, 구축 후 운영·고도화까지 함께합니다.' },
+  { q: '어느 지역에서 일하나요?', a: '제주와 서울 두 거점에서 운영하며, 미팅은 화상·대면 모두 가능합니다. 클라이언트 위치에 따라 유연하게 진행합니다.' },
+  { q: '상담은 어떻게 신청하나요?', a: "홈페이지의 '상담/견적 신청'에서 AI 진단(7~10분) 또는 60분 무료 상담을 신청할 수 있습니다. 이메일 fusionsfc@gmail.com, 전화 +82.10.9297.0940으로도 문의 가능합니다." },
+] as const;
 
 /* ── 3대 자체 플랫폼 ───────────────────────────────── */
 const platforms = [
@@ -366,6 +383,13 @@ export function Home() {
           </motion.div>
         </div>
       </motion.section>
+
+      {/* ── FAQ (FAQPage 구조화 데이터) ─────────────────── */}
+      <FaqSection
+        items={homeFaqs}
+        title="자주 묻는 질문"
+        lead="AX·의료·기업·비용·진행까지, 자주 묻는 것들을 모았습니다."
+      />
 
       {/* ── SECTION 6 · 견적 진입 + 최종 CTA ────────────── */}
       <motion.section className="py-28 px-8 lg:px-16" style={{ backgroundColor: 'var(--navy-50)' }} {...fadeIn}>
