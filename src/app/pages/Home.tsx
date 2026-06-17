@@ -18,9 +18,7 @@ import { motion } from 'motion/react';
 import { SEO } from '../components/SEO';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { homeImages } from '../data/homeImages';
-import { staggerContainer, staggerItem } from '../lib/motion';
-
-const MotionLink = motion.create(Link);
+import { fadeIn, staggerContainer, staggerItem, MotionLink } from '../lib/motion';
 
 /* ── 3대 자체 플랫폼 ───────────────────────────────── */
 const platforms = [
@@ -118,13 +116,6 @@ const quoteEntries = [
     primary: false,
   },
 ] as const;
-
-const fadeIn = {
-  initial: { opacity: 0, y: 60 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-80px' },
-  transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] as const },
-};
 
 export function Home() {
   return (
@@ -360,7 +351,7 @@ export function Home() {
           </div>
           <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" {...staggerContainer}>
             {process.map(({ n, title, body }) => (
-              <motion.div key={n} variants={staggerItem} className="rounded-xl p-7 border" style={{ borderColor: 'var(--navy-100)' }}>
+              <motion.div key={n} variants={staggerItem} className="rounded-xl p-7" style={{ background: 'linear-gradient(155deg, var(--navy-100) 0%, var(--navy-50) 60%)' }}>
                 <div className="text-3xl font-bold tabular-nums mb-4" style={{ color: 'var(--navy-300)' }}>
                   {n}
                 </div>
@@ -379,10 +370,11 @@ export function Home() {
       {/* ── SECTION 6 · 견적 진입 + 최종 CTA ────────────── */}
       <motion.section className="py-28 px-8 lg:px-16" style={{ backgroundColor: 'var(--navy-50)' }} {...fadeIn}>
         <div className="max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6" {...staggerContainer}>
             {quoteEntries.map(({ Icon, label, title, body, ctaLabel, ctaTo, primary }) => (
-              <div
+              <motion.div
                 key={title}
+                variants={staggerItem}
                 className="p-10 rounded-2xl flex flex-col"
                 style={{ backgroundColor: primary ? 'var(--navy-900)' : 'white' }}
               >
@@ -417,9 +409,9 @@ export function Home() {
                   <span>{ctaLabel}</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
     </div>

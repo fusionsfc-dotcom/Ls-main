@@ -9,9 +9,9 @@ interface SEOProps {
   url?: string;
 }
 
-export function SEO({ 
-  title = 'LS AX 컨설팅 - 의료서비스 전략 컨설팅',
-  description = '암 환자 니즈 분석 기반 의료 전략 컨설팅. 최적의 병원 운영과 서비스개선, 홍보 전략을 실행합니다.',
+export function SEO({
+  title = 'LS AX 컨설팅 - 의료와 기업의 업무를 AI로 전환합니다',
+  description = 'LS AX 컨설팅은 의료와 기업 현장의 업무를 AI로 전환(AX)하는 전문 기업입니다. 자체 개발한 플랫폼과 AI 시스템으로 진단부터 운영까지 함께합니다.',
   image,
   url = 'https://www.lsconsulting.co.kr'
 }: SEOProps) {

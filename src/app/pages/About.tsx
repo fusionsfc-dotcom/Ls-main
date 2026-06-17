@@ -12,11 +12,6 @@ import {
   Zap,
   LineChart,
   Layers,
-  Brain,
-  Globe,
-  MessageCircle,
-  Database,
-  Users,
   MapPin,
   Mail,
   Phone,
@@ -26,13 +21,7 @@ import {
 import { SEO } from '../components/SEO';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { homeImages, axImages, medImages } from '../data/homeImages';
-
-const fadeIn = {
-  initial: { opacity: 0, y: 60 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-80px' },
-  transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] as const },
-};
+import { fadeIn, staggerContainer, staggerItem, MotionLink } from '../lib/motion';
 
 /* ── 핵심 지표 ─────────────────────────────────────── */
 const stats = [
@@ -161,14 +150,14 @@ export function About() {
       {/* ── SECTION 2 · 핵심 지표 ──────────────────────── */}
       <motion.section className="py-20 px-8 lg:px-16 bg-white" {...fadeIn}>
         <div className="max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div className="grid grid-cols-2 lg:grid-cols-4 gap-6" {...staggerContainer}>
             {stats.map(({ value, label }) => (
-              <div key={label} className="rounded-2xl p-7 text-center border" style={{ borderColor: 'var(--navy-100)' }}>
+              <motion.div key={label} variants={staggerItem} className="rounded-2xl p-7 text-center" style={{ background: 'linear-gradient(155deg, var(--navy-100) 0%, var(--navy-50) 60%)' }}>
                 <div className="text-3xl lg:text-4xl font-bold mb-1" style={{ color: 'var(--navy-900)' }}>{value}</div>
                 <div className="text-sm" style={{ color: 'var(--navy-600)' }}>{label}</div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -184,9 +173,9 @@ export function About() {
               가능성을 말하는 회사는 많습니다. 우리는 결과물로 이야기합니다.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-6" {...staggerContainer}>
             {platforms.map(({ Icon, tag, title, body, image, to }) => (
-              <Link key={title} to={to} className="group bg-white rounded-2xl overflow-hidden border transition-all hover:-translate-y-1 hover:shadow-xl" style={{ borderColor: 'var(--navy-100)' }}>
+              <MotionLink variants={staggerItem} key={title} to={to} className="group bg-white rounded-2xl overflow-hidden border transition-all hover:-translate-y-1 hover:shadow-xl" style={{ borderColor: 'var(--navy-100)' }}>
                 <div className="relative aspect-[16/10] overflow-hidden" style={{ backgroundColor: 'var(--navy-100)' }}>
                   <ImageWithFallback src={image} alt={title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold text-white backdrop-blur" style={{ backgroundColor: 'rgba(10,22,40,0.7)' }}>
@@ -197,9 +186,9 @@ export function About() {
                   <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{title}</h3>
                   <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{body}</p>
                 </div>
-              </Link>
+              </MotionLink>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -214,9 +203,9 @@ export function About() {
               의료와 기업, 가장 까다로운 두 현장에서 AX를 직접 만듭니다.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6" {...staggerContainer}>
             {domains.map(({ Icon, eyebrow, title, body, to, cta }) => (
-              <div key={title} className="rounded-2xl p-8 border flex flex-col" style={{ borderColor: 'var(--navy-100)' }}>
+              <motion.div variants={staggerItem} key={title} className="rounded-2xl p-8 flex flex-col" style={{ background: 'linear-gradient(155deg, var(--navy-100) 0%, var(--navy-50) 60%)' }}>
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: 'var(--navy-900)' }}>
                   <Icon className="w-6 h-6 text-white" strokeWidth={1.5} />
                 </div>
@@ -226,9 +215,9 @@ export function About() {
                 <Link to={to} className="inline-flex items-center gap-2 text-sm font-semibold transition-all hover:gap-3 self-start" style={{ color: 'var(--navy-900)' }}>
                   {cta} <ArrowRight className="w-4 h-4" />
                 </Link>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -244,17 +233,17 @@ export function About() {
               범용 AI 회사가 흉내낼 수 없는 업계 깊이를, 실행과 지표로 증명합니다.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" {...staggerContainer}>
             {values.map(({ Icon, title, body }) => (
-              <div key={title} className="bg-white rounded-2xl p-7">
+              <motion.div variants={staggerItem} key={title} className="bg-white rounded-2xl p-7">
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: 'var(--navy-900)' }}>
                   <Icon className="w-6 h-6 text-white" strokeWidth={1.5} />
                 </div>
                 <h3 className="text-base font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{title}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{body}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -270,9 +259,9 @@ export function About() {
               컨설팅사 중 자체 제품·데이터·운영 노하우를 모두 가진 회사는 드뭅니다.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" {...staggerContainer}>
             {assets.map(({ image, title, body }) => (
-              <div key={title} className="rounded-2xl overflow-hidden border flex flex-col" style={{ borderColor: 'var(--navy-100)' }}>
+              <motion.div variants={staggerItem} key={title} className="rounded-2xl overflow-hidden border flex flex-col" style={{ borderColor: 'var(--navy-100)' }}>
                 <div className="aspect-[16/9] overflow-hidden" style={{ backgroundColor: 'var(--navy-100)' }}>
                   <ImageWithFallback src={image} alt={title} className="w-full h-full object-cover" />
                 </div>
@@ -280,9 +269,9 @@ export function About() {
                   <h3 className="text-base font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{title}</h3>
                   <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{body}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -298,9 +287,9 @@ export function About() {
               제주와 서울 두 거점에서 운영하며, 미팅은 화상·대면 모두 가능합니다.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6" {...staggerContainer}>
             {locations.map(({ label, title, body, roles }) => (
-              <div key={title} className="bg-white rounded-2xl p-8 border" style={{ borderColor: 'var(--navy-100)' }}>
+              <motion.div variants={staggerItem} key={title} className="bg-white rounded-2xl p-8 border" style={{ borderColor: 'var(--navy-100)' }}>
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'var(--navy-900)' }}>
                     <MapPin className="w-4 h-4 text-white" />
@@ -317,9 +306,9 @@ export function About() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -387,7 +376,7 @@ export function About() {
               어떤 분야든, 어떤 단계든 — 먼저 가볍게 이야기 나눠보세요.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-6" {...staggerContainer}>
             {contacts.map(({ Icon, label, main, sub, href, internal }) => {
               const inner = (
                 <>
@@ -401,12 +390,12 @@ export function About() {
               );
               const cls = 'bg-white rounded-2xl p-8 border transition-all hover:-translate-y-1 hover:shadow-lg flex flex-col';
               return internal ? (
-                <Link key={label} to={href} className={cls} style={{ borderColor: 'var(--navy-100)' }}>{inner}</Link>
+                <MotionLink variants={staggerItem} key={label} to={href} className={cls} style={{ borderColor: 'var(--navy-100)' }}>{inner}</MotionLink>
               ) : (
-                <a key={label} href={href} className={cls} style={{ borderColor: 'var(--navy-100)' }}>{inner}</a>
+                <motion.a variants={staggerItem} key={label} href={href} className={cls} style={{ borderColor: 'var(--navy-100)' }}>{inner}</motion.a>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 

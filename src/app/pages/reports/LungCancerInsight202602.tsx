@@ -323,7 +323,7 @@ export function LungCancerInsight202602() {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
-              to="/contact"
+              to="/consultation"
               className="px-8 py-4 text-white font-semibold rounded-lg transition-all hover:opacity-90"
               style={{ backgroundColor: '#0F2B46' }}
             >
@@ -331,7 +331,7 @@ export function LungCancerInsight202602() {
             </Link>
             
             <Link 
-              to="/contact"
+              to="/consultation"
               className="px-8 py-4 font-semibold rounded-lg border-2 transition-all hover:bg-opacity-5"
               style={{ borderColor: '#0F2B46', color: '#0F2B46', backgroundColor: 'transparent' }}
             >

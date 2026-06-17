@@ -315,7 +315,7 @@ export function StomachCancerReport() {
           <p className="text-sm" style={{ color: '#666666' }}>암 환자 니즈 분석 기반 의료 전략 컨설팅</p>
           <p className="text-sm" style={{ color: '#666666' }}>Research / Strategy / Execution</p>
           <p className="text-sm" style={{ color: '#666666' }}>이메일: fusionsfc@gmail.com</p>
-          <p className="text-sm" style={{ color: '#666666' }}>전화: 010-9297-0940</p>
+          <p className="text-sm" style={{ color: '#666666' }}>전화: +82.10.9297.0940</p>
           <p className="text-sm" style={{ color: '#666666' }}>서울특별시, 제주특별자치도</p>
         </div>
       </footer>

@@ -25,13 +25,7 @@ import {
 import { SEO } from '../components/SEO';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { medImages, homeImages } from '../data/homeImages';
-
-const fadeIn = {
-  initial: { opacity: 0, y: 60 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-80px' },
-  transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] as const },
-};
+import { fadeIn, staggerContainer, staggerItem } from '../lib/motion';
 
 /* ── 현실 문제 ─────────────────────────────────────── */
 const problems = [
@@ -276,9 +270,10 @@ export function Healthcare() {
               홈페이지와 광고에 비용을 쓰고 있지만, 환자는 줄어듭니다. 이유는 분명합니다.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-6" {...staggerContainer}>
             {problems.map(({ Icon, title, body }, i) => (
-              <div
+              <motion.div
+                variants={staggerItem}
                 key={title}
                 className="group relative rounded-2xl p-8 bg-white border overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1"
                 style={{ borderColor: 'var(--navy-100)' }}
@@ -301,9 +296,9 @@ export function Healthcare() {
                     {body}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
           <p className="text-xl lg:text-2xl text-center mt-16 leading-snug font-medium" style={{ color: 'var(--navy-900)' }}>
             그렇다면 지금 우리 병원은, AI 검색에 얼마나 준비되어 있을까요?
           </p>
@@ -445,9 +440,9 @@ export function Healthcare() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-6" {...staggerContainer}>
             {axServices.map(({ Icon, title, body }) => (
-              <div key={title} className="rounded-2xl p-8 border flex gap-5" style={{ borderColor: 'var(--navy-100)' }}>
+              <motion.div variants={staggerItem} key={title} className="rounded-2xl p-8 flex gap-5" style={{ background: 'linear-gradient(155deg, var(--navy-100) 0%, var(--navy-50) 60%)' }}>
                 <div className="shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: 'var(--navy-900)' }}>
                   <Icon className="w-6 h-6 text-white" strokeWidth={1.5} />
                 </div>
@@ -455,9 +450,9 @@ export function Healthcare() {
                   <h3 className="text-lg font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{title}</h3>
                   <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{body}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -544,9 +539,9 @@ export function Healthcare() {
           </div>
 
           {/* 실제 제품 화면 2 */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-20">
+          <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-20" {...staggerContainer}>
             {products.map(({ Icon, image, name, role, desc }) => (
-              <div key={name} className="bg-white rounded-2xl overflow-hidden border" style={{ borderColor: 'var(--navy-100)' }}>
+              <motion.div variants={staggerItem} key={name} className="bg-white rounded-2xl overflow-hidden border" style={{ borderColor: 'var(--navy-100)' }}>
                 <div className="relative aspect-[16/10] overflow-hidden" style={{ backgroundColor: 'var(--navy-100)' }}>
                   <ImageWithFallback src={image} alt={name} className="w-full h-full object-cover" />
                   <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold text-white backdrop-blur" style={{ backgroundColor: 'rgba(10,22,40,0.7)' }}>
@@ -558,25 +553,25 @@ export function Healthcare() {
                   <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{name}</h3>
                   <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{desc}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* 왜 다른가 */}
           <div className="mb-10">
             <h3 className="text-2xl lg:text-3xl font-bold tracking-tight" style={{ color: 'var(--navy-900)' }}>왜 다른가</h3>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" {...staggerContainer}>
             {innovations.map(({ Icon, title, body }) => (
-              <div key={title} className="bg-white rounded-2xl p-7">
+              <motion.div variants={staggerItem} key={title} className="bg-white rounded-2xl p-7">
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: 'var(--navy-900)' }}>
                   <Icon className="w-6 h-6 text-white" strokeWidth={1.5} />
                 </div>
                 <h4 className="text-base font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{title}</h4>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{body}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -648,29 +643,29 @@ export function Healthcare() {
           </div>
 
           {/* 고민 → 해결 → 수치 (압축 카드) */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-6" {...staggerContainer}>
             {concerns.map(({ q, solution, metric }) => (
-              <div key={q} className="bg-white rounded-2xl p-8 flex flex-col">
+              <motion.div variants={staggerItem} key={q} className="bg-white rounded-2xl p-8 flex flex-col">
                 <span className="text-xs font-semibold tracking-wide mb-2" style={{ color: '#d4183d' }}>고민</span>
                 <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--navy-900)' }}>{q}</h3>
                 <p className="text-sm leading-relaxed flex-1 mb-6" style={{ color: 'var(--navy-600)' }}>{solution}</p>
                 <div className="rounded-xl px-4 py-3 text-center font-bold" style={{ backgroundColor: 'var(--navy-900)', color: 'white' }}>
                   {metric}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* 도입 효과 — 슬림 스트립 */}
           <div className="mt-12 bg-white rounded-2xl p-8 lg:p-10">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4 text-center">
+            <motion.div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4 text-center" {...staggerContainer}>
               {effectHighlights.map(({ v, l }) => (
-                <div key={l}>
+                <motion.div variants={staggerItem} key={l}>
                   <div className="text-3xl lg:text-4xl font-bold mb-1" style={{ color: 'var(--navy-900)' }}>{v}</div>
                   <div className="text-sm" style={{ color: 'var(--navy-600)' }}>{l}</div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
           <p className="text-center text-sm mt-6" style={{ color: 'var(--navy-500)' }}>
             ※ LS AX 컨설팅 운영 병원 기준 예상치이며, 병원 규모와 환자 특성에 따라 달라질 수 있습니다.
@@ -689,9 +684,10 @@ export function Healthcare() {
               무료 진단부터 시작합니다. 효과를 먼저 확인하고 결정하셔도 됩니다.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" {...staggerContainer}>
             {steps.map(({ n, period, title, body }) => (
-              <div
+              <motion.div
+                variants={staggerItem}
                 key={n}
                 className="rounded-2xl p-7 relative overflow-hidden transition-all hover:-translate-y-1 hover:shadow-md"
                 style={{ background: 'linear-gradient(155deg, var(--navy-100) 0%, var(--navy-50) 60%)' }}
@@ -702,9 +698,9 @@ export function Healthcare() {
                 </div>
                 <h3 className="text-lg font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{title}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-700)' }}>{body}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
           {/* 보안 배지 */}
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 mt-14 text-sm" style={{ color: 'var(--navy-500)' }}>
             <span className="inline-flex items-center gap-2"><ShieldCheck className="w-4 h-4" /> 의료법·개인정보보호법 준수</span>
@@ -728,9 +724,9 @@ export function Healthcare() {
               개원 컨설팅부터 홍보·홈페이지까지, 의료 현장에서 검증된 파트너십입니다.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" {...staggerContainer}>
             {clients.map((c) => (
-              <div key={c.name} className="bg-white rounded-2xl overflow-hidden flex flex-col border" style={{ borderColor: 'var(--navy-100)' }}>
+              <motion.div variants={staggerItem} key={c.name} className="bg-white rounded-2xl overflow-hidden flex flex-col border" style={{ borderColor: 'var(--navy-100)' }}>
                 <div className="aspect-[16/10] overflow-hidden" style={{ backgroundColor: 'var(--navy-100)' }}>
                   <ImageWithFallback src={c.image} alt={c.name} className="w-full h-full object-cover" />
                 </div>
@@ -747,9 +743,9 @@ export function Healthcare() {
                     <ExternalLink className="w-4 h-4" /> 홈페이지 바로가기
                   </a>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -778,7 +774,7 @@ export function Healthcare() {
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
-              to="/consult"
+              to="/consultation"
               className="inline-flex items-center justify-center gap-2 px-10 py-5 text-lg border-2 text-white transition-all hover:bg-white/10 w-full sm:w-auto"
               style={{ borderColor: 'rgba(255,255,255,0.35)' }}
             >

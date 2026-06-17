@@ -1636,7 +1636,7 @@ export function Consultation() {
   const pct = progressPercent();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div id="consultation-form" className="min-h-screen bg-white scroll-mt-20">
       <SEO
         title="AI 진단 · 상담 신청 - LS AX 컨설팅"
         description="회사의 AI 도입 준비도를 7-10분 만에 진단합니다. Claude AI가 회사 상황에 맞춘 컨설팅 리포트를 즉시 제공하며, 무료 상담을 신청할 수 있습니다."

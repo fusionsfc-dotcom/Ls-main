@@ -1,5 +1,10 @@
 // 공용 모션 프리셋 — 전 페이지 공통 다이나믹 애니메이션
 // (framer-motion / motion/react 와 함께 사용)
+import { motion } from 'motion/react';
+import { Link } from 'react-router';
+
+/* react-router Link에 모션 적용 (stagger 카드가 링크일 때 사용) */
+export const MotionLink = motion.create(Link);
 
 export const viewportOnce = { once: true, margin: '-80px' } as const;
 

@@ -24,13 +24,7 @@ import {
 import { SEO } from '../components/SEO';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { bizImages } from '../data/homeImages';
-
-const fadeIn = {
-  initial: { opacity: 0, y: 60 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-80px' },
-  transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] as const },
-};
+import { fadeIn, staggerContainer, staggerItem } from '../lib/motion';
 
 /* ── 현실 문제 ─────────────────────────────────────── */
 const problems = [
@@ -185,12 +179,13 @@ export function Business() {
               막상 시작하려면 벽에 부딪힙니다. 대부분의 기업이 멈추는 지점은 비슷합니다.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-6" {...staggerContainer}>
             {problems.map(({ Icon, title, body }, i) => (
-              <div
+              <motion.div
+                variants={staggerItem}
                 key={title}
-                className="group relative rounded-2xl p-8 bg-white border overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1"
-                style={{ borderColor: 'var(--navy-100)' }}
+                className="group relative rounded-2xl p-8 overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1"
+                style={{ background: 'linear-gradient(155deg, var(--navy-100) 0%, var(--navy-50) 60%)' }}
               >
                 <span className="absolute top-6 right-7 text-6xl font-bold leading-none select-none tabular-nums" style={{ color: 'var(--navy-50)' }}>
                   0{i + 1}
@@ -202,9 +197,9 @@ export function Business() {
                   <h3 className="text-lg font-bold mb-2.5" style={{ color: 'var(--navy-900)' }}>{title}</h3>
                   <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{body}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -222,9 +217,9 @@ export function Business() {
               받은 것을 읽고, 가공하고, 내보낸다. 이 사이클을 통째로 자동화합니다.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch" {...staggerContainer}>
             {cycle.map(({ Icon, step, body }, i) => (
-              <div key={step} className="relative bg-white rounded-2xl p-8 text-center">
+              <motion.div variants={staggerItem} key={step} className="relative bg-white rounded-2xl p-8 text-center">
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5" style={{ backgroundColor: 'var(--navy-900)' }}>
                   <Icon className="w-7 h-7 text-white" strokeWidth={1.5} />
                 </div>
@@ -233,9 +228,9 @@ export function Business() {
                 {i < cycle.length - 1 && (
                   <ArrowRight className="hidden md:block absolute top-1/2 -right-3 w-6 h-6 -translate-y-1/2 z-10" style={{ color: 'var(--navy-300)' }} />
                 )}
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
           <div className="mt-12 rounded-2xl p-8 lg:p-10 text-center" style={{ backgroundColor: 'var(--navy-900)' }}>
             <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold mb-5" style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: 'var(--navy-200)' }}>
               <MessageSquareText className="w-3.5 h-3.5" /> 자연어로 시작
@@ -272,17 +267,17 @@ export function Business() {
               <ImageWithFallback src={bizImages.system} alt="운영되는 시스템" className="w-full h-full object-cover" />
             </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" {...staggerContainer}>
             {pillars.map(({ Icon, title, body }) => (
-              <div key={title} className="rounded-2xl p-7 border" style={{ borderColor: 'var(--navy-100)' }}>
+              <motion.div variants={staggerItem} key={title} className="rounded-2xl p-7" style={{ background: 'linear-gradient(155deg, var(--navy-100) 0%, var(--navy-50) 60%)' }}>
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: 'var(--navy-900)' }}>
                   <Icon className="w-6 h-6 text-white" strokeWidth={1.5} />
                 </div>
                 <h3 className="text-base font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{title}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{body}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -300,9 +295,9 @@ export function Business() {
               업종·직무를 가리지 않습니다. 반복되는 일이라면 모두 대상입니다.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-6" {...staggerContainer}>
             {scenarios.map(({ Icon, persona, items }) => (
-              <div key={persona} className="bg-white rounded-2xl p-8 flex flex-col">
+              <motion.div variants={staggerItem} key={persona} className="bg-white rounded-2xl p-8 flex flex-col">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ backgroundColor: 'var(--navy-100)' }}>
                     <Icon className="w-5 h-5" style={{ color: 'var(--navy-700)' }} strokeWidth={1.75} />
@@ -317,9 +312,9 @@ export function Business() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -364,17 +359,17 @@ export function Business() {
               자동화가 무서운 이유는 통제 불능입니다. 처음부터 보이게, 멈출 수 있게 설계합니다.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-6" {...staggerContainer}>
             {safeguards.map(({ Icon, title, body }) => (
-              <div key={title} className="rounded-2xl p-8 border" style={{ borderColor: 'var(--navy-100)' }}>
+              <motion.div variants={staggerItem} key={title} className="rounded-2xl p-8" style={{ background: 'linear-gradient(155deg, var(--navy-100) 0%, var(--navy-50) 60%)' }}>
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: 'var(--navy-50)' }}>
                   <Icon className="w-6 h-6" style={{ color: 'var(--navy-700)' }} strokeWidth={1.75} />
                 </div>
                 <h3 className="text-lg font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{title}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{body}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -389,15 +384,15 @@ export function Business() {
               어떤 업무를 자동화할지부터 함께 찾습니다. 무료 진단으로 시작하세요.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" {...staggerContainer}>
             {steps.map(({ n, title, body }) => (
-              <div key={n} className="rounded-xl p-7 bg-white border" style={{ borderColor: 'var(--navy-100)' }}>
+              <motion.div variants={staggerItem} key={n} className="rounded-xl p-7 bg-white border" style={{ borderColor: 'var(--navy-100)' }}>
                 <div className="text-3xl font-bold tabular-nums mb-4" style={{ color: 'var(--navy-300)' }}>{n}</div>
                 <h3 className="text-lg font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{title}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{body}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 

@@ -305,7 +305,7 @@ ${sample}
             관리자
           </span>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">리포트 생성기</h1>
-          <p className="text-gray-500 text-sm">HappyLifeCare PVM 데이터를 분석하여 LS컨설팅 인사이트 리포트를 생성합니다.</p>
+          <p className="text-gray-500 text-sm">HappyLifeCare PVM 데이터를 분석하여 LS AX 컨설팅 인사이트 리포트를 생성합니다.</p>
         </div>
 
         {/* ── 1단계: 분석 조건 폼 ── */}

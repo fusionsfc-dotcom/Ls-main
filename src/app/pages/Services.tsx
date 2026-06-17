@@ -14,16 +14,10 @@ import {
   Boxes,
 } from 'lucide-react';
 import { motion } from 'motion/react';
+import { fadeIn, staggerContainer, staggerItem, MotionLink } from '../lib/motion';
 import { SEO } from '../components/SEO';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { homeImages, axImages } from '../data/homeImages';
-
-const fadeIn = {
-  initial: { opacity: 0, y: 60 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-80px' },
-  transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] as const },
-};
 
 /* ── AX 강점 ───────────────────────────────────────── */
 const strengths = [
@@ -127,7 +121,7 @@ const cases = [
     title: 'AI 암상담 시스템',
     problem: '환자·보호자의 질문에 24시간 정확히 답할 창구가 없던 문제',
     result: 'RAG 기반 의료 상담 AI — 한국 의료체계까지 반영해 응대',
-    to: '/consult',
+    to: '/consultation',
   },
 ] as const;
 
@@ -220,9 +214,14 @@ export function Services() {
               AI를 소개하는 회사는 많지만, 자체 개발해 운영하는 회사는 드뭅니다.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" {...staggerContainer}>
             {strengths.map(({ Icon, title, body }) => (
-              <div key={title} className="rounded-2xl p-7 border" style={{ borderColor: 'var(--navy-100)' }}>
+              <motion.div
+                key={title}
+                variants={staggerItem}
+                className="rounded-2xl p-7"
+                style={{ background: 'linear-gradient(155deg, var(--navy-100) 0%, var(--navy-50) 60%)' }}
+              >
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
                   style={{ backgroundColor: 'var(--navy-900)' }}
@@ -235,9 +234,9 @@ export function Services() {
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>
                   {body}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -255,10 +254,11 @@ export function Services() {
               문제를 어떻게 AX로 풀었는지, 결과물로 보여드립니다.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6" {...staggerContainer}>
             {cases.map(({ image, tag, title, problem, result, to }) => (
-              <Link
+              <MotionLink
                 key={title}
+                variants={staggerItem}
                 to={to}
                 className="group bg-white rounded-2xl overflow-hidden flex flex-col sm:flex-row transition-all hover:-translate-y-1 hover:shadow-xl"
               >
@@ -293,9 +293,9 @@ export function Services() {
                     자세히 보기 <ArrowRight className="w-4 h-4" />
                   </span>
                 </div>
-              </Link>
+              </MotionLink>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -313,9 +313,9 @@ export function Services() {
               단계별로 도입하거나, 한 번에 통합할 수 있습니다.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" {...staggerContainer}>
             {solutions.map(({ Icon, image, tag, title, body }) => (
-              <div key={title} className="rounded-2xl overflow-hidden border flex flex-col" style={{ borderColor: 'var(--navy-100)' }}>
+              <motion.div variants={staggerItem} key={title} className="rounded-2xl overflow-hidden border flex flex-col" style={{ borderColor: 'var(--navy-100)' }}>
                 <div className="relative aspect-[16/9] overflow-hidden" style={{ backgroundColor: 'var(--navy-100)' }}>
                   <ImageWithFallback src={image} alt={title} className="w-full h-full object-cover" />
                   <span
@@ -334,9 +334,9 @@ export function Services() {
                     {body}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -351,9 +351,9 @@ export function Services() {
               분석 따로, 개발 따로가 아닙니다. 한 호흡으로 끝까지 책임집니다.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" {...staggerContainer}>
             {steps.map(({ n, title, body }) => (
-              <div key={n} className="rounded-xl p-7 bg-white border" style={{ borderColor: 'var(--navy-100)' }}>
+              <motion.div variants={staggerItem} key={n} className="rounded-xl p-7 bg-white border" style={{ borderColor: 'var(--navy-100)' }}>
                 <div className="text-3xl font-bold tabular-nums mb-4" style={{ color: 'var(--navy-300)' }}>
                   {n}
                 </div>
@@ -363,9 +363,9 @@ export function Services() {
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>
                   {body}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 

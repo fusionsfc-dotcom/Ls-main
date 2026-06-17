@@ -31,7 +31,7 @@ const footerSections = [
     links: [
       { label: '소개', path: '/about' },
       { label: '상담 / 견적 신청', path: '/consultation' },
-      { label: '작동 중인 AI', path: '/consult' },
+      { label: '작동 중인 AI', path: '/consultation' },
     ],
   },
 ] as const;
@@ -124,25 +124,9 @@ export function Footer({ hidePricing = false }: FooterProps) {
           {/* 구분선 */}
           <div className="border-t pt-8" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-              <p className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>
+              <p className="text-xs" style={{ color: 'var(--navy-300)' }}>
                 © LS AX Consulting
               </p>
-              <div className="flex gap-5">
-                <Link
-                  to="/terms"
-                  className="text-xs transition-colors hover:text-white"
-                  style={{ color: 'rgba(255,255,255,0.4)' }}
-                >
-                  이용약관
-                </Link>
-                <Link
-                  to="/privacy"
-                  className="text-xs transition-colors hover:text-white"
-                  style={{ color: 'rgba(255,255,255,0.4)' }}
-                >
-                  개인정보처리방침
-                </Link>
-              </div>
             </div>
           </div>
 
