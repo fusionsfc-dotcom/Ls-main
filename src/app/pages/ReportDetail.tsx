@@ -79,7 +79,7 @@ export function ReportDetail() {
   return (
     <div className="min-h-screen bg-white pt-20">
       <Helmet>
-        <title>2026년 2월 폐암 환자 온라인 니즈 분석 보고서 | LS Consulting</title>
+        <title>2026년 2월 폐암 환자 온라인 니즈 분석 보고서 | LS AX Consulting</title>
         <meta name="description" content="312건의 폐암 환자 보이스 분석. 표적치료와 면역항암에 대한 질문이 전체의 50.7%를 차지하며, 치료 선택에 대한 혼란과 부작용 관리에 대한 불안이 두드러졌습니다." />
         
         {/* Open Graph / Facebook */}
@@ -367,7 +367,7 @@ export function ReportDetail() {
       {/* Footer */}
       <footer className="py-12 px-6 lg:px-8 max-w-[960px] mx-auto border-t border-gray-200 mt-16">
         <div className="text-center space-y-2">
-          <h4 className="font-bold text-lg" style={{ color: '#0F2B46' }}>LS Consulting</h4>
+          <h4 className="font-bold text-lg" style={{ color: '#0F2B46' }}>LS AX Consulting</h4>
           <p className="text-sm" style={{ color: '#666666' }}>암 환자 니즈 분석 기반 의료 전략 컨설팅</p>
           <p className="text-sm" style={{ color: '#666666' }}>Research / Strategy / Execution</p>
           <p className="text-sm" style={{ color: '#666666' }}>이메일: fusionsfc@gmail.com</p>

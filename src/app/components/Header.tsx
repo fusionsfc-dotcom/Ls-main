@@ -3,10 +3,10 @@ import { Link, useLocation } from 'react-router';
 import { ArrowRight, Menu, X } from 'lucide-react';
 
 const headerMenus = [
-  { label: 'AI 솔루션', path: '/services' },
-  { label: '의료분야', path: '/healthcare' },
-  { label: '기업분야', path: '/business' },
-  { label: '회사소개', path: '/about' },
+  { label: 'AX', path: '/services' },
+  { label: '의료', path: '/healthcare' },
+  { label: '기업', path: '/business' },
+  { label: '소개', path: '/about' },
 ] as const;
 
 export function Header() {
@@ -40,7 +40,7 @@ export function Header() {
           <div className="flex items-center justify-between h-20">
             {/* 로고 */}
             <Link to="/" className="text-2xl font-bold tracking-tight" style={{ color: 'var(--navy-900)' }}>
-              LS컨설팅
+              LS AX 컨설팅
             </Link>
 
             {/* 데스크톱 네비게이션 */}
@@ -99,7 +99,7 @@ export function Header() {
               className="text-2xl font-bold tracking-tight"
               style={{ color: 'var(--navy-900)' }}
             >
-              LS컨설팅
+              LS AX 컨설팅
             </Link>
             <button
               onClick={() => setMobileMenuOpen(false)}

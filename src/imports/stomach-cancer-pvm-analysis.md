@@ -1,4 +1,4 @@
-LS컨설팅 홈페이지 Report 페이지에
+LS AX 컨설팅 홈페이지 Report 페이지에
 다음 리포트를 추가한다.
 
 제목:
@@ -39,7 +39,7 @@ Meta:
 
 March 2026
 Monthly Cancer Voice Report
-LS Consulting Research
+LS AX Consulting Research
 
 🔷 SECTION 1 – 데이터 기반 핵심 인사이트
 

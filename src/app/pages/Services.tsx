@@ -2,17 +2,21 @@ import React from 'react';
 import { Link } from 'react-router';
 import {
   ArrowRight,
-  Check,
+  Cpu,
+  ShieldCheck,
+  Layers,
+  Hammer,
   LineChart,
   Workflow,
   Globe,
   Code2,
   Compass,
-  Heart,
-  Briefcase,
+  Boxes,
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { SEO } from '../components/SEO';
+import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { homeImages, axImages } from '../data/homeImages';
 
 const fadeIn = {
   initial: { opacity: 0, y: 24 },
@@ -21,398 +25,215 @@ const fadeIn = {
   transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
 };
 
-const workSteps = [
-  { n: '01', label: 'Diagnose', title: '진단', body: '자체 AI 시스템으로 시장과 고객 데이터를 13개 축으로 분석합니다. 추정이 아닌 데이터로 시작합니다.' },
-  { n: '02', label: 'Design', title: '설계', body: '진단 결과를 토대로 전략과 시스템 구조를 설계합니다. PPT가 아닌 동작하는 프로토타입으로 보여드립니다.' },
-  { n: '03', label: 'Build', title: '구축', body: 'Claude/Cursor 기반으로 직접 개발합니다. 외주 단계가 없으니 의도가 그대로 결과물에 반영됩니다.' },
-  { n: '04', label: 'Operate', title: '운영', body: '만든 시스템이 실제로 작동하는지 끝까지 책임집니다. KPI 측정, 개선, 확장까지.' },
+/* ── AX 강점 ───────────────────────────────────────── */
+const strengths = [
+  {
+    Icon: Cpu,
+    title: 'AI를 직접 만드는 회사',
+    body: '외부 API를 연결하는 데 그치지 않고, 자체 AI 시스템을 설계하고 운영합니다.',
+  },
+  {
+    Icon: ShieldCheck,
+    title: '가장 어려운 의료에서 검증',
+    body: '규제와 민감 데이터가 얽힌 의료 현장에서 작동하는 AI를 만들어 왔습니다.',
+  },
+  {
+    Icon: Layers,
+    title: '진단부터 운영까지 원스톱',
+    body: '한 팀이 분석·설계·개발·운영을 이어갑니다. 단계 사이 정보 손실이 없습니다.',
+  },
+  {
+    Icon: Hammer,
+    title: '외주 없는 직접 개발',
+    body: '기획한 사람이 직접 만듭니다. 의도가 그대로 결과물에 반영됩니다.',
+  },
 ] as const;
 
+/* ── AX 솔루션 ─────────────────────────────────────── */
 const solutions = [
   {
-    id: 'diagnosis',
     Icon: LineChart,
-    labelEn: 'AI Market Diagnosis',
-    titleKo: 'AI 시장 진단',
-    body: '시장과 고객, 경쟁사를 자체 AI 시스템으로 분석합니다. AI 도입을 검토 중인 회사를 위한 가장 가벼운 진입 옵션입니다. 4-6주 안에 의사결정에 필요한 종합 리포트를 받으실 수 있습니다.',
-    deliverables: [
-      '시장 구조·경쟁 포지셔닝 진단',
-      '고객 니즈·이탈 패턴 분석',
-      'AI 도입 가능 영역과 우선순위 로드맵',
-    ],
-    meta: '프로젝트 · 4-6주 · ₩5,000,000부터 (VAT 별도)',
+    image: axImages.diagnosis,
+    tag: 'Diagnosis',
+    title: 'AI 시장 진단',
+    body: '시장·고객·경쟁사를 자체 AI로 13개 축으로 분석합니다. AI 도입의 가장 가벼운 첫걸음.',
   },
   {
-    id: 'automation',
     Icon: Workflow,
-    labelEn: 'AI Workflow Automation',
-    titleKo: 'AI 업무 자동화',
-    body: '회사 워크플로우 자동화 시스템을 직접 구축하고 운영합니다. n8n, Make, Zapier 같은 자동화 도구와 Claude API를 결합하여 엑셀과 카톡으로 굴러가던 반복 업무를 시스템으로 전환합니다.',
-    deliverables: [
-      '회사 워크플로우 분석 + 자동화 가능 영역 진단',
-      '자동화 도구 + Claude API 결합 시스템 구축',
-      '6개월 운영 모니터링 포함',
-    ],
-    meta: '구축 + 운영 · 4-6주 · ₩8,000,000부터 + 월 ₩500,000부터 (VAT 별도)',
+    image: axImages.automation,
+    tag: 'Automation',
+    title: 'AI 업무 자동화',
+    body: '엑셀·메신저로 굴러가던 반복 업무를 Claude API와 자동화 도구로 시스템화합니다.',
   },
   {
-    id: 'webapp',
     Icon: Globe,
-    labelEn: 'AI-Optimized Web & App',
-    titleKo: 'AI 최적화 웹·앱 구축',
-    body: '홈페이지가 회사 소개 자료에 머물러 있다면, AI 시대에는 살아남기 어렵습니다. AI 검색 노출에 최적화되고, AI 챗봇이 24시간 응대하며, 한국 시장(네이버·카카오)에 특화된 자산을 만듭니다.',
-    deliverables: [
-      'AI 검색 노출 최적화 (구글·네이버·AI 검색)',
-      'Claude API 기반 AI 챗봇·상담 통합',
-      'React/Next.js + Supabase 풀스택 구축',
-    ],
-    meta: '프로젝트 · 4-8주 · ₩15,000,000부터 (VAT 별도)',
+    image: axImages.webapp,
+    tag: 'Web & App',
+    title: 'AI 최적화 웹·앱',
+    body: 'AI 검색 노출 + 24시간 AI 챗봇 + 국내 시장 특화를 한 번에 구축합니다.',
   },
   {
-    id: 'saas',
     Icon: Code2,
-    labelEn: 'Custom SaaS Development',
-    titleKo: '맞춤 SaaS·시스템',
-    body: '기성 솔루션이 회사 방식을 못 따라올 때, 직접 만들어 운영합니다. 7년간 자체 SaaS를 개발·운영해 온 노하우로, 시장에서 작동하는 시스템을 6개월 안에 만듭니다.',
-    deliverables: [
-      '업계 특화 SaaS·내부 시스템 설계·구축',
-      '자체 AI 분석 모듈 통합 (선택)',
-      '운영 대시보드·KPI 자동 산출',
-    ],
-    meta: '프로젝트 · 8-16주 · ₩50,000,000부터 (VAT 별도)',
+    image: axImages.saas,
+    tag: 'Custom SaaS',
+    title: '맞춤 SaaS 개발',
+    body: '기성 솔루션이 회사 방식을 못 따라올 때, 전용 시스템을 자체 구축해 운영합니다.',
   },
   {
-    id: 'consulting',
+    Icon: Boxes,
+    image: axImages.platform,
+    tag: 'Platform',
+    title: 'AX 플랫폼 개발',
+    body: '회사의 핵심 업무를 담는 전용 플랫폼을 설계·개발합니다. 이미 3종의 플랫폼을 자체 개발해 운영 중입니다.',
+  },
+  {
     Icon: Compass,
-    labelEn: 'AI Strategy Consulting',
-    titleKo: 'AI 전략 컨설팅',
-    body: '사내에 AI 전담 인력을 두기 전, 외부 전문가가 함께 설계하는 정기 자문입니다. 매월 전략 미팅과 자체 AI 분석 리포트, AI 도구 도입 가이드를 제공합니다. 사내 AI 인력 채용 비용 대비 1/3 수준의 투자입니다.',
-    deliverables: [
-      '월 2회 정기 전략 미팅',
-      'AI 도입 로드맵 설계·실행 자문',
-      '외부 AI 도구 도입·운영 가이드',
-    ],
-    meta: '월 정액 · 6개월~ · ₩5,000,000/월 (VAT 별도)',
+    image: axImages.strategy,
+    tag: 'Consulting',
+    title: 'AI 전략 컨설팅',
+    body: '사내 AI 인력을 두기 전, 외부 전문가가 함께 설계하는 정기 자문.',
   },
 ] as const;
 
-const combinations = [
+/* ── 케이스(사례) ──────────────────────────────────── */
+const cases = [
   {
-    label: 'Recommended for Beginners',
-    title: '진단 + 컨설팅',
-    body: 'AI를 처음 도입하는 회사에 가장 자주 권하는 조합입니다. 4-6주 진단 리포트로 방향을 잡고, 이어 6개월 정기 자문으로 실행을 함께합니다.',
-    components: ['AI 시장 진단 (1회)', 'AI 전략 컨설팅 (월 정액)'],
-    startPrice: '₩5,000,000 (진단) + ₩5,000,000/월 (컨설팅)',
-    isPrimary: false,
-  },
-  {
-    label: 'Most Popular',
-    title: '진단 + 웹·앱 구축',
-    body: '진단 결과가 곧 웹·앱 설계의 기반이 됩니다. 별도로 진행할 때보다 시간과 비용이 모두 절감되며, 결과물의 일관성이 높습니다.',
-    components: ['AI 시장 진단 (1회)', 'AI 최적화 웹·앱 구축 (1회)'],
-    startPrice: '₩20,000,000부터 (통합 패키지 할인 적용)',
-    isPrimary: true,
-  },
-  {
-    label: 'Quick Win Bundle',
-    title: '진단 + 자동화',
-    body: 'AI 도입의 효과를 가장 빨리 체감하고 싶은 회사를 위한 조합입니다. 4-6주 진단으로 자동화 가능 영역을 도출한 후, 가장 임팩트 큰 영역부터 4-6주 안에 자동화 시스템을 구축합니다.',
-    components: ['AI 시장 진단 (1회)', 'AI 업무 자동화 (구축 + 운영)'],
-    startPrice: '₩5,000,000 (진단) + ₩8,000,000 (자동화 구축) + ₩500,000/월부터 (운영)',
-    isPrimary: false,
-  },
-  {
-    label: 'Enterprise',
-    title: '진단 + SaaS + 컨설팅',
-    body: 'AI를 회사의 인프라로 만들고 싶은 회사를 위한 풀 패키지입니다. 진단으로 시작해 자체 SaaS를 구축하고, 운영을 정기 자문으로 이어갑니다.',
-    components: ['AI 시장 진단 (1회)', '맞춤 SaaS 개발 (1회)', 'AI 전략 컨설팅 (월 정액)'],
-    startPrice: '별도 산정 (회사 규모·범위에 따라 조정)',
-    isPrimary: false,
-  },
-] as const;
-
-const industryBranches = [
-  {
-    Icon: Heart,
-    labelEn: 'For Healthcare',
-    titleKo: '의료분야',
-    body: '암 요양·한방병원, 의원, 헬스케어 스타트업이 대상입니다. 15년 의료 현장 경험과 자체 AI 분석 시스템으로, 5대 솔루션을 의료기관 환경에 맞춰 적용합니다.',
-    points: [
-      '의료법·개인정보보호법 준수 시스템',
-      '환자 데이터 13개 축 분석 누적 15,000건+',
-      '병원 PR·개원 컨설팅 통합 패키지 제공',
-    ],
-    cta: '의료분야 자세히 보기',
+    image: homeImages.cancerPlatform,
+    tag: 'Healthcare · Platform',
+    title: 'Cancer Hospital Platform',
+    problem: '암 병원의 진료·입원·KPI가 흩어져 관리되던 문제',
+    result: '운영 데이터를 하나로 묶어 자동 KPI 산출까지 연결한 통합 플랫폼',
     to: '/healthcare',
   },
   {
-    Icon: Briefcase,
-    labelEn: 'For Business',
-    titleKo: '기업분야',
-    body: '서비스업, 기관, 중소·중견기업이 대상입니다. 가장 까다로운 의료에서 검증된 AI 실행력을, 회사 산업의 워크플로우에 맞춰 적용합니다.',
-    points: [
-      '산업별 특화 AI 시스템 설계',
-      '한국 시장 특화 (네이버·카카오·국내 결제)',
-      '외주 단계 없는 직접 개발',
-    ],
-    cta: '기업분야 자세히 보기',
+    image: homeImages.rehabApp,
+    tag: 'Healthcare · Mobile',
+    title: '환자재활 애플리케이션',
+    problem: '퇴원 후 환자·보호자의 재활 관리가 단절되던 문제',
+    result: '건강 모니터링과 맞춤 가이드를 일상에서 제공하는 케어 앱',
+    to: '/patients',
+  },
+  {
+    image: homeImages.spaceAx,
+    tag: 'Business · Automation',
+    title: 'Space AX Platform',
+    problem: '공간·현장의 반복 업무가 수작업에 묶여 있던 문제',
+    result: '운영 데이터를 시스템으로 전환해 반복 업무를 자동화',
     to: '/business',
+  },
+  {
+    image: axImages.aiConsult,
+    tag: 'Healthcare · AI',
+    title: 'AI 암상담 시스템',
+    problem: '환자·보호자의 질문에 24시간 정확히 답할 창구가 없던 문제',
+    result: 'RAG 기반 의료 상담 AI — 한국 의료체계까지 반영해 응대',
+    to: '/consult',
   },
 ] as const;
 
-const anchorChips = [
-  { label: '우리의 작업 방식', href: '#how' },
-  { label: '5대 솔루션', href: '#solutions' },
-  { label: '어느 산업입니까?', href: '#choose' },
+/* ── 진행 방식 ─────────────────────────────────────── */
+const steps = [
+  { n: '01', title: '진단', body: '자체 AI로 시장·고객·업무를 분석합니다.' },
+  { n: '02', title: '설계', body: '실행 가능한 AX 전략과 구조를 설계합니다.' },
+  { n: '03', title: '구축', body: '웹·앱·자동화를 외주 없이 직접 만듭니다.' },
+  { n: '04', title: '운영', body: 'KPI로 측정하고 지속 고도화합니다.' },
 ] as const;
 
 export function Services() {
   return (
     <div className="min-h-screen bg-white">
       <SEO
-        title="AI 솔루션 - LS컨설팅"
-        description="AI 시장 진단, AI 업무 자동화, AI 최적화 웹·앱 구축, 맞춤 SaaS·시스템, AI 전략 컨설팅. 5가지 솔루션을 한 팀이 한 호흡으로 진행합니다. 진단부터 운영까지 한 회사가 책임집니다."
+        title="AX - LS AX 컨설팅"
+        description="LS AX 컨설팅의 AX(AI 전환) 강점과 실제 케이스. AI 시장 진단, 업무 자동화, AI 최적화 웹·앱, 맞춤 SaaS, AI 전략 컨설팅을 한 팀이 진단부터 운영까지 책임집니다."
         url="https://www.lsconsulting.co.kr/services"
       />
 
-      {/* SECTION 1 — 히어로 */}
-      <motion.section
-        className="pt-40 pb-24 px-8 lg:px-16"
-        style={{ backgroundColor: 'white' }}
-        {...fadeIn}
-      >
-        <div className="max-w-[1400px] mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
+      {/* ── SECTION 1 · HERO ───────────────────────────── */}
+      <section className="relative overflow-hidden" style={{ backgroundColor: 'var(--navy-900)' }}>
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `linear-gradient(180deg, rgba(10,22,40,0.9) 0%, rgba(10,22,40,0.84) 50%, rgba(10,22,40,0.97) 100%), url(${axImages.hero})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        <div
+          className="absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              'linear-gradient(var(--navy-300) 1px, transparent 1px), linear-gradient(90deg, var(--navy-300) 1px, transparent 1px)',
+            backgroundSize: '52px 52px',
+          }}
+        />
+        <motion.div className="relative max-w-[1400px] mx-auto px-8 lg:px-16 pt-44 pb-32" {...fadeIn}>
+          <div className="max-w-4xl">
             <span
-              className="inline-block rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide mb-8"
-              style={{ backgroundColor: 'var(--navy-100)', color: 'var(--navy-700)', fontSize: '12px' }}
+              className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide"
+              style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: 'var(--navy-200)' }}
             >
-              AI Solutions
+              <Cpu className="w-3.5 h-3.5" />
+              AX · AI Transformation
             </span>
-            <h1
-              className="text-5xl lg:text-7xl tracking-tight leading-tight"
-              style={{ color: 'var(--navy-900)' }}
-            >
-              분석·전략·개발·운영
-              <br className="hidden sm:block" />
-              한 팀이 한 호흡으로
+            <h1 className="text-5xl lg:text-7xl tracking-tight leading-[1.08] mt-8 text-white font-bold">
+              AI 전환을 미루는 사이
+              <br />
+              <span style={{ color: 'var(--navy-300)' }}>경쟁사는 이미</span> 앞서갑니다
             </h1>
-            <p
-              className="text-xl mt-8 max-w-3xl mx-auto leading-relaxed"
-              style={{ color: 'var(--navy-700)' }}
-            >
-              LS컨설팅은 AI 시장 진단, AI 업무 자동화, AI 최적화 웹·앱 구축,
-              <br className="hidden sm:block" />
-              맞춤 SaaS 개발, AI 전략 컨설팅의 5가지 솔루션을 제공합니다.
-              <br className="hidden sm:block" />
-              분석한 사람이 전략을 짜고, 같은 사람이 직접 개발합니다.
-              <br className="hidden sm:block" />
-              단계마다 발생하는 정보 손실이 없는 구조입니다.
+            <p className="text-lg lg:text-xl mt-8 max-w-2xl leading-relaxed" style={{ color: 'var(--navy-200)' }}>
+              진단 · 자동화 · 웹앱 · SaaS · 컨설팅, 그리고 자체 개발한 <span className="font-semibold text-white">AX 플랫폼</span>.
+              한 팀이 분석부터 운영까지 이어갑니다.
+              말이 아니라 이미 운영 중인 플랫폼과 결과물로 증명합니다.
             </p>
-            <p className="text-sm mt-4" style={{ color: 'var(--navy-500)' }}>
-              진단 → 설계 → 구축 → 운영. 한 회사가 끝까지 책임집니다.
-            </p>
-            <div className="flex flex-wrap justify-center gap-3 mt-10">
-              {anchorChips.map((chip) => (
-                <a
-                  key={chip.href}
-                  href={chip.href}
-                  className="rounded-full px-4 py-2 text-sm font-medium transition-all"
-                  style={{ backgroundColor: 'var(--navy-50)', color: 'var(--navy-700)' }}
-                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--navy-100)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--navy-50)')}
-                >
-                  {chip.label}
-                </a>
-              ))}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-12">
+              <Link
+                to="/consultation"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 transition-all hover:opacity-90"
+                style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
+              >
+                <span className="font-semibold">상담 / 견적 신청</span>
+                <ArrowRight className="w-5 h-5 shrink-0" />
+              </Link>
+              <a
+                href="#cases"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 text-white transition-all hover:bg-white/10"
+                style={{ borderColor: 'rgba(255,255,255,0.35)' }}
+              >
+                <span>케이스 먼저 보기</span>
+              </a>
             </div>
           </div>
-        </div>
-      </motion.section>
+        </motion.div>
+      </section>
 
-      {/* SECTION 2 — 작업 방식 */}
-      <motion.section
-        id="how"
-        className="py-24 px-8 lg:px-16 scroll-mt-20"
-        style={{ backgroundColor: 'var(--navy-50)' }}
-        {...fadeIn}
-      >
+      {/* ── SECTION 2 · AX 강점 ─────────────────────────── */}
+      <motion.section className="py-28 px-8 lg:px-16 bg-white" {...fadeIn}>
         <div className="max-w-[1400px] mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <h2
-              className="text-3xl lg:text-5xl tracking-tight leading-tight mb-6"
-              style={{ color: 'var(--navy-900)' }}
-            >
-              한 팀이 한 호흡으로 갑니다
+          <div className="max-w-3xl mb-16">
+            <span className="text-sm font-bold tracking-wide" style={{ color: 'var(--navy-600)' }}>
+              WHY LS AX
+            </span>
+            <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight mt-3 mb-5" style={{ color: 'var(--navy-900)' }}>
+              AX, LS AX 컨설팅이 다른 이유
             </h2>
-            <p className="text-lg leading-relaxed opacity-80" style={{ color: 'var(--navy-900)' }}>
-              진단 회사 따로, 설계 회사 따로, 개발사 따로가 아닙니다.
-              <br className="hidden sm:block" />
-              진단한 사람이 전략을 짜고, 같은 사람이 직접 만듭니다.
-              <br className="hidden sm:block" />
-              단계마다 발생하는 정보 손실이 없습니다.
+            <p className="text-lg leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+              AI를 소개하는 회사는 많지만, 자체 개발해 운영하는 회사는 드뭅니다.
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {workSteps.map((step) => (
-              <div
-                key={step.n}
-                className="bg-white rounded-xl p-7 border-l-4"
-                style={{ borderLeftColor: 'var(--navy-900)' }}
-              >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {strengths.map(({ Icon, title, body }) => (
+              <div key={title} className="rounded-2xl p-7 border" style={{ borderColor: 'var(--navy-100)' }}>
                 <div
-                  className="text-6xl font-bold leading-none mb-4 select-none"
-                  style={{ color: 'var(--navy-100)' }}
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+                  style={{ backgroundColor: 'var(--navy-900)' }}
                 >
-                  {step.n}
+                  <Icon className="w-6 h-6 text-white" strokeWidth={1.5} />
                 </div>
-                <div
-                  className="text-xs font-bold tracking-widest uppercase mb-1"
-                  style={{ color: 'var(--navy-500)' }}
-                >
-                  {step.label}
-                </div>
-                <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--navy-900)' }}>
-                  {step.title}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-700)', opacity: 0.8 }}>
-                  {step.body}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <p
-            className="text-2xl lg:text-3xl text-center mt-16 leading-snug font-medium"
-            style={{ color: 'var(--navy-900)' }}
-          >
-            외주 회사가 아닙니다. 파트너입니다.
-            <br />
-            첫 미팅의 사람이 마지막 결과물까지 함께합니다.
-          </p>
-        </div>
-      </motion.section>
-
-      {/* SECTION 3 — 5대 솔루션 */}
-      <motion.section
-        id="solutions"
-        className="py-24 px-8 lg:px-16 scroll-mt-20"
-        style={{ backgroundColor: 'var(--navy-25)' }}
-        {...fadeIn}
-      >
-        <div className="max-w-[1400px] mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <h2
-              className="text-3xl lg:text-5xl tracking-tight leading-tight mb-5"
-              style={{ color: 'var(--navy-900)' }}
-            >
-              5가지 솔루션
-            </h2>
-            <p className="text-lg opacity-80" style={{ color: 'var(--navy-900)' }}>
-              단계별로 도입할 수도, 한 번에 통합할 수도 있습니다.
-              <br className="hidden sm:block" />
-              어떤 옵션이 적합한지는 회사 상황에 따라 다릅니다.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {solutions.map(({ id, Icon, labelEn, titleKo, body, deliverables, meta }) => (
-              <div
-                key={titleKo}
-                id={id}
-                className="rounded-2xl p-10 flex flex-col scroll-mt-24"
-                style={{ backgroundColor: 'var(--navy-50)' }}
-              >
-                <div className="flex items-start gap-5 mb-6">
-                  <div
-                    className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0"
-                    style={{ backgroundColor: 'var(--navy-900)' }}
-                  >
-                    <Icon className="w-7 h-7 text-white" strokeWidth={1.5} />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold mb-1" style={{ color: 'var(--navy-500)' }}>
-                      {labelEn}
-                    </p>
-                    <h3 className="text-2xl font-bold" style={{ color: 'var(--navy-900)' }}>
-                      {titleKo}
-                    </h3>
-                  </div>
-                </div>
-
-                <p className="text-base leading-relaxed mb-6" style={{ color: 'var(--navy-700)', opacity: 0.9 }}>
-                  {body}
-                </p>
-
-                <ul className="space-y-2.5 mb-8 flex-1">
-                  {deliverables.map((d: string) => (
-                    <li key={d} className="flex items-start gap-2">
-                      <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: 'var(--navy-700)' }} />
-                      <span className="text-sm" style={{ color: 'var(--navy-900)' }}>{d}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <p className="text-sm font-medium" style={{ color: 'var(--navy-500)' }}>
-                  {meta}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* SECTION 4 — 솔루션 조합 가이드 */}
-      <motion.section
-        className="py-24 px-8 lg:px-16"
-        style={{ backgroundColor: 'var(--navy-50)' }}
-        {...fadeIn}
-      >
-        <div className="max-w-[1400px] mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <h2
-              className="text-3xl lg:text-5xl tracking-tight leading-tight mb-5"
-              style={{ color: 'var(--navy-900)' }}
-            >
-              단독으로도, 조합으로도
-            </h2>
-            <p className="text-lg opacity-80" style={{ color: 'var(--navy-900)' }}>
-              5가지 솔루션은 독립적으로 제공되지만, 두세 개를 조합하면 시너지가 큽니다.
-              <br className="hidden sm:block" />
-              자주 권하는 조합을 소개합니다.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {combinations.map(({ label, title, body, components, startPrice, isPrimary }) => (
-              <div
-                key={title}
-                className="bg-white rounded-2xl p-8 flex flex-col border-2"
-                style={{ borderColor: isPrimary ? 'var(--navy-900)' : '#EAEAEA' }}
-              >
-                <span
-                  className="text-xs font-bold tracking-wide uppercase mb-4 self-start"
-                  style={{ color: 'var(--navy-700)' }}
-                >
-                  {label}
-                </span>
-                <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--navy-900)' }}>
+                <h3 className="text-lg font-bold mb-2" style={{ color: 'var(--navy-900)' }}>
                   {title}
                 </h3>
-                <p className="text-base leading-relaxed mb-6 flex-1" style={{ color: 'var(--navy-700)' }}>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>
                   {body}
-                </p>
-                <ul className="space-y-2 mb-6">
-                  {components.map((c: string) => (
-                    <li key={c} className="flex items-start gap-2">
-                      <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: 'var(--navy-700)' }} />
-                      <span className="text-sm" style={{ color: 'var(--navy-900)' }}>{c}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-sm" style={{ color: 'var(--navy-500)' }}>
-                  {startPrice}
                 </p>
               </div>
             ))}
@@ -420,121 +241,160 @@ export function Services() {
         </div>
       </motion.section>
 
-      {/* SECTION 5 — 산업 분기 */}
-      <motion.section
-        id="choose"
-        className="py-24 px-8 lg:px-16 scroll-mt-20"
-        style={{ backgroundColor: 'var(--navy-900)' }}
-        {...fadeIn}
-      >
+      {/* ── SECTION 3 · 케이스(사례) ────────────────────── */}
+      <motion.section id="cases" className="py-28 px-8 lg:px-16 scroll-mt-20" style={{ backgroundColor: 'var(--navy-50)' }} {...fadeIn}>
         <div className="max-w-[1400px] mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight text-white mb-6">
-              솔루션은 같지만,
-              <br className="hidden sm:block" />
-              적용은 산업마다 다릅니다
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-sm font-bold tracking-wide" style={{ color: 'var(--navy-600)' }}>
+              CASES
+            </span>
+            <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight mt-3 mb-5" style={{ color: 'var(--navy-900)' }}>
+              자체 개발한 AX 사례
             </h2>
-            <p className="text-lg leading-relaxed" style={{ color: 'var(--navy-300)' }}>
-              의료기관과 기업은 의사결정 구조, 규제, 사용자, KPI가 모두 다릅니다.
-              <br className="hidden sm:block" />
-              LS컨설팅은 두 트랙을 분리해 운영합니다.
-              <br className="hidden sm:block" />
-              회사가 속한 산업을 선택하시면 더 자세한 사례와 적용 방식을 보실 수 있습니다.
+            <p className="text-lg leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+              문제를 어떻게 AX로 풀었는지, 결과물로 보여드립니다.
             </p>
           </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {industryBranches.map(({ Icon, labelEn, titleKo, body, points, cta, to }) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {cases.map(({ image, tag, title, problem, result, to }) => (
               <Link
-                key={to}
+                key={title}
                 to={to}
-                className="rounded-2xl p-12 flex flex-col transition-all hover:scale-[1.02] hover:shadow-2xl"
-                style={{ backgroundColor: 'white' }}
+                className="group bg-white rounded-2xl overflow-hidden flex flex-col sm:flex-row transition-all hover:-translate-y-1 hover:shadow-xl"
               >
-                <div className="flex items-center gap-3 mb-6">
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
-                    style={{ backgroundColor: 'var(--navy-100)' }}
-                  >
-                    <Icon className="w-6 h-6" style={{ color: 'var(--navy-900)' }} strokeWidth={1.75} />
+                <div className="relative sm:w-2/5 aspect-[16/10] sm:aspect-auto overflow-hidden shrink-0" style={{ backgroundColor: 'var(--navy-100)' }}>
+                  <ImageWithFallback
+                    src={image}
+                    alt={title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-7 flex flex-col flex-1">
+                  <span className="text-xs font-semibold tracking-wide mb-2" style={{ color: 'var(--navy-500)' }}>
+                    {tag}
+                  </span>
+                  <h3 className="text-xl font-bold mb-4" style={{ color: 'var(--navy-900)' }}>
+                    {title}
+                  </h3>
+                  <div className="space-y-2.5 flex-1">
+                    <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+                      <span className="font-semibold" style={{ color: 'var(--navy-900)' }}>문제 </span>
+                      {problem}
+                    </p>
+                    <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+                      <span className="font-semibold" style={{ color: 'var(--navy-900)' }}>AX </span>
+                      {result}
+                    </p>
                   </div>
-                  <span className="text-xs font-bold tracking-widest uppercase" style={{ color: 'var(--navy-500)' }}>
-                    {labelEn}
+                  <span
+                    className="inline-flex items-center gap-2 text-sm font-semibold mt-5 transition-all group-hover:gap-3"
+                    style={{ color: 'var(--navy-900)' }}
+                  >
+                    자세히 보기 <ArrowRight className="w-4 h-4" />
                   </span>
                 </div>
-
-                <h3 className="text-3xl font-bold mb-4" style={{ color: 'var(--navy-900)' }}>
-                  {titleKo}
-                </h3>
-                <p className="text-base leading-relaxed mb-6 opacity-80" style={{ color: 'var(--navy-900)' }}>
-                  {body}
-                </p>
-
-                <ul className="space-y-2.5 mb-8 flex-1">
-                  {points.map((pt: string) => (
-                    <li key={pt} className="flex items-start gap-2">
-                      <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: 'var(--navy-700)' }} />
-                      <span className="text-sm" style={{ color: 'var(--navy-900)' }}>{pt}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <span
-                  className="inline-flex items-center gap-2 text-base font-semibold"
-                  style={{ color: 'var(--navy-900)' }}
-                >
-                  {cta}
-                  <ArrowRight className="w-5 h-5" />
-                </span>
               </Link>
             ))}
           </div>
         </div>
       </motion.section>
 
-      {/* SECTION 6 — 최종 CTA */}
-      <motion.section
-        className="py-32 px-8 lg:px-16"
-        style={{ backgroundColor: 'white' }}
-        {...fadeIn}
-      >
-        <div className="max-w-[1400px] mx-auto text-center">
-          <h2
-            className="text-3xl lg:text-5xl tracking-tight leading-tight mb-6"
-            style={{ color: 'var(--navy-900)' }}
-          >
-            어느 솔루션이 맞는지
+      {/* ── SECTION 4 · AX 솔루션 ───────────────────────── */}
+      <motion.section className="py-28 px-8 lg:px-16 bg-white" {...fadeIn}>
+        <div className="max-w-[1400px] mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-sm font-bold tracking-wide" style={{ color: 'var(--navy-600)' }}>
+              SOLUTIONS
+            </span>
+            <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight mt-3 mb-5" style={{ color: 'var(--navy-900)' }}>
+              6가지 AX 솔루션
+            </h2>
+            <p className="text-lg leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+              단계별로 도입하거나, 한 번에 통합할 수 있습니다.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {solutions.map(({ Icon, image, tag, title, body }) => (
+              <div key={title} className="rounded-2xl overflow-hidden border flex flex-col" style={{ borderColor: 'var(--navy-100)' }}>
+                <div className="relative aspect-[16/9] overflow-hidden" style={{ backgroundColor: 'var(--navy-100)' }}>
+                  <ImageWithFallback src={image} alt={title} className="w-full h-full object-cover" />
+                  <span
+                    className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold text-white backdrop-blur"
+                    style={{ backgroundColor: 'rgba(10,22,40,0.7)' }}
+                  >
+                    <Icon className="w-3.5 h-3.5" />
+                    {tag}
+                  </span>
+                </div>
+                <div className="p-7">
+                  <h3 className="text-lg font-bold mb-2" style={{ color: 'var(--navy-900)' }}>
+                    {title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+                    {body}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ── SECTION 5 · 진행 방식 ───────────────────────── */}
+      <motion.section className="py-28 px-8 lg:px-16" style={{ backgroundColor: 'var(--navy-50)' }} {...fadeIn}>
+        <div className="max-w-[1400px] mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight mb-5" style={{ color: 'var(--navy-900)' }}>
+              진단부터 운영까지, 한 팀이
+            </h2>
+            <p className="text-lg leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+              분석 따로, 개발 따로가 아닙니다. 한 호흡으로 끝까지 책임집니다.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {steps.map(({ n, title, body }) => (
+              <div key={n} className="rounded-xl p-7 bg-white border" style={{ borderColor: 'var(--navy-100)' }}>
+                <div className="text-3xl font-bold tabular-nums mb-4" style={{ color: 'var(--navy-300)' }}>
+                  {n}
+                </div>
+                <h3 className="text-lg font-bold mb-2" style={{ color: 'var(--navy-900)' }}>
+                  {title}
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+                  {body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ── SECTION 6 · 최종 CTA ────────────────────────── */}
+      <section className="relative py-28 px-8 lg:px-16 overflow-hidden" style={{ backgroundColor: 'var(--navy-900)' }}>
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{ backgroundImage: `url(${homeImages.trust})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+        />
+        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(10,22,40,0.85)' }} />
+        <motion.div className="relative max-w-[1400px] mx-auto text-center" {...fadeIn}>
+          <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight text-white mb-6">
+            어떤 AX가 맞는지
             <br className="hidden sm:block" />
             60분 무료 상담으로 확인하세요
           </h2>
-          <p
-            className="text-lg max-w-xl mx-auto leading-relaxed mb-5"
-            style={{ color: 'var(--navy-700)' }}
-          >
-            산업도, 솔루션도 명확하지 않으셔도 됩니다.
-            <br />
-            회사 상황을 듣고 가장 적합한 옵션과 단계를 제안해드립니다.
+          <p className="text-lg max-w-xl mx-auto leading-relaxed mb-10" style={{ color: 'var(--navy-200)' }}>
+            솔루션이 명확하지 않으셔도 됩니다. 회사 상황을 듣고 가장 적합한 방향을 제안합니다.
           </p>
-          <div
-            className="flex flex-wrap justify-center gap-6 mb-12 text-sm"
-            style={{ color: 'var(--navy-500)' }}
-          >
-            <span>60분 화상 또는 대면 미팅</span>
-            <span>·</span>
-            <span>사전 자료 제출 불필요</span>
-            <span>·</span>
-            <span>상담 후 24시간 내 맞춤 제안서 발송</span>
-          </div>
           <Link
             to="/consultation"
-            className="inline-flex items-center gap-2 px-10 py-5 text-lg text-white transition-all hover:opacity-90"
-            style={{ backgroundColor: 'var(--navy-900)' }}
+            className="inline-flex items-center gap-2 px-10 py-5 text-lg transition-all hover:opacity-90"
+            style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
           >
-            <span>상담/견적 신청</span>
+            <span className="font-semibold">상담 / 견적 신청</span>
             <ArrowRight className="w-5 h-5" />
           </Link>
-        </div>
-      </motion.section>
+        </motion.div>
+      </section>
     </div>
   );
 }

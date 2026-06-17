@@ -486,7 +486,7 @@ export function PvmKpiExecutionReport() {
       {/* Footer */}
       <footer className="py-12 px-6 lg:px-8 max-w-[960px] mx-auto border-t border-gray-200 mt-16">
         <div className="text-center space-y-2">
-          <h4 className="font-bold text-lg" style={{ color: '#0F2B46' }}>LS Consulting</h4>
+          <h4 className="font-bold text-lg" style={{ color: '#0F2B46' }}>LS AX Consulting</h4>
           <p className="text-sm" style={{ color: '#666666' }}>암 환자 니즈 분석 기반 의료 전략 컨설팅</p>
           <p className="text-sm" style={{ color: '#666666' }}>Research / Strategy / Execution</p>
           <p className="text-sm" style={{ color: '#666666' }}>이메일: fusionsfc@gmail.com</p>

@@ -1,8 +1,8 @@
 Figma Make 전용 프롬프트
-LS컨설팅 – Report 페이지 신규 리포트 생성
+LS AX 컨설팅 – Report 페이지 신규 리포트 생성
 🎯 프로젝트 목적
 
-LS컨설팅 홈페이지의 ‘Report’ 메뉴에
+LS AX 컨설팅 홈페이지의 ‘Report’ 메뉴에
 다음 전략 리포트를 추가합니다.
 
 리포트 제목:
@@ -52,7 +52,7 @@ Meta 영역:
 
 March 2026
 Healthcare Strategy Notes
-LS Consulting Research
+LS AX Consulting Research
 
 🔷 SECTION 1 – Executive Summary
 

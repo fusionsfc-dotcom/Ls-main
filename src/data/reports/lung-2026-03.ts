@@ -9,7 +9,7 @@ export const reportMeta = {
   surgeryRatio: 62,
   chemoRatio: 38,
   caregiverRatio: 41,
-  publishedBy: 'LS컨설팅',
+  publishedBy: 'LS AX 컨설팅',
   publishedAt: '2026-04-03',
 } as const;
 

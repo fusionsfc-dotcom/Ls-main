@@ -3,7 +3,7 @@ export const reportMeta = {
   subtitle: '2026년 3월 온라인 커뮤니티 DB 264건 분석 기반 월간 리포트',
   period: '2026년 3월',
   totalCases: 264,
-  publishedBy: 'LS컨설팅',
+  publishedBy: 'LS AX 컨설팅',
   disease: '간암 · 간경화 · 간염 · 담도질환',
 } as const;
 

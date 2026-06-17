@@ -1052,7 +1052,7 @@ export function Consultation() {
             회사의 AI 준비도를<br />7분 만에 진단합니다
           </h1>
           <p className="text-lg leading-relaxed mb-10" style={{ color: 'var(--navy-600)' }}>
-            LS컨설팅의 자체 AI 진단 시스템이 회사의 AI 도입 현재 단계와
+            LS AX 컨설팅의 자체 AI 진단 시스템이 회사의 AI 도입 현재 단계와
             우선순위를 분석해 맞춤 컨설팅 리포트를 즉시 제공합니다.
           </p>
 
@@ -1446,7 +1446,7 @@ export function Consultation() {
           마지막 단계입니다
         </h2>
         <p className="text-base text-center mb-10" style={{ color: 'var(--navy-500)' }}>
-          입력하신 정보로 PDF 리포트를 즉시 발송하며, LS컨설팅이 24시간 내 답변드립니다.
+          입력하신 정보로 PDF 리포트를 즉시 발송하며, LS AX 컨설팅이 24시간 내 답변드립니다.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -1530,7 +1530,7 @@ export function Consultation() {
               <input type="checkbox" checked={contactInfo.wantNewsletter}
                 onChange={e => setContactInfo(p => ({ ...p, wantNewsletter: e.target.checked }))}
                 className="mt-0.5 w-4 h-4 flex-shrink-0" />
-              <span className="text-sm" style={{ color: 'var(--navy-700)' }}>LS컨설팅 인사이트 뉴스레터 수신 동의 (월 1-2회)</span>
+              <span className="text-sm" style={{ color: 'var(--navy-700)' }}>LS AX 컨설팅 인사이트 뉴스레터 수신 동의 (월 1-2회)</span>
             </label>
             <div>
               <label className="flex items-start gap-3 cursor-pointer">
@@ -1594,14 +1594,14 @@ export function Consultation() {
           {wantConsultation && (
             <p className="text-sm font-medium mb-8 px-4 py-3 rounded-xl"
               style={{ backgroundColor: 'var(--navy-50)', color: 'var(--navy-700)' }}>
-              60분 무료 상담을 신청하셨습니다. LS컨설팅에서 24시간 내 직접 연락드립니다.
+              60분 무료 상담을 신청하셨습니다. LS AX 컨설팅에서 24시간 내 직접 연락드립니다.
             </p>
           )}
 
           <div className="grid grid-cols-3 gap-4 mb-10">
             {[
               { Icon: Mail, title: '이메일 확인', body: '발송된 진단 리포트 확인' },
-              { Icon: Phone, title: '24시간 내 연락', body: 'LS컨설팅이 직접 연락 (상담 신청 시)' },
+              { Icon: Phone, title: '24시간 내 연락', body: 'LS AX 컨설팅이 직접 연락 (상담 신청 시)' },
               { Icon: BookOpen, title: '다른 자료 보기', body: '자체 AI 분석 리포트 등' },
             ].map(({ Icon, title, body }) => (
               <div key={title} className="flex flex-col items-center gap-2 p-4 rounded-xl"
@@ -1638,7 +1638,7 @@ export function Consultation() {
   return (
     <div className="min-h-screen bg-white">
       <SEO
-        title="AI 진단 · 상담 신청 - LS컨설팅"
+        title="AI 진단 · 상담 신청 - LS AX 컨설팅"
         description="회사의 AI 도입 준비도를 7-10분 만에 진단합니다. Claude AI가 회사 상황에 맞춘 컨설팅 리포트를 즉시 제공하며, 무료 상담을 신청할 수 있습니다."
         url="https://www.lsconsulting.co.kr/consultation"
       />
@@ -1785,14 +1785,14 @@ export function Consultation() {
                   <Sparkles className="w-4 h-4" />
                   AI 진단 시작
                 </button>
-                <Link
-                  to="/consultation?simple=true"
+                <a
+                  href="tel:01092970940"
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold transition-all border-2 hover:bg-navy-50"
                   style={{ borderColor: 'var(--navy-900)', color: 'var(--navy-900)' }}
                 >
                   <Phone className="w-4 h-4" />
-                  60분 무료 상담 신청
-                </Link>
+                  무료상담
+                </a>
                 <a
                   href="mailto:fusionsfc@gmail.com"
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold transition-all border"

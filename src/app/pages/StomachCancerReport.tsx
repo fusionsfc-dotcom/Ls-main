@@ -45,7 +45,7 @@ export function StomachCancerReport() {
   return (
     <div className="min-h-screen bg-white pt-20">
       <Helmet>
-        <title>위암 환자 니즈 분석 리포트 | LS Consulting</title>
+        <title>위암 환자 니즈 분석 리포트 | LS AX Consulting</title>
         <meta name="description" content="2026년 2월 위암 환자 PVM 데이터 기반 수술 후 식이 관리, 체중 감소, 덤핑 증후군 등 회복 과정 니즈 분석." />
         
         {/* Open Graph / Facebook */}
@@ -63,7 +63,7 @@ export function StomachCancerReport() {
       </Helmet>
 
       <SEO 
-        title="위암 환자 니즈 분석 리포트 - LS컨설팅"
+        title="위암 환자 니즈 분석 리포트 - LS AX 컨설팅"
         description="위암 환자들의 수술 후 식이 관리, 체중 감소, 덤핑 증후군 등 회복 과정 니즈 분석."
         url="https://www.lsconsulting.co.kr/disease/stomach-cancer-report"
       />
@@ -293,7 +293,7 @@ export function StomachCancerReport() {
       {/* Newsletter */}
       <section className="py-16 px-6 lg:px-8 max-w-[960px] mx-auto border-t border-gray-200">
         <h2 className="text-3xl font-bold mb-8" style={{ color: '#0F2B46' }}>
-          LS Consulting 뉴스레터 구독하기
+          LS AX Consulting 뉴스레터 구독하기
         </h2>
         
         <p className="text-xl mb-8" style={{ color: '#666666' }}>
@@ -311,7 +311,7 @@ export function StomachCancerReport() {
       {/* Footer */}
       <footer className="py-12 px-6 lg:px-8 max-w-[960px] mx-auto border-t border-gray-200 mt-16">
         <div className="text-center space-y-2">
-          <h4 className="font-bold text-lg" style={{ color: '#0F2B46' }}>LS Consulting</h4>
+          <h4 className="font-bold text-lg" style={{ color: '#0F2B46' }}>LS AX Consulting</h4>
           <p className="text-sm" style={{ color: '#666666' }}>암 환자 니즈 분석 기반 의료 전략 컨설팅</p>
           <p className="text-sm" style={{ color: '#666666' }}>Research / Strategy / Execution</p>
           <p className="text-sm" style={{ color: '#666666' }}>이메일: fusionsfc@gmail.com</p>

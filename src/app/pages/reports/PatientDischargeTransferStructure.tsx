@@ -148,7 +148,7 @@ export function PatientDischargeTransferStructure() {
             <span>•</span>
             <span>Healthcare Strategy Notes</span>
             <span>•</span>
-            <span>LS Consulting Research</span>
+            <span>LS AX Consulting Research</span>
           </div>
         </div>
       </section>

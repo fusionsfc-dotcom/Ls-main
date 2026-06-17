@@ -49,7 +49,7 @@ export function LiverCancerReport202603() {
       </Helmet>
 
       <SEO
-        title={`${reportMeta.title} | LS컨설팅`}
+        title={`${reportMeta.title} | LS AX 컨설팅`}
         description={reportMeta.subtitle}
         url={canonical}
       />

@@ -1,7 +1,7 @@
-LS컨설팅 – Report 메뉴 신규 리포트 생성
+LS AX 컨설팅 – Report 메뉴 신규 리포트 생성
 🎯 목적
 
-LS컨설팅 홈페이지 ‘Report’ 메뉴에
+LS AX 컨설팅 홈페이지 ‘Report’ 메뉴에
 다음 전략 리포트를 추가한다.
 
 리포트 제목:
@@ -52,7 +52,7 @@ Meta:
 
 March 2026
 Healthcare Strategy Notes
-LS Consulting Research
+LS AX Consulting Research
 
 🔷 SECTION 1 – 문제 제기
 

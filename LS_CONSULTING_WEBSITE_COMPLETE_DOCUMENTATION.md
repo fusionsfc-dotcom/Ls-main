@@ -1,4 +1,4 @@
-# LS Consulting 웹사이트 완전 문서화
+# LS AX Consulting 웹사이트 완전 문서화
 ## 2026년 2월 20일 기준
 
 ---
@@ -20,7 +20,7 @@
 ## 웹사이트 개요
 
 ### 회사명
-**LS Consulting (LS컨설팅)**
+**LS AX Consulting (LS AX 컨설팅)**
 
 ### 비즈니스 모델
 암 환자 니즈 분석 기반 의료 전략 컨설팅
@@ -105,7 +105,7 @@
 
 **서브 카피**
 ```
-LS컨설팅은 암 환자 온라인 니즈를 분석합니다.
+LS AX 컨설팅은 암 환자 온라인 니즈를 분석합니다.
 
 그 결과를 병원의 서비스 구조와 전략에 반영하고,
 완성된 가치를 시장에 연결합니다.
@@ -563,7 +563,7 @@ Leadership
 **서브 카피**
 ```
 암 환자 니즈 분석과 의료 전략에 대한
-LS컨설팅의 생각과 인사이트를 공유합니다.
+LS AX 컨설팅의 생각과 인사이트를 공유합니다.
 ```
 
 ---
@@ -708,7 +708,7 @@ LS컨설팅의 생각과 인사이트를 공유합니다.
 
 **서브 카피**
 ```
-LS컨설팅과 함께 병원을 시스템으로 전환하세요.
+LS AX 컨설팅과 함께 병원을 시스템으로 전환하세요.
 ```
 
 ---
@@ -738,7 +738,7 @@ LS컨설팅과 함께 병원을 시스템으로 전환하세요.
 
 ---
 
-### LS컨설팅이 적합한 병원
+### LS AX 컨설팅이 적합한 병원
 
 **6가지 기준**:
 
@@ -814,7 +814,7 @@ LS컨설팅과 함께 병원을 시스템으로 전환하세요.
 
 **서브 카피**
 ```
-LS컨설팅과 함께
+LS AX 컨설팅과 함께
 데이터 기반 환자 중심 의료서비스를 설계하세요.
 ```
 
@@ -1373,7 +1373,7 @@ LS컨설팅과 함께
 
 ### Header.tsx
 **구성 요소**:
-- 로고: LS Consulting
+- 로고: LS AX Consulting
 - 네비게이션 메뉴:
   - Research
   - Strategy
@@ -1394,7 +1394,7 @@ LS컨설팅과 함께
 **4개 섹션 구성**:
 
 1. **회사 정보**
-   - LS Consulting
+   - LS AX Consulting
    - 암 환자 니즈 분석 기반 의료 전략 컨설팅
 
 2. **Services**
@@ -1413,7 +1413,7 @@ LS컨설팅과 함께
 
 **하단 카피라이트**:
 ```
-© 2026 LS Consulting. All rights reserved.
+© 2026 LS AX Consulting. All rights reserved.
 ```
 
 **스타일**:
@@ -1517,11 +1517,11 @@ Response:
 **API Key**: 환경변수 `RESEND_API_KEY`
 
 ### 이메일 발송 정보
-**발신자**: LS Consulting <onboarding@resend.dev>
+**발신자**: LS AX Consulting <onboarding@resend.dev>
 **수신자**: fusionsfc@gmail.com
 
 ### 이메일 템플릿
-**제목**: [LS Consulting] 새로운 상담 신청 - {병원명}
+**제목**: [LS AX Consulting] 새로운 상담 신청 - {병원명}
 
 **본문 구조**:
 ```html
@@ -1819,7 +1819,7 @@ RESEND_API_KEY={resendApiKey}
 
 **문서 작성일**: 2026년 2월 20일
 **버전**: 1.0
-**작성자**: LS Consulting 개발팀
+**작성자**: LS AX Consulting 개발팀
 
 ---
 

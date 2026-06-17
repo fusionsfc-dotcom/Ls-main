@@ -33,7 +33,7 @@ export function BreastCancerCommunityReport202604() {
         />
       </Helmet>
 
-      <SEO title={`${title} | LS컨설팅`} description={description} url={canonical} />
+      <SEO title={`${title} | LS AX 컨설팅`} description={description} url={canonical} />
 
       <header
         className="sticky top-20 z-40 bg-white/95 backdrop-blur border-b"

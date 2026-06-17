@@ -9,36 +9,37 @@ interface FooterProps {
 
 const footerSections = [
   {
-    title: '서비스',
+    title: 'AX 솔루션',
     links: [
-      { label: 'AI 시장 진단', path: '/services#diagnosis' },
-      { label: 'AI 업무 자동화', path: '/services#automation' },
-      { label: 'AI 웹·앱 구축', path: '/services#webapp' },
-      { label: '맞춤 SaaS 개발', path: '/services#saas' },
-      { label: 'AI 전략 컨설팅', path: '/services#consulting' },
+      { label: 'AI 시장 진단', path: '/services' },
+      { label: 'AI 업무 자동화', path: '/services' },
+      { label: 'AI 최적화 웹·앱', path: '/services' },
+      { label: '맞춤 SaaS 개발', path: '/services' },
+      { label: 'AX 플랫폼 개발', path: '/services' },
+      { label: 'AI 전략 컨설팅', path: '/services' },
     ],
   },
   {
-    title: '대상별 안내',
+    title: '분야',
     links: [
-      { label: '의료분야', path: '/healthcare' },
-      { label: '기업분야', path: '/business' },
+      { label: '의료', path: '/healthcare' },
+      { label: '기업', path: '/business' },
     ],
   },
   {
     title: '회사',
     links: [
-      { label: '회사 소개', path: '/about' },
-      { label: '연혁', path: '/about#history' },
-      { label: '찾아오시는 길', path: '/about#location' },
-      { label: '상담/견적 신청', path: '/consultation' },
+      { label: '소개', path: '/about' },
+      { label: '상담 / 견적 신청', path: '/consultation' },
+      { label: '작동 중인 AI', path: '/consult' },
     ],
   },
 ] as const;
 
 const contactInfo = {
   email: 'fusionsfc@gmail.com',
-  phone: '010-9297-0940',
+  phone: '+82.10.9297.0940',
+  phoneDial: '+821092970940',
   location: '제주 / 서울',
 };
 
@@ -61,11 +62,11 @@ export function Footer({ hidePricing = false }: FooterProps) {
 
           {/* 상단: 브랜드 */}
           <div className="mb-14">
-            <p className="text-2xl font-bold text-white mb-3">LS컨설팅</p>
+            <p className="text-2xl font-bold text-white mb-3">LS AX 컨설팅</p>
             <p className="text-base leading-relaxed" style={{ color: 'var(--navy-300)' }}>
-              의료에서 검증된 AI 실행력으로
+              의료와 기업의 업무를
               <br />
-              병원·기업·기관의 디지털 전환을 함께합니다
+              AI로 전환(AX)하는 전문 기업입니다
             </p>
           </div>
 
@@ -79,7 +80,7 @@ export function Footer({ hidePricing = false }: FooterProps) {
                 <h4 className="text-sm font-semibold text-white mb-4">{section.title}</h4>
                 <ul className="space-y-3">
                   {section.links.map((link) => (
-                    <li key={link.path}>
+                    <li key={link.label}>
                       <Link
                         to={link.path}
                         className="text-sm transition-colors hover:text-white"
@@ -108,7 +109,7 @@ export function Footer({ hidePricing = false }: FooterProps) {
                 </li>
                 <li>
                   <a
-                    href={`tel:${contactInfo.phone.replace(/-/g, '')}`}
+                    href={`tel:${contactInfo.phoneDial}`}
                     className="text-sm transition-colors hover:text-white"
                     style={{ color: 'var(--navy-300)' }}
                   >
@@ -124,7 +125,7 @@ export function Footer({ hidePricing = false }: FooterProps) {
           <div className="border-t pt-8" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
               <p className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>
-                © LS Consulting
+                © LS AX Consulting
               </p>
               <div className="flex gap-5">
                 <Link

@@ -168,9 +168,6 @@ export function CancerInsightIndex() {
               2차 암병원의 역할은<br />
               치료가 아닌 "관리 안정화"에 집중되어야 하는 구간입니다.
             </p>
-            <p className="text-sm text-gray-500 mt-4 pt-4 border-t border-gray-800">
-              Last Updated: 2026.03.31
-            </p>
           </div>
         </div>
 

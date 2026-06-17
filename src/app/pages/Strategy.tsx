@@ -22,7 +22,7 @@ export function Strategy() {
             환자 데이터에서 시작하는 시스템입니다
           </h1>
           <p className="text-xl lg:text-2xl mt-8 max-w-3xl leading-relaxed opacity-70" style={{ color: 'var(--navy-900)' }}>
-            LS컨설팅은 국내 최대 암 환자 니즈 분석 DB(PVM™)를 기반으로<br />
+            LS AX 컨설팅은 국내 최대 암 환자 니즈 분석 DB(PVM™)를 기반으로<br />
             병원의 의료서비스·조직·운영 구조를 재설계합니다.
           </p>
         </div>

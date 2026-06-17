@@ -58,7 +58,7 @@ export function CancerJourneyExecutionManual() {
   return (
     <div className="min-h-screen bg-white">
       <SEO 
-        title="암요양 재활 2차병원 환자여정 실행 매뉴얼 | LS컨설팅"
+        title="암요양 재활 2차병원 환자여정 실행 매뉴얼 | LS AX 컨설팅"
         description="PVM 데이터 기반 암환자 요양·재활 의료서비스 설계 및 실행 전략 리포트"
         url="https://www.lsconsulting.co.kr/report/cancer-journey-execution-manual"
       />
@@ -570,12 +570,12 @@ export function CancerJourneyExecutionManual() {
       {/* Footer */}
       <footer className="py-12 px-6 lg:px-8 max-w-[960px] mx-auto border-t border-gray-200 mt-16">
         <div className="text-center space-y-2">
-          <h4 className="font-bold text-lg" style={{ color: '#0F2B46' }}>LS Consulting</h4>
+          <h4 className="font-bold text-lg" style={{ color: '#0F2B46' }}>LS AX Consulting</h4>
           <p className="text-sm opacity-60" style={{ color: '#0F2B46' }}>
             암 환자 니즈 분석 기반 의료 전략 컨설팅
           </p>
           <div className="text-xs opacity-40 pt-4" style={{ color: '#0F2B46' }}>
-            © 2017 LS Consulting. All rights reserved.
+            © 2017 LS AX Consulting. All rights reserved.
           </div>
         </div>
       </footer>

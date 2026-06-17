@@ -129,7 +129,7 @@ ${aiReport?.recommendedSolution?.name ? `
 ${aiReport?.closingMessage ? `<p style="text-align:center;font-style:italic;color:#374151;font-size:16px;margin:32px 0;">"${aiReport.closingMessage}"</p>` : ''}
 
 <hr style="border:none;border-top:1px solid #E5E7EB;margin:32px 0;">
-<p style="color:#9CA3AF;font-size:12px;text-align:center;">LS컨설팅 · fusionsfc@gmail.com · 010-9297-0940</p>
+<p style="color:#9CA3AF;font-size:12px;text-align:center;">LS AX 컨설팅 · fusionsfc@gmail.com · 010-9297-0940</p>
 </body></html>`;
 }
 
@@ -165,8 +165,8 @@ serve(async (req) => {
 
     const RESEND_KEY = Deno.env.get('RESEND_API_KEY');
     const ADMIN_EMAIL = Deno.env.get('ADMIN_EMAIL') ?? 'fusionsfc@gmail.com';
-    const FROM_ADMIN = 'LS컨설팅 진단시스템 <noreply@lsconsulting.co.kr>';
-    const FROM_USER = 'LS컨설팅 <contact@lsconsulting.co.kr>';
+    const FROM_ADMIN = 'LS AX 컨설팅 진단시스템 <noreply@lsconsulting.co.kr>';
+    const FROM_USER = 'LS AX 컨설팅 <contact@lsconsulting.co.kr>';
 
     const sendEmail = async (to: string, from: string, subject: string, html: string) => {
       const r = await fetch('https://api.resend.com/emails', {
@@ -189,7 +189,7 @@ serve(async (req) => {
     await sendEmail(
       body.email,
       FROM_USER,
-      `[LS컨설팅] ${body.name}님의 AI 진단 리포트입니다`,
+      `[LS AX 컨설팅] ${body.name}님의 AI 진단 리포트입니다`,
       generateUserEmail(body),
     );
 

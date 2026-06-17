@@ -54,9 +54,9 @@ app.post("/make-server-aba9341d/consultation", async (c) => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            from: 'LS Consulting <onboarding@resend.dev>',
+            from: 'LS AX Consulting <onboarding@resend.dev>',
             to: ['fusionsfc@gmail.com'],
-            subject: `[LS Consulting] 새로운 상담 신청 - ${data.hospitalName}`,
+            subject: `[LS AX Consulting] 새로운 상담 신청 - ${data.hospitalName}`,
             html: `
               <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
                 <h2 style="color: #0F2B46;">새로운 상담 신청이 접수되었습니다</h2>
@@ -187,9 +187,9 @@ app.post("/make-server-aba9341d/newsletter", async (c) => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            from: 'LS Consulting <onboarding@resend.dev>',
+            from: 'LS AX Consulting <onboarding@resend.dev>',
             to: ['fusionsfc@gmail.com'],
-            subject: `[LS Consulting] 새로운 Newsletter 구독 - ${email}`,
+            subject: `[LS AX Consulting] 새로운 Newsletter 구독 - ${email}`,
             html: `
               <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
                 <h2 style="color: #0F2B46;">새로운 Newsletter 구독자</h2>
@@ -219,16 +219,16 @@ app.post("/make-server-aba9341d/newsletter", async (c) => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            from: 'LS Consulting <onboarding@resend.dev>',
+            from: 'LS AX Consulting <onboarding@resend.dev>',
             to: [email],
-            subject: '[LS Consulting] Newsletter 구독을 환영합니다',
+            subject: '[LS AX Consulting] Newsletter 구독을 환영합니다',
             html: `
               <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-                <h2 style="color: #0F2B46;">LS Consulting Newsletter 구독 완료</h2>
+                <h2 style="color: #0F2B46;">LS AX Consulting Newsletter 구독 완료</h2>
                 
                 <p style="font-size: 16px; line-height: 1.6; color: #333;">
                   안녕하세요,<br><br>
-                  LS Consulting의 Newsletter 구독을 환영합니다.
+                  LS AX Consulting의 Newsletter 구독을 환영합니다.
                 </p>
                 
                 <div style="background-color: #EBF4FF; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -246,7 +246,7 @@ app.post("/make-server-aba9341d/newsletter", async (c) => {
                 
                 <p style="font-size: 14px; color: #666; margin-top: 30px;">
                   감사합니다.<br>
-                  <strong>LS Consulting</strong>
+                  <strong>LS AX Consulting</strong>
                 </p>
               </div>
             `
@@ -318,7 +318,7 @@ app.post("/make-server-aba9341d/patient-questions", async (c) => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            from: 'LS Consulting <onboarding@resend.dev>',
+            from: 'LS AX Consulting <onboarding@resend.dev>',
             to: ['fusionsfc@gmail.com'],
             subject: `[환자전용] 새로운 질문 - ${data.cancerType} ${data.role}`,
             html: `

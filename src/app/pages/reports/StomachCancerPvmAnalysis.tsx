@@ -100,7 +100,7 @@ export function StomachCancerPvmAnalysis() {
             <span>•</span>
             <span>Monthly Cancer Voice Report</span>
             <span>•</span>
-            <span>LS Consulting Research</span>
+            <span>LS AX Consulting Research</span>
           </div>
         </div>
       </section>

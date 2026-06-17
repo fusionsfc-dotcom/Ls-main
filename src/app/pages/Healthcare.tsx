@@ -1,1065 +1,792 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
 import {
-  Building2, Activity, Cpu, LineChart, Workflow, Globe, Code2, Compass,
-  ArrowRight, Check, ChevronDown,
+  ArrowRight,
+  ArrowLeftRight,
+  Search,
+  MessageSquareOff,
+  Unplug,
+  Smartphone,
+  LayoutDashboard,
+  Route,
+  FlaskConical,
+  Accessibility,
+  ShieldCheck,
+  ExternalLink,
+  CheckCircle2,
+  Stethoscope,
+  AlertTriangle,
+  Gauge,
+  Megaphone,
+  Bot,
+  Database,
 } from 'lucide-react';
 import { SEO } from '../components/SEO';
+import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { medImages, homeImages } from '../data/homeImages';
 
 const fadeIn = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } },
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' },
+  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
 };
 
-const visitorTypes = [
+/* ── 현실 문제 ─────────────────────────────────────── */
+const problems = [
   {
-    Icon: Building2,
-    stage: 'Stage 01',
-    title: '개원 준비 중입니다',
-    body: '입지 분석부터 인허가, 인력, 초기 홍보, 1년 안정화까지 개원의 모든 단계가 막막한 시점입니다. 10개+ 암 요양·한방병원 개원을 자문해 온 풀 사이클 컨설팅을 제공합니다.',
-    keywords: ['입지 분석', '인허가·인력', '초기 홍보', '1년 안정화'],
-    cta: '개원 컨설팅 보기',
-    anchor: '#opening',
-    isPrimary: false,
+    Icon: Search,
+    title: 'AI 검색에 잡히지 않습니다',
+    body: '환자는 이제 네이버·구글을 넘어 AI에게 병원을 묻습니다. 기존 홈페이지는 AI 검색에 노출되도록 설계되지 않아, 보이지 않습니다.',
   },
   {
-    Icon: Activity,
-    stage: 'Stage 02 · 가장 많은 문의',
-    title: '운영 중인데 환자 유입이 줄고 있습니다',
-    body: '블로그·광고비는 늘어나는데 신환은 줄어들고, 콘텐츠를 올려도 어떤 키워드가 환자를 데려오는지 모르는 시점입니다. 자체 AI 분석 시스템 기반의 데이터 중심 PR·콘텐츠 운영을 제공합니다.',
-    keywords: ['환자 트렌드 분석', '블로그·쇼츠 운영', 'KPI 모델 설계', '임직원 Action Plan'],
-    cta: 'PR & 콘텐츠 패키지 보기',
-    anchor: '#pr',
-    isPrimary: true,
+    Icon: MessageSquareOff,
+    title: '일방적인 정보만 전달합니다',
+    body: '치료 소개와 시설 사진뿐. 환자가 묻고 병원이 답하는 양방향 소통이 없습니다. 방문자는 정보만 보고 떠납니다.',
   },
   {
-    Icon: Cpu,
-    stage: 'Stage 03',
-    title: 'AI·디지털 시스템을 구축하고 싶습니다',
-    body: '환자 관리·진료 기록·식이 관리가 엑셀과 종이로 굴러가거나, 홈페이지·앱이 너무 오래되어 AI 시대에 맞춰 전환이 필요한 시점입니다. 7년 자체 SaaS 개발 노하우로 의료기관 맞춤 시스템을 구축합니다.',
-    keywords: ['병원 SaaS 개발', 'AI 챗봇 통합', '환자 앱 구축', 'AI 검색 최적화'],
-    cta: '4대 AI 솔루션 보기',
-    anchor: '#solutions',
-    isPrimary: false,
+    Icon: Unplug,
+    title: '환자와의 연결이 끊깁니다',
+    body: '치료가 끝나면 관계도 끝납니다. 재내원도, 후기도, 추천도 일어나지 않아 매달 광고비만 빠져나갑니다.',
   },
 ] as const;
 
-const medicalAssets = [
+/* ── AI 검색 준비도 진단 (실제 진단 사례·익명) ─────── */
+const auditAreas = [
+  { area: '구조화 데이터 (Schema.org)', score: 5, comment: 'JSON-LD 전무 — AI가 병원·의료진을 엔티티로 인식 불가' },
+  { area: 'FAQ / 질의응답 콘텐츠', score: 10, comment: 'FAQ 페이지가 빈 껍데기 — AI 인용의 최대 기회 방치' },
+  { area: '콘텐츠 신선도 / 권위', score: 20, comment: '작성일·출처 표기 없음 — 외부 인용 자산 부족' },
+  { area: '콘텐츠 추출 가능성', score: 25, comment: '핵심 수치·강점이 이미지에 매몰, alt 텍스트 공백' },
+  { area: 'E-E-A-T 신뢰 신호', score: 45, comment: '의료진 약력은 텍스트로 존재. 단 마크업·근거 부재' },
+  { area: '로컬 엔티티 / NAP', score: 50, comment: '주소·전화는 노출. 지오·운영정보 구조화 없음' },
+  { area: '크롤링 / 인덱싱', score: 55, comment: '본문은 읽히나 도메인 이원화로 권위 분산' },
+  { area: '메타데이터 / OG', score: 60, comment: 'title·description 양호. og:url 도메인 불일치' },
+] as const;
+
+const criticalDefects = [
+  { title: '구조화 데이터 전무', body: 'Schema.org 마크업이 없어 AI가 "이곳이 어떤 병원인지"를 구조적으로 이해하지 못합니다.' },
+  { title: '핵심 정보가 이미지에 매몰', body: '상급병원까지 거리·병상 규모·치료 실적 같은 강점이 이미지로만 박혀 있어 AI는 읽지 못합니다.' },
+  { title: 'FAQ 콘텐츠 공백', body: '질문-답변이 비어 있어, 질문에 답하는 AI 검색에 인용될 자산이 없습니다.' },
+  { title: '도메인 정합성 충돌', body: '같은 콘텐츠가 두 도메인에 흩어져 신뢰·권위 점수가 분산됩니다.' },
+] as const;
+
+function bandColor(score: number) {
+  if (score < 30) return '#dc2626'; // 치명적
+  if (score < 60) return '#ea8a3e'; // 미흡
+  if (score < 80) return '#2C5282'; // 보통
+  return '#16a34a'; // 우수
+}
+function bandLabel(score: number) {
+  if (score < 30) return '치명적';
+  if (score < 60) return '미흡';
+  if (score < 80) return '보통';
+  return '우수';
+}
+
+/* ── 병원 AX 개발 서비스 ───────────────────────────── */
+const axServices = [
+  { Icon: Search, title: 'AI 검색 최적화 웹사이트', body: 'Schema.org 구조화 데이터·FAQ·핵심정보 텍스트화·llms.txt까지. AI가 병원을 읽고 인용하도록 GEO/AEO 기준으로 새로 만듭니다.' },
+  { Icon: Megaphone, title: '온라인 홍보 전략 및 대행', body: '네이버·구글·AI 검색 노출을 위한 콘텐츠와 채널 운영을 전략부터 실행까지 대행합니다.' },
+  { Icon: Bot, title: '의료 AI 챗봇·상담', body: 'Claude 기반 RAG 챗봇으로 환자·보호자 질문에 24시간 응대합니다. 한국 의료체계까지 반영합니다.' },
+  { Icon: LayoutDashboard, title: '데이터·운영 시스템', body: 'KPI 자동화와 HappyLifeCare 연동으로 병원 운영을 데이터 기반으로 전환합니다.' },
+] as const;
+
+/* ── AI Cancer Server (Patient Voice Matrix™) ──────── */
+const cancerServerStats = [
+  { value: '100,000건+', label: '암 환자 실제 후기' },
+  { value: '13개 축', label: '구조화 데이터 프레임' },
+  { value: '매월', label: '지속 수집·갱신' },
+] as const;
+const cancerServerHas = [
+  '암 환자 실제 후기 100,000건+ 지속 수집',
+  '13개 축으로 구조화된 환자 경험 데이터',
+  '항암제 효과 + 부작용 매핑',
+  '병원 평판·만족 요인 분석',
+] as const;
+const cancerServerPowers = [
+  'AI 챗봇 답변의 근거 데이터',
+  '병원 콘텐츠 자동 큐레이션',
+  '환자별 맞춤 정보 제공',
+  '병원 마케팅 인사이트 도출',
+] as const;
+
+/* ── 병원이 얻는 변화 (고민 → 해결 → 수치) ─────────── */
+const concerns = [
+  { q: '환자가 떠나가요', solution: '퇴원 후에도 앱으로 병원과 연결해 재방문을 유도합니다.', metric: '재내원율 +35%' },
+  { q: '신규 환자가 안 늘어요', solution: '환자 후기가 SNS·검색 콘텐츠로 자동 확산됩니다.', metric: '광고비 -40%' },
+  { q: '의료진 업무가 많아요', solution: '환자 데이터를 AI가 모니터링하고 위험을 알립니다.', metric: '간호 기록 -50%' },
+] as const;
+
+/* ── 핵심 지표 ─────────────────────────────────────── */
+const platformStats = [
+  { value: '165개', label: '전국 연동 병원' },
+  { value: '407편', label: '건강정보 콘텐츠' },
+  { value: '311개', label: '근거 기반 추천 루틴' },
+  { value: '24개', label: '실시간 병원-환자 연동' },
+] as const;
+
+/* ── 2개 핵심 제품 (실제 화면) ─────────────────────── */
+const products = [
   {
-    label: 'Live Now · 지금 작동 중',
-    title: 'AI 암상담 시스템',
-    body: 'Claude 기반 RAG 아키텍처로 구축한 의료 상담 AI입니다. 자체 분석 데이터를 토대로 환자와 보호자의 질문에 24시간 답변합니다. 한국 의료체계(산정특례·건강보험·요양급여)까지 현실적으로 반영합니다.',
-    meta: [
-      '적용 기술: Claude API · RAG · pgvector',
-      '서비스 위치: lsconsulting.co.kr',
-      '구축 기간: 2025',
-    ],
-    cta: { label: '직접 체험하기', to: '/consult' },
+    Icon: Smartphone,
+    image: medImages.patientApp,
+    name: 'HappyLife',
+    role: '환자·보호자 앱',
+    desc: '진단받은 그 날부터 회복까지, 환자의 하루에 함께하는 모바일 앱. 맞춤 홈·건강 루틴·3채널 Q&A(모두·전문가·내병원)·건강정보 백과를 한 앱에서.',
   },
   {
-    label: '7년 자체 개발 · 2026년 6월 런칭',
-    title: '헬스케어 통합 SaaS',
-    body: '병원 운영자용 시스템(해피케어)과 환자·보호자 앱(해피라이프)이 연동되는 통합 플랫폼. AI 식단 추천, 12개 카테고리 건강 모니터링, KPI 자동 산출까지 한 시스템에서 작동합니다.',
-    meta: [
-      '구성: 해피케어 (병원용) + 해피라이프 (환자용)',
-      '적용 기술: React/Vite/TS · Supabase · Vercel',
-      '개발 기간: 2019 - 현재',
-    ],
-    cta: { label: '자세히 보기', to: '#happylifecare' },
-  },
-  {
-    label: '매월 자동 발행 · 누적 15,000건+',
-    title: '13개 축 환자 데이터 분석',
-    body: '누적 15,000건 이상의 실제 환자 데이터를 13개 축으로 분류하는 자체 시스템. Claude API와 자체 분류 파이프라인으로 매월 분석 리포트를 자동 생성합니다.',
-    meta: [
-      '분석 축: 시점·암종·성별·연령·병기 등 13개',
-      '발행 리포트: 간암·폐암 (확장 중)',
-      '데이터 누적: 15,000건 이상',
-    ],
-    cta: { label: '최신 리포트 보기', to: '/insights' },
+    Icon: LayoutDashboard,
+    image: medImages.hospitalSys,
+    name: 'HappyCare',
+    role: '병원 관리 대시보드',
+    desc: '의료진을 위한 케어 운영 시스템. 환자 관리·단계별 상담·성장 대시보드·Q&A 응대·프로그램/배차/일정을 하나로 운영.',
   },
 ] as const;
 
-const healthcareSolutions = [
-  {
-    Icon: LineChart,
-    typeLabel: '프로젝트 · 4-6주',
-    titleKo: 'AI 시장 진단 (의료)',
-    body: '자체 AI 시스템으로 환자·시장·경쟁 병원을 13개 축으로 분석합니다. 추정이 아닌 15,000건+ 누적 데이터로 진단합니다.',
-    examples: [
-      '신환 유입 채널 분석 (네이버·구글·추천)',
-      '경쟁 병원 포지셔닝 진단',
-      '환자 이탈 패턴·재진 가능성 분석',
-    ],
-    meta: '시작 가격 ₩5,000,000부터 (VAT 별도)',
-  },
-  {
-    Icon: Workflow,
-    typeLabel: '구축 + 운영 · 4-6주 + 지속',
-    titleKo: 'AI 업무 자동화 (의료)',
-    body: '환자 응대·내부 보고·콘텐츠 발행 등의 반복 업무를 AI 자동화 시스템으로 전환합니다. 의료광고심의·환자 데이터 보호 환경에 맞춰 설계합니다.',
-    examples: [
-      '환자 문의 자동 분류 + 상담사 자동 배정',
-      '매일 환자 KPI 자동 집계 → 원장 카톡 자동 보고',
-      '의료광고심의 신청 자동화 (사전 검수 + 자동 제출)',
-    ],
-    meta: '구축 4-6주 · ₩8,000,000부터 + 월 ₩500,000부터 (VAT 별도)',
-  },
-  {
-    Icon: Globe,
-    typeLabel: '프로젝트 · 4-8주',
-    titleKo: 'AI 최적화 웹·앱 구축',
-    body: '병원 홈페이지가 단순 회사 소개 자료에 머물면 안 됩니다. AI 검색에 노출되고, AI가 1차 상담을 응대하며, 한국 의료광고심의를 통과한 자산이 되어야 합니다.',
-    examples: [
-      '의료광고심의 통과 가능한 사이트 구축',
-      'AI 환자 상담 챗봇 통합 (의료 컨텍스트)',
-      '네이버 의료 SEO + AI 검색 최적화',
-    ],
-    meta: '시작 가격 ₩15,000,000부터 (VAT 별도)',
-  },
-  {
-    Icon: Code2,
-    typeLabel: '프로젝트 · 8-16주',
-    titleKo: '의료기관 맞춤 시스템',
-    body: '7년간 헬스케어 SaaS를 직접 개발·운영해 온 노하우로, 병원 고유 워크플로우에 맞춘 시스템을 만듭니다. 의료법·개인정보보호법 환경에 맞춰 설계합니다.',
-    examples: [
-      '환자 관리·진료 기록·식이 관리 통합',
-      '입원 환자 추적·KPI 자동 산출',
-      '한방·양방 통합 관리 시스템',
-    ],
-    meta: '시작 가격 ₩50,000,000부터 (VAT 별도)',
-  },
-  {
-    Icon: Compass,
-    typeLabel: '월 정액 · 6개월~',
-    titleKo: '의료 AI 전략 컨설팅',
-    body: '사내 AI 전담 인력을 두기 전, 의료 현장을 가장 깊이 아는 외부 전문가가 함께 설계합니다. 매월 정기 미팅, 자체 AI 분석 리포트, AI 도구 도입 가이드를 제공합니다.',
-    examples: [
-      '병원 AI 도입 단계별 로드맵',
-      '의료 AI 도구(왓슨·뷰노 등) 도입 자문',
-      '의료 데이터 활용 전략 설계',
-    ],
-    meta: '월 정액 ₩5,000,000부터 (VAT 별도)',
-  },
+/* ── 왜 다른가 (혁신 포인트) ───────────────────────── */
+const innovations = [
+  { Icon: ArrowLeftRight, title: '업계 최초 양방향 연동', body: '환자 기록은 병원 대시보드로, 병원 응답은 환자 앱으로. 24개 포인트(S1~S24)로 표준화한 실시간 연결.' },
+  { Icon: Route, title: '끊김 없는 동행', body: '진단 직후 → 치료 중 → 퇴원 후까지. 암종·치료 단계에 맞춰 모든 콘텐츠가 개인화됩니다.' },
+  { Icon: FlaskConical, title: '근거 기반 케어', body: '미국생활습관의학회(ACLM) 6대 기둥, 국가암정보센터·ASCO 근거로 설계한 의학적 가이드.' },
+  { Icon: Accessibility, title: '45세+ 접근성 우선', body: '큰 글씨·큰 터치 영역·직관적 픽토그램. 실제 중장년 암 환자를 1순위로 둔 모바일 퍼스트 디자인.' },
 ] as const;
 
-const prTiers = [
-  {
-    label: 'Basic',
-    price: '₩1,500,000',
-    priceUnit: '/ 월',
-    description: '콘텐츠를 시작하려는 병원을 위한 전략 기반 실행 패키지',
-    items: [
-      '월 20건 블로그 포스팅',
-      '월 10건 유튜브 쇼츠',
-      '월 1회 환자 트렌드 리포트',
-    ],
-    isPrimary: false,
-  },
-  {
-    label: 'Strategic · Most Selected',
-    price: '₩3,000,000',
-    priceUnit: '/ 월',
-    description: '전략과 실행을 통합해 병원을 시스템으로 전환하는 플랜',
-    items: [
-      '월 60건 블로그 포스팅',
-      '월 20건 유튜브 쇼츠',
-      '월 2회 환자 트렌드 리포트',
-      '주 3회 임직원 Action Plan',
-      '주 1회 의료서비스 강화 KPI 모델 설계',
-    ],
-    isPrimary: true,
-  },
+/* ── 24개 양방향 연동 (대표 항목) ──────────────────── */
+const syncPatientToHospital = [
+  '건강 기록 입력 → 실시간 모니터링',
+  '치료 확인·부작용 보고 → 선제적 케어',
+  '일정 변경 요청 → 노쇼 방지',
+  '만족도 입력 → NPS 자동 집계',
+  '병원 리뷰 → 마케팅 자산화',
+  '배차 신청 → 운영 효율화',
 ] as const;
 
-const healthcareWebBundle = {
-  categoryLabel: 'Healthcare Bundle · 의료기관 한정 패키지',
-  categorySubLabel: 'PR 패키지와 함께 자주 진행되는 패키지입니다',
-  topLabel: 'Most Requested by Hospitals',
-  title: 'AI 최적화 의료 웹사이트',
-  subtitle: '의료광고심의 통과 + AI 챗봇 + 네이버 의료 SEO를 한 번에',
-  pricing: {
-    original: '₩15,000,000',
-    discounted: '₩10,000,000',
-    discountLabel: '의료기관 한정 33% 할인',
-    discountBadge: '33% OFF',
-    note: '(VAT 별도)',
-  },
-  rationale: {
-    question: '왜 의료기관만 할인되나요?',
-    answer: '5개+ 의료기관 사이트 구축 경험으로 의료광고심의 통과 패턴이 표준화되어 있습니다. 일반 산업 사이트 대비 작업 효율이 30% 높아, 그 효율을 의료기관 클라이언트에게 돌려드립니다.',
-  },
-  items: [
-    '의료광고심의 통과 가능 사이트 구조',
-    'AI 환자 상담 챗봇 통합 (Claude API 기반)',
-    '네이버 의료 SEO + AI 검색 최적화',
-    '모바일 반응형 + 접근성 가이드 준수',
-    '6개월 운영 모니터링 포함',
-  ],
-  meta: {
-    duration: '4-8주',
-    type: '1회 프로젝트',
-    limit: '월 2건 한정',
-    program: '2026 의료 파트너 프로그램',
-  },
-  cta: {
-    primary: '이 패키지 상담하기',
-    primaryTo: '/consultation?package=healthcare-web',
-    note: '상담 시 의료기관 인증 확인 후 할인가 적용됩니다',
-  },
-} as const;
-
-const openingSteps = [
-  { title: '입지 및 상권 분석', body: '자체 AI 시스템으로 잠재 환자 분포·경쟁 병원 진단' },
-  { title: '병원 포지셔닝 설계', body: '차별점 도출 + 콘셉트 + 디자인 가이드라인' },
-  { title: '서비스 모델 설계', body: '입원·외래·식이·한방 등 운영 시나리오' },
-  { title: '인허가·인력·장비 자문', body: '의료법인 설립부터 채용까지' },
-  { title: '초기 홍보 전략', body: '오픈 전 3개월 + 오픈 후 6개월 콘텐츠 계획' },
-  { title: '운영 구조 설계 + KPI 시스템', body: '환자 입원·퇴원·재진 KPI 자동화' },
+const syncHospitalToPatient = [
+  '치료 알림 자동 생성 → 노쇼 -60%',
+  'Q&A 답변 → 환자 신뢰도 ↑',
+  '의료진 기록 열람 → 투명성 ↑',
+  'HappyScore 대시보드 공유 → 데이터 기반 결정',
+  '퇴원·경과 리포트 → 재내원 유도',
+  '담당 의료진 정보 → 인간적 관계',
 ] as const;
 
-const workSteps = [
-  { n: '01', label: 'Diagnose', title: '진단', body: '자체 AI 시스템으로 병원·환자·시장을 13개 축으로 분석합니다. 추정이 아닌 15,000건+ 데이터로 시작합니다.' },
-  { n: '02', label: 'Design', title: '설계', body: '진단 결과를 토대로 병원 운영·콘텐츠·시스템 구조를 설계합니다. 동작하는 프로토타입으로 보여드립니다.' },
-  { n: '03', label: 'Build', title: '구축', body: '직접 만듭니다. 외주 단계가 없으니 의료 컨텍스트가 그대로 결과물에 반영됩니다.' },
-  { n: '04', label: 'Operate', title: '운영', body: 'KPI를 측정하고 개선합니다. 환자 입원·퇴원·재진 사이클을 끝까지 함께합니다.' },
+/* ── 도입 효과 (핵심 4개) ──────────────────────────── */
+const effectHighlights = [
+  { v: '+30%', l: '신규 환자 유입' },
+  { v: '+45%', l: '외래 출석률' },
+  { v: '-60%', l: '노쇼율' },
+  { v: '+200%', l: '자연 검색 노출' },
 ] as const;
 
-const faqs = [
-  {
-    q: '다른 광고대행사와 무엇이 다른가요?',
-    a: '일반 광고대행사는 콘텐츠 양과 광고비 집행으로 답합니다. LS컨설팅은 매월 자체 AI 시스템으로 환자 트렌드를 분석하고, 그 결과를 토대로 콘텐츠를 설계합니다. 콘텐츠 양이 같아도 환자 유입 효율이 다른 이유입니다.',
-  },
-  {
-    q: '의료광고심의는 어떻게 처리하나요?',
-    a: '모든 콘텐츠와 사이트는 의료광고심의를 통과 가능한 형태로 작성합니다. 직접 심의 신청·통과까지 자문해 드리고, 통과 이력이 있는 회사라 반려 위험이 낮습니다.',
-  },
-  {
-    q: '우리 병원 환자 데이터를 안전하게 다루실 수 있나요?',
-    a: '7년간 의료 데이터를 다뤄왔습니다. 의료법·개인정보보호법 환경에서 운영해 온 노하우가 있고, 자체 SaaS(해피라이프케어)도 같은 규제 환경에서 개발됐습니다. 데이터 처리·보관·삭제 전 과정의 보안 정책을 별도 협약서로 명문화합니다.',
-  },
-  {
-    q: '개원 전인데 PR 패키지부터 시작 가능한가요?',
-    a: '개원 컨설팅 안에 초기 홍보 전략이 포함되어 있어, 개원 컨설팅으로 시작해 자연스럽게 PR 패키지로 연결되는 게 일반적입니다. 단, 개원만 단독으로 의뢰하시는 경우도 가능합니다.',
-  },
-  {
-    q: '우리 병원에 맞춤 시스템을 만들고 싶은데, 가능한가요?',
-    a: '가능합니다. 7년간 자체 SaaS(해피라이프케어)를 개발·운영해 왔습니다. 환자 관리, 진료 기록, 식이 관리, KPI 산출 등 병원 워크플로우에 맞춘 시스템 구축이 주력 영역입니다.',
-  },
-  {
-    q: '결제는 어떻게 진행되나요?',
-    a: '월 정액 패키지(PR·컨설팅)는 매월 정기 결제, 프로젝트(개원·시스템 개발)는 계약금(30%) + 중간(40%) + 잔금(30%) 분할 결제입니다. 6개월 단위 약정 또는 별도 약정 모두 가능합니다.',
-  },
+/* ── 도입 절차 ─────────────────────────────────────── */
+const steps = [
+  { n: '01', period: '1주', title: '무료 진단', body: '병원 운영 현황 진단 + 도입 효과 시뮬레이션' },
+  { n: '02', period: '1개월', title: '시범 운영', body: '환자 10–20명 파일럿으로 실제 데이터 효과 검증' },
+  { n: '03', period: '1–2주', title: '정식 도입', body: '의료진 교육 + 데이터 이관 + 병원 브랜딩 커스터마이징' },
+  { n: '04', period: '상시', title: '운영 지원', body: '월간 데이터 리포트 + 분기 컨설팅 + 24/7 기술 지원' },
+] as const;
+
+/* ── 현재 함께하는 병원 ────────────────────────────── */
+const clients = [
+  { name: '서울힐링요양병원', image: 'https://srlyxadncjladllbwmdk.supabase.co/storage/v1/object/public/img/heal.jpeg', projects: '개원컨설팅 · 상담 · 교육 · 홍보 · 홈페이지', website: 'https://www.seoulhealinghospital.co.kr/' },
+  { name: '흥덕우리요양병원', image: 'https://srlyxadncjladllbwmdk.supabase.co/storage/v1/object/public/img/hd.jpeg', projects: '홍보 · 홈페이지', website: 'http://hdwoori.com/' },
+  { name: '러스크서울병원', image: 'https://srlyxadncjladllbwmdk.supabase.co/storage/v1/object/public/img/rh.jpeg', projects: '암분야 도입 컨설팅 · 교육 · 홍보 · 홈페이지', website: 'https://ruskseoul.co.kr/' },
+  { name: '태동의료재단 춘천태동요양병원', image: 'https://srlyxadncjladllbwmdk.supabase.co/storage/v1/object/public/img/tae.jpeg', projects: '법인개설 · 개원컨설팅 · 경영지원 · 홍보 · 홈페이지', website: 'https://www.taedonghp.co.kr/' },
+  { name: '뷰티풀한방병원', image: 'https://srlyxadncjladllbwmdk.supabase.co/storage/v1/object/public/img/bt.jpeg', projects: '컨설팅 · 교육 · 홍보 · 홈페이지', website: 'https://www.btful.co.kr/' },
+  { name: '네이처요양병원', image: 'https://srlyxadncjladllbwmdk.supabase.co/storage/v1/object/public/img/nat.jpeg', projects: '홈페이지', website: 'https://www.naturehospital.co.kr/' },
 ] as const;
 
 export function Healthcare() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
   return (
-    <>
+    <div className="min-h-screen bg-white">
       <SEO
-        title="의료분야 - LS컨설팅"
-        description="암 요양·한방병원 15년 현장 경험과 7년 자체 헬스케어 SaaS 개발 노하우로, 의료기관의 디지털 전환·PR·개원 컨설팅을 제공합니다. AI 암상담·해피라이프케어·자체 분석 시스템 운영 중."
+        title="의료 AX - 병원 홈페이지를 AI 전환합니다 | LS AX 컨설팅"
+        description="기존 병원 홈페이지는 AI 검색에 노출되지 않고 일방적인 정보만 전달합니다. LS AX 컨설팅은 HappyLifeCare 플랫폼으로 환자와 병원을 실시간 연동해, 병원 홈페이지를 AX로 전환합니다."
         url="https://www.lsconsulting.co.kr/healthcare"
       />
 
-      {/* S1: Hero */}
-      <section className="pt-32 pb-24 bg-white">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16">
-          <motion.div
-            className="max-w-3xl"
-            variants={fadeIn}
-            initial="hidden"
-            animate="visible"
-          >
-            <p className="text-sm font-semibold tracking-widest uppercase mb-6" style={{ color: 'var(--navy-500)' }}>
-              For Healthcare
-            </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight" style={{ color: 'var(--navy-900)' }}>
-              의료 현장을 가장 깊이 아는
+      {/* ── SECTION 1 · HERO (위기감) ──────────────────── */}
+      <section className="relative overflow-hidden" style={{ backgroundColor: 'var(--navy-900)' }}>
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `linear-gradient(180deg, rgba(10,22,40,0.82) 0%, rgba(10,22,40,0.66) 45%, rgba(10,22,40,0.94) 100%), url(${medImages.hero})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        <div
+          className="absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage: 'linear-gradient(var(--navy-300) 1px, transparent 1px), linear-gradient(90deg, var(--navy-300) 1px, transparent 1px)',
+            backgroundSize: '52px 52px',
+          }}
+        />
+        <motion.div className="relative max-w-[1400px] mx-auto px-8 lg:px-16 pt-44 pb-32" {...fadeIn}>
+          <div className="max-w-4xl">
+            <span
+              className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide"
+              style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: 'var(--navy-200)' }}
+            >
+              <Stethoscope className="w-3.5 h-3.5" />
+              의료 AX · Hospital Transformation
+            </span>
+            <h1 className="text-5xl lg:text-7xl tracking-tight leading-[1.08] mt-8 text-white font-bold">
+              지금 병원 홈페이지,
               <br />
-              AI 솔루션 파트너
+              <span style={{ color: 'var(--navy-300)' }}>AI 검색에 보이지</span> 않습니다
             </h1>
-            <p className="text-lg md:text-xl leading-relaxed mb-4" style={{ color: 'var(--navy-600)' }}>
-              암 요양·한방병원 15년 현장 경험,
-              <br />
-              7년간 자체 개발한 헬스케어 SaaS,
-              <br />
-              누적 15,000건+의 환자 데이터를 분석하는 자체 AI 시스템.
-              <br />
-              의료기관에 필요한 모든 것을 한 회사가 만듭니다.
+            <p className="text-lg lg:text-xl mt-8 max-w-2xl leading-relaxed" style={{ color: 'var(--navy-200)' }}>
+              환자는 이미 AI에게 병원을 묻습니다. 일방적인 치료 소개와 시설 사진만으로는
+              더 이상 환자를 모으지 못합니다. 병원 홈페이지를 AX로 전환해야 할 때입니다.
             </p>
-            <p className="text-sm mb-10" style={{ color: 'var(--navy-400)' }}>
-              암 요양병원 · 한방병원 · 의원 · 헬스케어 스타트업 대상
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-12">
               <Link
                 to="/consultation"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-white transition-all hover:opacity-90"
-                style={{ backgroundColor: 'var(--navy-900)' }}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 transition-all hover:opacity-90"
+                style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
               >
-                <span>상담/견적 신청</span>
-                <ArrowRight className="w-5 h-5" />
+                <span className="font-semibold">병원 무료 진단 신청</span>
+                <ArrowRight className="w-5 h-5 shrink-0" />
               </Link>
-              <Link
-                to="/consult"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold transition-all border-2"
-                style={{ color: 'var(--navy-900)', borderColor: 'var(--navy-900)', backgroundColor: 'var(--navy-50)' }}
+              <a
+                href="#happylifecare"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 text-white transition-all hover:bg-white/10"
+                style={{ borderColor: 'rgba(255,255,255,0.35)' }}
               >
-                AI 암상담 직접 보기
-              </Link>
+                <span>HappyLifeCare 보기</span>
+              </a>
             </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* S2: 방문자 유형 분기 */}
-      <section className="py-24 md:py-32" style={{ backgroundColor: 'var(--navy-50)' }}>
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16">
-          <motion.div
-            className="text-center mb-14"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--navy-900)' }}>
-              어떤 단계의 의료기관이신가요
-            </h2>
-            <p className="text-base leading-relaxed" style={{ color: 'var(--navy-600)' }}>
-              개원 준비, 운영 중, 디지털 전환 — 단계마다 필요한 도움이 다릅니다.
-              <br />
-              현재 단계에 맞는 영역을 먼저 살펴보시면 됩니다.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {visitorTypes.map(({ Icon, stage, title, body, keywords, cta, anchor, isPrimary }, i) => (
-              <motion.div
-                key={i}
-                className="p-8 bg-white flex flex-col"
-                style={{
-                  border: isPrimary ? '2px solid var(--navy-900)' : '1px solid var(--navy-100)',
-                }}
-                variants={fadeIn}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                <div className="flex items-center gap-3 mb-6">
-                  <div
-                    className="w-10 h-10 flex items-center justify-center"
-                    style={{ backgroundColor: isPrimary ? 'var(--navy-900)' : 'var(--navy-50)' }}
-                  >
-                    <Icon className="w-5 h-5" style={{ color: isPrimary ? 'white' : 'var(--navy-700)' }} />
-                  </div>
-                  <span className="text-xs font-semibold" style={{ color: isPrimary ? 'var(--navy-900)' : 'var(--navy-500)' }}>
-                    {stage}
-                  </span>
-                </div>
-
-                <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--navy-900)' }}>
-                  {title}
-                </h3>
-                <p className="text-sm leading-relaxed mb-6 flex-1" style={{ color: 'var(--navy-600)' }}>
-                  {body}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {keywords.map((kw) => (
-                    <span
-                      key={kw}
-                      className="text-xs px-2.5 py-1 font-medium"
-                      style={{ backgroundColor: 'var(--navy-50)', color: 'var(--navy-700)' }}
-                    >
-                      {kw}
-                    </span>
-                  ))}
-                </div>
-
-                <a
-                  href={anchor}
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors hover:underline"
-                  style={{ color: 'var(--navy-900)' }}
-                >
-                  {cta}
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </motion.div>
-            ))}
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* S3: 현재 운영 중인 솔루션 */}
-      <section className="py-24 md:py-32 bg-white" style={{ backgroundColor: 'var(--navy-25)' }}>
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16">
-          <motion.div
-            className="mb-16"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <p className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--navy-500)' }}>
-              What We've Built
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: 'var(--navy-900)' }}>
-              현재 운영 중인 솔루션
+      {/* ── SECTION 2 · 현실 문제 ──────────────────────── */}
+      <motion.section className="py-28 px-8 lg:px-16 bg-white" {...fadeIn}>
+        <div className="max-w-[1400px] mx-auto">
+          <div className="max-w-3xl mb-16">
+            <span className="text-sm font-bold tracking-wide" style={{ color: 'var(--navy-600)' }}>
+              THE PROBLEM
+            </span>
+            <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight mt-3 mb-5" style={{ color: 'var(--navy-900)' }}>
+              대부분의 병원이 겪는 3가지 문제
             </h2>
-            <p className="text-lg max-w-2xl leading-relaxed" style={{ color: 'var(--navy-600)' }}>
-              AI에 대한 가능성과 이론은 어디에서나 들을 수 있습니다.
-              <br />
-              LS컨설팅은 이미 만들어 의료 현장에서 작동시키고 있는 자산으로 이야기합니다.
+            <p className="text-lg leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+              홈페이지와 광고에 비용을 쓰고 있지만, 환자는 줄어듭니다. 이유는 분명합니다.
             </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {medicalAssets.map(({ label, title, body, meta, cta }, i) => (
-              <motion.div
-                key={i}
-                className="p-8 flex flex-col border"
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {problems.map(({ Icon, title, body }, i) => (
+              <div
+                key={title}
+                className="group relative rounded-2xl p-8 bg-white border overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1"
                 style={{ borderColor: 'var(--navy-100)' }}
-                variants={fadeIn}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
               >
-                <span
-                  className="inline-block text-xs font-semibold mb-5 px-2.5 py-1 self-start"
-                  style={{ backgroundColor: 'var(--navy-50)', color: 'var(--navy-700)' }}
-                >
-                  {label}
+                <span className="absolute top-6 right-7 text-6xl font-bold leading-none select-none tabular-nums" style={{ color: 'var(--navy-50)' }}>
+                  0{i + 1}
                 </span>
-                <h3 className="text-xl font-bold mb-4" style={{ color: 'var(--navy-900)' }}>
-                  {title}
-                </h3>
-                <p className="text-sm leading-relaxed mb-6 flex-1" style={{ color: 'var(--navy-600)' }}>
-                  {body}
-                </p>
-                <ul
-                  className="space-y-1.5 mb-6 pt-5 border-t"
-                  style={{ borderColor: 'var(--navy-100)' }}
-                >
-                  {meta.map((m) => (
-                    <li key={m} className="text-xs" style={{ color: 'var(--navy-500)' }}>
-                      {m}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to={cta.to}
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors hover:underline"
-                  style={{ color: 'var(--navy-900)' }}
-                >
-                  {cta.label}
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* S4: 4대 AI 솔루션 (의료 컨텍스트) */}
-      <section id="solutions" className="py-24 md:py-32" style={{ backgroundColor: 'var(--navy-50)' }}>
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16">
-          <motion.div
-            className="text-center mb-16"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <p className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--navy-500)' }}>
-              AI Solutions for Healthcare
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: 'var(--navy-900)' }}>
-              의료기관에 적용되는 5가지 AI 솔루션
-            </h2>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: 'var(--navy-600)' }}>
-              5대 솔루션은 산업과 무관한 본질이지만, 의료기관에서는 다음과 같이 적용됩니다.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {healthcareSolutions.map(({ Icon, typeLabel, titleKo, body, examples, meta }, i) => (
-              <motion.div
-                key={i}
-                className="p-8 bg-white flex flex-col border"
-                style={{ borderColor: 'var(--navy-100)' }}
-                variants={fadeIn}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                <div className="flex items-center gap-3 mb-6">
-                  <div
-                    className="w-10 h-10 flex items-center justify-center"
-                    style={{ backgroundColor: 'var(--navy-50)' }}
-                  >
-                    <Icon className="w-5 h-5" style={{ color: 'var(--navy-700)' }} />
+                <div className="relative">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style={{ backgroundColor: 'var(--navy-900)' }}>
+                    <Icon className="w-6 h-6 text-white" strokeWidth={1.75} />
                   </div>
-                  <span className="text-xs font-medium" style={{ color: 'var(--navy-500)' }}>
-                    {typeLabel}
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--navy-900)' }}>
-                  {titleKo}
-                </h3>
-                <p className="text-sm leading-relaxed mb-5 flex-1" style={{ color: 'var(--navy-600)' }}>
-                  {body}
-                </p>
-
-                <div className="mb-5">
-                  <p className="text-xs font-semibold mb-3" style={{ color: 'var(--navy-500)' }}>
-                    의료 적용 예시
+                  <div className="inline-flex items-center gap-1.5 mb-3">
+                    <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#d4183d' }} />
+                    <span className="text-xs font-bold tracking-widest" style={{ color: '#d4183d' }}>PROBLEM</span>
+                  </div>
+                  <h3 className="text-lg font-bold mb-2.5" style={{ color: 'var(--navy-900)' }}>
+                    {title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+                    {body}
                   </p>
-                  <ul className="space-y-2">
-                    {examples.map((ex: string) => (
-                      <li key={ex} className="flex items-start gap-2">
-                        <Check className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: 'var(--navy-600)' }} />
-                        <span className="text-sm" style={{ color: 'var(--navy-700)' }}>{ex}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-xl lg:text-2xl text-center mt-16 leading-snug font-medium" style={{ color: 'var(--navy-900)' }}>
+            그렇다면 지금 우리 병원은, AI 검색에 얼마나 준비되어 있을까요?
+          </p>
+        </div>
+      </motion.section>
 
-                <p
-                  className="text-xs pt-4 border-t"
-                  style={{ color: 'var(--navy-400)', borderColor: 'var(--navy-100)' }}
-                >
-                  {meta}
+      {/* ── SECTION 2.5 · AI 검색 준비도 진단 (실제 사례) ── */}
+      <section className="relative py-28 px-8 lg:px-16 overflow-hidden" style={{ backgroundColor: 'var(--navy-900)' }}>
+        <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'linear-gradient(var(--navy-300) 1px, transparent 1px), linear-gradient(90deg, var(--navy-300) 1px, transparent 1px)', backgroundSize: '52px 52px' }} />
+        <motion.div className="relative max-w-[1400px] mx-auto" {...fadeIn}>
+          <div className="max-w-3xl mx-auto text-center mb-14">
+            <span className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide" style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: 'var(--navy-200)' }}>
+              <Gauge className="w-3.5 h-3.5" />
+              AI 검색 최적화 진단 · GEO / AEO Audit
+            </span>
+            <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight text-white mt-6 mb-5">
+              실제로 진단해보면, 대부분 이렇습니다
+            </h2>
+            <p className="text-lg leading-relaxed" style={{ color: 'var(--navy-200)' }}>
+              기존 SEO가 '클릭'을 위한 것이라면, AI 검색 최적화(GEO·AEO)는
+              AI가 내 병원을 읽고·신뢰하고·답변에 인용하게 만드는 것입니다.
+            </p>
+          </div>
+
+          {/* 진단 리포트 카드 */}
+          <div className="max-w-4xl mx-auto bg-white rounded-2xl p-8 lg:p-10 shadow-xl">
+            <div className="flex flex-wrap items-end justify-between gap-4 pb-6 mb-7 border-b" style={{ borderColor: 'var(--navy-100)' }}>
+              <div>
+                <div className="flex items-center gap-2 text-sm font-semibold" style={{ color: 'var(--navy-600)' }}>
+                  <Gauge className="w-4 h-4" /> 종합 AI 검색 준비도
+                </div>
+                <p className="text-xs mt-1" style={{ color: 'var(--navy-400)' }}>
+                  생성형 AI(ChatGPT·Perplexity·Gemini·Claude) 인용 적합성 기준
                 </p>
-              </motion.div>
+              </div>
+              <div className="flex items-end gap-3">
+                <span className="text-5xl font-bold leading-none" style={{ color: '#dc2626' }}>34</span>
+                <span className="text-xl font-medium pb-0.5" style={{ color: 'var(--navy-400)' }}>/ 100</span>
+                <span className="inline-flex items-center rounded-full px-3 py-1 text-xs font-bold mb-1" style={{ backgroundColor: 'rgba(220,38,38,0.1)', color: '#dc2626' }}>
+                  D · 미흡
+                </span>
+              </div>
+            </div>
+            <div className="space-y-4">
+              {auditAreas.map(({ area, score, comment }) => (
+                <div key={area}>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-sm font-semibold" style={{ color: 'var(--navy-900)' }}>{area}</span>
+                    <span className="text-sm font-bold tabular-nums inline-flex items-center gap-2" style={{ color: bandColor(score) }}>
+                      <span className="text-[11px] font-semibold rounded px-1.5 py-0.5" style={{ backgroundColor: bandColor(score) + '1A', color: bandColor(score) }}>{bandLabel(score)}</span>
+                      {score}
+                    </span>
+                  </div>
+                  <div className="h-2 rounded-full overflow-hidden" style={{ backgroundColor: 'var(--navy-100)' }}>
+                    <div className="h-full rounded-full" style={{ width: `${score}%`, backgroundColor: bandColor(score) }} />
+                  </div>
+                  <p className="text-xs mt-1.5" style={{ color: 'var(--navy-500)' }}>{comment}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-xs mt-7 pt-5 border-t" style={{ color: 'var(--navy-400)', borderColor: 'var(--navy-100)' }}>
+              ※ 국내 한 암요양병원 홈페이지의 실제 진단 결과(익명). 점수 기준: 0–30 치명적 / 30–60 미흡 / 60–80 보통 / 80–100 우수
+            </p>
+          </div>
+
+          {/* 치명적 결함 4 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12 max-w-4xl mx-auto">
+            {criticalDefects.map(({ title, body }) => (
+              <div key={title} className="rounded-xl p-5" style={{ backgroundColor: 'var(--navy-800)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                <AlertTriangle className="w-5 h-5 mb-3" style={{ color: '#f87171' }} />
+                <h4 className="text-sm font-bold text-white mb-1.5">{title}</h4>
+                <p className="text-xs leading-relaxed" style={{ color: 'var(--navy-300)' }}>{body}</p>
+              </div>
             ))}
           </div>
 
-          <div className="mt-10 text-center">
+          {/* CTA */}
+          <div className="text-center mt-14">
+            <p className="text-base mb-6" style={{ color: 'var(--navy-200)' }}>
+              대부분의 병원이 <span className="text-white font-bold">30–40점대</span>에 머뭅니다. 우리 병원의 실제 점수가 궁금하시다면—
+            </p>
             <Link
-              to="/services"
-              className="inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:underline"
-              style={{ color: 'var(--navy-700)' }}
+              to="/consultation"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 transition-all hover:opacity-90"
+              style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
             >
-              솔루션 전체 안내 보기
-              <ArrowRight className="w-4 h-4" />
+              <span className="font-semibold">내 병원 AI 검색 점수 무료로 받기</span>
+              <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
-        </div>
+
+          <p className="text-xl lg:text-2xl text-center mt-20 leading-snug font-medium text-white">
+            진단에서 끝나지 않습니다.
+            <br className="hidden sm:block" />
+            발견한 문제를 개발로 해결합니다.
+          </p>
+        </motion.div>
       </section>
 
-      {/* S5: 병원 PR & 콘텐츠 운영 */}
-      <section id="pr" className="py-24 md:py-32 bg-white">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16">
-          <motion.div
-            className="mb-14"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <p className="text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: 'var(--navy-500)' }}>
-              Healthcare-Specialized Package 01
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: 'var(--navy-900)' }}>
-              데이터 중심 병원 PR & 콘텐츠 운영
+      {/* ── SECTION 2.6 · 병원 AX 개발 서비스 ───────────── */}
+      <motion.section className="py-28 px-8 lg:px-16 bg-white" {...fadeIn}>
+        <div className="max-w-[1400px] mx-auto">
+          <div className="max-w-3xl mb-16">
+            <span className="text-sm font-bold tracking-wide" style={{ color: 'var(--navy-600)' }}>
+              HOSPITAL AX
+            </span>
+            <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight mt-3 mb-5" style={{ color: 'var(--navy-900)' }}>
+              병원 AX 개발 서비스
             </h2>
-            <p className="text-lg max-w-3xl leading-relaxed" style={{ color: 'var(--navy-600)' }}>
-              일반적인 콘텐츠 대행은 콘텐츠 양으로 답합니다.
-              LS컨설팅은 매월 자체 AI 시스템으로 환자 트렌드를 분석하고,
-              그 결과를 토대로 콘텐츠와 운영을 함께 설계합니다.
-              데이터 없는 콘텐츠 대행이 아닌, 분석에서 출발하는 통합 운영입니다.
+            <p className="text-lg leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+              진단에서 드러난 문제를 실제 개발로 해결합니다. 병원 홈페이지를 AI가 읽고 인용하는 자산으로 바꿉니다.
             </p>
-          </motion.div>
+          </div>
 
-          {/* PR 패키지 2-tier */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-            {prTiers.map(({ label, price, priceUnit, description, items, isPrimary }, i) => (
-              <motion.div
-                key={i}
-                className="p-8 flex flex-col relative"
-                style={{
-                  border: isPrimary ? '2px solid var(--navy-900)' : '1px solid var(--navy-100)',
-                  backgroundColor: 'white',
-                }}
-                variants={fadeIn}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
+          {/* AX 전환 변화 쇼케이스 */}
+          <div className="mb-16">
+            <div className="rounded-2xl overflow-hidden border shadow-lg" style={{ borderColor: 'var(--navy-100)' }}>
+              <div className="flex items-center gap-1.5 px-4 py-3 border-b" style={{ backgroundColor: 'var(--navy-50)', borderColor: 'var(--navy-100)' }}>
+                <span className="w-3 h-3 rounded-full" style={{ backgroundColor: '#e5484d' }} />
+                <span className="w-3 h-3 rounded-full" style={{ backgroundColor: '#e8902b' }} />
+                <span className="w-3 h-3 rounded-full" style={{ backgroundColor: '#16a34a' }} />
+                <span className="ml-3 text-xs font-medium" style={{ color: 'var(--navy-500)' }}>AX로 전환한 병원 홈페이지</span>
+              </div>
+              <a
+                href="https://srlyxadncjladllbwmdk.supabase.co/storage/v1/object/public/img/top_2.jpeg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
               >
-                {isPrimary && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <div
-                      className="px-4 py-1 text-xs font-semibold text-white whitespace-nowrap"
-                      style={{ backgroundColor: 'var(--navy-900)' }}
-                    >
-                      Most Selected
-                    </div>
-                  </div>
-                )}
+                <ImageWithFallback
+                  src="https://srlyxadncjladllbwmdk.supabase.co/storage/v1/object/public/img/top_2.jpeg"
+                  alt="AX로 전환한 병원 홈페이지 예시"
+                  className="w-full block"
+                />
+              </a>
+            </div>
+            <p className="text-center text-sm mt-4" style={{ color: 'var(--navy-500)' }}>
+              AI 검색에 잡히고, 환자와 연결되는 홈페이지로 — <span className="font-semibold" style={{ color: 'var(--navy-700)' }}>AX 전환이 만드는 변화</span>입니다.
+            </p>
+          </div>
 
-                <p className="text-sm font-semibold mb-4" style={{ color: 'var(--navy-700)' }}>
-                  {label}
-                </p>
-                <div className="mb-2">
-                  <span className="text-3xl font-bold" style={{ color: 'var(--navy-900)' }}>
-                    {price}
-                  </span>
-                  {priceUnit && (
-                    <span className="text-sm ml-1" style={{ color: 'var(--navy-500)' }}>
-                      {priceUnit}
-                    </span>
-                  )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {axServices.map(({ Icon, title, body }) => (
+              <div key={title} className="rounded-2xl p-8 border flex gap-5" style={{ borderColor: 'var(--navy-100)' }}>
+                <div className="shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: 'var(--navy-900)' }}>
+                  <Icon className="w-6 h-6 text-white" strokeWidth={1.5} />
                 </div>
-                <p className="text-xs mb-1" style={{ color: 'var(--navy-400)' }}>
-                  VAT 별도
-                </p>
-                <p className="text-sm leading-relaxed mb-6" style={{ color: 'var(--navy-600)' }}>
-                  {description}
-                </p>
+                <div>
+                  <h3 className="text-lg font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{title}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
 
-                <ul className="space-y-3 mb-8 flex-1">
-                  {items.map((item: string) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <Check className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: 'var(--navy-700)' }} />
-                      <span className="text-sm" style={{ color: 'var(--navy-700)' }}>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+      {/* ── SECTION 2.7 · AI Cancer Server ──────────────── */}
+      <section className="relative py-28 px-8 lg:px-16 overflow-hidden" style={{ backgroundColor: 'var(--navy-900)' }}>
+        <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'linear-gradient(var(--navy-300) 1px, transparent 1px), linear-gradient(90deg, var(--navy-300) 1px, transparent 1px)', backgroundSize: '52px 52px' }} />
+        <motion.div className="relative max-w-[1400px] mx-auto" {...fadeIn}>
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide" style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: 'var(--navy-200)' }}>
+              <Database className="w-3.5 h-3.5" />
+              AI Cancer Server · Patient Voice Matrix™
+            </span>
+            <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight text-white mt-6 mb-5">
+              암 데이터를 읽는 자체 AI 서버
+            </h2>
+            <p className="text-lg leading-relaxed" style={{ color: 'var(--navy-200)' }}>
+              암 환자 실제 후기 100,000건+를 13개 축으로 구조화한 독자 데이터 자산.
+              병원 웹사이트·콘텐츠·상담 AI가 추정이 아닌 데이터로 답하게 만드는 근거입니다.
+            </p>
+          </div>
 
-                <Link
-                  to="/consultation"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold transition-all hover:opacity-90"
-                  style={
-                    isPrimary
-                      ? { backgroundColor: 'var(--navy-900)', color: 'white' }
-                      : { backgroundColor: 'var(--navy-50)', color: 'var(--navy-900)', border: '1px solid var(--navy-200)' }
-                  }
-                >
-                  상담/견적 신청
-                </Link>
-              </motion.div>
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto mb-14">
+            {cancerServerStats.map(({ value, label }) => (
+              <div key={label} className="text-center">
+                <div className="text-3xl lg:text-4xl font-bold text-white mb-1">{value}</div>
+                <div className="text-sm" style={{ color: 'var(--navy-300)' }}>{label}</div>
+              </div>
             ))}
           </div>
 
-          {/* Healthcare Bundle 카드 */}
-          <motion.div
-            className="mb-4"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <p className="text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: 'var(--navy-700)' }}>
-              {healthcareWebBundle.categoryLabel}
-            </p>
-            <p className="text-sm mb-6" style={{ color: 'var(--navy-500)' }}>
-              {healthcareWebBundle.categorySubLabel}
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="p-8 md:p-12"
-            style={{ backgroundColor: 'var(--navy-900)' }}
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
-              {/* 좌측: 아이콘 + 메타 */}
-              <div className="lg:col-span-2 flex flex-col justify-between">
-                <div>
-                  <p className="text-xs font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--navy-300)' }}>
-                    Healthcare Bundle
-                  </p>
-                  <div
-                    className="w-14 h-14 flex items-center justify-center mb-5"
-                    style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}
-                  >
-                    <Globe className="w-7 h-7" style={{ color: 'var(--navy-300)' }} />
-                  </div>
-                  <p className="text-xs mb-1" style={{ color: 'var(--navy-300)' }}>
-                    {healthcareWebBundle.meta.program}
-                  </p>
-                  <p className="text-xs" style={{ color: 'var(--navy-400)' }}>
-                    {healthcareWebBundle.meta.limit}
-                  </p>
-                </div>
-
-                <div
-                  className="mt-8 pt-6 border-t flex gap-6"
-                  style={{ borderColor: 'rgba(255,255,255,0.1)' }}
-                >
-                  {[
-                    { label: '기간', value: healthcareWebBundle.meta.duration },
-                    { label: '형태', value: healthcareWebBundle.meta.type },
-                  ].map(({ label, value }) => (
-                    <div key={label}>
-                      <p className="text-xs mb-0.5" style={{ color: 'var(--navy-400)' }}>{label}</p>
-                      <p className="text-sm font-semibold" style={{ color: 'var(--navy-200)' }}>{value}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* 우측: 콘텐츠 */}
-              <div className="lg:col-span-3">
-                <div className="flex items-start justify-between gap-4 mb-3">
-                  <p className="text-xs font-semibold" style={{ color: 'var(--navy-300)' }}>
-                    {healthcareWebBundle.topLabel}
-                  </p>
-                  <span
-                    className="text-xs font-bold px-3 py-1 whitespace-nowrap"
-                    style={{ backgroundColor: 'rgba(255,255,255,0.12)', color: 'white' }}
-                  >
-                    {healthcareWebBundle.pricing.discountBadge}
-                  </span>
-                </div>
-
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                  {healthcareWebBundle.title}
-                </h3>
-                <p className="text-base mb-6" style={{ color: 'var(--navy-200)' }}>
-                  {healthcareWebBundle.subtitle}
-                </p>
-
-                {/* 가격 */}
-                <div className="flex items-center gap-3 mb-1">
-                  <span className="text-xl line-through" style={{ color: 'var(--navy-400)' }}>
-                    {healthcareWebBundle.pricing.original}
-                  </span>
-                  <ArrowRight className="w-4 h-4" style={{ color: 'var(--navy-400)' }} />
-                  <span className="text-4xl font-bold text-white">
-                    {healthcareWebBundle.pricing.discounted}
-                  </span>
-                </div>
-                <p className="text-xs mb-2" style={{ color: 'var(--navy-400)' }}>
-                  {healthcareWebBundle.pricing.note}
-                </p>
-                <p className="text-sm font-semibold mb-7" style={{ color: 'var(--navy-300)' }}>
-                  {healthcareWebBundle.pricing.discountLabel}
-                </p>
-
-                {/* 할인 사유 */}
-                <div
-                  className="pl-4 mb-7"
-                  style={{ borderLeft: '2px solid var(--navy-500)' }}
-                >
-                  <p className="text-xs font-semibold mb-2" style={{ color: 'var(--navy-300)' }}>
-                    {healthcareWebBundle.rationale.question}
-                  </p>
-                  <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-300)' }}>
-                    {healthcareWebBundle.rationale.answer}
-                  </p>
-                </div>
-
-                {/* 포함 항목 */}
-                <ul className="space-y-2.5 mb-8">
-                  {healthcareWebBundle.items.map((item: string) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-white" />
-                      <span className="text-sm" style={{ color: 'var(--navy-200)' }}>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* CTA */}
-                <Link
-                  to={healthcareWebBundle.cta.primaryTo}
-                  className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold transition-all hover:opacity-90"
-                  style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
-                >
-                  <span>{healthcareWebBundle.cta.primary}</span>
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-                <p className="text-xs mt-3" style={{ color: 'var(--navy-400)' }}>
-                  {healthcareWebBundle.cta.note}
-                </p>
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="rounded-2xl p-8" style={{ backgroundColor: 'var(--navy-800)' }}>
+              <h3 className="text-lg font-bold text-white mb-5">무엇을 담는가</h3>
+              <ul className="space-y-3">
+                {cancerServerHas.map((s) => (
+                  <li key={s} className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" style={{ color: 'var(--navy-300)' }} />
+                    <span className="text-sm leading-relaxed text-white/90">{s}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </motion.div>
-        </div>
+            <div className="rounded-2xl p-8" style={{ backgroundColor: 'var(--navy-800)' }}>
+              <h3 className="text-lg font-bold text-white mb-5">무엇을 만드는가</h3>
+              <ul className="space-y-3">
+                {cancerServerPowers.map((s) => (
+                  <li key={s} className="flex items-start gap-2.5">
+                    <ArrowRight className="w-4 h-4 shrink-0 mt-0.5" style={{ color: 'var(--navy-300)' }} />
+                    <span className="text-sm leading-relaxed text-white/90">{s}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </motion.div>
       </section>
 
-      {/* S6: 병원 개원 컨설팅 */}
-      <section id="opening" className="py-24 md:py-32" style={{ backgroundColor: 'var(--navy-50)' }}>
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16">
-          <motion.div
-            className="mb-14"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <p className="text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: 'var(--navy-500)' }}>
-              Healthcare-Specialized Package 02
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: 'var(--navy-900)' }}>
-              병원 개원 컨설팅
+      {/* ── SECTION 3 · HappyLifeCare 핵심 ──────────────── */}
+      <motion.section id="happylifecare" className="py-28 px-8 lg:px-16 scroll-mt-20" style={{ backgroundColor: 'var(--navy-50)' }} {...fadeIn}>
+        <div className="max-w-[1400px] mx-auto">
+          <div className="max-w-3xl mb-14">
+            <span className="text-sm font-bold tracking-wide" style={{ color: 'var(--navy-600)' }}>
+              OUR PLATFORM · HappyLifeCare
+            </span>
+            <h2 className="text-3xl lg:text-5xl tracking-tight leading-[1.15] mt-3 mb-5" style={{ color: 'var(--navy-900)' }}>
+              병원과 환자를 하나로 잇는
+              <br />
+              암 환자 통합 케어 플랫폼
             </h2>
-            <p className="text-lg max-w-3xl leading-relaxed" style={{ color: 'var(--navy-600)' }}>
-              10개+ 암 요양·한방병원 개원 자문 경험.
-              입지 분석부터 1년 안정화까지 풀 사이클을 동반합니다.
-              개원 후 자연스럽게 PR 패키지로 연결되는 통합 모델입니다.
+            <p className="text-base lg:text-lg leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+              병원 관리 시스템(HappyCare)과 환자·보호자 앱(HappyLife), 그리고 둘을 실시간으로 잇는 24개 연동 엔진을
+              하나로 묶은 국내 유일의 암 환자 통합 케어 플랫폼입니다. 환자가 퇴원하는 순간 끊기던 케어를, 하나의 흐름으로 잇습니다.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="bg-white p-8 md:p-12"
-            style={{ border: '1px solid var(--navy-100)' }}
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
-              {/* 좌측 */}
-              <div className="md:col-span-2 flex flex-col justify-between">
-                <div>
-                  <div
-                    className="w-14 h-14 flex items-center justify-center mb-6"
-                    style={{ backgroundColor: 'var(--navy-50)' }}
-                  >
-                    <Building2 className="w-7 h-7" style={{ color: 'var(--navy-700)' }} />
-                  </div>
-                  <p className="text-xs font-medium mb-2" style={{ color: 'var(--navy-500)' }}>
-                    프로젝트 · 6개월~
-                  </p>
-                  <div className="text-3xl font-bold mb-1" style={{ color: 'var(--navy-900)' }}>
-                    ₩30,000,000
-                  </div>
-                  <p className="text-sm" style={{ color: 'var(--navy-400)' }}>
-                    부터 (VAT 별도)
-                  </p>
+          {/* 핵심 지표 */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {platformStats.map(({ value, label }) => (
+              <div key={label} className="bg-white rounded-2xl p-6 text-center">
+                <div className="text-3xl lg:text-4xl font-bold mb-1" style={{ color: 'var(--navy-900)' }}>{value}</div>
+                <div className="text-sm leading-snug" style={{ color: 'var(--navy-600)' }}>{label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* 실제 제품 화면 2 */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-20">
+            {products.map(({ Icon, image, name, role, desc }) => (
+              <div key={name} className="bg-white rounded-2xl overflow-hidden border" style={{ borderColor: 'var(--navy-100)' }}>
+                <div className="relative aspect-[16/10] overflow-hidden" style={{ backgroundColor: 'var(--navy-100)' }}>
+                  <ImageWithFallback src={image} alt={name} className="w-full h-full object-cover" />
+                  <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold text-white backdrop-blur" style={{ backgroundColor: 'rgba(10,22,40,0.7)' }}>
+                    <Icon className="w-3.5 h-3.5" />
+                    {role}
+                  </span>
                 </div>
-
-                <div
-                  className="mt-8 pt-6 border-t"
-                  style={{ borderColor: 'var(--navy-100)' }}
-                >
-                  <p className="text-xs leading-relaxed mb-1" style={{ color: 'var(--navy-500)' }}>
-                    오픈 전 3개월 (입지·포지셔닝·인허가)
-                  </p>
-                  <p className="text-xs leading-relaxed mb-1" style={{ color: 'var(--navy-500)' }}>
-                    오픈 후 3개월 (안정화·KPI 측정)
-                  </p>
-                  <p className="text-xs leading-relaxed" style={{ color: 'var(--navy-500)' }}>
-                    이후 PR 패키지로 자연 연결 가능
-                  </p>
+                <div className="p-7">
+                  <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{name}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{desc}</p>
                 </div>
               </div>
+            ))}
+          </div>
 
-              {/* 우측 */}
-              <div className="md:col-span-3">
-                <h3 className="text-2xl font-bold mb-3" style={{ color: 'var(--navy-900)' }}>
-                  개원부터 안정화까지
-                </h3>
-                <p className="text-sm leading-relaxed mb-8" style={{ color: 'var(--navy-600)' }}>
-                  개원은 한 번의 결정이 1-2년의 결과를 만듭니다.
-                  입지·인허가·인력·운영·홍보가 한 줄로 연결되어야
-                  첫 1년이 안정적으로 굴러갑니다.
-                </p>
-
-                <ul className="space-y-4 mb-8">
-                  {openingSteps.map(({ title, body }, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: 'var(--navy-700)' }} />
-                      <div>
-                        <span className="text-sm font-semibold" style={{ color: 'var(--navy-900)' }}>
-                          {title}
-                        </span>
-                        <span className="text-sm" style={{ color: 'var(--navy-500)' }}>
-                          {' '}— {body}
-                        </span>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  to="/consultation"
-                  className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-white transition-all hover:opacity-90"
-                  style={{ backgroundColor: 'var(--navy-900)' }}
-                >
-                  <span>개원 상담/견적 신청</span>
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* S7: 한 팀이 한 호흡으로 */}
-      <section className="py-24 md:py-32 bg-white" style={{ backgroundColor: 'var(--navy-25)' }}>
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16">
-          <motion.div
-            className="mb-16"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <p className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--navy-500)' }}>
-              How We Work
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: 'var(--navy-900)' }}>
-              한 팀이 한 호흡으로 갑니다
-            </h2>
-            <p className="text-lg max-w-3xl leading-relaxed" style={{ color: 'var(--navy-600)' }}>
-              진단 회사 따로, 컨설팅 회사 따로, 개발사 따로가 아닙니다.
-              <br />
-              첫 미팅의 사람이 마지막 결과물까지 함께합니다.
-              <br />
-              의료는 정보 손실이 클수록 위험이 큰 분야입니다.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {workSteps.map(({ n, label, title, body }, i) => (
-              <motion.div
-                key={i}
-                className="p-7 border"
-                style={{ borderColor: 'var(--navy-100)' }}
-                variants={fadeIn}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                <p className="text-4xl font-bold mb-1" style={{ color: 'var(--navy-100)' }}>{n}</p>
-                <p className="text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: 'var(--navy-400)' }}>
-                  {label}
-                </p>
-                <h3 className="text-lg font-bold mb-3" style={{ color: 'var(--navy-900)' }}>{title}</h3>
+          {/* 왜 다른가 */}
+          <div className="mb-10">
+            <h3 className="text-2xl lg:text-3xl font-bold tracking-tight" style={{ color: 'var(--navy-900)' }}>왜 다른가</h3>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {innovations.map(({ Icon, title, body }) => (
+              <div key={title} className="bg-white rounded-2xl p-7">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: 'var(--navy-900)' }}>
+                  <Icon className="w-6 h-6 text-white" strokeWidth={1.5} />
+                </div>
+                <h4 className="text-base font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{title}</h4>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{body}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
+      </motion.section>
+
+      {/* ── SECTION 4 · 연동 엔진 (24개 양방향 연동) ────── */}
+      <section className="relative py-28 px-8 lg:px-16 overflow-hidden" style={{ backgroundColor: 'var(--navy-900)' }}>
+        <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'linear-gradient(var(--navy-300) 1px, transparent 1px), linear-gradient(90deg, var(--navy-300) 1px, transparent 1px)', backgroundSize: '52px 52px' }} />
+        <motion.div className="relative max-w-[1400px] mx-auto" {...fadeIn}>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide" style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: 'var(--navy-200)' }}>
+              <ArrowLeftRight className="w-3.5 h-3.5" />
+              연동 엔진 · S1–S24
+            </span>
+            <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight text-white mt-6 mb-5">
+              환자와 병원이 실시간으로 이어집니다
+            </h2>
+            <p className="text-lg leading-relaxed" style={{ color: 'var(--navy-200)' }}>
+              환자가 입력하면 병원이 즉시 보고, 병원이 응답하면 환자에게 바로 닿습니다.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="rounded-2xl p-8" style={{ backgroundColor: 'var(--navy-800)' }}>
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-lg font-bold text-white">환자 → 병원</h3>
+                <span className="text-3xl font-bold" style={{ color: 'var(--navy-300)' }}>12</span>
+              </div>
+              <ul className="space-y-3">
+                {syncPatientToHospital.map((s) => (
+                  <li key={s} className="flex items-start gap-2.5">
+                    <ArrowRight className="w-4 h-4 shrink-0 mt-0.5" style={{ color: 'var(--navy-300)' }} />
+                    <span className="text-sm leading-relaxed text-white/90">{s}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-2xl p-8" style={{ backgroundColor: 'var(--navy-800)' }}>
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-lg font-bold text-white">병원 → 환자</h3>
+                <span className="text-3xl font-bold" style={{ color: 'var(--navy-300)' }}>12</span>
+              </div>
+              <ul className="space-y-3">
+                {syncHospitalToPatient.map((s) => (
+                  <li key={s} className="flex items-start gap-2.5">
+                    <ArrowRight className="w-4 h-4 shrink-0 mt-0.5 rotate-180" style={{ color: 'var(--navy-300)' }} />
+                    <span className="text-sm leading-relaxed text-white/90">{s}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <p className="text-center text-sm mt-8" style={{ color: 'var(--navy-300)' }}>
+            대표 기능만 표시 · 총 24개(S1–S24) 기능이 실시간 연동됩니다
+          </p>
+        </motion.div>
       </section>
 
-      {/* S8: FAQ */}
-      <section className="py-24 md:py-32" style={{ backgroundColor: 'var(--navy-50)' }}>
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16">
-          <div className="max-w-3xl mx-auto">
-            <motion.div
-              className="text-center mb-14"
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <p className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--navy-500)' }}>
-                FAQ
-              </p>
-              <h2 className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--navy-900)' }}>
-                자주 묻는 질문
-              </h2>
-            </motion.div>
+      {/* ── SECTION 5 · 병원이 얻는 변화 (압축) ─────────── */}
+      <motion.section className="py-28 px-8 lg:px-16" style={{ backgroundColor: 'var(--navy-50)' }} {...fadeIn}>
+        <div className="max-w-[1400px] mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-sm font-bold tracking-wide" style={{ color: 'var(--navy-600)' }}>
+              FOR HOSPITALS
+            </span>
+            <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight mt-3 mb-5" style={{ color: 'var(--navy-900)' }}>
+              병원이 얻는 3가지 변화
+            </h2>
+            <p className="text-lg leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+              환자 이탈 · 유입 정체 · 업무 과다를 한 번에 해결합니다.
+            </p>
+          </div>
 
-            <div className="space-y-2">
-              {faqs.map(({ q, a }, i) => (
-                <motion.div
-                  key={i}
-                  className="bg-white border"
-                  style={{ borderColor: 'var(--navy-100)' }}
-                  variants={fadeIn}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                >
-                  <button
-                    className="w-full flex items-center justify-between px-7 py-5 text-left"
-                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  >
-                    <span className="text-base font-semibold pr-4" style={{ color: 'var(--navy-900)' }}>
-                      {q}
-                    </span>
-                    <ChevronDown
-                      className="w-5 h-5 flex-shrink-0 transition-transform"
-                      style={{
-                        color: 'var(--navy-500)',
-                        transform: openFaq === i ? 'rotate(180deg)' : 'rotate(0deg)',
-                      }}
-                    />
-                  </button>
-                  {openFaq === i && (
-                    <div className="px-7 pb-6">
-                      <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>
-                        {a}
-                      </p>
-                    </div>
-                  )}
-                </motion.div>
+          {/* 고민 → 해결 → 수치 (압축 카드) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {concerns.map(({ q, solution, metric }) => (
+              <div key={q} className="bg-white rounded-2xl p-8 flex flex-col">
+                <span className="text-xs font-semibold tracking-wide mb-2" style={{ color: '#d4183d' }}>고민</span>
+                <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--navy-900)' }}>{q}</h3>
+                <p className="text-sm leading-relaxed flex-1 mb-6" style={{ color: 'var(--navy-600)' }}>{solution}</p>
+                <div className="rounded-xl px-4 py-3 text-center font-bold" style={{ backgroundColor: 'var(--navy-900)', color: 'white' }}>
+                  {metric}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* 도입 효과 — 슬림 스트립 */}
+          <div className="mt-12 bg-white rounded-2xl p-8 lg:p-10">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4 text-center">
+              {effectHighlights.map(({ v, l }) => (
+                <div key={l}>
+                  <div className="text-3xl lg:text-4xl font-bold mb-1" style={{ color: 'var(--navy-900)' }}>{v}</div>
+                  <div className="text-sm" style={{ color: 'var(--navy-600)' }}>{l}</div>
+                </div>
               ))}
             </div>
           </div>
+          <p className="text-center text-sm mt-6" style={{ color: 'var(--navy-500)' }}>
+            ※ LS AX 컨설팅 운영 병원 기준 예상치이며, 병원 규모와 환자 특성에 따라 달라질 수 있습니다.
+          </p>
         </div>
-      </section>
+      </motion.section>
 
-      {/* S9: 최종 CTA */}
-      <section className="py-24 md:py-32" style={{ backgroundColor: 'var(--navy-900)' }}>
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16">
-          <motion.div
-            className="text-center"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              병원의 단계와 상황에 맞는
-              <br />
-              가장 적합한 옵션을 함께 찾습니다
+      {/* ── SECTION 7 · 도입 절차 ──────────────────────── */}
+      <motion.section className="py-28 px-8 lg:px-16 bg-white" {...fadeIn}>
+        <div className="max-w-[1400px] mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight mb-5" style={{ color: 'var(--navy-900)' }}>
+              도입은 4단계로
             </h2>
-            <p className="text-lg mb-4 max-w-2xl mx-auto" style={{ color: 'var(--navy-300)' }}>
-              개원 준비, 운영 중 PR, 디지털 전환 — 어느 단계든 60분 무료 상담으로 시작합니다.
-              <br />
-              병원 상황을 듣고 가장 적합한 옵션과 시작 시점을 함께 정합니다.
+            <p className="text-lg leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+              무료 진단부터 시작합니다. 효과를 먼저 확인하고 결정하셔도 됩니다.
             </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-10 text-sm" style={{ color: 'var(--navy-400)' }}>
-              <span>60분 화상 또는 대면 미팅</span>
-              <span className="hidden sm:block">·</span>
-              <span>사전 자료 제출 불필요</span>
-              <span className="hidden sm:block">·</span>
-              <span>상담 후 24시간 내 맞춤 제안서</span>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Link
-                to="/consultation"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold transition-all hover:opacity-90"
-                style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {steps.map(({ n, period, title, body }) => (
+              <div
+                key={n}
+                className="rounded-2xl p-7 relative overflow-hidden transition-all hover:-translate-y-1 hover:shadow-md"
+                style={{ background: 'linear-gradient(155deg, var(--navy-100) 0%, var(--navy-50) 60%)' }}
               >
-                <span>상담/견적 신청</span>
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link
-                to="/consult"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold transition-all border"
-                style={{ color: 'var(--navy-200)', borderColor: 'var(--navy-600)' }}
-              >
-                AI 암상담 먼저 체험하기
-              </Link>
-            </div>
-
-            <p className="text-sm" style={{ color: 'var(--navy-400)' }}>
-              의료기관이 아니신가요?{' '}
-              <Link
-                to="/business"
-                className="transition-colors hover:text-white underline"
-                style={{ color: 'var(--navy-300)' }}
-              >
-                기업분야 페이지에서 같은 솔루션을 기업 관점으로 보실 수 있습니다
-              </Link>
-            </p>
-          </motion.div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-4xl font-bold tabular-nums" style={{ color: 'var(--navy-600)' }}>{n}</span>
+                  <span className="text-xs font-semibold rounded-full px-3 py-1 bg-white shadow-sm" style={{ color: 'var(--navy-700)' }}>{period}</span>
+                </div>
+                <h3 className="text-lg font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-700)' }}>{body}</p>
+              </div>
+            ))}
+          </div>
+          {/* 보안 배지 */}
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 mt-14 text-sm" style={{ color: 'var(--navy-500)' }}>
+            <span className="inline-flex items-center gap-2"><ShieldCheck className="w-4 h-4" /> 의료법·개인정보보호법 준수</span>
+            <span className="inline-flex items-center gap-2"><ShieldCheck className="w-4 h-4" /> ISO 27001 표준 · 데이터 암호화</span>
+            <span className="inline-flex items-center gap-2"><ShieldCheck className="w-4 h-4" /> 99.9% 가용성 · 24/7 모니터링</span>
+          </div>
         </div>
+      </motion.section>
+
+      {/* ── SECTION 8 · 현재 함께하는 병원 ─────────────── */}
+      <motion.section className="py-28 px-8 lg:px-16" style={{ backgroundColor: 'var(--navy-50)' }} {...fadeIn}>
+        <div className="max-w-[1400px] mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-sm font-bold tracking-wide" style={{ color: 'var(--navy-600)' }}>
+              CLIENTS
+            </span>
+            <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight mt-3 mb-5" style={{ color: 'var(--navy-900)' }}>
+              현재 함께하는 병원
+            </h2>
+            <p className="text-lg leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+              개원 컨설팅부터 홍보·홈페이지까지, 의료 현장에서 검증된 파트너십입니다.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {clients.map((c) => (
+              <div key={c.name} className="bg-white rounded-2xl overflow-hidden flex flex-col border" style={{ borderColor: 'var(--navy-100)' }}>
+                <div className="aspect-[16/10] overflow-hidden" style={{ backgroundColor: 'var(--navy-100)' }}>
+                  <ImageWithFallback src={c.image} alt={c.name} className="w-full h-full object-cover" />
+                </div>
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="text-lg font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{c.name}</h3>
+                  <p className="text-sm leading-relaxed flex-1" style={{ color: 'var(--navy-600)' }}>{c.projects}</p>
+                  <a
+                    href={c.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-semibold mt-4 self-start transition-all hover:gap-3"
+                    style={{ color: 'var(--navy-900)' }}
+                  >
+                    <ExternalLink className="w-4 h-4" /> 홈페이지 바로가기
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ── SECTION 9 · 최종 CTA ───────────────────────── */}
+      <section className="relative py-28 px-8 lg:px-16 overflow-hidden" style={{ backgroundColor: 'var(--navy-900)' }}>
+        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: `url(${homeImages.trust})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(10,22,40,0.85)' }} />
+        <motion.div className="relative max-w-[1400px] mx-auto text-center" {...fadeIn}>
+          <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight text-white mb-6">
+            병원 홈페이지, 지금 진단받으세요
+          </h2>
+          <p className="text-lg max-w-xl mx-auto leading-relaxed mb-4" style={{ color: 'var(--navy-200)' }}>
+            현재 병원의 AI 검색 노출과 환자 연결 구조를 무료로 진단하고,
+            HappyLifeCare 도입 시 예상 효과를 시뮬레이션해 드립니다.
+          </p>
+          <p className="text-sm mb-10" style={{ color: 'var(--navy-300)' }}>
+            진단 1주 · 비용 없음 · 도입 의무 없음
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <Link
+              to="/consultation"
+              className="inline-flex items-center justify-center gap-2 px-10 py-5 text-lg transition-all hover:opacity-90 w-full sm:w-auto"
+              style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
+            >
+              <span className="font-semibold">병원 무료 진단 신청</span>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+            <Link
+              to="/consult"
+              className="inline-flex items-center justify-center gap-2 px-10 py-5 text-lg border-2 text-white transition-all hover:bg-white/10 w-full sm:w-auto"
+              style={{ borderColor: 'rgba(255,255,255,0.35)' }}
+            >
+              <span>작동 중인 AI 보기</span>
+            </Link>
+          </div>
+        </motion.div>
       </section>
-    </>
+    </div>
   );
 }

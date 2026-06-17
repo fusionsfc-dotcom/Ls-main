@@ -1,666 +1,427 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
 import {
-  LineChart, Workflow, Globe, Code2, Compass, Briefcase, Check, ChevronDown, ArrowRight,
-  Shield, Sparkles, GraduationCap, ShoppingBag, Building, Wrench, Star, Trophy,
+  ArrowRight,
+  Repeat,
+  Workflow,
+  Unplug,
+  Inbox,
+  Wand2,
+  Send,
+  Files,
+  GitBranch,
+  Sparkles,
+  User,
+  Building2,
+  Briefcase,
+  Gauge,
+  Wallet,
+  ShieldCheck,
+  CheckCircle2,
+  MessageSquareText,
 } from 'lucide-react';
 import { SEO } from '../components/SEO';
+import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { bizImages } from '../data/homeImages';
 
 const fadeIn = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } },
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' },
+  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
 };
 
-const medicalToBusinessBridges = [
+/* ── 현실 문제 ─────────────────────────────────────── */
+const problems = [
   {
-    Icon: Shield,
-    medicalContext: '환자 데이터·생사와 직결된 의사결정',
-    businessContext: '고객 이탈·매출 예측·운영 자동화',
-    insight: '정확도 기준이 가장 높은 의료에서 검증된 AI가 일반 비즈니스에서 더 안정적으로 작동합니다.',
-  },
-  {
-    Icon: Trophy,
-    medicalContext: '수십 명 규모 병원 이해관계자 조율',
-    businessContext: '경영진·현장팀·IT 사이의 AI 도입 조율',
-    insight: '의료 현장의 복잡한 이해관계를 다뤄온 경험이 기업 내부 조율을 더 매끄럽게 만듭니다.',
-  },
-  {
-    Icon: Star,
-    medicalContext: '암 환자 여정 데이터 분석·세그먼트',
-    businessContext: '고객 구매 여정 분석·타깃 세그먼트',
-    insight: '환자를 이해하는 방법론이 고객을 이해하는 방법론과 구조적으로 동일합니다.',
-  },
-  {
-    Icon: Sparkles,
-    medicalContext: '진료 프로세스 자동화·AI 알림 시스템',
-    businessContext: '반복 업무 자동화·AI 기반 운영 시스템',
-    insight: '의료 수준의 프로세스 설계가 일반 기업 운영 효율화에 즉시 적용됩니다.',
-  },
-] as const;
-
-const businessSolutions = [
-  {
-    Icon: LineChart,
-    en: 'AI Market Diagnosis',
-    ko: 'AI 시장 진단',
-    description: '귀사의 업종·규모에 맞춘 AI 도입 가능성 진단. 어디서 시작해야 할지 모르는 기업에게 가장 먼저 권장합니다.',
-    outcome: '도입 우선순위 로드맵 + ROI 예상 범위',
-    price: '₩5,000,000부터',
-    duration: '1회 프로젝트',
+    Icon: Repeat,
+    title: '반복 업무가 하루를 잠식합니다',
+    body: '보고·요약·정리·응대 같은 사무 노동이 매일 반복됩니다. 정작 중요한 일에 쓸 시간이 남지 않습니다.',
   },
   {
     Icon: Workflow,
-    en: 'AI Workflow Automation',
-    ko: 'AI 업무 자동화 (기업)',
-    description: '회사의 반복 업무를 AI 자동화 시스템으로 전환합니다. 엑셀·카톡·이메일로 굴러가던 운영을 자동화 도구 + Claude AI 결합으로 시스템화합니다.',
-    outcome: '반복 업무 자동화 + 운영 모니터링',
-    price: '₩8,000,000부터 + ₩500,000/월부터',
-    duration: '구축 4–6주 + 운영',
+    title: '자동화 도구는 "IT 아는 사람"만 씁니다',
+    body: '노드를 연결하고 워크플로우를 그릴 줄 알아야 합니다. 대부분의 실무자에게는 그 자체가 진입장벽입니다.',
   },
   {
-    Icon: Globe,
-    en: 'AI-Optimized Web & App',
-    ko: 'AI 최적화 웹·앱 구축',
-    description: 'AI 기능이 내재된 비즈니스 웹·앱 개발. 단순 사이트가 아닌, 데이터를 수집하고 자동화가 가능한 구조로 설계합니다.',
-    outcome: '운영 가능한 AI 통합 웹·앱 서비스',
-    price: '₩15,000,000부터',
-    duration: '4–8주',
-    highlight: true,
-  },
-  {
-    Icon: Code2,
-    en: 'Custom SaaS & System',
-    ko: '맞춤 SaaS · 시스템 개발',
-    description: '반복 업무를 자동화하는 내부 시스템 또는 외부에 판매 가능한 SaaS 제품 개발. 의료 SaaS 개발 경험을 일반 산업에 적용합니다.',
-    outcome: '운영 가능한 SaaS 또는 내부 자동화 시스템',
-    price: '₩50,000,000부터',
-    duration: '8–16주',
-  },
-  {
-    Icon: Compass,
-    en: 'AI Strategy Consulting',
-    ko: 'AI 전략 컨설팅',
-    description: '월 단위 AI 전략 파트너. 단발 프로젝트가 아닌 지속적인 AI 내재화를 원하는 기업을 위한 장기 파트너십입니다.',
-    outcome: '월별 전략 보고 + 실행 지원',
-    price: '₩5,000,000 / 월',
-    duration: '6개월~',
+    Icon: Unplug,
+    title: '해외 도구는 한국 업무와 안 맞습니다',
+    body: '카카오·네이버·한글·배민·더존… 우리가 매일 쓰는 도구와 연동되지 않으면 무용지물입니다.',
   },
 ] as const;
 
-const industryScenarios = [
+/* ── 읽기 → 가공 → 내보내기 ───────────────────────── */
+const cycle = [
+  { Icon: Inbox, step: '읽기', body: '메일·파일·메시지를 받아 읽습니다.' },
+  { Icon: Wand2, step: '가공', body: 'AI가 요약·분류·작성합니다.' },
+  { Icon: Send, step: '내보내기', body: '전송·저장·보고로 마무리합니다.' },
+] as const;
+
+/* ── 운영되는 시스템 (4 기둥) ──────────────────────── */
+const pillars = [
+  { Icon: Files, title: '산출물', body: '단계마다 결과물이 자동 생성되고 버전으로 관리됩니다.' },
+  { Icon: Workflow, title: '자동화', body: '트리거 → AI 처리 → 액션. 정해진 시각에 알아서 실행됩니다.' },
+  { Icon: Sparkles, title: '고도화', body: '데이터가 쌓일수록 시스템이 더 정교해집니다.' },
+  { Icon: GitBranch, title: '버전 관리', body: '입력 하나만 바꿔도 연결된 모든 산출물에 자동 반영됩니다.' },
+] as const;
+
+/* ── 무엇을 자동화하나 (시나리오) ──────────────────── */
+const scenarios = [
   {
-    Icon: ShoppingBag,
-    industry: '이커머스 · 리테일',
-    scenario: '구매 데이터를 분석해 재구매율을 높이고 싶은데, 어디서 시작해야 할지 모릅니다.',
-    solution: 'AI 시장 진단 → AI 업무 자동화 → 고객 세그먼트 분석 시스템 구축',
+    Icon: User,
+    persona: '1인 사업자',
+    items: ['스마트스토어·배민 리뷰 답변 초안', '견적서·세금계산서 정리', '고객 카톡 1차 응대', '홍보 콘텐츠 자동 생성'],
   },
   {
-    Icon: Building,
-    industry: '부동산 · 건설',
-    scenario: '분양 문의 고객 데이터가 쌓이고 있는데, 이를 영업에 활용할 AI 시스템이 필요합니다.',
-    solution: '고객 여정 분석 + AI 리드 스코어링 SaaS 개발',
-  },
-  {
-    Icon: GraduationCap,
-    industry: '교육 · 에듀테크',
-    scenario: '수강생 이탈률이 높습니다. 이탈 예측 모델과 개인화 학습 경로 추천이 필요합니다.',
-    solution: '학습 데이터 분석 + AI 이탈 예측 및 추천 시스템',
-  },
-  {
-    Icon: Wrench,
-    industry: '제조 · B2B',
-    scenario: '영업 사원 없이도 B2B 고객이 필요한 정보를 얻고 견적을 받을 수 있는 플랫폼이 필요합니다.',
-    solution: 'AI 기반 B2B 셀프서비스 웹 플랫폼 구축 + 업무 자동화',
+    Icon: Building2,
+    persona: '중소기업 실무자',
+    items: ['거래처별 응대 메일 초안', '정기 정산 리포트 작성', '파일 업로드 시 자동 분류·정리', '반복 문서 자동 작성'],
   },
   {
     Icon: Briefcase,
-    industry: '전문직 · 서비스업',
-    scenario: '반복 상담 업무의 70%를 자동화하고, 고부가 업무에만 집중하고 싶습니다.',
-    solution: 'AI 상담 자동화 시스템 + 업무 자동화 + 내부 지식 베이스 구축',
-  },
-  {
-    Icon: Globe,
-    industry: '스타트업 · 초기 기업',
-    scenario: 'MVP는 있지만 AI로 차별화된 제품을 만들고 싶고, 투자자에게 보여줄 수 있는 결과가 필요합니다.',
-    solution: 'AI 기능 통합 MVP 고도화 + 성과 지표 설계',
+    persona: '관리자급 직장인',
+    items: ['주간 보고 자동 작성', '단톡방·메일 일일 요약', '회의록에서 할 일·일정 추출', 'KPI 리포트 자동 집계'],
   },
 ] as const;
 
-const workSteps = [
-  {
-    n: '01',
-    label: 'Diagnose',
-    title: '진단',
-    desc: '현재 업무 프로세스와 데이터 현황을 파악합니다. AI가 실제로 효과를 낼 수 있는 지점을 식별합니다.',
-  },
-  {
-    n: '02',
-    label: 'Design',
-    title: '설계',
-    desc: '진단 결과를 바탕으로 구체적인 AI 솔루션 구조와 예상 ROI를 설계합니다. 실행 로드맵을 함께 확정합니다.',
-  },
-  {
-    n: '03',
-    label: 'Build',
-    title: '구축',
-    desc: '설계된 시스템을 실제로 개발하고 운영 환경에 배포합니다. 내부 팀이 쓸 수 있도록 온보딩까지 지원합니다.',
-  },
-  {
-    n: '04',
-    label: 'Optimize',
-    title: '고도화',
-    desc: '운영 데이터를 기반으로 지속적으로 개선합니다. 필요에 따라 전략 컨설팅으로 전환해 장기 파트너십을 이어갑니다.',
-  },
+/* ── 한국형 커넥터 ─────────────────────────────────── */
+const connectors = [
+  'Gmail', 'Outlook', '구글시트', '엑셀', '한글(HWP)', '네이버웍스', '잔디', '슬랙',
+  '카카오 알림톡', '스마트스토어', '배민', '쿠팡', '더존', '이카운트', '토스페이먼츠', '네이버 블로그',
 ] as const;
 
-const earlyPartnerPromises = [
-  '의료 분야에서 축적한 AI 실행 방법론을 귀사 업종에 직접 적용',
-  '성과 사례 공동 개발 — 결과물이 양측의 레퍼런스가 됩니다',
-  '초기 파트너 우선 가격 및 지속 파트너십 조건 협의 가능',
-  '프로젝트 종료 후에도 3개월 운영 모니터링 지원',
+/* ── 안심 운영 ─────────────────────────────────────── */
+const safeguards = [
+  { Icon: Gauge, title: '처리 건수 실시간 집계', body: '이번 달 몇 건을 처리했는지 한눈에 확인합니다.' },
+  { Icon: Wallet, title: '예상 요금 미리 표시', body: '쓰기 전에 비용을 알 수 있어 요금 폭탄이 없습니다.' },
+  { Icon: ShieldCheck, title: '한도 도달 시 자동 정지', body: '설정한 한도에 닿으면 시스템이 스스로 멈춥니다.' },
 ] as const;
 
-const faqs = [
-  {
-    q: '의료 전문 컨설팅 회사 아닌가요? 일반 기업도 지원하나요?',
-    a: '네, LS컨설팅은 의료에서 출발했지만 현재는 기업·서비스업 대상 AI 솔루션을 적극 확장하고 있습니다. 의료에서 검증한 AI 방법론은 업종을 가리지 않고 적용됩니다.',
-  },
-  {
-    q: '우리 업종에 맞는 레퍼런스가 없으면 믿기 어렵지 않나요?',
-    a: '맞습니다. 그래서 지금 초기 파트너를 모집합니다. 귀사와 함께 성과를 만들고, 그것이 레퍼런스가 됩니다. 초기 파트너에게는 그에 맞는 조건을 드립니다.',
-  },
-  {
-    q: 'AI 도입에 예산이 얼마나 필요한가요?',
-    a: '₩1,000,000 짜리 1회 진단부터 시작할 수 있습니다. 진단 결과를 보고 다음 단계를 결정하시면 됩니다. 처음부터 큰 예산이 필요하지 않습니다.',
-  },
-  {
-    q: '내부에 개발자가 없어도 진행 가능한가요?',
-    a: '가능합니다. 기획부터 개발, 운영 온보딩까지 전부 LS컨설팅이 담당합니다. 내부에서 필요한 것은 담당자 한 명과 업무 프로세스에 대한 이해뿐입니다.',
-  },
-  {
-    q: '얼마나 빨리 결과를 볼 수 있나요?',
-    a: '진단은 1–2주, 웹·앱 구축은 4–8주면 운영 가능한 결과물이 나옵니다. 복잡한 SaaS는 8–16주입니다. 단계별로 중간 결과물을 확인할 수 있습니다.',
-  },
-  {
-    q: '프로젝트 이후 운영 지원은 어떻게 되나요?',
-    a: '초기 파트너의 경우 3개월 운영 모니터링을 기본 지원합니다. 이후에는 AI 전략 컨설팅(월 정액)으로 전환해 장기 파트너십을 이어갈 수 있습니다.',
-  },
+/* ── 진행 방식 ─────────────────────────────────────── */
+const steps = [
+  { n: '01', title: '진단', body: '반복 업무를 찾아 자동화 가능 영역을 도출합니다.' },
+  { n: '02', title: '설계', body: '읽기-가공-내보내기 흐름을 자동화로 설계합니다.' },
+  { n: '03', title: '구축', body: '한국 도구에 연결해 동작하는 시스템을 만듭니다.' },
+  { n: '04', title: '운영', body: '측정하고, 데이터로 지속 고도화합니다.' },
 ] as const;
 
 export function Business() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
   return (
-    <>
+    <div className="min-h-screen bg-white">
       <SEO
-        title="기업분야 AI 솔루션 | LS컨설팅"
-        description="의료에서 검증된 AI 실행력을 귀사의 비즈니스에 적용합니다. 이커머스, 제조, 교육, 스타트업 등 업종별 맞춤 AI 솔루션."
+        title="기업 AX - 반복 업무를 자동화 시스템으로 | LS AX 컨설팅"
+        description="보고·요약·정리·응대 같은 반복 업무를 AI 자동화로 전환합니다. 노드를 그릴 줄 몰라도, 말로 설명하면 시스템이 대신 일합니다. 카카오·네이버·한글·배민 등 한국 업무 환경에 맞춘 자동화."
+        url="https://www.lsconsulting.co.kr/business"
       />
 
-      {/* S1: Hero */}
-      <section className="py-28 md:py-36 bg-white">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16">
-          <motion.div
-            className="max-w-3xl"
-            variants={fadeIn}
-            initial="hidden"
-            animate="visible"
-          >
-            <p className="text-sm font-semibold tracking-widest uppercase mb-6" style={{ color: 'var(--navy-500)' }}>
-              For Business
-            </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight" style={{ color: 'var(--navy-900)' }}>
-              의료에서 만든 AI,
+      {/* ── SECTION 1 · HERO ───────────────────────────── */}
+      <section className="relative overflow-hidden" style={{ backgroundColor: 'var(--navy-900)' }}>
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `linear-gradient(180deg, rgba(10,22,40,0.92) 0%, rgba(10,22,40,0.86) 50%, rgba(10,22,40,0.97) 100%), url(${bizImages.hero})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        <div
+          className="absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage: 'linear-gradient(var(--navy-300) 1px, transparent 1px), linear-gradient(90deg, var(--navy-300) 1px, transparent 1px)',
+            backgroundSize: '52px 52px',
+          }}
+        />
+        <motion.div className="relative max-w-[1400px] mx-auto px-8 lg:px-16 pt-44 pb-32" {...fadeIn}>
+          <div className="max-w-4xl">
+            <span
+              className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide"
+              style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: 'var(--navy-200)' }}
+            >
+              <Workflow className="w-3.5 h-3.5" />
+              기업 AX · Work Automation
+            </span>
+            <h1 className="text-5xl lg:text-7xl tracking-tight leading-[1.08] mt-8 text-white font-bold">
+              반복 업무, 사람이
               <br />
-              이제 귀사에 적용합니다
+              <span style={{ color: 'var(--navy-300)' }}>하지 않습니다</span>
             </h1>
-            <p className="text-lg md:text-xl leading-relaxed mb-12" style={{ color: 'var(--navy-600)' }}>
-              가장 엄격한 환경에서 검증된 AI 실행력입니다.
-              <br />
-              업종이 달라도 방법론은 동일하게 작동합니다.
+            <p className="text-lg lg:text-xl mt-8 max-w-2xl leading-relaxed" style={{ color: 'var(--navy-200)' }}>
+              노드를 그릴 줄 몰라도 됩니다. 말로 업무를 설명하면, 시스템이 대신 일합니다.
+              보고·요약·정리·응대 같은 반복 업무를 AI 자동화로 전환합니다.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-12">
               <Link
                 to="/consultation"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-white transition-all hover:opacity-90"
-                style={{ backgroundColor: 'var(--navy-500)' }}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 transition-all hover:opacity-90"
+                style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
               >
-                <span>상담/견적 신청</span>
-                <ArrowRight className="w-5 h-5" />
+                <span className="font-semibold">업무 자동화 무료 진단</span>
+                <ArrowRight className="w-5 h-5 shrink-0" />
               </Link>
-              <Link
-                to="/services"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold transition-all border hover:bg-white/10"
-                style={{ color: 'var(--navy-700)', borderColor: 'var(--navy-200)' }}
+              <a
+                href="#how"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 text-white transition-all hover:bg-white/10"
+                style={{ borderColor: 'rgba(255,255,255,0.35)' }}
               >
-                솔루션 전체 보기
-              </Link>
+                <span>작동 방식 보기</span>
+              </a>
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </section>
 
-      {/* S2: Medical → Business Bridge */}
-      <section className="py-24 md:py-32" style={{ backgroundColor: 'var(--navy-50)' }}>
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16">
-          <motion.div
-            className="text-center mb-16"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <p className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--navy-500)' }}>
-              Why Medical Background Matters
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: 'var(--navy-900)' }}>
-              의료 경험이 왜 기업에 유리한가
+      {/* ── SECTION 2 · 현실 문제 ──────────────────────── */}
+      <motion.section className="py-28 px-8 lg:px-16 bg-white" {...fadeIn}>
+        <div className="max-w-[1400px] mx-auto">
+          <div className="max-w-3xl mb-16">
+            <span className="text-sm font-bold tracking-wide" style={{ color: 'var(--navy-600)' }}>
+              THE PROBLEM
+            </span>
+            <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight mt-3 mb-5" style={{ color: 'var(--navy-900)' }}>
+              자동화가 필요한 건 알지만
             </h2>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: 'var(--navy-600)' }}>
-              의료에서 해결한 문제와 귀사의 문제는 구조적으로 같습니다.
+            <p className="text-lg leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+              막상 시작하려면 벽에 부딪힙니다. 대부분의 기업이 멈추는 지점은 비슷합니다.
             </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {medicalToBusinessBridges.map(({ Icon, medicalContext, businessContext, insight }, i) => (
-              <motion.div
-                key={i}
-                className="p-8 border"
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {problems.map(({ Icon, title, body }, i) => (
+              <div
+                key={title}
+                className="group relative rounded-2xl p-8 bg-white border overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1"
                 style={{ borderColor: 'var(--navy-100)' }}
-                variants={fadeIn}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
               >
-                <div
-                  className="w-10 h-10 flex items-center justify-center mb-6"
-                  style={{ backgroundColor: 'var(--navy-50)' }}
-                >
-                  <Icon className="w-5 h-5" style={{ color: 'var(--navy-700)' }} />
-                </div>
-                <div className="flex gap-3 mb-5 text-sm">
-                  <span
-                    className="px-3 py-1 font-medium"
-                    style={{ backgroundColor: 'var(--navy-100)', color: 'var(--navy-700)' }}
-                  >
-                    의료: {medicalContext}
-                  </span>
-                </div>
-                <div className="flex gap-3 mb-5 text-sm">
-                  <span
-                    className="px-3 py-1 font-medium"
-                    style={{ backgroundColor: 'var(--navy-900)', color: 'white' }}
-                  >
-                    비즈니스: {businessContext}
-                  </span>
-                </div>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>
-                  {insight}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* S3: Solutions (Business Perspective) */}
-      <section className="py-24 md:py-32" style={{ backgroundColor: 'var(--navy-25)' }}>
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16">
-          <motion.div
-            className="text-center mb-16"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <p className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--navy-500)' }}>
-              Solutions
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: 'var(--navy-900)' }}>
-              기업·기관에 적용되는 5가지 솔루션
-            </h2>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: 'var(--navy-600)' }}>
-              진단부터 장기 파트너십까지, 귀사의 AI 성숙도에 맞게 시작하세요.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {businessSolutions.map(({ Icon, en, ko, description, outcome, price, duration, highlight }, i) => (
-              <motion.div
-                key={i}
-                className="p-8 flex flex-col"
-                style={{
-                  backgroundColor: highlight ? 'var(--navy-900)' : 'white',
-                  border: highlight ? 'none' : '1px solid var(--navy-100)',
-                }}
-                variants={fadeIn}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                <div className="flex items-start justify-between mb-6">
-                  <div
-                    className="w-10 h-10 flex items-center justify-center"
-                    style={{ backgroundColor: highlight ? 'rgba(255,255,255,0.1)' : 'var(--navy-50)' }}
-                  >
-                    <Icon className="w-5 h-5" style={{ color: highlight ? 'white' : 'var(--navy-700)' }} />
+                <span className="absolute top-6 right-7 text-6xl font-bold leading-none select-none tabular-nums" style={{ color: 'var(--navy-50)' }}>
+                  0{i + 1}
+                </span>
+                <div className="relative">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style={{ backgroundColor: 'var(--navy-900)' }}>
+                    <Icon className="w-6 h-6 text-white" strokeWidth={1.75} />
                   </div>
-                  {highlight && (
-                    <span className="text-xs font-semibold px-3 py-1" style={{ backgroundColor: 'var(--navy-500)', color: 'white' }}>
-                      Most Selected
-                    </span>
-                  )}
+                  <h3 className="text-lg font-bold mb-2.5" style={{ color: 'var(--navy-900)' }}>{title}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{body}</p>
                 </div>
-
-                <p className="text-xs font-medium mb-1" style={{ color: highlight ? 'var(--navy-300)' : 'var(--navy-500)' }}>
-                  {en}
-                </p>
-                <h3 className="text-xl font-bold mb-4" style={{ color: highlight ? 'white' : 'var(--navy-900)' }}>
-                  {ko}
-                </h3>
-                <p className="text-sm leading-relaxed mb-6 flex-1" style={{ color: highlight ? 'var(--navy-300)' : 'var(--navy-600)' }}>
-                  {description}
-                </p>
-
-                <div
-                  className="pt-5 mt-auto border-t"
-                  style={{ borderColor: highlight ? 'rgba(255,255,255,0.1)' : 'var(--navy-100)' }}
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm" style={{ color: highlight ? 'var(--navy-300)' : 'var(--navy-500)' }}>
-                      {duration}
-                    </span>
-                    <span className="text-lg font-bold" style={{ color: highlight ? 'white' : 'var(--navy-900)' }}>
-                      {price}
-                    </span>
-                  </div>
-                  <p className="text-xs" style={{ color: highlight ? 'var(--navy-400)' : 'var(--navy-400)' }}>
-                    결과물: {outcome}
-                  </p>
-                </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-
-          <div className="mt-10 text-center">
-            <Link
-              to="/services"
-              className="inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:underline"
-              style={{ color: 'var(--navy-700)' }}
-            >
-              솔루션 상세 안내 보기
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* S4: Industry Scenarios */}
-      <section className="py-24 md:py-32" style={{ backgroundColor: 'var(--navy-50)' }}>
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16">
-          <motion.div
-            className="text-center mb-16"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <p className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--navy-500)' }}>
-              Industry Scenarios
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: 'var(--navy-900)' }}>
-              어떤 상황에서 오셨나요?
+      {/* ── SECTION 3 · 읽기 → 가공 → 내보내기 ──────────── */}
+      <motion.section id="how" className="py-28 px-8 lg:px-16 scroll-mt-20" style={{ backgroundColor: 'var(--navy-50)' }} {...fadeIn}>
+        <div className="max-w-[1400px] mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-sm font-bold tracking-wide" style={{ color: 'var(--navy-600)' }}>
+              HOW IT WORKS
+            </span>
+            <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight mt-3 mb-5" style={{ color: 'var(--navy-900)' }}>
+              모든 반복 업무는 같은 모양입니다
             </h2>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: 'var(--navy-600)' }}>
-              업종별로 자주 받는 질문과 그에 맞는 솔루션입니다.
+            <p className="text-lg leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+              받은 것을 읽고, 가공하고, 내보낸다. 이 사이클을 통째로 자동화합니다.
             </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {industryScenarios.map(({ Icon, industry, scenario, solution }, i) => (
-              <motion.div
-                key={i}
-                className="p-7 border flex flex-col"
-                style={{ borderColor: 'var(--navy-100)' }}
-                variants={fadeIn}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                <div className="flex items-center gap-3 mb-5">
-                  <div
-                    className="w-8 h-8 flex items-center justify-center"
-                    style={{ backgroundColor: 'var(--navy-50)' }}
-                  >
-                    <Icon className="w-4 h-4" style={{ color: 'var(--navy-700)' }} />
-                  </div>
-                  <span className="text-sm font-semibold" style={{ color: 'var(--navy-700)' }}>
-                    {industry}
-                  </span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+            {cycle.map(({ Icon, step, body }, i) => (
+              <div key={step} className="relative bg-white rounded-2xl p-8 text-center">
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5" style={{ backgroundColor: 'var(--navy-900)' }}>
+                  <Icon className="w-7 h-7 text-white" strokeWidth={1.5} />
                 </div>
-
-                <p className="text-sm leading-relaxed mb-5 flex-1" style={{ color: 'var(--navy-600)' }}>
-                  "{scenario}"
-                </p>
-
-                <div
-                  className="pt-4 border-t"
-                  style={{ borderColor: 'var(--navy-100)' }}
-                >
-                  <p className="text-xs font-medium mb-1" style={{ color: 'var(--navy-400)' }}>추천 솔루션</p>
-                  <p className="text-sm font-semibold" style={{ color: 'var(--navy-900)' }}>{solution}</p>
-                </div>
-              </motion.div>
+                <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{step}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{body}</p>
+                {i < cycle.length - 1 && (
+                  <ArrowRight className="hidden md:block absolute top-1/2 -right-3 w-6 h-6 -translate-y-1/2 z-10" style={{ color: 'var(--navy-300)' }} />
+                )}
+              </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* S5: How We Work */}
-      <section className="py-24 md:py-32 bg-white">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16">
-          <motion.div
-            className="text-center mb-16"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <p className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--navy-500)' }}>
-              How We Work
+          <div className="mt-12 rounded-2xl p-8 lg:p-10 text-center" style={{ backgroundColor: 'var(--navy-900)' }}>
+            <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold mb-5" style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: 'var(--navy-200)' }}>
+              <MessageSquareText className="w-3.5 h-3.5" /> 자연어로 시작
+            </div>
+            <p className="text-xl lg:text-2xl font-medium text-white leading-snug max-w-3xl mx-auto">
+              "매일 아침 9시에 어제 받은 문의 메일을 요약해서 카톡으로 보내줘"
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: 'var(--navy-900)' }}>
-              4단계 실행 프로세스
-            </h2>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: 'var(--navy-600)' }}>
-              의료에서 만든 엄격한 프로세스를 동일하게 적용합니다.
+            <p className="text-base mt-4" style={{ color: 'var(--navy-300)' }}>
+              이렇게 말로 설명하면, 자동화를 <span className="text-white font-semibold">대신 만들어</span> 드립니다.
             </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {workSteps.map(({ n, label, title, desc }, i) => (
-              <motion.div
-                key={i}
-                className="p-7"
-                style={{ backgroundColor: 'var(--navy-50)', border: '1px solid var(--navy-100)' }}
-                variants={fadeIn}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                <p className="text-4xl font-bold mb-1" style={{ color: 'rgba(10, 22, 40, 0.10)' }}>{n}</p>
-                <p className="text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: 'var(--navy-500)' }}>
-                  {label}
-                </p>
-                <h3 className="text-lg font-bold mb-3" style={{ color: 'var(--navy-900)' }}>{title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{desc}</p>
-              </motion.div>
-            ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* S6: Early Partner Program */}
-      <section className="py-24 md:py-32" style={{ backgroundColor: 'var(--navy-900)' }}>
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16">
-          <div className="max-w-3xl mx-auto">
-            <motion.div
-              className="text-center mb-12"
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <p className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--navy-300)' }}>
-                Early Partner Program
-              </p>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-                초기 파트너를 모집합니다
+      {/* ── SECTION 4 · 운영되는 시스템 ────────────────── */}
+      <motion.section className="py-28 px-8 lg:px-16 bg-white" {...fadeIn}>
+        <div className="max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+            <div>
+              <span className="text-sm font-bold tracking-wide" style={{ color: 'var(--navy-600)' }}>
+                AS A SYSTEM
+              </span>
+              <h2 className="text-3xl lg:text-5xl tracking-tight leading-[1.15] mt-3 mb-5" style={{ color: 'var(--navy-900)' }}>
+                한 번 만들고 끝이 아닙니다
+                <br />
+                계속 운영되는 시스템입니다
               </h2>
-              <p className="text-base leading-relaxed" style={{ color: 'var(--navy-300)' }}>
-                솔직히 말씀드립니다. LS컨설팅은 의료 분야에서는 충분한 레퍼런스가 있지만,
-                기업 레퍼런스는 아직 쌓는 중입니다.
-                <br /><br />
-                그래서 지금 초기 파트너와 함께 성과를 만들고 싶습니다.
-                귀사의 결과물이 저희의 첫 번째 업종 레퍼런스가 됩니다.
+              <p className="text-base lg:text-lg leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+                업무를 일회성 외주가 아니라 살아 있는 시스템으로 운영합니다.
+                입력 하나를 바꾸면 연결된 산출물이 자동으로 다시 계산되고, 데이터가 쌓일수록 더 정교해집니다.
               </p>
-            </motion.div>
-
-            <motion.div
-              className="p-8 mb-8"
-              style={{ backgroundColor: 'white', border: '1px solid var(--navy-100)' }}
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <h3 className="text-lg font-bold mb-6" style={{ color: 'var(--navy-900)' }}>
-                초기 파트너에게 드리는 것
-              </h3>
-              <ul className="space-y-4">
-                {earlyPartnerPromises.map((promise, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <Check className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: 'var(--navy-700)' }} />
-                    <span className="text-sm leading-relaxed" style={{ color: 'var(--navy-700)' }}>
-                      {promise}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            <div className="text-center">
-              <Link
-                to="/consultation"
-                className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-white transition-all hover:opacity-90"
-                style={{ backgroundColor: 'var(--navy-900)' }}
-              >
-                <span>초기 파트너 신청하기</span>
-                <ArrowRight className="w-5 h-5" />
-              </Link>
+            </div>
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-xl" style={{ backgroundColor: 'var(--navy-200)' }}>
+              <ImageWithFallback src={bizImages.system} alt="운영되는 시스템" className="w-full h-full object-cover" />
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* S7: FAQ */}
-      <section className="py-24 md:py-32 bg-white">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16">
-          <div className="max-w-3xl mx-auto">
-            <motion.div
-              className="text-center mb-14"
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <p className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--navy-500)' }}>
-                FAQ
-              </p>
-              <h2 className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--navy-900)' }}>
-                자주 묻는 질문
-              </h2>
-            </motion.div>
-
-            <div className="space-y-2">
-              {faqs.map(({ q, a }, i) => (
-                <motion.div
-                  key={i}
-                  className="border"
-                  style={{ borderColor: 'var(--navy-100)' }}
-                  variants={fadeIn}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                >
-                  <button
-                    className="w-full flex items-center justify-between px-7 py-5 text-left"
-                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  >
-                    <span className="text-base font-semibold pr-4" style={{ color: 'var(--navy-900)' }}>
-                      {q}
-                    </span>
-                    <ChevronDown
-                      className="w-5 h-5 flex-shrink-0 transition-transform"
-                      style={{
-                        color: 'var(--navy-500)',
-                        transform: openFaq === i ? 'rotate(180deg)' : 'rotate(0deg)',
-                      }}
-                    />
-                  </button>
-                  {openFaq === i && (
-                    <div className="px-7 pb-6">
-                      <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>
-                        {a}
-                      </p>
-                    </div>
-                  )}
-                </motion.div>
-              ))}
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {pillars.map(({ Icon, title, body }) => (
+              <div key={title} className="rounded-2xl p-7 border" style={{ borderColor: 'var(--navy-100)' }}>
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: 'var(--navy-900)' }}>
+                  <Icon className="w-6 h-6 text-white" strokeWidth={1.5} />
+                </div>
+                <h3 className="text-base font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{body}</p>
+              </div>
+            ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* S8: Final CTA */}
-      <section className="py-24 md:py-32" style={{ backgroundColor: 'var(--navy-50)' }}>
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16">
-          <motion.div
-            className="text-center"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: 'var(--navy-900)' }}>
-              어디서 시작해야 할지 모르겠다면
+      {/* ── SECTION 5 · 무엇을 자동화하나 ──────────────── */}
+      <motion.section className="py-28 px-8 lg:px-16" style={{ backgroundColor: 'var(--navy-50)' }} {...fadeIn}>
+        <div className="max-w-[1400px] mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-sm font-bold tracking-wide" style={{ color: 'var(--navy-600)' }}>
+              USE CASES
+            </span>
+            <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight mt-3 mb-5" style={{ color: 'var(--navy-900)' }}>
+              무엇을 자동화할 수 있나
             </h2>
-            <p className="text-lg mb-10 max-w-xl mx-auto" style={{ color: 'var(--navy-600)' }}>
-              AI 시장 진단부터 시작하세요.
-              <br />
-              방향이 잡히면 그 다음 단계를 함께 설계합니다.
+            <p className="text-lg leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+              업종·직무를 가리지 않습니다. 반복되는 일이라면 모두 대상입니다.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/consultation"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-white transition-all hover:opacity-90"
-                style={{ backgroundColor: 'var(--navy-900)' }}
-              >
-                <span>상담/견적 신청</span>
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link
-                to="/services"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold transition-all border"
-                style={{ color: 'var(--navy-900)', borderColor: 'var(--navy-200)' }}
-              >
-                솔루션 전체 보기
-              </Link>
-            </div>
-          </motion.div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {scenarios.map(({ Icon, persona, items }) => (
+              <div key={persona} className="bg-white rounded-2xl p-8 flex flex-col">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ backgroundColor: 'var(--navy-100)' }}>
+                    <Icon className="w-5 h-5" style={{ color: 'var(--navy-700)' }} strokeWidth={1.75} />
+                  </div>
+                  <h3 className="text-lg font-bold" style={{ color: 'var(--navy-900)' }}>{persona}</h3>
+                </div>
+                <ul className="space-y-3">
+                  {items.map((it) => (
+                    <li key={it} className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" style={{ color: 'var(--navy-600)' }} />
+                      <span className="text-sm leading-relaxed" style={{ color: 'var(--navy-700)' }}>{it}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
+      </motion.section>
+
+      {/* ── SECTION 6 · 한국형 커넥터 ──────────────────── */}
+      <section className="relative py-28 px-8 lg:px-16 overflow-hidden" style={{ backgroundColor: 'var(--navy-900)' }}>
+        <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'linear-gradient(var(--navy-300) 1px, transparent 1px), linear-gradient(90deg, var(--navy-300) 1px, transparent 1px)', backgroundSize: '52px 52px' }} />
+        <motion.div className="relative max-w-[1400px] mx-auto text-center" {...fadeIn}>
+          <span className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide" style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: 'var(--navy-200)' }}>
+            한국형 커넥터
+          </span>
+          <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight text-white mt-6 mb-5">
+            한국에서 실제로 쓰는 도구에 연결합니다
+          </h2>
+          <p className="text-lg leading-relaxed max-w-2xl mx-auto mb-12" style={{ color: 'var(--navy-200)' }}>
+            해외 SaaS가 아니라, 우리가 매일 쓰는 도구. 그것이 진짜 자동화의 시작입니다.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+            {connectors.map((c) => (
+              <span
+                key={c}
+                className="inline-flex items-center rounded-full px-5 py-2.5 text-sm font-medium text-white"
+                style={{ backgroundColor: 'var(--navy-800)', border: '1px solid rgba(255,255,255,0.08)' }}
+              >
+                {c}
+              </span>
+            ))}
+          </div>
+        </motion.div>
       </section>
-    </>
+
+      {/* ── SECTION 7 · 안심 운영 ──────────────────────── */}
+      <motion.section className="py-28 px-8 lg:px-16 bg-white" {...fadeIn}>
+        <div className="max-w-[1400px] mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-sm font-bold tracking-wide" style={{ color: 'var(--navy-600)' }}>
+              PEACE OF MIND
+            </span>
+            <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight mt-3 mb-5" style={{ color: 'var(--navy-900)' }}>
+              요금 폭탄 걱정 없이
+            </h2>
+            <p className="text-lg leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+              자동화가 무서운 이유는 통제 불능입니다. 처음부터 보이게, 멈출 수 있게 설계합니다.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {safeguards.map(({ Icon, title, body }) => (
+              <div key={title} className="rounded-2xl p-8 border" style={{ borderColor: 'var(--navy-100)' }}>
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: 'var(--navy-50)' }}>
+                  <Icon className="w-6 h-6" style={{ color: 'var(--navy-700)' }} strokeWidth={1.75} />
+                </div>
+                <h3 className="text-lg font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ── SECTION 8 · 진행 방식 ──────────────────────── */}
+      <motion.section className="py-28 px-8 lg:px-16" style={{ backgroundColor: 'var(--navy-50)' }} {...fadeIn}>
+        <div className="max-w-[1400px] mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight mb-5" style={{ color: 'var(--navy-900)' }}>
+              진단부터 운영까지, 한 팀이
+            </h2>
+            <p className="text-lg leading-relaxed" style={{ color: 'var(--navy-600)' }}>
+              어떤 업무를 자동화할지부터 함께 찾습니다. 무료 진단으로 시작하세요.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {steps.map(({ n, title, body }) => (
+              <div key={n} className="rounded-xl p-7 bg-white border" style={{ borderColor: 'var(--navy-100)' }}>
+                <div className="text-3xl font-bold tabular-nums mb-4" style={{ color: 'var(--navy-300)' }}>{n}</div>
+                <h3 className="text-lg font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ── SECTION 9 · 최종 CTA ───────────────────────── */}
+      <section className="relative py-28 px-8 lg:px-16 overflow-hidden" style={{ backgroundColor: 'var(--navy-900)' }}>
+        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: `url(${bizImages.cta})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(10,22,40,0.85)' }} />
+        <motion.div className="relative max-w-[1400px] mx-auto text-center" {...fadeIn}>
+          <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight text-white mb-6">
+            어떤 업무를 자동화할지, 같이 찾아드립니다
+          </h2>
+          <p className="text-lg max-w-xl mx-auto leading-relaxed mb-10" style={{ color: 'var(--navy-200)' }}>
+            반복 업무를 진단하고, 가장 효과 큰 자동화부터 설계해 드립니다. 비용 없이 시작합니다.
+          </p>
+          <Link
+            to="/consultation"
+            className="inline-flex items-center gap-2 px-10 py-5 text-lg transition-all hover:opacity-90"
+            style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
+          >
+            <span className="font-semibold">업무 자동화 무료 진단</span>
+            <ArrowRight className="w-5 h-5" />
+          </Link>
+        </motion.div>
+      </section>
+    </div>
   );
 }

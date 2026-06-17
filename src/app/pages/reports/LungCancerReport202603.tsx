@@ -51,7 +51,7 @@ export function LungCancerReport202603() {
       </Helmet>
 
       <SEO
-        title={`${reportMeta.title.replace(/\n/g, ' ')} | LS컨설팅`}
+        title={`${reportMeta.title.replace(/\n/g, ' ')} | LS AX 컨설팅`}
         description={reportMeta.subtitle}
         url={canonical}
       />
@@ -141,7 +141,7 @@ export function LungCancerReport202603() {
         </div>
 
         <footer className="pt-4 border-t border-gray-100 text-center text-xs text-gray-500">
-          LS컨설팅 | 2026년 3월 PVM 분석 | 폐암 환자 커뮤니티 160건
+          LS AX 컨설팅 | 2026년 3월 PVM 분석 | 폐암 환자 커뮤니티 160건
         </footer>
       </div>
     </div>

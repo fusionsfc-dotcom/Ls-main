@@ -15,7 +15,7 @@ export function ReportCover({ title, subtitle, period, totalCases, publishedBy, 
     >
       <div className="mb-8">
         <span className="inline-block text-[10px] sm:text-xs font-semibold tracking-wide opacity-90 border border-white/30 rounded-full px-3 py-1">
-          LS Consulting · Cancer Hospital Strategy Report
+          LS AX Consulting · Cancer Hospital Strategy Report
         </span>
       </div>
       <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-4">{title}</h1>

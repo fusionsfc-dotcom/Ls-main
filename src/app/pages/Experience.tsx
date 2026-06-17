@@ -133,7 +133,7 @@ export function Experience() {
               </h2>
               <p className="text-xl leading-relaxed opacity-70" style={{ color: 'var(--navy-900)' }}>
                 Founder의 경험은<br />
-                LS컨설팅의 방법론이 되었습니다.
+                LS AX 컨설팅의 방법론이 되었습니다.
               </p>
             </div>
           </div>

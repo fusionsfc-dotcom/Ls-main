@@ -5,7 +5,7 @@ import { usePdfDownload } from '../hooks/usePdfDownload';
 
 export function HospitalSwitchResearch() {
   const handleDownloadPDF = usePdfDownload(
-    'LS컨설팅_암환자는언제병원을바꾸는가.pdf',
+    'LS AX 컨설팅_암환자는언제병원을바꾸는가.pdf',
     '암 환자는 언제 병원을 바꾸는가 - 치료가 아니라 관리 경험에서 결정이 갈린다'
   );
 
@@ -220,7 +220,7 @@ export function HospitalSwitchResearch() {
       {/* Newsletter */}
       <section className="py-16 px-6 lg:px-8 max-w-[960px] mx-auto border-t border-gray-200">
         <h2 className="text-3xl font-bold mb-8" style={{ color: '#0F2B46' }}>
-          LS Consulting 뉴스레터 구독하기
+          LS AX Consulting 뉴스레터 구독하기
         </h2>
         
         <p className="text-lg mb-4" style={{ color: '#666666' }}>
@@ -238,7 +238,7 @@ export function HospitalSwitchResearch() {
       {/* Footer */}
       <footer className="py-12 px-6 lg:px-8 max-w-[960px] mx-auto border-t border-gray-200 mt-16">
         <div className="text-center space-y-2">
-          <h4 className="font-bold text-lg" style={{ color: '#0F2B46' }}>LS Consulting</h4>
+          <h4 className="font-bold text-lg" style={{ color: '#0F2B46' }}>LS AX Consulting</h4>
           <p className="text-sm" style={{ color: '#666666' }}>암 환자 니즈 분석 기반 의료 전략 컨설팅</p>
           <p className="text-sm" style={{ color: '#666666' }}>Research / Strategy / Execution</p>
           <p className="text-sm" style={{ color: '#666666' }}>이메일: fusionsfc@gmail.com</p>

@@ -106,7 +106,7 @@ export function PvmIntroSection() {
             <div className="max-w-4xl space-y-6 text-lg leading-relaxed" style={{ color: '#0E1B3D', opacity: 0.8 }}>
               <p>
                 암 환자의 목소리는 병원 안이 아니라 병원 밖에서 가장 솔직하게 드러납니다.<br />
-                LS컨설팅은 온라인 커뮤니티, 검색 데이터, 후기, 상담 기록 등에서 수집된 암 환자의 실제 질문과 감정, 선택 기준을 구조화하여 분석합니다.
+                LS AX 컨설팅은 온라인 커뮤니티, 검색 데이터, 후기, 상담 기록 등에서 수집된 암 환자의 실제 질문과 감정, 선택 기준을 구조화하여 분석합니다.
               </p>
               
               <p className="font-bold">

@@ -10,7 +10,7 @@ interface SEOProps {
 }
 
 export function SEO({ 
-  title = 'LS컨설팅 - 의료서비스 전략 컨설팅',
+  title = 'LS AX 컨설팅 - 의료서비스 전략 컨설팅',
   description = '암 환자 니즈 분석 기반 의료 전략 컨설팅. 최적의 병원 운영과 서비스개선, 홍보 전략을 실행합니다.',
   image,
   url = 'https://www.lsconsulting.co.kr'
@@ -41,7 +41,7 @@ export function SEO({
       <meta property="og:description" content={description} />
       {absoluteImageUrl && <meta property="og:image" content={absoluteImageUrl} />}
       <meta property="og:url" content={url} />
-      <meta property="og:site_name" content="LS컨설팅" />
+      <meta property="og:site_name" content="LS AX 컨설팅" />
       
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />

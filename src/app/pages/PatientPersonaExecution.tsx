@@ -13,7 +13,7 @@ export function PatientPersonaExecution() {
 
   const handleDownloadPDF = () => {
     generatePDF('report-content', {
-      filename: 'LS컨설팅_암환자질문유형기반병원운영실행보고서.pdf',
+      filename: 'LS AX 컨설팅_암환자질문유형기반병원운영실행보고서.pdf',
       title: '암환자 및 보호자 질문 유형 기반 병원 운영 고도화 실행 보고서',
       excludeSelectors: ['header', 'footer', '.no-pdf']
     });
@@ -425,7 +425,7 @@ export function PatientPersonaExecution() {
       {/* Footer */}
       <footer className="py-12 px-6 lg:px-8 max-w-[960px] mx-auto border-t border-gray-200 mt-16">
         <div className="text-center space-y-2">
-          <h4 className="font-bold text-lg" style={{ color: '#0F2B46' }}>LS Consulting</h4>
+          <h4 className="font-bold text-lg" style={{ color: '#0F2B46' }}>LS AX Consulting</h4>
           <p className="text-sm" style={{ color: '#666666' }}>암 환자 니즈 분석 기반 의료 전략 컨설팅</p>
           <p className="text-sm" style={{ color: '#666666' }}>Research / Strategy / Execution</p>
           <p className="text-sm" style={{ color: '#666666' }}>이메일: fusionsfc@gmail.com</p>

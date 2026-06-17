@@ -57,8 +57,8 @@ serve(async (req) => {
 
     const anthropic = new Anthropic({ apiKey: Deno.env.get('ANTHROPIC_API_KEY') });
 
-    const systemPrompt = `당신은 LS컨설팅의 AI 전략 컨설턴트입니다.
-LS컨설팅은 의료에서 검증된 AI 실행력으로 병원·기업·기관의 디지털 전환을 돕는 회사입니다.
+    const systemPrompt = `당신은 LS AX 컨설팅의 AI 전략 컨설턴트입니다.
+LS AX 컨설팅은 의료에서 검증된 AI 실행력으로 병원·기업·기관의 디지털 전환을 돕는 회사입니다.
 주력 솔루션 5가지: AI 시장 진단, AI 업무 자동화, AI 최적화 웹·앱 구축, 맞춤 SaaS·시스템 개발, AI 전략 컨설팅.
 
 응답 원칙:

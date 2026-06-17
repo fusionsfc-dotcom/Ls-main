@@ -77,7 +77,7 @@ const aiSolutions = [
       '운영 대시보드·KPI 자동 산출',
       '7년 자체 SaaS 개발 노하우 적용',
     ],
-    description: '기성 솔루션이 우리 회사를 못 따라올 때,\n직접 만들어 운영합니다',
+    description: '기성 솔루션이 우리 회사를 못 따라올 때,\n전용 시스템을 구축해 운영합니다',
     isPrimary: false,
     badge: null,
   },
