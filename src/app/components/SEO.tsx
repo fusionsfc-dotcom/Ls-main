@@ -34,13 +34,16 @@ export function SEO({
       {/* 기본 메타 태그 */}
       <title>{title}</title>
       <meta name="description" content={description} />
-      
+      <link rel="canonical" href={url} />
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+
       {/* Open Graph (Facebook, KakaoTalk) */}
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       {absoluteImageUrl && <meta property="og:image" content={absoluteImageUrl} />}
       <meta property="og:url" content={url} />
+      <meta property="og:locale" content="ko_KR" />
       <meta property="og:site_name" content="LS AX 컨설팅" />
       
       {/* Twitter Card */}

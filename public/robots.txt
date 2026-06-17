@@ -1,0 +1,46 @@
+# LS AX 컨설팅 — robots.txt
+# 모든 검색엔진 + AI 크롤러 허용 (검색·인용 노출 목적)
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+# 한국 검색엔진
+User-agent: Yeti
+Allow: /
+User-agent: Daumoa
+Allow: /
+
+# 글로벌 검색엔진
+User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
+Allow: /
+
+# 생성형 AI / LLM 크롤러 (ChatGPT·Claude·Perplexity·Gemini 등 인용 허용)
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: Applebot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://www.lsconsulting.co.kr/sitemap.xml
