@@ -10,6 +10,8 @@ export const PUBLIC_SAMPLE_REPORT_LINKS = [
   '/reports/weekly/breast-care-2026-06-w4',
   '/reports/weekly/lung-care-2026-06-w4',
   '/reports/weekly/hospital-strategy-2026-06-w4',
+  '/reports/business/realty-undersold-turnaround-2026-06',
+  '/reports/business/enterprise-ax-state-2026',
 ] as const;
 
 export function isPublicSampleReportLink(link: string): boolean {

@@ -2,21 +2,28 @@ import { Calendar, ArrowRight, ChevronLeft, ChevronRight, FileText } from 'lucid
 import { useState, useRef, useMemo } from 'react';
 import { motion } from 'motion/react';
 import { projectId, publicAnonKey } from '/utils/supabase/info';
-import { insightsData, type InsightItem } from '../data/insightsData';
+import { insightsData, type InsightItem, type InsightDomain } from '../data/insightsData';
 import { SEO } from '../components/SEO';
 import { GuardedReportLink } from '../components/auth/GuardedReportLink';
 import { fadeIn } from '../lib/motion';
 
 const SITE = 'https://www.lsconsulting.co.kr';
 
-/* 카테고리 한글 라벨 */
-const CATEGORY_LABEL: Record<InsightItem['category'], string> = {
+/* 상위 도메인 탭 */
+const DOMAIN_TABS: { key: InsightDomain; label: string }[] = [
+  { key: 'healthcare', label: '건강의료' },
+  { key: 'business', label: '기업' },
+];
+
+/* 카테고리 한글 라벨 (없으면 원문 표시) */
+const CATEGORY_LABEL: Record<string, string> = {
   'Monthly Cancer Voice Report': '월간 암 환자 리포트',
   'Weekly LS Cancer Report': '주간 LS 암 리포트',
   'Healthcare Strategy Research': '의료 전략 리서치',
   'Disease Insight Report': '질환 인사이트',
   'Healthcare Strategy Notes': '전략 노트',
 };
+const catLabel = (c: string) => CATEGORY_LABEL[c] ?? c;
 
 const ITEMS_PER_PAGE = 6;
 
@@ -26,19 +33,31 @@ export function Insights() {
   const [submitMessage, setSubmitMessage] = useState('');
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [activeCategory, setActiveCategory] = useState<'all' | InsightItem['category']>('all');
+  const [activeDomain, setActiveDomain] = useState<InsightDomain>('healthcare');
+  const [activeCategory, setActiveCategory] = useState<'all' | string>('all');
   const reportsListRef = useRef<HTMLElement>(null);
 
-  /* 카테고리 목록 (데이터에 존재하는 것만) */
-  const categories = useMemo(() => {
-    const set = new Set(insightsData.map((i) => i.category));
-    return Array.from(set);
-  }, []);
+  const domainOf = (i: InsightItem): InsightDomain => i.domain ?? 'healthcare';
 
-  /* 필터링된 리포트 */
+  /* 도메인별 리포트 수 */
+  const domainCounts = useMemo(
+    () => ({
+      healthcare: insightsData.filter((i) => domainOf(i) === 'healthcare').length,
+      business: insightsData.filter((i) => domainOf(i) === 'business').length,
+    }),
+    [],
+  );
+
+  /* 활성 도메인의 리포트 */
+  const domainReports = useMemo(() => insightsData.filter((i) => domainOf(i) === activeDomain), [activeDomain]);
+
+  /* 활성 도메인의 카테고리 목록 */
+  const categories = useMemo(() => Array.from(new Set(domainReports.map((i) => i.category))), [domainReports]);
+
+  /* 필터링된 리포트 (도메인 + 카테고리) */
   const filtered = useMemo(
-    () => (activeCategory === 'all' ? insightsData : insightsData.filter((i) => i.category === activeCategory)),
-    [activeCategory],
+    () => (activeCategory === 'all' ? domainReports : domainReports.filter((i) => i.category === activeCategory)),
+    [domainReports, activeCategory],
   );
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
@@ -47,7 +66,8 @@ export function Insights() {
 
   const scrollToList = () => reportsListRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   const goToPage = (page: number) => { setCurrentPage(page); scrollToList(); };
-  const selectCategory = (c: 'all' | InsightItem['category']) => { setActiveCategory(c); setCurrentPage(1); };
+  const selectCategory = (c: 'all' | string) => { setActiveCategory(c); setCurrentPage(1); };
+  const selectDomain = (d: InsightDomain) => { setActiveDomain(d); setActiveCategory('all'); setCurrentPage(1); };
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -152,34 +172,59 @@ export function Insights() {
       {/* ── 리포트 목록 ────────────────────────────────── */}
       <section ref={reportsListRef} className="py-24 px-8 lg:px-16 scroll-mt-20" style={{ backgroundColor: 'var(--navy-50)' }}>
         <div className="max-w-[1400px] mx-auto">
-          {/* 카테고리 필터 */}
-          <div className="flex flex-wrap gap-2.5 mb-12">
-            <button
-              onClick={() => selectCategory('all')}
-              className="rounded-full px-5 py-2.5 text-sm font-semibold transition-all"
-              style={
-                activeCategory === 'all'
-                  ? { backgroundColor: 'var(--navy-900)', color: 'white' }
-                  : { backgroundColor: 'white', color: 'var(--navy-700)', border: '1px solid var(--navy-100)' }
-              }
-            >
-              전체 {insightsData.length}
-            </button>
-            {categories.map((c) => (
+          {/* 상위 도메인 탭 (건강의료 / 기업) */}
+          <div className="flex gap-1 mb-8 border-b" style={{ borderColor: 'var(--navy-100)' }}>
+            {DOMAIN_TABS.map((t) => {
+              const active = activeDomain === t.key;
+              return (
+                <button
+                  key={t.key}
+                  onClick={() => selectDomain(t.key)}
+                  className="relative px-5 sm:px-7 pb-4 text-base sm:text-lg font-bold transition-colors"
+                  style={{ color: active ? 'var(--navy-900)' : 'var(--navy-400)' }}
+                >
+                  {t.label}
+                  <span className="ml-1.5 text-xs font-semibold align-top" style={{ color: active ? 'var(--navy-500)' : 'var(--navy-300)' }}>
+                    {domainCounts[t.key]}
+                  </span>
+                  {active && (
+                    <span className="absolute left-0 right-0 -bottom-px h-[3px] rounded-full" style={{ backgroundColor: 'var(--navy-900)' }} />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* 카테고리 필터 (해당 도메인에 리포트가 있을 때) */}
+          {domainReports.length > 0 && (
+            <div className="flex flex-wrap gap-2.5 mb-12">
               <button
-                key={c}
-                onClick={() => selectCategory(c)}
+                onClick={() => selectCategory('all')}
                 className="rounded-full px-5 py-2.5 text-sm font-semibold transition-all"
                 style={
-                  activeCategory === c
+                  activeCategory === 'all'
                     ? { backgroundColor: 'var(--navy-900)', color: 'white' }
                     : { backgroundColor: 'white', color: 'var(--navy-700)', border: '1px solid var(--navy-100)' }
                 }
               >
-                {CATEGORY_LABEL[c]}
+                전체 {domainReports.length}
               </button>
-            ))}
-          </div>
+              {categories.map((c) => (
+                <button
+                  key={c}
+                  onClick={() => selectCategory(c)}
+                  className="rounded-full px-5 py-2.5 text-sm font-semibold transition-all"
+                  style={
+                    activeCategory === c
+                      ? { backgroundColor: 'var(--navy-900)', color: 'white' }
+                      : { backgroundColor: 'white', color: 'var(--navy-700)', border: '1px solid var(--navy-100)' }
+                  }
+                >
+                  {catLabel(c)}
+                </button>
+              ))}
+            </div>
+          )}
 
           {/* 카드 그리드 */}
           <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-6" {...fadeIn}>
@@ -232,7 +277,16 @@ export function Insights() {
           </motion.div>
 
           {currentInsights.length === 0 && (
-            <p className="text-center py-16" style={{ color: 'var(--navy-500)' }}>해당 카테고리의 리포트가 없습니다.</p>
+            <div className="text-center py-20">
+              <p className="text-lg font-semibold" style={{ color: 'var(--navy-700)' }}>
+                {activeDomain === 'business' ? '기업 AI 리포트는 곧 공개됩니다' : '해당 카테고리의 리포트가 없습니다'}
+              </p>
+              <p className="text-sm mt-2" style={{ color: 'var(--navy-500)' }}>
+                {activeDomain === 'business'
+                  ? '기업 업무 자동화·AX 관련 데이터 리포트를 준비 중입니다.'
+                  : '다른 카테고리를 선택해 보세요.'}
+              </p>
+            </div>
           )}
 
           {/* 페이지네이션 */}

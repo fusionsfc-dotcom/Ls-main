@@ -41,6 +41,7 @@ const LiverCancerReport202603 = lazy(() => import('./pages/reports/LiverCancerRe
 const LungCancerReport202603 = lazy(() => import('./pages/reports/LungCancerReport202603').then((m) => ({ default: m.LungCancerReport202603 })));
 const BreastCancerCommunityReport202604 = lazy(() => import('./pages/reports/BreastCancerCommunityReport202604').then((m) => ({ default: m.BreastCancerCommunityReport202604 })));
 const WeeklyCareReportRoute = lazy(() => import('./pages/reports/WeeklyCareReportRoute').then((m) => ({ default: m.WeeklyCareReportRoute })));
+const BusinessReportRoute = lazy(() => import('./pages/reports/BusinessReportRoute').then((m) => ({ default: m.BusinessReportRoute })));
 const PvmReport = lazy(() => import('../pages/PvmReport').then((m) => ({ default: m.PvmReport })));
 const ReportGenerator = lazy(() => import('../pages/ReportGenerator').then((m) => ({ default: m.ReportGenerator })));
 
@@ -86,6 +87,7 @@ function AppContent() {
             <Route path="/reports/lung-cancer-2026-03" element={<ReportPasswordGate><LungCancerReport202603 /></ReportPasswordGate>} />
             <Route path="/reports/breast-cancer-community-2026-04-w1" element={<ReportPasswordGate><BreastCancerCommunityReport202604 /></ReportPasswordGate>} />
             <Route path="/reports/weekly/:slug" element={<WeeklyCareReportRoute />} />
+            <Route path="/reports/business/:slug" element={<BusinessReportRoute />} />
             <Route path="/insights/pvm-report" element={<PvmReport />} />
             <Route path="/admin/report-generator" element={<ReportGenerator />} />
           </Routes>

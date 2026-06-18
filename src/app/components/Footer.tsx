@@ -39,7 +39,6 @@ const contactInfo = {
   email: 'fusionsfc@gmail.com',
   phone: '+82.10.9297.0940',
   phoneDial: '+821092970940',
-  location: '제주 서귀포시 안덕면 사계리 3318-1 1층',
 };
 
 export function Footer({ hidePricing = false }: FooterProps) {
@@ -110,7 +109,6 @@ export function Footer({ hidePricing = false }: FooterProps) {
                     {contactInfo.email}
                   </a>
                 </li>
-                <li className="text-sm" style={{ color: 'var(--navy-300)' }}>{contactInfo.location}</li>
               </ul>
             </div>
           </div>

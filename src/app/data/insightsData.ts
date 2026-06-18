@@ -1,5 +1,9 @@
+export type InsightDomain = 'healthcare' | 'business';
+
 export interface InsightItem {
-  category: 'Monthly Cancer Voice Report' | 'Weekly LS Cancer Report' | 'Healthcare Strategy Research' | 'Disease Insight Report' | 'Healthcare Strategy Notes';
+  /** 상위 분류: 건강의료 / 기업. 미지정 시 'healthcare'로 간주 */
+  domain?: InsightDomain;
+  category: 'Monthly Cancer Voice Report' | 'Weekly LS Cancer Report' | 'Healthcare Strategy Research' | 'Disease Insight Report' | 'Healthcare Strategy Notes' | string;
   title: string;
   date: string;
   excerpt: string;
@@ -10,6 +14,30 @@ export interface InsightItem {
 }
 
 export const insightsData: InsightItem[] = [
+  {
+    domain: 'business',
+    category: '산업 분석',
+    title: '기업 AX의 현주소\n도입은 보편화, 성과는 소수',
+    date: 'June 2026',
+    excerpt:
+      '글로벌 기업 약 90%가 AI를 쓰지만 파일럿의 95%는 손익에 닿지 못한다. 도입–성과 격차의 구조적 원인과, 성과를 내는 5%의 공통점을 국내외 공개 조사 데이터로 분석한 산업 리포트.',
+    readTime: '10 min read',
+    highlights: ['GenAI 격차', '95% 파일럿 실패', '한국 시장 진단', '성과 5%의 공통점'],
+    isFeatured: true,
+    link: '/reports/business/enterprise-ax-state-2026',
+  },
+  {
+    domain: 'business',
+    category: '부동산 AX 인사이트',
+    title: '준공 후 미분양 시장의 역전 설계\n데이터로 다시 짠 분양 마케팅 전략',
+    date: 'June 2026',
+    excerpt:
+      '적체된 준공 후 미분양 단지를, 같은 사실을 어떻게 해석하느냐에 따라 약점에서 무기로 전환할 수 있음을 보여준다. 수요 세분화부터 채널·예산 구조까지를 데이터 기반으로 재설계한 분양 전략 방법론.',
+    readTime: '9 min read',
+    highlights: ['수요 세분화', '포지셔닝 역전', '성과형 예산구조', '전환 퍼널 설계'],
+    isFeatured: true,
+    link: '/reports/business/realty-undersold-turnaround-2026-06',
+  },
   {
     category: 'Weekly LS Cancer Report',
     title: '간암 환자 케어 리포트\n수술 후 · 항암 중 · 방사선 · 면역재활',

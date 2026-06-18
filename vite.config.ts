@@ -16,16 +16,18 @@ function sitemapPlugin(): Plugin {
     name: 'gen-sitemap',
     apply: 'build',
     closeBundle() {
-      const weeklyDir = path.resolve(__dirname, 'src/data/reports/weekly-care')
-      let slugs: string[] = []
-      try {
-        slugs = readdirSync(weeklyDir)
-          .filter((f) => f.endsWith('.ts') && f !== 'types.ts' && f !== 'index.ts')
-          .map((f) => f.replace(/\.ts$/, ''))
-          .sort()
-      } catch {
-        slugs = []
+      const collectSlugs = (dir: string): string[] => {
+        try {
+          return readdirSync(dir)
+            .filter((f) => f.endsWith('.ts') && f !== 'types.ts' && f !== 'index.ts')
+            .map((f) => f.replace(/\.ts$/, ''))
+            .sort()
+        } catch {
+          return []
+        }
       }
+      const slugs = collectSlugs(path.resolve(__dirname, 'src/data/reports/weekly-care'))
+      const businessSlugs = collectSlugs(path.resolve(__dirname, 'src/data/reports/business'))
       const today = new Date().toISOString().slice(0, 10)
       const routes: Array<[string, string, string]> = [
         ['/', '1.0', 'weekly'],
@@ -36,6 +38,7 @@ function sitemapPlugin(): Plugin {
         ['/consultation', '0.8', 'monthly'],
         ['/insights', '0.9', 'weekly'],
         ...slugs.map((s) => [`/reports/weekly/${s}`, '0.7', 'monthly'] as [string, string, string]),
+        ...businessSlugs.map((s) => [`/reports/business/${s}`, '0.7', 'monthly'] as [string, string, string]),
       ]
       const body = routes
         .map(
