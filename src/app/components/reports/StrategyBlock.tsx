@@ -20,14 +20,15 @@ export function StrategyBlock({ type, title, body, color }: StrategyBlockProps) 
   const line = accentMap[color];
   return (
     <div
-      className="rounded-xl border border-gray-100 bg-white p-5 shadow-none"
-      style={{ borderLeftWidth: 3, borderLeftStyle: 'solid', borderLeftColor: line }}
+      className="rounded-2xl bg-white p-6 transition-all hover:shadow-md"
+      style={{ borderLeftWidth: 4, borderLeftStyle: 'solid', borderLeftColor: line, boxShadow: '0 1px 3px rgba(10,22,40,0.06)' }}
     >
-      <div className="text-xs font-bold uppercase tracking-wide mb-2" style={{ color: line }}>
+      <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide mb-2" style={{ color: line }}>
+        <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: line }} />
         {type}
       </div>
-      <h4 className="text-base font-bold text-gray-900 mb-2">{title}</h4>
-      <p className="text-sm text-gray-700 leading-relaxed">{body}</p>
+      <h4 className="text-base font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{title}</h4>
+      <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-700)' }}>{body}</p>
     </div>
   );
 }

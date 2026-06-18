@@ -6,8 +6,11 @@ type ReportSectionTitleProps = {
 
 export function ReportSectionTitle({ children }: ReportSectionTitleProps) {
   return (
-    <h2 className="text-xs font-bold tracking-widest uppercase text-gray-400 pb-2 border-b border-gray-100 mb-5">
-      {children}
-    </h2>
+    <div className="flex items-center gap-3 mb-6">
+      <span className="w-8 h-[3px] rounded-full" style={{ backgroundColor: 'var(--navy-300)' }} />
+      <h2 className="text-xl sm:text-2xl font-bold tracking-tight" style={{ color: 'var(--navy-900)' }}>
+        {children}
+      </h2>
+    </div>
   );
 }

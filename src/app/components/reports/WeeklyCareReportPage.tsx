@@ -101,17 +101,17 @@ export function WeeklyCareReportPage({
         />
 
         <section className="mt-10">
-          <p className="text-sm sm:text-base text-gray-700 leading-relaxed">{meta.intro}</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--navy-700)' }}>{meta.intro}</p>
         </section>
 
-        <section className="mt-12">
-          <ReportSectionTitle>Key metrics</ReportSectionTitle>
+        <section className="mt-14">
+          <ReportSectionTitle>핵심 지표</ReportSectionTitle>
           <KpiGrid items={kpiItems} />
         </section>
 
         {overviewChartData.length > 0 && (
-          <section className="mt-12">
-            <ReportSectionTitle>Data distribution</ReportSectionTitle>
+          <section className="mt-14">
+            <ReportSectionTitle>데이터 분포</ReportSectionTitle>
             <WeeklyCareDonutChart
               title={isStrategy ? '접점별 환자 니즈 사례 분포' : '치료 단계별 PVM 분포'}
               data={overviewChartData}
@@ -140,20 +140,20 @@ export function WeeklyCareReportPage({
               return (
                 <div key={section.title}>
                   <div className="mb-4 flex flex-wrap items-baseline gap-2">
-                    <span className="text-xs font-bold tracking-widest uppercase text-gray-400">
+                    <span className="text-xs font-bold tracking-widest uppercase" style={{ color: 'var(--navy-400)' }}>
                       {getSectionPartLabel(sectionIndex)}
                     </span>
-                    <h3 className="text-lg font-bold" style={{ color: partAccent[accent] }}>
+                    <h3 className="text-xl font-bold" style={{ color: partAccent[accent] }}>
                       {section.title.replace(/^\d+\.\s*/, '')}
                     </h3>
                   </div>
                   {section.summary && (
-                    <p className="text-sm text-gray-700 leading-relaxed mb-6">{section.summary}</p>
+                    <p className="text-sm leading-relaxed mb-6" style={{ color: 'var(--navy-700)' }}>{section.summary}</p>
                   )}
 
                   {section.voices.length > 0 && (
                     <div className="mb-8">
-                      <h4 className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-4">
+                      <h4 className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: 'var(--navy-500)' }}>
                         {voicesLabel}
                       </h4>
                       <div className="space-y-4">
@@ -175,18 +175,18 @@ export function WeeklyCareReportPage({
 
                   {section.departments.filter((row) => row.content.trim()).length > 0 && (
                     <div>
-                      <h4 className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-4">
+                      <h4 className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: 'var(--navy-500)' }}>
                         {deptLabel}
                       </h4>
-                      <div className="rounded-xl border border-gray-100 bg-white overflow-hidden shadow-none">
+                      <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid var(--navy-100)' }}>
                         <div className="overflow-x-auto">
                           <table className="w-full text-left text-sm">
                             <thead>
-                              <tr className="border-b border-gray-100 bg-gray-50">
-                                <th className="px-4 py-3 font-bold text-gray-700 w-[28%] min-w-[100px]">
+                              <tr style={{ backgroundColor: 'var(--navy-50)' }}>
+                                <th className="px-4 py-3 font-bold w-[28%] min-w-[100px]" style={{ color: 'var(--navy-800)' }}>
                                   {isStrategy ? '준비 포인트' : '부서'}
                                 </th>
-                                <th className="px-4 py-3 font-bold text-gray-700">
+                                <th className="px-4 py-3 font-bold" style={{ color: 'var(--navy-800)' }}>
                                   {isStrategy ? '내용' : '현장 연결 정보'}
                                 </th>
                               </tr>
@@ -197,12 +197,13 @@ export function WeeklyCareReportPage({
                                 .map((row) => (
                                 <tr
                                   key={`${section.title}-${row.dept}`}
-                                  className="border-b border-gray-100 last:border-0 align-top"
+                                  className="align-top"
+                                  style={{ borderTop: '1px solid var(--navy-100)' }}
                                 >
-                                  <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">
+                                  <td className="px-4 py-3 font-semibold whitespace-nowrap" style={{ color: 'var(--navy-900)' }}>
                                     {row.dept}
                                   </td>
-                                  <td className="px-4 py-3 text-gray-700 leading-relaxed">{row.content}</td>
+                                  <td className="px-4 py-3 leading-relaxed" style={{ color: 'var(--navy-700)' }}>{row.content}</td>
                                 </tr>
                               ))}
                             </tbody>
@@ -213,8 +214,8 @@ export function WeeklyCareReportPage({
                   )}
 
                   {section.note && (
-                    <div className="mt-6 rounded-xl border border-gray-100 bg-gray-50 p-5">
-                      <p className="text-sm text-gray-700 leading-relaxed">{section.note}</p>
+                    <div className="mt-6 rounded-2xl p-5" style={{ backgroundColor: 'var(--navy-50)', border: '1px solid var(--navy-100)' }}>
+                      <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-700)' }}>{section.note}</p>
                     </div>
                   )}
                 </div>
@@ -223,7 +224,7 @@ export function WeeklyCareReportPage({
           </div>
         </section>
 
-        <footer className="mt-16 pt-8 border-t border-gray-100 text-xs text-gray-400 leading-relaxed">
+        <footer className="mt-16 pt-8 text-xs leading-relaxed" style={{ borderTop: '1px solid var(--navy-100)', color: 'var(--navy-400)' }}>
           본 리포트는 환자 실제 목소리(PVM)를 단계별로 정리한 정보 자료입니다. LS AX 컨설팅 · 암환자 케어 콘텐츠 /
           lsconsulting.co.kr
         </footer>

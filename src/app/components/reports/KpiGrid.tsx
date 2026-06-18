@@ -21,12 +21,13 @@ export function KpiGrid({ items }: KpiGridProps) {
       {items.map((item) => (
         <div
           key={item.label}
-          className="rounded-xl border border-gray-100 bg-white p-5 shadow-none"
+          className="rounded-2xl p-6 transition-all hover:-translate-y-0.5 hover:shadow-md"
+          style={{ background: 'linear-gradient(155deg, var(--navy-100) 0%, var(--navy-50) 60%)' }}
         >
-          <div className="text-2xl sm:text-3xl font-bold tabular-nums mb-2" style={{ color: colorMap[item.color] }}>
+          <div className="text-3xl sm:text-4xl font-bold tabular-nums mb-2" style={{ color: colorMap[item.color] }}>
             {item.num}
           </div>
-          <p className="text-xs sm:text-sm text-gray-600 leading-snug font-medium">{item.label}</p>
+          <p className="text-xs sm:text-sm leading-snug font-medium" style={{ color: 'var(--navy-700)' }}>{item.label}</p>
         </div>
       ))}
     </div>
