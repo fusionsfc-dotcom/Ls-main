@@ -1,5 +1,5 @@
 export interface InsightItem {
-  category: 'Monthly Cancer Voice Report' | 'Healthcare Strategy Research' | 'Disease Insight Report' | 'Healthcare Strategy Notes';
+  category: 'Monthly Cancer Voice Report' | 'Weekly LS Cancer Report' | 'Healthcare Strategy Research' | 'Disease Insight Report' | 'Healthcare Strategy Notes';
   title: string;
   date: string;
   excerpt: string;
@@ -10,6 +10,72 @@ export interface InsightItem {
 }
 
 export const insightsData: InsightItem[] = [
+  {
+    category: 'Weekly LS Cancer Report',
+    title: '간암 환자 케어 리포트\n수술 후 · 항암 중 · 방사선 · 면역재활',
+    date: 'June 2026',
+    excerpt:
+      '제4호 주간리포트. 간암 PVM 193건 기반 — 수술 후 통합치료·실비, 표적치료 부작용, 이식 후 금주·재발 추적 등 단계별 현장 목소리와 부서별 케어 연결 정보.',
+    readTime: '12 min read',
+    highlights: ['193건 분석', '4단계 케어', 'PVM 현장 목소리', '부서별 연결'],
+    isFeatured: true,
+    link: '/reports/weekly/liver-care-2026-06-w4',
+  },
+  {
+    category: 'Weekly LS Cancer Report',
+    title: '폐암 환자 케어 리포트\n수술 후 · 항암 중 · 방사선 · 면역재활',
+    date: 'June 2026',
+    excerpt:
+      '제4호 주간리포트. 폐암 PVM 456건 기반 — 수술 후 회복, 표적·면역항암 부작용, 방사선 피부 관리, 재발 추적 등 단계별 현장 정보.',
+    readTime: '12 min read',
+    highlights: ['456건 분석', '4단계 케어', 'PVM 현장 목소리', '부서별 연결'],
+    isFeatured: true,
+    link: '/reports/weekly/lung-care-2026-06-w4',
+  },
+  {
+    category: 'Weekly LS Cancer Report',
+    title: '유방암 환자 케어 리포트\n수술 후 · 항암 중 · 방사선 · 면역재활',
+    date: 'June 2026',
+    excerpt:
+      '제4호 주간리포트. 유방암 PVM 540건 기반 — 퇴원 직후 통합치료, 항암 부작용, 방사선 피부 관리, 면역재활 추적 등 단계별 현장 정보.',
+    readTime: '12 min read',
+    highlights: ['540건 분석', '4단계 케어', 'PVM 현장 목소리', '부서별 연결'],
+    isFeatured: true,
+    link: '/reports/weekly/breast-care-2026-06-w4',
+  },
+  {
+    category: 'Weekly LS Cancer Report',
+    title: '대장암 환자 케어 리포트\n수술 후 · 항암 중 · 방사선 · 면역재활',
+    date: 'June 2026',
+    excerpt:
+      '제4호 주간리포트. 대장암·직장암 PVM 79건 기반 — 배변 기능 회복, 장루 관리, 항암 중 직장 병행, CEA 재발 추적 등 단계별 현장 정보.',
+    readTime: '12 min read',
+    highlights: ['79건 분석', '4단계 케어', 'PVM 현장 목소리', '부서별 연결'],
+    isFeatured: false,
+    link: '/reports/weekly/colon-care-2026-06-w4',
+  },
+  {
+    category: 'Weekly LS Cancer Report',
+    title: '위암 환자 케어 리포트\n수술 후 · 항암 중 · 방사선 · 면역재활',
+    date: 'June 2026',
+    excerpt:
+      '제4호 주간리포트. 위암 PVM 41건 기반 — 위 절제 후 식이 적응, 선항암 치료 순서, 반지세포암 재발 우려 등 단계별 현장 정보.',
+    readTime: '10 min read',
+    highlights: ['41건 분석', '4단계 케어', 'PVM 현장 목소리', '부서별 연결'],
+    isFeatured: false,
+    link: '/reports/weekly/stomach-care-2026-06-w4',
+  },
+  {
+    category: 'Weekly LS Cancer Report',
+    title: '병원 경영·운영전략 리포트\n환자 니즈에서 출발하는 2차암병원의 준비',
+    date: 'June 2026',
+    excerpt:
+      '제4호 경영편. 5대 암종 PVM 1,300여 건에서 반복 관찰된 니즈 신호 기반 — 입원 결정, 비용·행정, 부작용 응대, 식이, 정서·추적 6대 접점.',
+    readTime: '15 min read',
+    highlights: ['6대 접점', '1,300+건 신호', '병원 준비 포인트', '경영편'],
+    isFeatured: true,
+    link: '/reports/weekly/hospital-strategy-2026-06-w4',
+  },
   {
     category: 'Monthly Cancer Voice Report',
     title: '간암 환자 온라인 니즈 분석 및\n요양·한방병원 의료서비스 강화 전략',

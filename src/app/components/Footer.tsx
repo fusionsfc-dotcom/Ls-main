@@ -31,7 +31,6 @@ const footerSections = [
     links: [
       { label: '소개', path: '/about' },
       { label: '상담 / 견적 신청', path: '/consultation' },
-      { label: '작동 중인 AI', path: '/consultation' },
     ],
   },
 ] as const;
@@ -40,7 +39,7 @@ const contactInfo = {
   email: 'fusionsfc@gmail.com',
   phone: '+82.10.9297.0940',
   phoneDial: '+821092970940',
-  location: '제주 / 서울',
+  location: '제주 서귀포시 안덕면 사계리 3318-1 1층',
 };
 
 export function Footer({ hidePricing = false }: FooterProps) {
@@ -97,7 +96,7 @@ export function Footer({ hidePricing = false }: FooterProps) {
 
             {/* 연락처 컬럼 */}
             <div>
-              <h4 className="text-sm font-semibold text-white mb-4">연락처</h4>
+              <h4 className="text-sm font-semibold text-white mb-4">Contact Us</h4>
               <ul className="space-y-3">
                 <li>
                   <a
@@ -106,15 +105,6 @@ export function Footer({ hidePricing = false }: FooterProps) {
                     style={{ color: 'var(--navy-300)' }}
                   >
                     {contactInfo.email}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={`tel:${contactInfo.phoneDial}`}
-                    className="text-sm transition-colors hover:text-white"
-                    style={{ color: 'var(--navy-300)' }}
-                  >
-                    {contactInfo.phone}
                   </a>
                 </li>
                 <li className="text-sm" style={{ color: 'var(--navy-300)' }}>{contactInfo.location}</li>

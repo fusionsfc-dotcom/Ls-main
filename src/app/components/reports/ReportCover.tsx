@@ -5,9 +5,18 @@ type ReportCoverProps = {
   totalCases: number;
   publishedBy: string;
   disease: string;
+  badgeLabel?: string;
 };
 
-export function ReportCover({ title, subtitle, period, totalCases, publishedBy, disease }: ReportCoverProps) {
+export function ReportCover({
+  title,
+  subtitle,
+  period,
+  totalCases,
+  publishedBy,
+  disease,
+  badgeLabel = 'LS AX Consulting · Cancer Hospital Strategy Report',
+}: ReportCoverProps) {
   return (
     <div
       className="rounded-xl p-8 lg:p-10 text-white shadow-none border border-gray-100"
@@ -15,7 +24,7 @@ export function ReportCover({ title, subtitle, period, totalCases, publishedBy, 
     >
       <div className="mb-8">
         <span className="inline-block text-[10px] sm:text-xs font-semibold tracking-wide opacity-90 border border-white/30 rounded-full px-3 py-1">
-          LS AX Consulting · Cancer Hospital Strategy Report
+          {badgeLabel}
         </span>
       </div>
       <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-4">{title}</h1>

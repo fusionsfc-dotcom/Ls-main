@@ -261,7 +261,7 @@ export function Services() {
               문제를 어떻게 AX로 풀었는지, 결과물로 보여드립니다.
             </p>
           </div>
-          <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6" {...staggerContainer}>
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 auto-rows-fr gap-6" {...staggerContainer}>
             {cases.map(({ image, tag, title, problem, result, to }) => (
               <MotionLink
                 key={title}
@@ -273,7 +273,7 @@ export function Services() {
                   <ImageWithFallback
                     src={image}
                     alt={title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-7 flex flex-col flex-1">

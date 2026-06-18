@@ -12,6 +12,7 @@ const SITE = 'https://www.lsconsulting.co.kr';
 /* 카테고리 한글 라벨 */
 const CATEGORY_LABEL: Record<InsightItem['category'], string> = {
   'Monthly Cancer Voice Report': '월간 암 환자 리포트',
+  'Weekly LS Cancer Report': '주간 LS 암 리포트',
   'Healthcare Strategy Research': '의료 전략 리서치',
   'Disease Insight Report': '질환 인사이트',
   'Healthcare Strategy Notes': '전략 노트',
