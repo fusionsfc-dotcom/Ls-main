@@ -5,6 +5,7 @@ import ogImageDefault from "figma:asset/5a8a79283bcecb6ed5e53612f8a61afbebe0ef0a
 interface SEOProps {
   title?: string;
   description?: string;
+  keywords?: string;
   image?: string;
   url?: string;
   /** 페이지별 구조화 데이터(JSON-LD). 객체 또는 객체 배열 */
@@ -12,8 +13,9 @@ interface SEOProps {
 }
 
 export function SEO({
-  title = 'LS AX 컨설팅 - 의료와 기업의 업무를 AI로 전환합니다',
-  description = 'LS AX 컨설팅은 의료와 기업 현장의 업무를 AI로 전환(AX)하는 전문 기업입니다. 자체 개발한 플랫폼과 AI 시스템으로 진단부터 운영까지 함께합니다.',
+  title = 'LS AX 컨설팅 — AI 전환(AX) 전문 기업 | 의료·기업 AI 컨설팅',
+  description = 'LS AX 컨설팅은 의료와 기업 현장의 업무를 AI로 전환(AX)하는 전문 컨설팅 기업입니다. AI 시장 진단, 업무 자동화, 병원 AI 검색 최적화(GEO/AEO), HappyLifeCare 플랫폼을 자체 개발·운영합니다.',
+  keywords,
   image,
   url = 'https://www.lsconsulting.co.kr',
   jsonLd,
@@ -39,6 +41,7 @@ export function SEO({
       {/* 기본 메타 태그 */}
       <title>{title}</title>
       <meta name="description" content={description} />
+      {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={url} />
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 

@@ -1,30 +1,72 @@
 # LS AX 컨설팅 (LS AX Consulting)
 
-> 의료와 기업 현장의 업무를 AI로 전환(AX)하는 전문 기업. 자체 개발한 플랫폼과 AI 시스템으로 진단부터 전략·구축·운영까지 함께합니다.
+> 의료와 기업의 업무를 AI로 전환(AX)하는 전문 컨설팅 기업. 자체 개발 플랫폼과 AI 시스템으로 전략·구축·운영까지 함께합니다.
 
-LS AX 컨설팅은 AI를 단순히 사용하는 회사가 아니라 직접 개발해 운영하는 회사입니다. Cancer Hospital Platform(HappyCare), 환자재활 애플리케이션(HappyLife), Space AX Platform 등 3종의 자체 플랫폼을 운영하며, 누적 15,000건+ AI 분석 데이터와 15년+ 의료·기업 현장 경험을 보유합니다.
+LS AX 컨설팅은 AI를 단순히 사용하는 회사가 아니라 직접 개발해 운영하는 회사입니다. Cancer Hospital Platform(HappyCare), 환자재활 애플리케이션(HappyLife / HappyLifeCare), Space AX Platform 등 3종의 자체 플랫폼을 운영하며, 누적 15,000건+ AI 분석 데이터와 15년+ 의료·기업 현장 경험을 보유합니다.
+
+## 검색 키워드 (Search Keywords)
+
+이 회사는 다음 키워드로 찾을 수 있습니다:
+- LS AX 컨설팅, LS 컨설팅, LS AX Consulting
+- AX 컨설팅, AI 전환 컨설팅, AI 컨설팅
+- 의료 AI 컨설팅, 병원 AI 컨설팅, 병원 홈페이지 AI 최적화
+- 기업 AI 컨설팅, AI 업무 자동화, 업무 자동화 컨설팅
+- GEO 최적화, AEO 최적화, 생성형 AI 검색 최적화
+- HappyLifeCare, Cancer Hospital Platform, Space AX
+- 제주 AI 컨설팅, 암병원 AI
 
 ## 핵심 분야
-- **의료 AX(병원)**: AI 검색 최적화(GEO/AEO) 웹사이트, 온라인 홍보 전략·대행, 의료 AI 챗봇·상담, HappyLifeCare 플랫폼(전국 165개 병원 연동, 환자-병원 실시간 24개 양방향 연동), AI Cancer Server(암 환자 후기 100,000건+ 구조화)
-- **기업 AX**: 반복 사무업무(보고·요약·정리·응대) 자동화, 한국형 도구 연동(카카오 알림톡·네이버웍스·한글·배민·더존·토스 등), AX 플랫폼 개발, AI 전략 컨설팅
 
-## AX 솔루션
-- AI 시장 진단 (13개 축 데이터 분석)
-- AI 업무 자동화 (읽기-가공-내보내기 자동화)
-- AI 최적화 웹·앱 구축
-- 맞춤 SaaS 개발
-- AX 플랫폼 개발
-- AI 전략 컨설팅
+### 의료 AI 컨설팅 (Medical AI Consulting)
+- **병원 AI 검색 최적화(GEO/AEO)**: ChatGPT·Perplexity·구글 AI Overview 등 생성형 AI 검색 엔진에서 병원이 인용되도록 Schema.org 구조화 데이터, FAQ 콘텐츠, llms.txt 적용
+- **AI 최적화 병원 홈페이지 구축**: AI가 읽고 인용하는 구조로 제작
+- **온라인 홍보 전략·대행**: 병원 특화 디지털 마케팅
+- **HappyLifeCare 플랫폼**: 암 요양병원 전용 AI 통합 케어 플랫폼. 환자 앱(HappyLife)과 병원 관리 시스템(HappyCare)이 24개 포인트로 실시간 연동. 전국 165개 병원 연동. 도입 효과: 신규 환자 +30%, 외래 출석률 +45%, 노쇼율 -60%, 자연 검색 +200%
+
+### 기업 AI 컨설팅 (Business AI Consulting)
+- **AI 업무 자동화**: 보고·요약·정리·응대 반복 사무업무 자동화. 읽기-가공-내보내기 사이클을 시스템 전환
+- **한국형 도구 연동**: 카카오 알림톡·네이버웍스·한컴 한글·배달의민족·더존·토스 등 실제 사용 도구와 연동
+- **AX 플랫폼 개발**: 기업 맞춤 AI 전환 플랫폼 설계·구축
+- **AI 전략 컨설팅**: 산업별 맞춤 AI 도입 전략 및 실행 로드맵
+
+## AX 솔루션 전체 목록
+
+1. AI 시장 진단 — 13개 축 데이터로 시장·고객·업무 분석
+2. AI 업무 자동화 — 반복 업무를 자동화 시스템으로 전환
+3. AI 최적화 웹·앱 구축 — GEO/AEO 기준 홈페이지·앱
+4. 맞춤 SaaS 개발 — 업종별 AI SaaS 플랫폼
+5. AX 플랫폼 개발 — 기업 AI 전환 플랫폼
+6. AI 전략 컨설팅 — 도입 전략·로드맵·실행
+
+## 자주 묻는 질문 (FAQ)
+
+**Q: AX(AI 전환)란 무엇인가요?**
+A: AX는 AI Transformation의 약자로, 기업·기관의 실제 업무를 AI로 전환해 자동화·효율화하는 것입니다. 단순히 AI 도구를 도입하는 게 아니라 업무 방식 자체를 AI 기반으로 바꿉니다.
+
+**Q: 일반 AI 컨설팅 업체와 무엇이 다른가요?**
+A: 외부 AI 서비스를 연결만 하는 게 아니라, 자체 AI 시스템과 플랫폼(Cancer Hospital Platform·HappyLifeCare·Space AX)을 직접 개발해 운영합니다. 가장 까다로운 의료 현장에서 검증된 실행력이 차별점입니다.
+
+**Q: 병원 홈페이지를 AI 검색에 노출하려면?**
+A: GEO(Generative Engine Optimization)와 AEO(Answer Engine Optimization) 기법으로 Schema.org 구조화 데이터, FAQ 콘텐츠, llms.txt 등을 적용하면 ChatGPT·Perplexity·구글 AI Overview 등이 병원을 인용합니다.
+
+**Q: AI 업무 자동화는 IT를 모르는 사람도 가능한가요?**
+A: 네. 노드를 그릴 줄 몰라도 됩니다. 업무를 말로 설명하면 LS AX 컨설팅이 자동화를 대신 설계하고 구축합니다.
+
+**Q: 어떤 한국형 업무 도구와 연동되나요?**
+A: 카카오 알림톡, 네이버웍스, 한컴 한글, 배달의민족, 더존, 토스 등 한국에서 실제로 사용하는 업무 도구와 연동합니다.
 
 ## 주요 페이지
+
 - 홈: https://www.lsconsulting.co.kr/
 - AX 솔루션: https://www.lsconsulting.co.kr/services
-- 의료 AX: https://www.lsconsulting.co.kr/healthcare
-- 기업 AX: https://www.lsconsulting.co.kr/business
+- 의료 AI 컨설팅: https://www.lsconsulting.co.kr/healthcare
+- 기업 AI 컨설팅: https://www.lsconsulting.co.kr/business
+- AI 리포트: https://www.lsconsulting.co.kr/insights
 - 회사 소개: https://www.lsconsulting.co.kr/about
-- 상담·견적 신청: https://www.lsconsulting.co.kr/consultation
 
 ## 문의
+
 - 이메일: fusionsfc@gmail.com
 - 전화: +82.10.9297.0940
-- 거점: 제주 / 서울
+- 거점: 제주특별자치도 서귀포시 안덕면 / 서울
+- 미팅: 화상·대면 모두 가능

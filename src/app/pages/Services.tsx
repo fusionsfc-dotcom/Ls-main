@@ -137,8 +137,9 @@ export function Services() {
   return (
     <div className="min-h-screen bg-white">
       <SEO
-        title="AX - LS AX 컨설팅"
-        description="LS AX 컨설팅의 AX(AI 전환) 강점과 실제 케이스. AI 시장 진단, 업무 자동화, AI 최적화 웹·앱, 맞춤 SaaS, AI 전략 컨설팅을 한 팀이 진단부터 운영까지 책임집니다."
+        title="AX 서비스 | AI 컨설팅·자동화·웹앱·SaaS - LS AX 컨설팅"
+        description="AI 시장 진단, 업무 자동화, AI 최적화 웹·앱 구축, 맞춤 SaaS·AX 플랫폼 개발, AI 전략 컨설팅. 외부 AI 연결이 아닌 자체 개발·운영 플랫폼으로 검증된 AX 전문 기업."
+        keywords="AX 서비스, AI 컨설팅 서비스, AI 시장 진단, AI 업무 자동화, AI 최적화 웹앱, 맞춤 SaaS 개발, AX 플랫폼 개발, AI 전략 컨설팅"
         url="https://www.lsconsulting.co.kr/services"
         jsonLd={[
           { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [

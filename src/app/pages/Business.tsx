@@ -104,15 +104,26 @@ export function Business() {
   return (
     <div className="min-h-screen bg-white">
       <SEO
-        title="기업 AX - 반복 업무를 자동화 시스템으로 | LS AX 컨설팅"
-        description="보고·요약·정리·응대 같은 반복 업무를 AI 자동화로 전환합니다. 노드를 그릴 줄 몰라도, 말로 설명하면 시스템이 대신 일합니다. 카카오·네이버·한글·배민 등 한국 업무 환경에 맞춘 자동화."
+        title="기업 AI 컨설팅 | AI 업무 자동화·AX 전략 - LS AX 컨설팅"
+        description="보고·요약·정리·응대 반복 업무를 AI로 자동화합니다. 카카오 알림톡·네이버웍스·한글·배민·더존 등 한국형 업무 도구와 연동. 말로 설명하면 시스템이 대신 일합니다."
+        keywords="기업 AI 컨설팅, AI 업무 자동화, 업무 자동화 컨설팅, AX 전략, 한국형 업무 자동화, 카카오 자동화, 네이버웍스 자동화, 중소기업 AI, 기업 AX"
         url="https://www.lsconsulting.co.kr/business"
         jsonLd={[
           { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
             { '@type': 'ListItem', position: 1, name: '홈', item: 'https://www.lsconsulting.co.kr/' },
-            { '@type': 'ListItem', position: 2, name: '기업', item: 'https://www.lsconsulting.co.kr/business' },
+            { '@type': 'ListItem', position: 2, name: '기업 AI 컨설팅', item: 'https://www.lsconsulting.co.kr/business' },
           ] },
-          { '@context': 'https://schema.org', '@type': 'Service', name: '기업 AX · 업무 자동화', serviceType: ['업무 자동화 AX', '한국형 도구 연동', 'AX 플랫폼 개발', 'AI 전략 컨설팅'], areaServed: 'KR', audience: { '@type': 'Audience', audienceType: '1인사업자·중소기업·관리자' }, url: 'https://www.lsconsulting.co.kr/business', provider: { '@type': 'Organization', name: 'LS AX 컨설팅', '@id': 'https://www.lsconsulting.co.kr/#org' } },
+          { '@context': 'https://schema.org', '@type': 'Service', name: '기업 AI 컨설팅 · AI 업무 자동화', serviceType: ['AI 업무 자동화', '한국형 업무 도구 연동', 'AX 플랫폼 개발', 'AI 전략 컨설팅'], areaServed: 'KR', audience: { '@type': 'Audience', audienceType: '1인사업자·중소기업·스타트업·관리자' }, url: 'https://www.lsconsulting.co.kr/business', provider: { '@type': 'Organization', name: 'LS AX 컨설팅', '@id': 'https://www.lsconsulting.co.kr/#org' } },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              { '@type': 'Question', name: 'AI 업무 자동화란 무엇인가요?', acceptedAnswer: { '@type': 'Answer', text: '보고, 요약, 정리, 응대와 같은 반복적인 사무 업무를 AI가 자동으로 처리하는 시스템입니다. 메일·파일·메시지를 읽고, AI가 요약·분류·작성하고, 전송·저장·보고까지 자동화합니다.' } },
+              { '@type': 'Question', name: '카카오·네이버웍스·한글 등 한국 업무 도구와 연동되나요?', acceptedAnswer: { '@type': 'Answer', text: '네. 카카오 알림톡, 네이버웍스, 한컴 한글, 배달의민족, 더존, 토스 등 한국에서 실제로 사용하는 업무 도구와 연동하여 자동화합니다.' } },
+              { '@type': 'Question', name: 'IT를 모르는 사람도 AI 업무 자동화를 사용할 수 있나요?', acceptedAnswer: { '@type': 'Answer', text: '네. 노드를 그릴 줄 몰라도 됩니다. 업무를 말로 설명하면 LS AX 컨설팅이 자동화를 대신 설계하고 구축합니다.' } },
+              { '@type': 'Question', name: '기업 AI 컨설팅 비용은 얼마인가요?', acceptedAnswer: { '@type': 'Answer', text: '자동화할 업무 범위와 복잡도에 따라 다릅니다. 이메일 또는 전화로 현재 업무를 설명해 주시면 맞춤 솔루션과 예산 범위를 제안드립니다.' } },
+            ],
+          },
         ]}
       />
 

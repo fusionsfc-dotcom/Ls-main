@@ -138,7 +138,23 @@ export function Home() {
   return (
     <div className="min-h-screen bg-white">
       <SEO
-        title="LS AX 컨설팅 - 의료와 기업의 업무를 AI로 전환합니다"
+        title="LS AX 컨설팅 — AI 전환(AX) 전문 기업 | 의료·기업 AI 컨설팅"
+        description="의료와 기업의 업무를 AI로 전환(AX)하는 전문 컨설팅 기업. AI 시장 진단, 업무 자동화, 병원 AI 검색 최적화(GEO/AEO), HappyLifeCare 플랫폼을 자체 개발·운영합니다."
+        keywords="LS AX 컨설팅, LS 컨설팅, AX 컨설팅, AI 컨설팅, AI 전환, 의료 AI 컨설팅, 기업 AI 컨설팅, AI 업무 자동화, GEO 최적화, AEO 최적화"
+        url="https://www.lsconsulting.co.kr"
+        jsonLd={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              { '@type': 'Question', name: 'AX(AI 전환)가 정확히 무엇인가요?', acceptedAnswer: { '@type': 'Answer', text: 'AX는 AI Transformation의 약자로, 기업·기관의 실제 업무를 AI로 전환해 자동화·효율화하는 것입니다. 단순히 AI 도구를 도입하는 게 아니라 업무 방식 자체를 AI 기반으로 바꿉니다.' } },
+              { '@type': 'Question', name: 'LS AX 컨설팅은 어떤 일을 하나요?', acceptedAnswer: { '@type': 'Answer', text: '의료와 기업 현장의 업무를 AI로 전환합니다. AI 시장 진단, 업무 자동화, AI 최적화 웹·앱 구축, 맞춤 SaaS·플랫폼 개발, AI 전략 컨설팅을 진단부터 운영까지 한 팀이 수행합니다.' } },
+              { '@type': 'Question', name: '일반 AI 도입 업체와 무엇이 다른가요?', acceptedAnswer: { '@type': 'Answer', text: '외부 AI 서비스를 연결만 하는 게 아니라, 자체 AI 시스템과 플랫폼(Cancer Hospital Platform·HappyLifeCare·Space AX)을 직접 개발해 운영합니다. 가장 까다로운 의료 현장에서 검증된 실행력이 차별점입니다.' } },
+              { '@type': 'Question', name: '비용은 어떻게 되나요?', acceptedAnswer: { '@type': 'Answer', text: '프로젝트 범위와 규모에 따라 다릅니다. 이메일 또는 전화 상담을 통해 맞춤 솔루션과 예산 범위를 먼저 제안드립니다.' } },
+              { '@type': 'Question', name: '상담은 어떻게 신청하나요?', acceptedAnswer: { '@type': 'Answer', text: '이메일 fusionsfc@gmail.com 또는 전화 +82.10.9297.0940으로 문의해 주세요. 24시간 내 답변드립니다.' } },
+            ],
+          },
+        ]}
         description="LS AX 컨설팅은 의료와 기업 현장의 업무를 AI로 전환(AX)하는 전문 기업입니다. Cancer Hospital Platform, 환자재활 애플리케이션, Space AX Platform을 직접 개발해 운영합니다."
         url="https://www.lsconsulting.co.kr"
       />

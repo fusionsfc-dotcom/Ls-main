@@ -195,15 +195,26 @@ export function Healthcare() {
   return (
     <div className="min-h-screen bg-white">
       <SEO
-        title="의료 AX - 병원 홈페이지를 AI 전환합니다 | LS AX 컨설팅"
-        description="기존 병원 홈페이지는 AI 검색에 노출되지 않고 일방적인 정보만 전달합니다. LS AX 컨설팅은 HappyLifeCare 플랫폼으로 환자와 병원을 실시간 연동해, 병원 홈페이지를 AX로 전환합니다."
+        title="의료 AI 컨설팅 | 병원 AX·GEO·AEO 최적화 - LS AX 컨설팅"
+        description="병원 홈페이지를 ChatGPT·Perplexity 등 AI 검색에 인용되도록 GEO/AEO 최적화합니다. HappyLifeCare 플랫폼으로 환자-병원 실시간 연동, 신규 환자 유입 +30% 달성."
+        keywords="의료 AI 컨설팅, 병원 AI 컨설팅, 병원 홈페이지 AI 최적화, GEO 최적화, AEO 최적화, 병원 AI 검색, HappyLifeCare, 암병원 AI, 의료 AX, 병원 마케팅 AI"
         url="https://www.lsconsulting.co.kr/healthcare"
         jsonLd={[
           { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
             { '@type': 'ListItem', position: 1, name: '홈', item: 'https://www.lsconsulting.co.kr/' },
-            { '@type': 'ListItem', position: 2, name: '의료', item: 'https://www.lsconsulting.co.kr/healthcare' },
+            { '@type': 'ListItem', position: 2, name: '의료 AI 컨설팅', item: 'https://www.lsconsulting.co.kr/healthcare' },
           ] },
-          { '@context': 'https://schema.org', '@type': 'Service', name: '의료 AX · 병원 AI 전환', serviceType: ['AI 검색 최적화 웹사이트', '온라인 홍보 전략·대행', '의료 AI 챗봇·상담', 'HappyLifeCare 플랫폼'], areaServed: 'KR', audience: { '@type': 'Audience', audienceType: '병원·의료기관' }, url: 'https://www.lsconsulting.co.kr/healthcare', provider: { '@type': 'Organization', name: 'LS AX 컨설팅', '@id': 'https://www.lsconsulting.co.kr/#org' } },
+          { '@context': 'https://schema.org', '@type': 'Service', name: '의료 AI 컨설팅 · 병원 AX 전환', serviceType: ['병원 AI 검색 최적화(GEO/AEO)', '의료 홈페이지 AI 최적화', '온라인 홍보 전략·대행', 'HappyLifeCare 플랫폼'], areaServed: 'KR', audience: { '@type': 'Audience', audienceType: '병원·의료기관·암요양병원' }, url: 'https://www.lsconsulting.co.kr/healthcare', provider: { '@type': 'Organization', name: 'LS AX 컨설팅', '@id': 'https://www.lsconsulting.co.kr/#org' } },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              { '@type': 'Question', name: '병원 홈페이지를 AI 검색(ChatGPT·Perplexity 등)에 노출하려면 어떻게 해야 하나요?', acceptedAnswer: { '@type': 'Answer', text: 'GEO(Generative Engine Optimization)와 AEO(Answer Engine Optimization) 기법으로 Schema.org 구조화 데이터, FAQ 콘텐츠, llms.txt 등을 병원 홈페이지에 적용하면 ChatGPT·Perplexity·구글 AI Overview 등이 병원을 인용합니다. LS AX 컨설팅은 이를 전문으로 설계·구축합니다.' } },
+              { '@type': 'Question', name: 'GEO·AEO 최적화가 기존 SEO와 다른 점은 무엇인가요?', acceptedAnswer: { '@type': 'Answer', text: '기존 SEO가 구글·네이버 검색 결과의 클릭을 위한 것이라면, GEO·AEO는 AI 검색 엔진이 질문에 답할 때 우리 병원을 직접 인용하도록 최적화합니다. AI가 병원 콘텐츠를 읽고 이해할 수 있게 구조화하는 것이 핵심입니다.' } },
+              { '@type': 'Question', name: 'HappyLifeCare 플랫폼이란 무엇인가요?', acceptedAnswer: { '@type': 'Answer', text: '암 요양병원 전용 AI 통합 케어 플랫폼입니다. 환자 앱(HappyLife)과 병원 관리 시스템(HappyCare)이 24개 포인트로 실시간 연동되어 환자 데이터 기반의 선제 케어와 자연스러운 환자 유입을 만듭니다. 전국 165개 병원이 연동되어 있습니다.' } },
+              { '@type': 'Question', name: '의료 AI 컨설팅 도입 효과는 어떻게 되나요?', acceptedAnswer: { '@type': 'Answer', text: 'HappyLifeCare 도입 병원 기준 신규 환자 유입 +30%, 외래 출석률 +45%, 노쇼율 -60%, 자연 검색 노출 +200% 효과가 확인됩니다. 1주 진단으로 우리 병원의 예상 효과를 먼저 확인할 수 있습니다.' } },
+            ],
+          },
         ]}
       />
 
