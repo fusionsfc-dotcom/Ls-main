@@ -103,7 +103,7 @@ const leadership = {
 const contacts = [
   { Icon: Mail, label: 'Email', main: 'fusionsfc@gmail.com', sub: '24시간 내 답변', href: 'mailto:fusionsfc@gmail.com', internal: false },
   { Icon: Phone, label: 'Phone', main: '+82.10.9297.0940', sub: '평일 10:00 – 18:00', href: 'tel:+821092970940', internal: false },
-  { Icon: MessageSquare, label: 'Consultation', main: '60분 무료 상담', sub: '화상 또는 대면 미팅', href: '/consultation', internal: true },
+  { Icon: MessageSquare, label: 'Insights', main: 'AI 리포트', sub: '무료 인사이트 제공', href: '/insights', internal: true },
 ] as const;
 
 export function About() {
@@ -417,14 +417,14 @@ export function About() {
           <p className="text-lg max-w-xl mx-auto leading-relaxed mb-10" style={{ color: 'var(--navy-200)' }}>
             진단부터 전략, 구축, 운영까지. 대표님이 본업에 집중하도록 나머지는 저희가 만들겠습니다.
           </p>
-          <Link
-            to="/consultation"
+          <a
+            href="mailto:fusionsfc@gmail.com"
             className="inline-flex items-center gap-2 px-10 py-5 text-lg transition-all hover:opacity-90"
             style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
           >
-            <span className="font-semibold">컨설팅의뢰</span>
+            <span className="font-semibold">이메일로 문의하기</span>
             <ArrowRight className="w-5 h-5" />
-          </Link>
+          </a>
         </motion.div>
       </section>
     </div>

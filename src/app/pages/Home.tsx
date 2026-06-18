@@ -31,10 +31,10 @@ const homeFaqs = [
   { q: 'HappyLifeCare는 무엇인가요?', a: '암 요양병원 전용 AI 통합 케어 플랫폼입니다. 환자 앱(HappyLife)과 병원 관리 시스템(HappyCare)이 24개 포인트로 실시간 연동되어, 환자 데이터 기반의 선제 케어와 자연스러운 환자 유입을 만듭니다.' },
   { q: '기업 분야에서는 어떤 업무를 자동화하나요?', a: '보고·요약·정리·응대 같은 반복 사무 업무를 자동화합니다. 메일·파일·메시지를 읽고 → AI가 요약·분류·작성하고 → 전송·저장·보고하는 사이클을 시스템으로 전환합니다.' },
   { q: 'IT를 몰라도 업무 자동화를 쓸 수 있나요?', a: '네. 노드를 그릴 줄 몰라도 됩니다. 말로 업무를 설명하면 자동화를 대신 설계해 드리며, 카카오 알림톡·네이버웍스·한글·배민·더존 등 한국에서 실제 쓰는 도구에 연결합니다.' },
-  { q: '비용은 어떻게 되나요?', a: '프로젝트 범위와 규모에 따라 다릅니다. AI 진단·상담을 통해 맞춤 솔루션과 예산 범위를 먼저 제안드리며, 무료 진단으로 시작할 수 있습니다.' },
-  { q: '진행 절차와 기간은 어떻게 되나요?', a: '진단 → 설계 → 구축 → 운영의 4단계로 진행합니다. 무료 진단으로 시작해 범위에 따라 수 주~수 개월이 걸리며, 구축 후 운영·고도화까지 함께합니다.' },
+  { q: '비용은 어떻게 되나요?', a: '프로젝트 범위와 규모에 따라 다릅니다. 이메일 또는 전화 상담을 통해 맞춤 솔루션과 예산 범위를 먼저 제안드립니다.' },
+  { q: '진행 절차와 기간은 어떻게 되나요?', a: '진단 → 설계 → 구축 → 운영의 4단계로 진행합니다. 범위에 따라 수 주~수 개월이 걸리며, 구축 후 운영·고도화까지 함께합니다.' },
   { q: '어느 지역에서 일하나요?', a: '제주와 서울 두 거점에서 운영하며, 미팅은 화상·대면 모두 가능합니다. 클라이언트 위치에 따라 유연하게 진행합니다.' },
-  { q: '상담은 어떻게 신청하나요?', a: "홈페이지의 '컨설팅의뢰'에서 AI 진단(7~10분) 또는 60분 무료 상담을 신청할 수 있습니다. 이메일 fusionsfc@gmail.com, 전화 +82.10.9297.0940으로도 문의 가능합니다." },
+  { q: '상담은 어떻게 신청하나요?', a: '이메일 fusionsfc@gmail.com 또는 전화 +82.10.9297.0940으로 문의해 주세요. 24시간 내 답변드립니다.' },
 ] as const;
 
 /* ── 3대 자체 플랫폼 ───────────────────────────────── */
@@ -116,20 +116,20 @@ const stats = [
 const quoteEntries = [
   {
     Icon: Sparkles,
-    label: '7–10분 소요',
-    title: 'AI 진단으로 맞춤 견적 받기',
-    body: 'Claude AI가 준비도를 진단하고 맞춤 솔루션과 예산 범위를 즉시 제안합니다.',
-    ctaLabel: '지금 진단 시작',
-    ctaTo: '/consultation',
+    label: 'Email',
+    title: '이메일로 문의하기',
+    body: '어떤 업무를 자동화하고 싶으신지 말씀해 주시면 맞춤 솔루션과 방향을 제안드립니다.',
+    ctaLabel: '이메일 문의',
+    ctaTo: 'mailto:fusionsfc@gmail.com',
     primary: true,
   },
   {
     Icon: MessageCircle,
-    label: '60분 무료 미팅',
-    title: '60분 무료 상담 신청',
-    body: '진단 없이 바로 대화로 시작하고 싶다면 — 60분 무료 미팅으로 방향을 잡습니다.',
-    ctaLabel: '상담 신청',
-    ctaTo: '/consultation?simple=true',
+    label: '전화 상담',
+    title: '전화로 바로 상담하기',
+    body: '빠른 연결이 필요하시다면 전화로 문의해 주세요. 평일 10:00–18:00 운영합니다.',
+    ctaLabel: '전화 연결',
+    ctaTo: 'tel:+821092970940',
     primary: false,
   },
 ] as const;
@@ -181,20 +181,20 @@ export function Home() {
               이론이 아니라, 이미 만들어 운영 중인 플랫폼으로 증명합니다.
             </p>
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-12">
-              <Link
-                to="/consultation"
+              <a
+                href="mailto:fusionsfc@gmail.com"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 transition-all hover:opacity-90"
                 style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
               >
-                <span className="font-semibold">컨설팅의뢰</span>
+                <span className="font-semibold">문의하기</span>
                 <ArrowRight className="w-5 h-5 shrink-0" />
-              </Link>
+              </a>
               <Link
-                to="/consult"
+                to="/insights"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 text-white transition-all hover:bg-white/10"
                 style={{ borderColor: 'rgba(255,255,255,0.35)' }}
               >
-                <span>작동 중인 AI 직접 보기</span>
+                <span>리포트 보기</span>
               </Link>
             </div>
           </div>
@@ -425,14 +425,14 @@ export function Home() {
                 >
                   {body}
                 </p>
-                <Link
-                  to={ctaTo}
+                <a
+                  href={ctaTo}
                   className="inline-flex items-center gap-2 px-8 py-4 text-sm font-semibold transition-all hover:opacity-90 self-start"
                   style={primary ? { backgroundColor: 'white', color: 'var(--navy-900)' } : { backgroundColor: 'var(--navy-900)', color: 'white' }}
                 >
                   <span>{ctaLabel}</span>
                   <ArrowRight className="w-4 h-4" />
-                </Link>
+                </a>
               </motion.div>
             ))}
           </motion.div>

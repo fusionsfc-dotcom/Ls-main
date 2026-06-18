@@ -243,14 +243,14 @@ export function Healthcare() {
               더 이상 환자를 모으지 못합니다. 병원 홈페이지를 AX로 전환해야 할 때입니다.
             </p>
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-12">
-              <Link
-                to="/consultation"
+              <a
+                href="mailto:fusionsfc@gmail.com"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 transition-all hover:opacity-90"
                 style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
               >
-                <span className="font-semibold">병원 무료 진단 신청</span>
+                <span className="font-semibold">문의하기</span>
                 <ArrowRight className="w-5 h-5 shrink-0" />
-              </Link>
+              </a>
               <a
                 href="#happylifecare"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 text-white transition-all hover:bg-white/10"
@@ -387,14 +387,14 @@ export function Healthcare() {
             <p className="text-base mb-6" style={{ color: 'var(--navy-200)' }}>
               대부분의 병원이 <span className="text-white font-bold">30–40점대</span>에 머뭅니다. 우리 병원의 실제 점수가 궁금하시다면—
             </p>
-            <Link
-              to="/consultation"
+            <a
+              href="mailto:fusionsfc@gmail.com"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 transition-all hover:opacity-90"
               style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
             >
-              <span className="font-semibold">내 병원 AI 검색 점수 무료로 받기</span>
+              <span className="font-semibold">이메일로 문의하기</span>
               <ArrowRight className="w-5 h-5" />
-            </Link>
+            </a>
           </div>
 
           <p className="text-xl lg:text-2xl text-center mt-20 leading-snug font-medium text-white">
@@ -772,20 +772,20 @@ export function Healthcare() {
             진단 1주 · 비용 없음 · 도입 의무 없음
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <Link
-              to="/consultation"
+            <a
+              href="mailto:fusionsfc@gmail.com"
               className="inline-flex items-center justify-center gap-2 px-10 py-5 text-lg transition-all hover:opacity-90 w-full sm:w-auto"
               style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
             >
-              <span className="font-semibold">병원 무료 진단 신청</span>
+              <span className="font-semibold">이메일로 문의하기</span>
               <ArrowRight className="w-5 h-5" />
-            </Link>
+            </a>
             <Link
-              to="/consultation"
+              to="/insights"
               className="inline-flex items-center justify-center gap-2 px-10 py-5 text-lg border-2 text-white transition-all hover:bg-white/10 w-full sm:w-auto"
               style={{ borderColor: 'rgba(255,255,255,0.35)' }}
             >
-              <span>작동 중인 AI 보기</span>
+              <span>리포트 보기</span>
             </Link>
           </div>
         </motion.div>

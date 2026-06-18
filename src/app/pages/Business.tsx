@@ -152,14 +152,14 @@ export function Business() {
               보고·요약·정리·응대 같은 반복 업무를 AI 자동화로 전환합니다.
             </p>
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-12">
-              <Link
-                to="/consultation"
+              <a
+                href="mailto:fusionsfc@gmail.com"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 transition-all hover:opacity-90"
                 style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
               >
-                <span className="font-semibold">업무 자동화 무료 진단</span>
+                <span className="font-semibold">문의하기</span>
                 <ArrowRight className="w-5 h-5 shrink-0" />
-              </Link>
+              </a>
               <a
                 href="#how"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 text-white transition-all hover:bg-white/10"
@@ -414,14 +414,14 @@ export function Business() {
           <p className="text-lg max-w-xl mx-auto leading-relaxed mb-10" style={{ color: 'var(--navy-200)' }}>
             반복 업무를 진단하고, 가장 효과 큰 자동화부터 설계해 드립니다. 비용 없이 시작합니다.
           </p>
-          <Link
-            to="/consultation"
+          <a
+            href="mailto:fusionsfc@gmail.com"
             className="inline-flex items-center gap-2 px-10 py-5 text-lg transition-all hover:opacity-90"
             style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
           >
-            <span className="font-semibold">업무 자동화 무료 진단</span>
+            <span className="font-semibold">이메일로 문의하기</span>
             <ArrowRight className="w-5 h-5" />
-          </Link>
+          </a>
         </motion.div>
       </section>
     </div>

@@ -121,7 +121,7 @@ const cases = [
     title: 'AI 암상담 시스템',
     problem: '환자·보호자의 질문에 24시간 정확히 답할 창구가 없던 문제',
     result: 'RAG 기반 의료 상담 AI — 한국 의료체계까지 반영해 응대',
-    to: '/consultation',
+    to: '/services',
   },
 ] as const;
 
@@ -187,14 +187,14 @@ export function Services() {
               말이 아니라 이미 운영 중인 플랫폼과 결과물로 증명합니다.
             </p>
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-12">
-              <Link
-                to="/consultation"
+              <a
+                href="mailto:fusionsfc@gmail.com"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 transition-all hover:opacity-90"
                 style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
               >
-                <span className="font-semibold">컨설팅의뢰</span>
+                <span className="font-semibold">문의하기</span>
                 <ArrowRight className="w-5 h-5 shrink-0" />
-              </Link>
+              </a>
               <a
                 href="#cases"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 text-white transition-all hover:bg-white/10"
@@ -392,14 +392,14 @@ export function Services() {
           <p className="text-lg max-w-xl mx-auto leading-relaxed mb-10" style={{ color: 'var(--navy-200)' }}>
             솔루션이 명확하지 않으셔도 됩니다. 회사 상황을 듣고 가장 적합한 방향을 제안합니다.
           </p>
-          <Link
-            to="/consultation"
+          <a
+            href="mailto:fusionsfc@gmail.com"
             className="inline-flex items-center gap-2 px-10 py-5 text-lg transition-all hover:opacity-90"
             style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
           >
-            <span className="font-semibold">컨설팅의뢰</span>
+            <span className="font-semibold">이메일로 문의하기</span>
             <ArrowRight className="w-5 h-5" />
-          </Link>
+          </a>
         </motion.div>
       </section>
     </div>

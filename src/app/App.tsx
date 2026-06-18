@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
+import { BrowserRouter, Routes, Route } from 'react-router';
 import { HelmetProvider } from 'react-helmet-async';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -13,7 +13,6 @@ import { Services } from './pages/Services';
 import { Healthcare } from './pages/Healthcare';
 import { Business } from './pages/Business';
 import { About } from './pages/About';
-import { Consultation } from './pages/Consultation';
 import { AiConsult } from './pages/AiConsult';
 
 // 보조 페이지 · 리포트 — 지연 로드(코드 스플리팅)
@@ -59,9 +58,6 @@ function AppContent() {
             <Route path="/healthcare" element={<Healthcare />} />
             <Route path="/about" element={<About />} />
             <Route path="/business" element={<Business />} />
-            <Route path="/consultation" element={<Consultation />} />
-            {/* 작동 중인 AI는 전역 플로팅 위젯 — /consult 진입은 상담으로 안내 */}
-            <Route path="/consult" element={<Navigate to="/consultation" replace />} />
             <Route path="/research" element={<Research />} />
             <Route path="/strategy" element={<Strategy />} />
             <Route path="/execution" element={<Execution />} />

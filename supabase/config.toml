@@ -1,0 +1,13 @@
+project_id = "srlyxadncjladllbwmdk"
+
+# 진단 리포트 생성 함수 — 브라우저에서 직접 호출(공개 도구).
+# verify_jwt=false 로 두어야 CORS 프리플라이트(OPTIONS, Authorization 헤더 없음)가
+# 게이트웨이에서 401로 차단되지 않는다. 함수 내부에서 OPTIONS를 200으로 처리한다.
+[functions.generate-diagnosis-report]
+verify_jwt = false
+
+[functions.send-diagnosis-report]
+verify_jwt = false
+
+[functions.generate-report]
+verify_jwt = false
