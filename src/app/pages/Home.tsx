@@ -34,7 +34,7 @@ const homeFaqs = [
   { q: '비용은 어떻게 되나요?', a: '프로젝트 범위와 규모에 따라 다릅니다. AI 진단·상담을 통해 맞춤 솔루션과 예산 범위를 먼저 제안드리며, 무료 진단으로 시작할 수 있습니다.' },
   { q: '진행 절차와 기간은 어떻게 되나요?', a: '진단 → 설계 → 구축 → 운영의 4단계로 진행합니다. 무료 진단으로 시작해 범위에 따라 수 주~수 개월이 걸리며, 구축 후 운영·고도화까지 함께합니다.' },
   { q: '어느 지역에서 일하나요?', a: '제주와 서울 두 거점에서 운영하며, 미팅은 화상·대면 모두 가능합니다. 클라이언트 위치에 따라 유연하게 진행합니다.' },
-  { q: '상담은 어떻게 신청하나요?', a: "홈페이지의 '상담/견적 신청'에서 AI 진단(7~10분) 또는 60분 무료 상담을 신청할 수 있습니다. 이메일 fusionsfc@gmail.com, 전화 +82.10.9297.0940으로도 문의 가능합니다." },
+  { q: '상담은 어떻게 신청하나요?', a: "홈페이지의 '컨설팅의뢰'에서 AI 진단(7~10분) 또는 60분 무료 상담을 신청할 수 있습니다. 이메일 fusionsfc@gmail.com, 전화 +82.10.9297.0940으로도 문의 가능합니다." },
 ] as const;
 
 /* ── 3대 자체 플랫폼 ───────────────────────────────── */
@@ -186,7 +186,7 @@ export function Home() {
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 transition-all hover:opacity-90"
                 style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
               >
-                <span className="font-semibold">상담 / 견적 신청</span>
+                <span className="font-semibold">컨설팅의뢰</span>
                 <ArrowRight className="w-5 h-5 shrink-0" />
               </Link>
               <Link

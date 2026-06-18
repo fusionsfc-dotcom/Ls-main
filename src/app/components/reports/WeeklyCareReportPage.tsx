@@ -60,6 +60,33 @@ export function WeeklyCareReportPage({
 
   const coverSubtitle = [meta.subtitle, meta.dataBasis].filter(Boolean).join(' · ');
 
+  const datePublished = (meta.issue.match(/(\d{4}-\d{2}-\d{2})/) || [])[1];
+  const reportJsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: '홈', item: 'https://www.lsconsulting.co.kr/' },
+        { '@type': 'ListItem', position: 2, name: '리포트', item: 'https://www.lsconsulting.co.kr/insights' },
+        { '@type': 'ListItem', position: 3, name: meta.title, item: canonical },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: meta.title,
+      description: meta.intro,
+      ...(datePublished ? { datePublished } : {}),
+      inLanguage: 'ko-KR',
+      url: canonical,
+      mainEntityOfPage: canonical,
+      author: { '@type': 'Organization', name: 'LS AX 컨설팅', '@id': 'https://www.lsconsulting.co.kr/#org' },
+      publisher: { '@type': 'Organization', name: 'LS AX 컨설팅', '@id': 'https://www.lsconsulting.co.kr/#org' },
+      isPartOf: { '@type': 'Blog', '@id': 'https://www.lsconsulting.co.kr/insights#blog' },
+      about: isStrategy ? '병원 경영·운영전략' : `${meta.title.replace(/ 환자 케어 리포트$/, '')} 케어`,
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-white pt-20">
       <Helmet>
@@ -71,7 +98,7 @@ export function WeeklyCareReportPage({
         />
       </Helmet>
 
-      <SEO title={`${meta.title} | LS AX 컨설팅`} description={meta.intro} url={canonical} />
+      <SEO title={`${meta.title} | LS AX 컨설팅`} description={meta.intro} url={canonical} jsonLd={reportJsonLd} />
 
       <header className="sticky top-20 z-40 bg-white/95 backdrop-blur border-b" style={{ borderColor: '#EAEAEA' }}>
         <div className="max-w-[900px] mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4">

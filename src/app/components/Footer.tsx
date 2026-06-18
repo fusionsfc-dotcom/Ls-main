@@ -30,7 +30,7 @@ const footerSections = [
     title: '회사',
     links: [
       { label: '소개', path: '/about' },
-      { label: '상담 / 견적 신청', path: '/consultation' },
+      { label: '컨설팅의뢰', path: '/consultation' },
     ],
   },
 ] as const;

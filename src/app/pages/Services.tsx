@@ -192,7 +192,7 @@ export function Services() {
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 transition-all hover:opacity-90"
                 style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
               >
-                <span className="font-semibold">상담 / 견적 신청</span>
+                <span className="font-semibold">컨설팅의뢰</span>
                 <ArrowRight className="w-5 h-5 shrink-0" />
               </Link>
               <a
@@ -397,7 +397,7 @@ export function Services() {
             className="inline-flex items-center gap-2 px-10 py-5 text-lg transition-all hover:opacity-90"
             style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
           >
-            <span className="font-semibold">상담 / 견적 신청</span>
+            <span className="font-semibold">컨설팅의뢰</span>
             <ArrowRight className="w-5 h-5" />
           </Link>
         </motion.div>

@@ -70,7 +70,7 @@ export function Header() {
                 className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white transition-all hover:opacity-90"
                 style={{ backgroundColor: 'var(--navy-900)' }}
               >
-                <span>상담/견적 신청</span>
+                <span>컨설팅의뢰</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -131,7 +131,7 @@ export function Header() {
               className="inline-flex items-center justify-center gap-2 w-full py-4 text-base font-semibold text-white transition-all hover:opacity-90 mt-10"
               style={{ backgroundColor: 'var(--navy-900)' }}
             >
-              <span>상담/견적 신청</span>
+              <span>컨설팅의뢰</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
           </nav>
