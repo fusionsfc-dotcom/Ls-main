@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>LS AX 접착형 DM 시안</title>
+<style>
+  :root{
+    --navy:#0A1628;
+    --navy2:#16305A;
+    --navy3:#2E5B9E;
+    --gray:#5B6675;
+    --line:#D5DBE3;
+    --accent:#E5484D;
+    --pale:#EEF2F7;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','맑은 고딕',sans-serif;
+    background:#8A93A0; padding:24px; color:var(--navy);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ── 화면 전용 UI ───────────────── */
+  .ui{
+    max-width:210mm; margin:0 auto 20px; background:#fff; border-radius:10px;
+    padding:16px 20px; display:flex; gap:14px; align-items:center; flex-wrap:wrap;
+  }
+  .ui h1{font-size:15px; font-weight:800; margin-right:auto;}
+  .ui small{display:block; font-weight:400; color:var(--gray); font-size:12px; margin-top:3px;}
+  .ui button{
+    font-family:inherit; font-size:13px; font-weight:700; padding:9px 16px;
+    border:1.5px solid var(--navy); background:#fff; color:var(--navy);
+    border-radius:6px; cursor:pointer;
+  }
+  .ui button.on{background:var(--navy); color:#fff;}
+  .sheetlabel{
+    max-width:210mm; margin:0 auto 8px; color:#fff; font-size:13px; font-weight:700;
+    letter-spacing:.02em;
+  }
+  .sheetlabel span{font-weight:400; opacity:.8;}
+
+  /* ── 용지 ───────────────── */
+  .sheet{
+    width:210mm; height:297mm; background:#fff; margin:0 auto 24px;
+    position:relative; overflow:hidden; box-shadow:0 6px 24px rgba(0,0,0,.28);
+  }
+  .panel{
+    width:210mm; height:99mm; padding:9mm 12mm; position:relative; overflow:hidden;
+    display:flex; flex-direction:column;
+  }
+  /* 접지선 — 화면에서만 */
+  .panel:not(:last-child)::after{
+    content:''; position:absolute; left:0; right:0; bottom:0; height:0;
+    border-bottom:1px dashed #9AA6B4;
+  }
+  .foldtag{
+    position:absolute; right:3mm; bottom:1mm; font-size:8px; color:#9AA6B4;
+    letter-spacing:.05em;
+  }
+
+  /* ── 공통 타이포 ───────────────── */
+  .kicker{font-size:10.5pt; font-weight:800; letter-spacing:.08em; color:var(--navy3);}
+  .h1{font-size:27pt; font-weight:800; line-height:1.22; letter-spacing:-.02em;}
+  .h2{font-size:19pt; font-weight:800; line-height:1.3; letter-spacing:-.015em;}
+  .h3{font-size:13pt; font-weight:800; line-height:1.4;}
+  .body{font-size:11pt; line-height:1.62; color:#26364B;}
+  .small{font-size:9.5pt; line-height:1.55; color:var(--gray);}
+  .num{font-variant-numeric:tabular-nums;}
+  b{font-weight:800;}
+  .hl{color:var(--navy3);}
+  .rule{height:1px; background:var(--line); margin:4mm 0;}
+
+  /* ═══ B1 · 주소면 ═══ */
+  .p-addr{justify-content:space-between;}
+  .sender{font-size:9pt; line-height:1.5; color:var(--gray);}
+  .sender b{color:var(--navy); font-size:10pt;}
+  .addressee{
+    text-align:center; padding-left:20mm;
+  }
+  .addressee .region{font-size:11pt; color:var(--gray); margin-bottom:2mm;}
+  .addressee .name{font-size:20pt; font-weight:800; letter-spacing:-.01em;}
+  .teaser{
+    border-top:2.5px solid var(--navy); padding-top:3.5mm;
+    font-size:12.5pt; font-weight:800; line-height:1.45;
+  }
+
+  /* ═══ B2 · 노출 홍보면 ═══ */
+  .p-hook{
+    background:var(--navy); color:#fff; justify-content:center; gap:4mm;
+  }
+  .p-hook .h1{font-size:29pt;}
+  .p-hook .sub{font-size:11pt; line-height:1.6; color:#B8C6DA;}
+  .pricebar{
+    display:flex; align-items:baseline; gap:3mm; flex-wrap:wrap;
+    border-top:1px solid rgba(255,255,255,.25); padding-top:3.5mm; margin-top:1mm;
+  }
+  .pricebar .items{font-size:10.5pt; color:#D5E0EE; line-height:1.5;}
+  .pricebar .price{font-size:20pt; font-weight:800; white-space:nowrap;}
+  .pricebar .price em{font-style:normal; font-size:12pt; font-weight:700;}
+  .openhint{
+    position:absolute; right:12mm; bottom:6mm; font-size:10pt; font-weight:700;
+    color:#8FA8CC;
+  }
+
+  /* ═══ 2열 대비 ═══ */
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:8mm; flex:1;}
+  .col .tag{
+    display:inline-block; font-size:9pt; font-weight:800; padding:1.2mm 3mm;
+    border-radius:99px; margin-bottom:2.5mm;
+  }
+  .tag-old{background:#E8ECF1; color:var(--gray);}
+  .tag-new{background:var(--navy); color:#fff;}
+  .capbox{
+    flex:1; border:1.5px dashed #B6C0CD; border-radius:4px; margin-top:2.5mm;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    font-size:8.5pt; color:#95A1B0; line-height:1.5; padding:2mm; min-height:16mm;
+  }
+
+  /* ═══ B3 · 구조 도식 (캡처 불필요) ═══ */
+  .mock{display:flex; flex-direction:column; height:100%;}
+  .mockbar{
+    border:1.2px solid #C3CCD8; border-radius:99px; padding:1.5mm 3.5mm;
+    font-size:8.5pt; color:#4A5768; background:#fff; display:flex; gap:2mm;
+    align-items:center; margin-bottom:3mm;
+  }
+  .mockbar::before{content:'🔍'; font-size:7pt; opacity:.5;}
+  .listrow{
+    height:3mm; background:#E4E9EF; border-radius:1.5px; margin-bottom:1.6mm;
+  }
+  .listrow.w1{width:78%} .listrow.w2{width:64%} .listrow.w3{width:71%}
+  .listrow.me{
+    height:5.4mm; background:var(--navy); border-radius:2px; color:#fff;
+    font-size:8pt; font-weight:800; display:flex; align-items:center;
+    padding:0 2.5mm; width:100%; margin-bottom:1.6mm;
+  }
+  .aibubble{
+    background:#F4F7FB; border:1.2px solid #C9D6E6; border-radius:3px;
+    padding:2.5mm 3mm; font-size:8.5pt; line-height:1.55; color:#26364B;
+  }
+  .aibubble .aihd{
+    font-size:7.5pt; font-weight:800; color:var(--navy3); letter-spacing:.04em;
+    margin-bottom:1.5mm;
+  }
+  .absent{
+    margin-top:2.2mm; border:1.2px dashed var(--accent); border-radius:2px;
+    padding:1.8mm 2.5mm; display:flex; align-items:center; gap:2mm;
+  }
+  .absent .nm{font-size:8.5pt; font-weight:800; color:#A8B2BE; text-decoration:line-through;}
+  .absent .mk{font-size:7.5pt; font-weight:800; color:var(--accent); margin-left:auto;}
+  .capline{
+    font-size:8.5pt; font-weight:700; margin-top:2.5mm; padding-top:2mm;
+    border-top:1px solid var(--line);
+  }
+  .verdict{
+    margin-top:auto; background:var(--navy); color:#fff; margin-left:-12mm;
+    margin-right:-12mm; margin-bottom:-9mm; padding:3.2mm 12mm 3.8mm;
+    font-size:10.5pt; line-height:1.5;
+  }
+
+  /* ═══ A2 · 패키지 ═══ */
+  .p-pkg{background:var(--pale);}
+  .pkghead{
+    background:var(--navy); color:#fff; margin:-9mm -12mm 4mm; padding:4.5mm 12mm;
+    display:flex; align-items:baseline; gap:3mm;
+  }
+  .pkghead .lbl{font-size:11pt; font-weight:700; color:#A9BDD8;}
+  .pkghead .big{font-size:22pt; font-weight:800; letter-spacing:-.02em;}
+  .checks{
+    display:grid; grid-template-columns:1fr 1fr; gap:2.5mm 7mm; margin-bottom:3.5mm;
+  }
+  .chk{display:flex; gap:2.5mm; align-items:flex-start; font-size:10.5pt; line-height:1.4;}
+  .chk i{
+    font-style:normal; color:#fff; background:var(--navy3); width:4.6mm; height:4.6mm;
+    border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-size:8pt; font-weight:800; flex-shrink:0; margin-top:.4mm;
+  }
+  .chk b{display:block; font-weight:800;}
+  .chk span{font-size:9pt; color:var(--gray);}
+  .pkgnote{
+    background:#fff; border-left:3px solid var(--navy3); padding:3mm 4mm;
+    font-size:10pt; line-height:1.55;
+  }
+
+  /* ═══ A3 · CTA ═══ */
+  .badges{display:flex; gap:2mm; flex-wrap:wrap; margin:2.5mm 0 3mm;}
+  .badge{
+    font-size:8.5pt; font-weight:700; border:1px solid var(--line);
+    padding:1.4mm 3mm; border-radius:99px; color:var(--navy2);
+  }
+  .ctabox{
+    background:var(--navy); color:#fff; margin:auto -12mm -9mm; padding:4.5mm 12mm 5mm;
+    display:flex; align-items:center; gap:8mm;
+  }
+  .ctabox .tel{font-size:23pt; font-weight:800; letter-spacing:-.01em; line-height:1.1;}
+  .ctabox .meta{font-size:8.5pt; color:#A9BDD8; line-height:1.55;}
+  .qr{
+    width:19mm; height:19mm; background:#fff; border-radius:3px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    font-size:7pt; color:#8892A0; line-height:1.3; margin-left:auto;
+  }
+
+  /* ── 인쇄 ───────────────── */
+  @page{ size:A4 portrait; margin:0; }
+  @media print{
+    body{background:#fff; padding:0;}
+    .ui,.sheetlabel{display:none !important;}
+    .sheet{margin:0; box-shadow:none; page-break-after:always;}
+    .sheet:last-child{page-break-after:auto;}
+    .panel::after{display:none;}
+    .foldtag{display:none;}
+    *{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+
+<div class="ui">
+  <h1>LS AX 접착형 DM 시안
+    <small>A4 210×297mm · 가로 3단 접지 · 완성 210×99mm · 양면 6면</small>
+  </h1>
+  <button id="btnA" class="on" onclick="setType('A')">A형 · 의원/한의원/치과 80만원</button>
+  <button id="btnB" onclick="setType('B')">B형 · 병원/요양병원 150만원</button>
+  <button onclick="window.print()">인쇄 · PDF</button>
+</div>
+
+<!-- ══════════ 용지 1 : 겉면 ══════════ -->
+<div class="sheetlabel">용지 1 — 겉면 <span>(접었을 때 노출되는 면 + 첫 펼침면)</span></div>
+<div class="sheet">
+
+  <!-- B1 · 주소면 -->
+  <div class="panel p-addr">
+    <div class="sender">
+      <b>LS AX 컨설팅</b><br>
+      제주특별자치도 서귀포시 안덕면<br>
+      010-9297-0940
+    </div>
+    <div class="addressee">
+      <div class="region">제주시 노형동</div>
+      <div class="name">○○의원 원장님 <span style="font-size:13pt;font-weight:600;">귀하</span></div>
+    </div>
+    <div class="teaser">
+      네이버가 바뀌고 있습니다.<br>
+      우리 병원은 준비되어 있습니까?
+    </div>
+    <div class="foldtag">B1 · 주소면</div>
+  </div>
+
+  <!-- B2 · 노출 홍보면 -->
+  <div class="panel p-hook">
+    <div class="h1">
+      이제 환자분들이<br>
+      네이버에서 <span style="color:#7FB0F0">AI</span>로 병원을 찾습니다
+    </div>
+    <div class="sub">
+      네이버 검색이 목록에서 AI 답변으로 바뀌고 있습니다.<br>
+      플레이스만으로는 AI가 읽을 내용이 없습니다.
+    </div>
+    <div class="pricebar">
+      <div class="items">
+        네이버 블로그 · 플레이스 <b style="color:#fff">＋</b> AI 최적화 홈페이지<br>
+        개발부터 운영대행까지
+      </div>
+      <div class="price">월 <span class="num" data-price>80</span>만원<em> 부터</em></div>
+    </div>
+    <div class="openhint">▶ 펼쳐보세요</div>
+    <div class="foldtag" style="color:rgba(255,255,255,.35)">B2 · 노출 홍보면</div>
+  </div>
+
+  <!-- B3 · 무엇이 바뀌었나 (구조 도식 · 캡처 불필요) -->
+  <div class="panel">
+    <div class="h3" style="margin-bottom:3mm;">
+      예전에는 <span style="color:var(--gray)">목록 안에만</span> 있으면 됐습니다.<br>
+      AI는 <span class="hl">몇 곳만 골라</span> 답합니다.
+    </div>
+
+    <div class="cols" style="gap:7mm;">
+      <!-- 예전 -->
+      <div class="col mock">
+        <span class="tag tag-old">예전 · 목록형 검색</span>
+        <div class="mockbar">노형동 내과</div>
+        <div class="listrow w1"></div>
+        <div class="listrow w2"></div>
+        <div class="listrow me">○○의원 &nbsp;— 목록에 있음</div>
+        <div class="listrow w3"></div>
+        <div class="listrow w1"></div>
+        <div class="listrow w2"></div>
+        <div class="capline" style="color:var(--gray);">
+          10곳이 나열되면 우리 병원도 그 안에 있었습니다.
+        </div>
+      </div>
+
+      <!-- 지금 -->
+      <div class="col mock">
+        <span class="tag tag-new">지금 · AI 답변형 검색</span>
+        <div class="mockbar">노형동 내과 어디가 좋아?</div>
+        <div class="aibubble">
+          <div class="aihd">✦ AI 답변</div>
+          노형동에서는 <b>△△내과</b>와 <b>□□의원</b>을
+          많이 찾습니다. △△내과는 소화기 진료를
+          중심으로…
+        </div>
+        <div class="absent">
+          <span class="nm">○○의원</span>
+          <span class="mk">언급 없음</span>
+        </div>
+        <div class="capline" style="color:var(--accent);">
+          답변에 없으면, 환자는 우리 병원을 보지 못합니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="verdict">
+      AI는 <b>홈페이지의 문장</b>을 읽고 답을 만듭니다.<br>
+      플레이스에는 위치와 전화번호만 있을 뿐, <b>AI가 읽을 문장이 없습니다.</b>
+    </div>
+    <div class="foldtag" style="color:rgba(255,255,255,.35)">B3 · 첫 펼침면</div>
+  </div>
+
+</div>
+
+<!-- ══════════ 용지 2 : 속면 ══════════ -->
+<div class="sheetlabel">용지 2 — 속면 <span>(완전히 펼쳤을 때 위→아래로 이어지는 3면)</span></div>
+<div class="sheet">
+
+  <!-- A1 · 그래서 필요한 것 -->
+  <div class="panel">
+    <div class="kicker">WHY · 그래서 필요한 것</div>
+    <div class="h2" style="margin-top:2.5mm;">
+      플레이스는 <span style="color:var(--gray)">‘어디 있는지’</span>를,<br>
+      AI 홈페이지는 <span class="hl">‘왜 이 병원인지’</span>를 알려줍니다
+    </div>
+    <div class="rule"></div>
+    <div class="body">
+      AI가 추천에 넣으려면 <b>읽을 수 있는 정보</b>가 있어야 합니다.
+      진료 범위, 원장님 경력, 자주 묻는 질문, 진료시간과 예약 방법 —
+      이 내용을 <b>AI가 읽는 구조(구조화 데이터)</b>로 담아내는 것이
+      AI 최적화 홈페이지입니다.
+    </div>
+    <div class="small" style="margin-top:auto;">
+      기존 홈페이지는 <b>사람이 보는 것</b>이었습니다. AI 최적화 홈페이지는 <b>AI가 읽는 것</b>입니다.
+    </div>
+    <div class="foldtag">A1</div>
+  </div>
+
+  <!-- A2 · 패키지 -->
+  <div class="panel p-pkg">
+    <div class="pkghead">
+      <span class="lbl">월</span>
+      <span class="big"><span class="num" data-price>80</span>만원</span>
+      <span class="lbl" data-pkglabel>하나로, 전부 해결됩니다</span>
+    </div>
+    <div class="checks">
+      <div class="chk"><i>✓</i><span><b>네이버 블로그</b>월 20건 작성·발행</span></div>
+      <div class="chk"><i>✓</i><span><b>네이버 플레이스</b>상시 관리·최적화</span></div>
+      <div class="chk"><i>✓</i><span><b>유튜브 쇼츠</b>월 20건 제작·업로드</span></div>
+      <div class="chk"><i>✓</i><span><b>AI 최적화 홈페이지</b>개발부터 운영대행까지</span></div>
+      <div class="chk" data-bonly hidden><i>✓</i><span><b>진료과·의료진 페이지</b>과별 개별 최적화</span></div>
+      <div class="chk" data-bonly hidden><i>✓</i><span><b>월간 성과 리포트</b>+ 전담 담당자 방문</span></div>
+    </div>
+    <div class="pkgnote">
+      원장님이 하실 일은 <b>월 1회 검수</b>뿐입니다.<br>
+      기획 · 원고 · 촬영 · 편집 · 업로드 · 의료광고법 검토까지 저희가 진행합니다.
+    </div>
+    <div class="foldtag">A2</div>
+  </div>
+
+  <!-- A3 · 실적 + 미래 + CTA -->
+  <div class="panel">
+    <div class="h3" data-credhead>15년, 병의원만 해왔습니다</div>
+    <div class="badges" data-badges>
+      <span class="badge">재활병원</span><span class="badge">한방병원</span>
+      <span class="badge">요양병원</span><span class="badge">한의원 · 의원</span>
+      <span class="badge">AX 시스템 운영</span><span class="badge">📍 제주 소재</span>
+    </div>
+    <div class="body" style="border-top:1px solid var(--line); padding-top:3mm;">
+      앞으로 모든 휴대폰에 <b>AI 에이전트</b>가 들어갑니다. 환자가 “병원 예약해줘”라고 말하면
+      휴대폰 속 AI가 대신 병원을 찾아 연결합니다. <b>지금 준비하시면 늦지 않습니다.</b>
+    </div>
+    <div class="ctabox">
+      <div>
+        <div style="font-size:9.5pt;color:#A9BDD8;margin-bottom:1.5mm;">우리 병원 AI 노출 진단 — 무료</div>
+        <div class="tel">010-9297-0940</div>
+      </div>
+      <div class="meta">
+        평일 10:00 – 18:00<br>
+        fusionsfc@gmail.com<br>
+        www.lsconsulting.co.kr
+      </div>
+      <div class="qr">QR<br>코드</div>
+    </div>
+    <div class="foldtag">A3</div>
+  </div>
+
+</div>
+
+<script>
+  function setType(t){
+    const isB = t === 'B';
+    document.getElementById('btnA').classList.toggle('on', !isB);
+    document.getElementById('btnB').classList.toggle('on', isB);
+
+    document.querySelectorAll('[data-price]').forEach(el => el.textContent = isB ? '150' : '80');
+    document.querySelectorAll('[data-bonly]').forEach(el => el.hidden = !isB);
+    document.querySelector('[data-pkglabel]').textContent = isB ? '병원 전용 패키지' : '하나로, 전부 해결됩니다';
+    document.querySelector('[data-credhead]').textContent = isB ? '병원 현장에서 검증했습니다' : '15년, 병의원만 해왔습니다';
+    document.querySelector('[data-badges]').innerHTML = isB
+      ? '<span class="badge">재활병원</span><span class="badge">한방병원</span><span class="badge">요양병원</span><span class="badge">HappyLifeCare · 전국 165개 병원 연동</span><span class="badge">📍 제주 소재</span>'
+      : '<span class="badge">재활병원</span><span class="badge">한방병원</span><span class="badge">요양병원</span><span class="badge">한의원 · 의원</span><span class="badge">AX 시스템 운영</span><span class="badge">📍 제주 소재</span>';
+  }
+</script>
+
+</body>
+</html>
