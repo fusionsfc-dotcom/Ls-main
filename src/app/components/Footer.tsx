@@ -30,6 +30,7 @@ const footerSections = [
     title: '회사',
     links: [
       { label: '소개', path: '/about' },
+      { label: '프로젝트', path: '/projects' },
     ],
   },
 ] as const;
@@ -46,6 +47,7 @@ export function Footer({ hidePricing = false }: FooterProps) {
     pathname !== '/' &&
     pathname !== '/services' &&
     pathname !== '/business' &&
+    pathname !== '/projects' &&
     pathname !== '/about' &&
     pathname !== '/insights' &&
     !pathname.startsWith('/reports/') &&

@@ -34,6 +34,7 @@ function sitemapPlugin(): Plugin {
         ['/services', '0.9', 'monthly'],
         ['/healthcare', '0.9', 'monthly'],
         ['/business', '0.9', 'monthly'],
+        ['/projects', '0.9', 'monthly'],
         ['/about', '0.8', 'monthly'],
         ['/insights', '0.9', 'weekly'],
         ...slugs.map((s) => [`/reports/weekly/${s}`, '0.7', 'monthly'] as [string, string, string]),

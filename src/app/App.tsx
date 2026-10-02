@@ -13,6 +13,7 @@ import { Services } from './pages/Services';
 import { Healthcare } from './pages/Healthcare';
 import { Business } from './pages/Business';
 import { About } from './pages/About';
+import { Projects } from './pages/Projects';
 import { AiConsult } from './pages/AiConsult';
 
 // 보조 페이지 · 리포트 — 지연 로드(코드 스플리팅)
@@ -58,6 +59,7 @@ function AppContent() {
             <Route path="/healthcare" element={<Healthcare />} />
             <Route path="/about" element={<About />} />
             <Route path="/business" element={<Business />} />
+            <Route path="/projects" element={<Projects />} />
             <Route path="/research" element={<Research />} />
             <Route path="/strategy" element={<Strategy />} />
             <Route path="/execution" element={<Execution />} />
