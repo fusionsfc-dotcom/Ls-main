@@ -541,6 +541,36 @@ export function Marquee({
   );
 }
 
+/* ── 와이프(위→아래) 리빌 컨테이너 ──────────────────
+   진입 감지는 클립이 걸리지 않은 바깥 요소가 받는다.
+   (클립으로 완전히 가려진 요소에 whileInView를 걸면 일부 배치에서 감지가 안 돼
+    가려진 상태로 멈추는 문제가 있었다 — 2열 배치 왼쪽 열 공백 버그) */
+export function ClipReveal({
+  children,
+  className = '',
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-60px' });
+  const reduce = useReducedMotion();
+  return (
+    <div ref={ref} className={`relative overflow-hidden ${className}`}>
+      <motion.div
+        className="absolute inset-0"
+        initial={reduce ? false : { clipPath: 'inset(0% 0% 100% 0%)' }}
+        animate={inView || reduce ? { clipPath: 'inset(0% 0% 0% 0%)' } : undefined}
+        transition={{ duration: 1.25, ease: EASE, delay }}
+      >
+        {children}
+      </motion.div>
+    </div>
+  );
+}
+
 /* ── 이미지 와이프 리빌 + 스크롤 패럴랙스 ──────────── */
 export function RevealImage({
   src,
@@ -560,17 +590,12 @@ export function RevealImage({
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
   const y = useTransform(scrollYProgress, [0, 1], reduce ? ['0%', '0%'] : ['-7%', '7%']);
   return (
-    <motion.div
-      ref={ref}
-      className={`relative overflow-hidden ${className}`}
-      initial={reduce ? false : { clipPath: 'inset(0% 0% 100% 0%)' }}
-      whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 1.25, ease: EASE, delay }}
-    >
-      <motion.div className="absolute -inset-[8%]" style={{ y }}>
-        <ImageWithFallback src={src} alt={alt} className={`w-full h-full object-cover ${imgClassName}`} />
-      </motion.div>
-    </motion.div>
+    <div ref={ref} className={className}>
+      <ClipReveal className="w-full h-full" delay={delay}>
+        <motion.div className="absolute -inset-[8%]" style={{ y }}>
+          <ImageWithFallback src={src} alt={alt} className={`w-full h-full object-cover ${imgClassName}`} />
+        </motion.div>
+      </ClipReveal>
+    </div>
   );
 }

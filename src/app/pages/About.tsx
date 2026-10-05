@@ -24,7 +24,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { SEO } from '../components/SEO';
-import { homeImages, axImages, medImages } from '../data/homeImages';
+import { homeImages } from '../data/homeImages';
 import {
   EASE,
   Aurora,
@@ -32,14 +32,25 @@ import {
   Magnetic,
   Marquee,
   NeuralField,
+  ClipReveal,
   Reveal,
-  RevealImage,
   ScrollProgressBar,
   SectionHeading,
   SplitWords,
   TiltCard,
 } from '../components/about/MotionKit';
 import { CareerTimeline } from '../components/about/CareerTimeline';
+import {
+  HospitalDashboardArt,
+  PatientAppArt,
+  AutomationFlowArt,
+  RadarArt,
+  DualAppArt,
+  ChatArt,
+  SchemaArt,
+  DataGridArt,
+  JejuNetworkArt,
+} from '../components/about/Illustrations';
 
 /* ── 핵심 지표 ─────────────────────────────────────── */
 const stats = [
@@ -56,7 +67,7 @@ const platforms = [
     tag: 'Healthcare',
     title: 'Cancer Hospital Platform',
     body: '암 병원 운영과 환자 관리를 통합한 플랫폼(HappyCare). 진료·입원·KPI를 데이터로 연결합니다.',
-    image: homeImages.cancerPlatform,
+    Art: HospitalDashboardArt,
     to: '/healthcare',
   },
   {
@@ -64,7 +75,7 @@ const platforms = [
     tag: 'Mobile App',
     title: '환자재활 애플리케이션',
     body: '환자·보호자를 위한 케어 앱(HappyLife). 전국 165개 병원과 실시간 양방향 연동됩니다.',
-    image: homeImages.rehabApp,
+    Art: PatientAppArt,
     to: '/healthcare',
   },
   {
@@ -72,7 +83,7 @@ const platforms = [
     tag: 'Automation',
     title: 'Space AX Platform',
     body: '기업의 반복 업무를 자동화하는 AX 플랫폼. 말로 설명하면 시스템이 대신 일합니다.',
-    image: homeImages.spaceAx,
+    Art: AutomationFlowArt,
     to: '/business',
   },
 ] as const;
@@ -93,12 +104,12 @@ const values = [
 
 /* ── 보유 역량·자산 ────────────────────────────────── */
 const assets = [
-  { image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1400&q=80', title: '자체 AI 분석 시스템', body: '13개 축 분석 프레임워크와 누적 데이터로 매월 자동 리포트를 발행합니다.' },
-  { image: medImages.hospitalSys, title: 'HappyLifeCare SaaS', body: '7년 자체 개발한 헬스케어 통합 플랫폼. 병원용·환자용 듀얼 앱 구조.' },
-  { image: axImages.aiConsult, title: 'AI 암상담 시스템', body: 'Claude API 기반 RAG 아키텍처. 사이트에서 24시간 작동 중입니다.' },
-  { image: axImages.webapp, title: 'AI 최적화 웹사이트', body: '의료광고심의 통과 사이트를 다수 운영하며 AI 검색 노출 노하우를 축적했습니다.' },
-  { image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80', title: '환자 분석 데이터베이스', body: '암 환자 후기·경험 데이터를 구조화한 PVM 자산. 의료 컨설팅의 차별점 근거입니다.' },
-  { image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1400&q=80', title: '제주 AI 개발 커뮤니티', body: '제주에서 AI 개발 커뮤니티를 운영합니다. 인재·협업 네트워크의 시드입니다.' },
+  { Art: RadarArt, title: '자체 AI 분석 시스템', body: '13개 축 분석 프레임워크와 누적 데이터로 매월 자동 리포트를 발행합니다.' },
+  { Art: DualAppArt, title: 'HappyLifeCare SaaS', body: '7년 자체 개발한 헬스케어 통합 플랫폼. 병원용·환자용 듀얼 앱 구조.' },
+  { Art: ChatArt, title: 'AI 암상담 시스템', body: 'Claude API 기반 RAG 아키텍처. 사이트에서 24시간 작동 중입니다.' },
+  { Art: SchemaArt, title: 'AI 최적화 웹사이트', body: '의료광고심의 통과 사이트를 다수 운영하며 AI 검색 노출 노하우를 축적했습니다.' },
+  { Art: DataGridArt, title: '환자 분석 데이터베이스', body: '암 환자 후기·경험 데이터를 구조화한 PVM 자산. 의료 컨설팅의 차별점 근거입니다.' },
+  { Art: JejuNetworkArt, title: '제주 AI 개발 커뮤니티', body: '제주에서 AI 개발 커뮤니티를 운영합니다. 인재·협업 네트워크의 시드입니다.' },
 ] as const;
 
 /* ── 거점 ──────────────────────────────────────────── */
@@ -448,7 +459,7 @@ export function About() {
               <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-10 items-center">
                 <div className="flex flex-col items-center text-center">
                   <div
-                    className="group relative w-full max-w-[300px] aspect-[1212/1044] rounded-[28px] overflow-hidden"
+                    className="group relative w-full max-w-[260px] aspect-[720/864] rounded-[28px] overflow-hidden"
                     style={{ boxShadow: '0 22px 48px -14px rgba(0,0,0,0.65)' }}
                   >
                     <motion.div
@@ -463,10 +474,10 @@ export function About() {
                     />
                     <div className="absolute inset-[3px] rounded-[25px] overflow-hidden" style={{ backgroundColor: '#0A1628' }}>
                       <img
-                        src="/images/about/leader-seok.webp"
+                        src="/images/about/leader-seok.webp?v=4"
                         alt={`${leadership.nameKo} ${leadership.role}`}
-                        width={1212}
-                        height={1044}
+                        width={720}
+                        height={864}
                         loading="lazy"
                         decoding="async"
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -600,7 +611,7 @@ export function About() {
             className="mb-14"
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {platforms.map(({ Icon, tag, title, body, image, to }, i) => (
+            {platforms.map(({ Icon, tag, title, body, Art, to }, i) => (
               <Reveal key={title} delay={i * 0.12} y={50} className="h-full">
                 <Link to={to} className="group block h-full">
                   <TiltCard
@@ -609,13 +620,11 @@ export function About() {
                     style={{ borderColor: 'var(--navy-100)' }}
                   >
                     <div className="relative">
-                      <RevealImage
-                        src={image}
-                        alt={title}
-                        delay={i * 0.12}
-                        className="aspect-[16/10]"
-                        imgClassName="transition-transform duration-700 group-hover:scale-110"
-                      />
+                      <ClipReveal delay={i * 0.12} className="aspect-[16/10]">
+                        <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
+                          <Art />
+                        </div>
+                      </ClipReveal>
                       <span
                         className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold text-white backdrop-blur"
                         style={{ backgroundColor: 'rgba(10,22,40,0.7)' }}
@@ -734,16 +743,14 @@ export function About() {
             className="mb-14"
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {assets.map(({ image, title, body }, i) => (
+            {assets.map(({ Art, title, body }, i) => (
               <Reveal key={title} delay={(i % 3) * 0.1} y={50} className="h-full">
                 <div className="group h-full rounded-2xl overflow-hidden border flex flex-col transition-all duration-500 hover:-translate-y-1 hover:shadow-xl" style={{ borderColor: 'var(--navy-100)' }}>
-                  <RevealImage
-                    src={image}
-                    alt={title}
-                    delay={(i % 3) * 0.1}
-                    className="aspect-[16/9]"
-                    imgClassName="transition-transform duration-700 group-hover:scale-110"
-                  />
+                  <ClipReveal delay={(i % 3) * 0.1} className="aspect-[16/9]">
+                    <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
+                      <Art />
+                    </div>
+                  </ClipReveal>
                   <div className="p-7">
                     <h3 className="text-base font-bold mb-2" style={{ color: 'var(--navy-900)' }}>{title}</h3>
                     <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-600)' }}>{body}</p>
