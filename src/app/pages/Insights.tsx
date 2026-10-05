@@ -1,5 +1,6 @@
 import { Calendar, ArrowRight, ChevronLeft, ChevronRight, FileText } from 'lucide-react';
 import { useState, useRef, useMemo } from 'react';
+import { useSearchParams } from 'react-router';
 import { motion } from 'motion/react';
 import { projectId, publicAnonKey } from '/utils/supabase/info';
 import { insightsData, type InsightItem, type InsightDomain } from '../data/insightsData';
@@ -12,7 +13,8 @@ const SITE = 'https://www.lsconsulting.co.kr';
 /* 상위 도메인 탭 */
 const DOMAIN_TABS: { key: InsightDomain; label: string }[] = [
   { key: 'healthcare', label: '건강의료' },
-  { key: 'business', label: '기업' },
+  { key: 'business', label: '기업 AX' },
+  { key: 'architecture', label: '건축 리포트' },
 ];
 
 /* 카테고리 한글 라벨 (없으면 원문 표시) */
@@ -33,7 +35,9 @@ export function Insights() {
   const [submitMessage, setSubmitMessage] = useState('');
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [activeDomain, setActiveDomain] = useState<InsightDomain>('healthcare');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requestedDomain = searchParams.get('domain');
+  const activeDomain: InsightDomain = requestedDomain === 'business' || requestedDomain === 'architecture' ? requestedDomain : 'healthcare';
   const [activeCategory, setActiveCategory] = useState<'all' | string>('all');
   const reportsListRef = useRef<HTMLElement>(null);
 
@@ -44,6 +48,7 @@ export function Insights() {
     () => ({
       healthcare: insightsData.filter((i) => domainOf(i) === 'healthcare').length,
       business: insightsData.filter((i) => domainOf(i) === 'business').length,
+      architecture: insightsData.filter((i) => domainOf(i) === 'architecture').length,
     }),
     [],
   );
@@ -67,7 +72,7 @@ export function Insights() {
   const scrollToList = () => reportsListRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   const goToPage = (page: number) => { setCurrentPage(page); scrollToList(); };
   const selectCategory = (c: 'all' | string) => { setActiveCategory(c); setCurrentPage(1); };
-  const selectDomain = (d: InsightDomain) => { setActiveDomain(d); setActiveCategory('all'); setCurrentPage(1); };
+  const selectDomain = (d: InsightDomain) => { setSearchParams({ domain: d }, { replace: true }); setActiveCategory('all'); setCurrentPage(1); };
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -120,7 +125,7 @@ export function Insights() {
       '@type': 'Blog',
       '@id': `${SITE}/insights#blog`,
       name: 'LS AX 컨설팅 리포트',
-      description: '암 환자 데이터(PVM)를 기반으로 한 의료 전략·니즈 분석 리포트 아카이브.',
+      description: '의료·기업 AX·건축 자산의 시장 분석과 기술·실행 전략을 연결하는 리포트 아카이브.',
       url: `${SITE}/insights`,
       inLanguage: 'ko-KR',
       publisher: { '@type': 'Organization', name: 'LS AX 컨설팅', '@id': `${SITE}/#org` },
@@ -136,7 +141,7 @@ export function Insights() {
     <div className="min-h-screen bg-white">
       <SEO
         title="리포트 · 인사이트 - LS AX 컨설팅"
-        description="암 환자 온라인 니즈 분석(PVM) 기반의 월간 리포트와 의료 전략 리서치 아카이브. 데이터로 보는 의료 인사이트를 정기 발행합니다."
+        description="암 환자 온라인 니즈 분석(PVM) 기반의 월간 리포트와 의료 전략 리서치 아카이브. 데이터로 보는 실행 인사이트를 정기 발행합니다."
         url="https://www.lsconsulting.co.kr/insights"
         jsonLd={jsonLd}
       />
@@ -156,11 +161,11 @@ export function Insights() {
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl tracking-tight leading-[1.15] mt-8 text-white font-bold">
               데이터로 보는
               <br />
-              <span style={{ color: 'var(--navy-300)' }}>의료 인사이트</span>
+              <span style={{ color: 'var(--navy-300)' }}>실행 인사이트</span>
             </h1>
             <p className="text-lg lg:text-xl mt-8 leading-relaxed" style={{ color: 'var(--navy-200)' }}>
-              암 환자 온라인 니즈를 자체 AI(PVM)로 분석한 월간 리포트와 의료 전략 리서치.
-              추정이 아닌 데이터로, 병원 운영과 전략의 방향을 제시합니다.
+              의료·기업 AX·건축 자산의 시장 분석과 실행 전략.
+              공개 데이터와 자체 개발의 근거를 바탕으로, 고객의 판단과 다음 실행을 돕습니다.
             </p>
             <p className="text-sm mt-6" style={{ color: 'var(--navy-400)' }}>
               총 {insightsData.length}개 리포트 · 매월 발행

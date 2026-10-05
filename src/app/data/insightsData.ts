@@ -1,4 +1,4 @@
-export type InsightDomain = 'healthcare' | 'business';
+export type InsightDomain = 'healthcare' | 'business' | 'architecture';
 
 export interface InsightItem {
   /** 상위 분류: 건강의료 / 기업. 미지정 시 'healthcare'로 간주 */
@@ -15,27 +15,17 @@ export interface InsightItem {
 
 export const insightsData: InsightItem[] = [
   {
-    domain: 'business',
-    category: '산업 분석',
-    title: '기업 AX의 현주소\n도입은 보편화, 성과는 소수',
-    date: 'June 2026',
-    excerpt:
-      '글로벌 기업 약 90%가 AI를 쓰지만 파일럿의 95%는 손익에 닿지 못한다. 도입–성과 격차의 구조적 원인과, 성과를 내는 5%의 공통점을 국내외 공개 조사 데이터로 분석한 산업 리포트.',
-    readTime: '10 min read',
-    highlights: ['GenAI 격차', '95% 파일럿 실패', '한국 시장 진단', '성과 5%의 공통점'],
-    isFeatured: true,
+    domain: 'business', category: '기업 AX',
+    title: 'AI를 써도 일이 남는 이유\n업무를 끝내는 AX 설계', date: 'October 2026',
+    excerpt: '글로벌 AI 조사에서 업무 설계와 실제 개발 근거까지. 데이터·AI·사람·시스템을 연결하는 LS AX의 실행 관점과 업무 시간 시뮬레이터.',
+    readTime: '9 min read', highlights: ['공식 AI 조사', 'LS AX 실행 설계', '기술 구현 근거', '시간 시뮬레이터'], isFeatured: true,
     link: '/reports/business/enterprise-ax-state-2026',
   },
   {
-    domain: 'business',
-    category: '부동산 AX 인사이트',
-    title: '준공 후 미분양 시장의 역전 설계\n데이터로 다시 짠 분양 마케팅 전략',
-    date: 'June 2026',
-    excerpt:
-      '적체된 준공 후 미분양 단지를, 같은 사실을 어떻게 해석하느냐에 따라 약점에서 무기로 전환할 수 있음을 보여준다. 수요 세분화부터 채널·예산 구조까지를 데이터 기반으로 재설계한 분양 전략 방법론.',
-    readTime: '9 min read',
-    highlights: ['수요 세분화', '포지셔닝 역전', '성과형 예산구조', '전환 퍼널 설계'],
-    isFeatured: true,
+    domain: 'architecture', category: '건축 리포트',
+    title: '준공 후 미분양,\n고객이 판단하는 구조를 설계하다', date: 'October 2026',
+    excerpt: '국토교통부 주택통계와 지역별 재고 분석에서 수요의 질문, 콘텐츠, 상담 전환까지. 준공 자산의 시장·홍보·운영을 연결하는 LS AX의 접근.',
+    readTime: '10 min read', highlights: ['공식 주택통계', '지역별 분석', '수요·정보 설계', '상담 전환 모델'], isFeatured: true,
     link: '/reports/business/realty-undersold-turnaround-2026-06',
   },
   {
