@@ -12,11 +12,9 @@ import {
   FileText,
   Search,
   Users,
-  Briefcase,
   Building2,
   Stethoscope,
   Code2,
-  Sparkles,
   CheckCircle2,
 } from 'lucide-react';
 import { SEO } from '../components/SEO';
@@ -186,51 +184,75 @@ const stack = [
   { label: '자체 분석 프레임워크', desc: '13개 축 데이터 구조화' },
 ] as const;
 
-/* ── 대표 이력 (커리어 아크) ───────────────────────── */
-const career = [
+/* ── 병원 프로젝트 수행 이력 ───────────────────────
+   수행한 용역의 '연도 + 수행 내용'만 기록한다.
+   각 병원의 개원 여부·현재 운영 상태는 확인되지 않았으므로 표기하지 않는다. */
+const hospitalProjects = [
   {
-    step: '01',
-    Icon: Megaphone,
-    period: '10년+',
-    title: '광고기획',
-    body: '브랜드와 캠페인을 기획했습니다. 메시지로 사람을 움직이는 일의 기본기를 여기서 익혔습니다.',
+    name: '가평산속요양병원',
+    meta: '암특화 요양병원 · 120병상 · 가평',
+    cats: ['병원 기획', '홍보·경영지원'],
+    works: [
+      { year: '2011', body: '암특화 의학·한의학 통합 암요양병원 기획' },
+      { year: '2018', body: '온라인 홍보 및 홈페이지 리뉴얼' },
+    ],
   },
   {
-    step: '02',
-    Icon: Briefcase,
-    period: '300개+ 프로젝트',
-    title: '정부기관 프로젝트',
-    body: '공공 영역의 기획과 실행을 맡았습니다. 규정과 절차 안에서 결과를 만들어내는 훈련이 되었습니다.',
+    name: '목토한방병원',
+    meta: '암특화 한방병원',
+    cats: ['개원기획'],
+    works: [{ year: '2017', body: '암특화 한방병원 개원기획' }],
   },
   {
-    step: '03',
-    Icon: Stethoscope,
-    period: '15년+',
-    title: '의료 현장',
-    body: '병원 운영과 개원 컨설팅 10개+를 수행했습니다. 의료 현장의 실제 워크플로우를 책이 아닌 현장에서 익혔습니다.',
+    name: '감인의료재단 백세요양병원',
+    meta: '암특화 요양병원 · 3개 병원',
+    cats: ['홍보·경영지원'],
+    works: [{ year: '2018', body: '암특화 요양병원 홍보대행 및 경영지원' }],
   },
   {
-    step: '04',
-    Icon: Code2,
-    period: '7년+',
-    title: '자체 SaaS 개발',
-    body: 'HappyLifeCare를 직접 설계·개발·운영했습니다. 기획하는 사람에서 만드는 사람이 된 시기입니다.',
+    name: '서울힐링요양병원',
+    meta: '암특화 요양병원 · 113병상 · 서울 송파',
+    cats: ['개원기획', '홍보·경영지원'],
+    works: [{ year: '2019', body: '암특화 요양병원 개원기획 및 홍보·경영지원' }],
   },
   {
-    step: '05',
-    Icon: Sparkles,
-    period: '현재',
-    title: 'AI 전환(AX)',
-    body: '쌓아온 것을 AI로 전환하고 있습니다. 의료와 기업 현장의 업무를 실제로 바꾸는 일을 합니다.',
+    name: '태동의료법인',
+    meta: '암특화 의료법인 · 춘천',
+    cats: ['개설컨설팅'],
+    works: [{ year: '2019', body: '암특화 의료법인 개설컨설팅' }],
+  },
+  {
+    name: '이채한방병원',
+    meta: '암특화 한방병원 · 3천평 · 일산',
+    cats: ['개설컨설팅'],
+    works: [{ year: '2019', body: '암특화 한방병원 개원컨설팅' }],
+  },
+  {
+    name: '러스크서울병원',
+    meta: '재활 + 암진료 접목',
+    cats: ['홍보·경영지원'],
+    works: [{ year: '2020', body: '병원 이전 이후 컨설팅' }],
+  },
+  {
+    name: '아미나요양병원',
+    meta: '암특화 · 1천평 · 서울 종로',
+    cats: ['개설컨설팅'],
+    works: [{ year: '2021', body: '암특화 한방병원 개원컨설팅' }],
+  },
+  {
+    name: '위비앙병원',
+    meta: '비만외과(수술) + 암진료 · 서울 마포',
+    cats: ['개설컨설팅'],
+    works: [{ year: '2021', body: '암특화 병원 개원컨설팅' }],
   },
 ] as const;
 
-/* ── 숫자로 보는 이력 ──────────────────────────────── */
-const record = [
-  { v: '300개+', l: '정부기관 프로젝트' },
-  { v: '10개+', l: '병원 개원 컨설팅' },
-  { v: '165개', l: '플랫폼 연동 병원' },
-  { v: '2곳', l: '운영 거점 (제주·서울)' },
+/* ── 병원 프로젝트 요약 지표 (원문에서 셀 수 있는 값) ── */
+const hospitalRecord = [
+  { v: '9곳', l: '병원·의료법인 프로젝트' },
+  { v: '6곳', l: '개원기획·개설컨설팅 수행' },
+  { v: '10건', l: '연도별 수행 이력' },
+  { v: '2011–2021', l: '수행 기간' },
 ] as const;
 
 export function Projects() {
@@ -396,14 +418,11 @@ export function Projects() {
                     </div>
                   </div>
 
-                  <div
-                    className="rounded-xl p-5 mb-6 border-l-[3px]"
-                    style={{ backgroundColor: 'var(--navy-50)', borderColor: 'var(--navy-600)' }}
-                  >
+                  <div className="mb-7">
                     <div className="text-xs font-bold tracking-wide mb-2" style={{ color: 'var(--navy-600)' }}>
                       PROBLEM · 문제
                     </div>
-                    <p className="text-base leading-relaxed" style={{ color: 'var(--navy-900)' }}>
+                    <p className="text-base lg:text-lg leading-relaxed font-medium" style={{ color: 'var(--navy-900)' }}>
                       {problem}
                     </p>
                   </div>
@@ -532,7 +551,7 @@ export function Projects() {
         </div>
       </motion.section>
 
-      {/* ── SECTION 5 · 대표 이력 ──────────────────────── */}
+      {/* ── SECTION 5 · 병원 프로젝트 수행 이력 ────────── */}
       <section className="relative py-28 px-8 lg:px-16 overflow-hidden" style={{ backgroundColor: 'var(--navy-900)' }}>
         <div
           className="absolute inset-0 opacity-[0.07]"
@@ -543,65 +562,84 @@ export function Projects() {
           }}
         />
         <motion.div className="relative max-w-[1400px] mx-auto" {...fadeIn}>
-          <div className="max-w-3xl mb-16">
+          <div className="max-w-3xl mb-14">
             <span className="text-sm font-bold tracking-wide" style={{ color: 'var(--navy-300)' }}>
-              CAREER
+              HOSPITAL PROJECTS
             </span>
             <h2 className="text-3xl lg:text-5xl tracking-tight leading-tight mt-3 mb-5 text-white">
-              기획에서 시작해
-              <br className="hidden sm:block" />
-              직접 만드는 데까지
+              병원 프로젝트 수행 이력
             </h2>
             <p className="text-lg leading-relaxed" style={{ color: 'var(--navy-200)' }}>
-              광고기획·공공·의료·개발을 차례로 거쳤습니다. AX는 그 경로가 모여 만들어진 결과입니다.
+              2011년부터 암특화 요양병원·한방병원·의료법인의 개원기획, 개설컨설팅, 홍보·경영지원을
+              수행했습니다. 플랫폼 개발의 출발점은 이 현장입니다.
             </p>
           </div>
 
-          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5" {...staggerContainer}>
-            {career.map(({ step, Icon, period, title, body }) => (
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" {...staggerContainer}>
+            {hospitalProjects.map(({ name, meta, cats, works }) => (
               <motion.div
-                key={step}
+                key={name}
                 variants={staggerItem}
                 className="rounded-2xl p-7 flex flex-col"
                 style={{ backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
               >
-                <div className="flex items-center justify-between mb-5">
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center"
-                    style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
-                  >
-                    <Icon className="w-5 h-5 text-white" strokeWidth={1.75} />
-                  </div>
-                  <span className="text-2xl font-bold tabular-nums" style={{ color: 'rgba(255,255,255,0.18)' }}>
-                    {step}
-                  </span>
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  {cats.map((c) => (
+                    <span
+                      key={c}
+                      className="text-[11px] font-bold rounded-full px-2.5 py-1"
+                      style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: 'var(--navy-200)' }}
+                    >
+                      {c}
+                    </span>
+                  ))}
                 </div>
-                <div className="text-xs font-semibold mb-1.5" style={{ color: 'var(--navy-300)' }}>
-                  {period}
+                <h3 className="text-lg font-bold text-white">{name}</h3>
+                <div className="text-xs mt-1" style={{ color: 'var(--navy-300)' }}>
+                  {meta}
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2.5">{title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-200)' }}>
-                  {body}
-                </p>
+                <ol className="mt-5 pt-5 space-y-2.5 border-t" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
+                  {works.map(({ year, body }) => (
+                    <li key={year} className="grid grid-cols-[48px_1fr] gap-3">
+                      <span className="text-sm font-bold tabular-nums text-white">{year}</span>
+                      <span className="text-sm leading-relaxed" style={{ color: 'var(--navy-200)' }}>
+                        {body}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
               </motion.div>
             ))}
           </motion.div>
 
-          {/* 숫자로 보는 이력 */}
+          {/* 요약 지표 */}
           <motion.div
             className="grid grid-cols-2 lg:grid-cols-4 gap-8 mt-16 pt-12 border-t"
             style={{ borderColor: 'rgba(255,255,255,0.14)' }}
             {...staggerContainer}
           >
-            {record.map(({ v, l }) => (
+            {hospitalRecord.map(({ v, l }) => (
               <motion.div key={l} variants={staggerItem}>
-                <div className="text-3xl lg:text-4xl font-bold text-white mb-1.5">{v}</div>
+                <div className="text-3xl lg:text-4xl font-bold text-white mb-1.5 tabular-nums">{v}</div>
                 <div className="text-sm" style={{ color: 'var(--navy-300)' }}>
                   {l}
                 </div>
               </motion.div>
             ))}
           </motion.div>
+
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-10">
+            <p className="text-xs leading-relaxed" style={{ color: 'var(--navy-400)' }}>
+              수행 연도와 내용 기준. 가평산속요양병원은 2011·2018년 두 차례 수행,
+              감인의료재단 백세요양병원(3개 병원)은 1개 프로젝트로 집계했습니다.
+            </p>
+            <Link
+              to="/about"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-white shrink-0 transition-all hover:gap-3"
+            >
+              대표 이력 보기 <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </motion.div>
       </section>
 
