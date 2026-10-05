@@ -331,8 +331,6 @@ export function About() {
             backgroundPosition: 'center',
           }}
         />
-        <Aurora opacity={0.9} />
-        <NeuralField />
         <div
           aria-hidden
           className="absolute inset-0 opacity-[0.06]"

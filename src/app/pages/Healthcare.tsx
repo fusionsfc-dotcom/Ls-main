@@ -556,7 +556,7 @@ export function Healthcare() {
             ))}
           </div>
 
-          {/* 실제 제품 화면 2 */}
+          {/* 실제 환자 앱 데모 화면 및 병원 연동 구조 도식 */}
           <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-20" {...staggerContainer}>
             {products.map(({ Icon, image, name, role, desc }) => (
               <motion.div variants={staggerItem} key={name} className="bg-white rounded-2xl overflow-hidden border" style={{ borderColor: 'var(--navy-100)' }}>

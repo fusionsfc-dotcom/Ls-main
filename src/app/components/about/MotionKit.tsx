@@ -12,6 +12,7 @@ import {
   useSpring,
   useTransform,
 } from 'motion/react';
+import { useExperience } from '../experience/ExperienceProvider';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 
 export const EASE = [0.16, 1, 0.3, 1] as const;
@@ -40,7 +41,9 @@ export function NeuralField({
   color?: string;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const reduce = useReducedMotion();
+  const reducePreference = useReducedMotion();
+  const { paused } = useExperience();
+  const reduce = reducePreference || paused;
 
   useEffect(() => {
     const canvas = canvasRef.current;

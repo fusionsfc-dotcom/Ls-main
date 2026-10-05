@@ -155,8 +155,6 @@ export function Home() {
             ],
           },
         ]}
-        description="LS AX 컨설팅은 의료와 기업 현장의 업무를 AI로 전환(AX)하는 전문 기업입니다. Cancer Hospital Platform, 환자재활 애플리케이션, Space AX Platform을 직접 개발해 운영합니다."
-        url="https://www.lsconsulting.co.kr"
       />
 
       {/* ── SECTION 1 · HERO ───────────────────────────── */}

@@ -12,10 +12,10 @@ const easeOut = [0.16, 1, 0.3, 1] as const;
 
 /* 섹션 진입 — 아래에서 천천히 떠오르는 리빌 */
 export const fadeIn = {
-  initial: { opacity: 0, y: 60 },
+  initial: { opacity: 0, y: 28 },
   whileInView: { opacity: 1, y: 0 },
   viewport: viewportOnce,
-  transition: { duration: 1.1, ease: easeOut },
+  transition: { duration: 0.85, ease: easeOut },
 };
 
 /* 컨테이너 — 자식 요소를 순차(stagger)로 등장시킴 */
@@ -25,14 +25,14 @@ export const staggerContainer = {
   viewport: viewportOnce,
   variants: {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.18, delayChildren: 0.12 } },
+    visible: { transition: { staggerChildren: 0.1, delayChildren: 0.06 } },
   },
 };
 
 /* 자식 카드 — 천천히 떠오르며 살짝 확대 */
 export const staggerItem = {
-  hidden: { opacity: 0, y: 46, scale: 0.94 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.95, ease: easeOut } },
+  hidden: { opacity: 0, y: 24, scale: 0.985 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.75, ease: easeOut } },
 };
 
 /* 좌/우에서 슬라이드 인 (좌우 2단 레이아웃용) */
@@ -40,11 +40,11 @@ export const slideLeft = {
   initial: { opacity: 0, x: -56 },
   whileInView: { opacity: 1, x: 0 },
   viewport: viewportOnce,
-  transition: { duration: 1.1, ease: easeOut },
+  transition: { duration: 0.85, ease: easeOut },
 };
 export const slideRight = {
   initial: { opacity: 0, x: 56 },
   whileInView: { opacity: 1, x: 0 },
   viewport: viewportOnce,
-  transition: { duration: 1.1, ease: easeOut },
+  transition: { duration: 0.85, ease: easeOut },
 };

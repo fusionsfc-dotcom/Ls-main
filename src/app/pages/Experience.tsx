@@ -3,7 +3,7 @@ import { OurClients } from '../components/OurClients';
 
 export function Experience() {
   const topImageUrl =
-    'https://srlyxadncjladllbwmdk.supabase.co/storage/v1/object/public/img/top_1.jpeg';
+    '/images/experience/strategy.svg';
 
   return (
     <div className="min-h-screen bg-white pt-20">
@@ -29,7 +29,7 @@ export function Experience() {
           <div className="relative h-[500px] w-full">
             <img
               src={topImageUrl}
-              alt="Professional team presenting data analysis"
+              alt="전략 기획과 실행 연결 구조 도식"
               className="w-full h-full object-cover"
             />
           </div>

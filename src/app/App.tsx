@@ -1,3 +1,5 @@
+import { SiteExperience } from './components/experience/SiteExperience';
+import { ExperienceProvider } from './components/experience/ExperienceProvider';
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { HelmetProvider } from 'react-helmet-async';
@@ -51,6 +53,7 @@ function AppContent() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Header />
+      <SiteExperience />
       <main className="flex-1">
         <Suspense fallback={<div className="min-h-screen" />}>
           <Routes>
@@ -102,7 +105,7 @@ export default function App() {
     <HelmetProvider>
       <BrowserRouter>
         <ScrollToTop />
-        <AppContent />
+        <ExperienceProvider><AppContent /></ExperienceProvider>
       </BrowserRouter>
     </HelmetProvider>
   );

@@ -12,6 +12,10 @@ export function ImageWithFallback(props: React.ImgHTMLAttributes<HTMLImageElemen
 
   const { src, alt, style, className, ...rest } = props
 
+  const imageAlt = typeof src === 'string' && src.startsWith('/images/experience/')
+    ? `${alt ?? ''} · ${src.includes('patient-app') ? '실제 HappyLife 데모 화면' : '서비스 구조 도식'}`
+    : alt
+
   return didError ? (
     <div
       className={`inline-block bg-gray-100 text-center align-middle ${className ?? ''}`}
@@ -22,6 +26,6 @@ export function ImageWithFallback(props: React.ImgHTMLAttributes<HTMLImageElemen
       </div>
     </div>
   ) : (
-    <img src={src} alt={alt} loading="lazy" decoding="async" className={className} style={style} {...rest} onError={handleError} />
+    <img src={src} alt={imageAlt} loading="lazy" decoding="async" className={className} style={style} {...rest} onError={handleError} />
   )
 }

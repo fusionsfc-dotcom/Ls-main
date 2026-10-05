@@ -3,7 +3,7 @@ import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { Link } from 'react-router';
 
 const topImageUrl =
-  'https://srlyxadncjladllbwmdk.supabase.co/storage/v1/object/public/img/top_2.jpeg';
+  '/images/experience/pvm.svg';
 
 export function Strategy() {
   return (
@@ -34,7 +34,7 @@ export function Strategy() {
           <div className="relative h-[500px] w-full">
             <img
               src={topImageUrl}
-              alt="Healthcare team strategy meeting"
+              alt="PVM 환자 경험 분석과 병원 전략 연결 구조 도식"
               className="w-full h-full object-cover"
             />
           </div>

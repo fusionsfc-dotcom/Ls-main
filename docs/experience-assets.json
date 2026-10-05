@@ -1,0 +1,43 @@
+{
+  "patient-app.svg": {
+    "kind": "actual-demo-screenshot",
+    "source": "1_Happylifecaremaster/docs/assets/screenshots",
+    "files": [
+      "01-home.png",
+      "02-routine.png"
+    ],
+    "note": "직접 확인한 데모 계정 화면. 촬영 당시 화면이며 최신 실시간 화면을 뜻하지 않음"
+  },
+  "diagrams": {
+    "kind": "service-architecture-illustration",
+    "files": [
+      "hospital-platform.svg",
+      "workflow.svg",
+      "diagnosis.svg",
+      "pvm.svg",
+      "ai-consult.svg",
+      "webapp.svg",
+      "saas.svg",
+      "architecture.svg",
+      "strategy.svg",
+      "medical.svg",
+      "corporate.svg",
+      "construction.svg",
+      "hospitality.svg"
+    ],
+    "source": [
+      "src/app/pages/Home.tsx",
+      "src/app/pages/Healthcare.tsx",
+      "src/app/pages/Business.tsx",
+      "src/app/pages/Services.tsx",
+      "src/app/pages/Projects.tsx"
+    ],
+    "note": "본문의 기능·흐름을 시각화. 실제 제품 UI나 실적 사진으로 사용하지 않음"
+  },
+  "existing-photos": {
+    "preserved": [
+      "대표 원본 사진",
+      "병원 이름에 연결된 기존 외관 사진"
+    ]
+  }
+}
