@@ -428,7 +428,7 @@ export function About() {
       </section>
 
       {/* ── SECTION 2 · 대표 소개 + 핵심 스펙 + 연혁 ─────── */}
-      <section id="career" className="relative py-28 px-8 lg:px-16 bg-white scroll-mt-20 overflow-x-clip">
+      <section id="career" className="relative py-12 md:py-16 px-8 lg:px-16 bg-white scroll-mt-20 overflow-x-clip">
         <div
           aria-hidden
           className="absolute inset-x-0 top-0 h-[520px] pointer-events-none"
