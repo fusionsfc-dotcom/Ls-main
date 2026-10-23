@@ -36,7 +36,7 @@ const problems = [
   {
     Icon: Workflow,
     title: '자동화 도구는 "IT 아는 사람"만 씁니다',
-    body: '노드를 연결하고 워크플로우를 그릴 줄 알아야 합니다. 대부분의 실무자에게는 그 자체가 진입장벽입니다.',
+    body: '설정 화면을 익히고 연결을 직접 그려야 합니다. 바쁜 실무자에게는 그 시간이 없습니다.',
   },
   {
     Icon: Unplug,
@@ -75,7 +75,7 @@ const scenarios = [
   {
     Icon: Briefcase,
     persona: '관리자급 직장인',
-    items: ['주간 보고 자동 작성', '단톡방·메일 일일 요약', '회의록에서 할 일·일정 추출', 'KPI 리포트 자동 집계'],
+    items: ['주간 보고 자동 작성', '단톡방·메일 일일 요약', '회의록에서 할 일·일정 추출', '운영 숫자 리포트 자동 집계'],
   },
 ] as const;
 
@@ -159,16 +159,16 @@ export function Business() {
               <span style={{ color: 'var(--navy-300)' }}>하지 않습니다</span>
             </h1>
             <p className="text-lg lg:text-xl mt-8 max-w-2xl leading-relaxed" style={{ color: 'var(--navy-200)' }}>
-              노드를 그릴 줄 몰라도 됩니다. 말로 업무를 설명하면, 시스템이 대신 일합니다.
+              프로그램을 배울 필요 없습니다. 말로 업무를 설명하면, 시스템이 대신 일합니다.
               보고·요약·정리·응대 같은 반복 업무를 AI 자동화로 전환합니다.
             </p>
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-12">
               <a
-                href="mailto:fusionsfc@gmail.com"
+                href="tel:+821092970940"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 transition-all hover:opacity-90"
                 style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
               >
-                <span className="font-semibold">문의하기</span>
+                <span className="font-semibold">전화 한 통이면 됩니다 · 010-9297-0940</span>
                 <ArrowRight className="w-5 h-5 shrink-0" />
               </a>
               <a

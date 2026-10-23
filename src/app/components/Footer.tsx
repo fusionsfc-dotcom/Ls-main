@@ -102,6 +102,15 @@ export function Footer({ hidePricing = false }: FooterProps) {
               <ul className="space-y-3">
                 <li>
                   <a
+                    href={`tel:${contactInfo.phoneDial}`}
+                    className="text-sm font-semibold transition-colors hover:text-white"
+                    style={{ color: 'var(--navy-200)' }}
+                  >
+                    {contactInfo.phone}
+                  </a>
+                </li>
+                <li>
+                  <a
                     href={`mailto:${contactInfo.email}`}
                     className="text-sm transition-colors hover:text-white"
                     style={{ color: 'var(--navy-300)' }}

@@ -50,28 +50,28 @@ const solutions = [
     image: axImages.diagnosis,
     tag: 'Diagnosis',
     title: 'AI 시장 진단',
-    body: '시장·고객·경쟁사를 자체 AI로 13개 축으로 분석합니다. AI 도입의 가장 가벼운 첫걸음.',
+    body: '우리 동네에 환자·손님이 어디로 가는지 13가지 기준으로 분석해 드립니다. AI 도입의 가장 가벼운 첫걸음.',
   },
   {
     Icon: Workflow,
     image: axImages.automation,
     tag: 'Automation',
     title: 'AI 업무 자동화',
-    body: '엑셀·메신저로 굴러가던 반복 업무를 Claude API와 자동화 도구로 시스템화합니다.',
+    body: '엑셀과 메신저로 돌아가던 반복 업무를 AI가 대신하는 시스템으로 바꿉니다.',
   },
   {
     Icon: Globe,
     image: axImages.webapp,
     tag: 'Web & App',
     title: 'AI 최적화 웹·앱',
-    body: 'AI 검색 노출 + 24시간 AI 챗봇 + 국내 시장 특화를 한 번에 구축합니다.',
+    body: 'AI가 읽을 수 있는 홈페이지에 24시간 AI 안내 상담까지 한 번에 만듭니다.',
   },
   {
     Icon: Code2,
     image: axImages.saas,
     tag: 'Custom SaaS',
     title: '맞춤 SaaS 개발',
-    body: '기성 솔루션이 회사 방식을 못 따라올 때, 전용 시스템을 자체 구축해 운영합니다.',
+    body: '기성 프로그램이 우리 회사 방식과 안 맞을 때, 우리만의 구독형 프로그램을 직접 만들어 운영합니다.',
   },
   {
     Icon: Boxes,
@@ -85,7 +85,7 @@ const solutions = [
     image: axImages.strategy,
     tag: 'Consulting',
     title: 'AI 전략 컨설팅',
-    body: '사내 AI 인력을 두기 전, 외부 전문가가 함께 설계하는 정기 자문.',
+    body: 'AI 담당자를 뽑기 전, 외부 전문가가 매달 함께 설계하는 정기 자문.',
   },
 ] as const;
 
@@ -95,8 +95,8 @@ const cases = [
     image: homeImages.cancerPlatform,
     tag: 'Healthcare · Platform',
     title: 'Cancer Hospital Platform',
-    problem: '암 병원의 진료·입원·KPI가 흩어져 관리되던 문제',
-    result: '운영 데이터를 하나로 묶어 자동 KPI 산출까지 연결한 통합 플랫폼',
+    problem: '암 병원의 진료·입원·운영 숫자가 흩어져 관리되던 문제',
+    result: '운영 데이터를 하나로 묶어 핵심 숫자가 자동으로 나오는 통합 플랫폼',
     to: '/healthcare',
   },
   {
@@ -120,7 +120,7 @@ const cases = [
     tag: 'Healthcare · AI',
     title: 'AI 암상담 시스템',
     problem: '환자·보호자의 질문에 24시간 정확히 답할 창구가 없던 문제',
-    result: 'RAG 기반 의료 상담 AI — 한국 의료체계까지 반영해 응대',
+    result: '근거 문서를 보고 답하는 의료 상담 AI — 한국 의료체계까지 반영해 응대',
     to: '/services',
   },
 ] as const;
@@ -130,7 +130,7 @@ const steps = [
   { n: '01', title: '진단', body: '자체 AI로 시장·고객·업무를 분석합니다.' },
   { n: '02', title: '설계', body: '실행 가능한 AX 전략과 구조를 설계합니다.' },
   { n: '03', title: '구축', body: '웹·앱·자동화를 외주 없이 직접 만듭니다.' },
-  { n: '04', title: '운영', body: 'KPI로 측정하고 지속 고도화합니다.' },
+  { n: '04', title: '운영', body: '핵심 숫자로 측정하고 계속 고도화합니다.' },
 ] as const;
 
 export function Services() {
@@ -189,11 +189,11 @@ export function Services() {
             </p>
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-12">
               <a
-                href="mailto:fusionsfc@gmail.com"
+                href="tel:+821092970940"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 transition-all hover:opacity-90"
                 style={{ backgroundColor: 'white', color: 'var(--navy-900)' }}
               >
-                <span className="font-semibold">문의하기</span>
+                <span className="font-semibold">전화 한 통이면 됩니다 · 010-9297-0940</span>
                 <ArrowRight className="w-5 h-5 shrink-0" />
               </a>
               <a

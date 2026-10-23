@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import { Phone, Menu, X } from 'lucide-react';
 
 const headerMenus = [
   { label: 'AX', path: '/services' },
@@ -67,12 +67,12 @@ export function Header() {
             {/* 데스크톱 CTA */}
             <div className="hidden md:flex items-center">
               <a
-                href="mailto:fusionsfc@gmail.com"
+                href="tel:+821092970940"
                 className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white transition-all hover:opacity-90"
                 style={{ backgroundColor: 'var(--navy-900)' }}
               >
-                <span>문의하기</span>
-                <ArrowRight className="w-4 h-4" />
+                <Phone className="w-4 h-4" />
+                <span>010-9297-0940</span>
               </a>
             </div>
 
@@ -128,12 +128,12 @@ export function Header() {
               ))}
             </div>
             <a
-              href="mailto:fusionsfc@gmail.com"
+              href="tel:+821092970940"
               className="inline-flex items-center justify-center gap-2 w-full py-4 text-base font-semibold text-white transition-all hover:opacity-90 mt-10"
               style={{ backgroundColor: 'var(--navy-900)' }}
             >
-              <span>문의하기</span>
-              <ArrowRight className="w-5 h-5" />
+              <Phone className="w-5 h-5" />
+              <span>전화 한 통이면 됩니다 · 010-9297-0940</span>
             </a>
           </nav>
         </div>
