@@ -55,7 +55,7 @@ export function GuardedReportLink({ to, className, children }: GuardedReportLink
   };
 
   return (
-    <Link to={to} className={className} onClick={onClick}>
+    <Link to={to} className={className} onClick={onClick} reloadDocument={isPublicSampleReportLink(to) && to.endsWith('.html')}>
       {children}
     </Link>
   );

@@ -15,6 +15,13 @@ export interface InsightItem {
 
 export const insightsData: InsightItem[] = [
   {
+    domain: 'healthcare', category: 'LS AX 병원 브리핑',
+    title: '2차 암병원 아침 브리핑\n정책 변화와 병원의 다음 행동', date: '2026.10.26',
+    excerpt: '정책·보험·암치료·회복·의료광고 이슈를 병원 유형과 부서별로 살펴봅니다. 자료의 기준일과 확인 범위를 구분한 차트·일정·실행 체크리스트.',
+    readTime: '종합 브리핑', highlights: ['부서별 이슈', '기관 수·보장률', '출처와 적용 범위', '실행 체크리스트'], isFeatured: true,
+    link: '/reports/daily/ls-ax-2026-10-26.html',
+  },
+  {
     domain: 'business', category: '기업 AX',
     title: 'AI를 써도 일이 남는 이유\n업무를 끝내는 AX 설계', date: 'October 2026',
     excerpt: '글로벌 AI 조사에서 업무 설계와 실제 개발 근거까지. 데이터·AI·사람·시스템을 연결하는 LS AX의 실행 관점과 업무 시간 시뮬레이터.',

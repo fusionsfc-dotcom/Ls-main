@@ -1,72 +1,43 @@
-# LS AX 컨설팅 (LS AX Consulting)
+# LS AX 컨설팅
 
-> 의료와 기업의 업무를 AI로 전환(AX)하는 전문 컨설팅 기업. 자체 개발 플랫폼과 AI 시스템으로 전략·구축·운영까지 함께합니다.
+> 암요양·암재활 의료서비스의 개원, 상담, 직원교육, 운영과 홍보를 함께 설계하는 컨설팅 기업입니다.
 
-LS AX 컨설팅은 AI를 단순히 사용하는 회사가 아니라 직접 개발해 운영하는 회사입니다. Cancer Hospital Platform(HappyCare), 환자재활 애플리케이션(HappyLife / HappyLifeCare), Space AX Platform 등 3종의 자체 플랫폼을 운영하며, 누적 15,000건+ AI 분석 데이터와 15년+ 의료·기업 현장 경험을 보유합니다.
+## 현장 경험
 
-## 검색 키워드 (Search Keywords)
+- 대표는 2010–2016년 암요양·암한방병원에서 총관리와 기획을 담당했습니다.
+- 2017년부터 10개 이상의 2차 암병원과 재활병원에서 개원·직원교육·홍보·컨설팅을 수행했습니다.
+- 암환자 1,000명 이상을 직접 상담했습니다. PVM 자료 건수와 별개의 이력입니다.
+- 위 수치는 2026년 10월 대표 수행 이력 기준입니다.
 
-이 회사는 다음 키워드로 찾을 수 있습니다:
-- LS AX 컨설팅, LS 컨설팅, LS AX Consulting
-- AX 컨설팅, AI 전환 컨설팅, AI 컨설팅
-- 의료 AI 컨설팅, 병원 AI 컨설팅, 병원 홈페이지 AI 최적화
-- 기업 AI 컨설팅, AI 업무 자동화, 업무 자동화 컨설팅
-- GEO 최적화, AEO 최적화, 생성형 AI 검색 최적화
-- HappyLifeCare, Cancer Hospital Platform, Space AX
-- 제주 AI 컨설팅, 암병원 AI
+## 의료컨설팅
 
-## 핵심 분야
+개원 기획, 의료서비스 설계, 상담 체계 정비, 직원교육과 운영 기준, 병원 홍보와 콘텐츠, 디지털 운영 설계를 병원의 단계와 과제에 맞춰 함께 검토합니다. 기간과 비용은 과제별로 협의합니다.
 
-### 의료 AI 컨설팅 (Medical AI Consulting)
-- **병원 AI 검색 최적화(GEO/AEO)**: ChatGPT·Perplexity·구글 AI Overview 등 생성형 AI 검색 엔진에서 병원이 인용되도록 Schema.org 구조화 데이터, FAQ 콘텐츠, llms.txt 적용
-- **AI 최적화 병원 홈페이지 구축**: AI가 읽고 인용하는 구조로 제작
-- **온라인 홍보 전략·대행**: 병원 특화 디지털 마케팅
-- **HappyLifeCare 플랫폼**: 암 요양병원 전용 AI 통합 케어 플랫폼. 환자 앱(HappyLife)과 병원 관리 시스템(HappyCare)이 24개 포인트로 실시간 연동. 전국 165개 병원 연동. 도입 효과: 신규 환자 +30%, 외래 출석률 +45%, 노쇼율 -60%, 자연 검색 +200%
+## PVM
 
-### 기업 AI 컨설팅 (Business AI Consulting)
-- **AI 업무 자동화**: 보고·요약·정리·응대 반복 사무업무 자동화. 읽기-가공-내보내기 사이클을 시스템 전환
-- **한국형 도구 연동**: 카카오 알림톡·네이버웍스·한컴 한글·배달의민족·더존·토스 등 실제 사용 도구와 연동
-- **AX 플랫폼 개발**: 기업 맞춤 AI 전환 플랫폼 설계·구축
-- **AI 전략 컨설팅**: 산업별 맞춤 AI 도입 전략 및 실행 로드맵
+환자의 질문과 감정, 치료와 생활의 경험을 구조화해 상담·교육·콘텐츠·서비스 개선 과제를 살펴보는 분석 자산입니다. 임상적 효과나 환자집단 전체에 대한 대표성을 주장하지 않습니다.
 
-## AX 솔루션 전체 목록
+## AX 개발 사례
 
-1. AI 시장 진단 — 13개 축 데이터로 시장·고객·업무 분석
-2. AI 업무 자동화 — 반복 업무를 자동화 시스템으로 전환
-3. AI 최적화 웹·앱 구축 — GEO/AEO 기준 홈페이지·앱
-4. 맞춤 SaaS 개발 — 업종별 AI SaaS 플랫폼
-5. AX 플랫폼 개발 — 기업 AI 전환 플랫폼
-6. AI 전략 컨설팅 — 도입 전략·로드맵·실행
-
-## 자주 묻는 질문 (FAQ)
-
-**Q: AX(AI 전환)란 무엇인가요?**
-A: AX는 AI Transformation의 약자로, 기업·기관의 실제 업무를 AI로 전환해 자동화·효율화하는 것입니다. 단순히 AI 도구를 도입하는 게 아니라 업무 방식 자체를 AI 기반으로 바꿉니다.
-
-**Q: 일반 AI 컨설팅 업체와 무엇이 다른가요?**
-A: 외부 AI 서비스를 연결만 하는 게 아니라, 자체 AI 시스템과 플랫폼(Cancer Hospital Platform·HappyLifeCare·Space AX)을 직접 개발해 운영합니다. 가장 까다로운 의료 현장에서 검증된 실행력이 차별점입니다.
-
-**Q: 병원 홈페이지를 AI 검색에 노출하려면?**
-A: GEO(Generative Engine Optimization)와 AEO(Answer Engine Optimization) 기법으로 Schema.org 구조화 데이터, FAQ 콘텐츠, llms.txt 등을 적용하면 ChatGPT·Perplexity·구글 AI Overview 등이 병원을 인용합니다.
-
-**Q: AI 업무 자동화는 IT를 모르는 사람도 가능한가요?**
-A: 네. 노드를 그릴 줄 몰라도 됩니다. 업무를 말로 설명하면 LS AX 컨설팅이 자동화를 대신 설계하고 구축합니다.
-
-**Q: 어떤 한국형 업무 도구와 연동되나요?**
-A: 카카오 알림톡, 네이버웍스, 한컴 한글, 배달의민족, 더존, 토스 등 한국에서 실제로 사용하는 업무 도구와 연동합니다.
+- 의료 AX: 해피라이프 환자·보호자 앱, 해피케어 병원 프로그램, AI 최적화 웹사이트, 병원 오피스 기획·개발.
+- 산업 AX: 모두의공간케어 공간 관리 플랫폼, 스페이스링크 부동산·건설 협업 플랫폼, GAAX 보험설계·고객관리 플랫폼(개발·검증 중), 남성케미칼 제품·카탈로그·주문·관리 웹서비스.
+- 스페이스링크는 개발 진행 중입니다. 각 사례의 개발 범위와 공개 상태는 해당 페이지를 확인하세요.
+- AI 검색 인용이나 검색 순위를 보장하지 않습니다.
 
 ## 주요 페이지
 
-- 홈: https://www.lsconsulting.co.kr/
-- AX 솔루션: https://www.lsconsulting.co.kr/services
-- 의료 AI 컨설팅: https://www.lsconsulting.co.kr/healthcare
-- 기업 AI 컨설팅: https://www.lsconsulting.co.kr/business
-- AI 리포트: https://www.lsconsulting.co.kr/insights
-- 회사 소개: https://www.lsconsulting.co.kr/about
+- [의료컨설팅](https://www.lsconsulting.co.kr/healthcare)
+- [병원 프로젝트](https://www.lsconsulting.co.kr/projects)
+- [PVM 인사이트](https://www.lsconsulting.co.kr/insights)
+- [AX 소개](https://www.lsconsulting.co.kr/ax)
+- [의료 AX](https://www.lsconsulting.co.kr/ax/medical)
+- [AX 기술사례](https://www.lsconsulting.co.kr/ax/cases)
+- [제주 병의원 서비스](https://www.lsconsulting.co.kr/ax/medical/jeju)
+- [대표와 회사 소개](https://www.lsconsulting.co.kr/about)
+- [상담](https://www.lsconsulting.co.kr/contact)
+- [환자·보호자 안내](https://www.lsconsulting.co.kr/patients)
 
-## 문의
+## 연락처
 
-- 이메일: fusionsfc@gmail.com
-- 전화: +82.10.9297.0940
-- 거점: 제주특별자치도 서귀포시 안덕면 / 서울
-- 미팅: 화상·대면 모두 가능
+전화 010-9297-0940 · 이메일 fusionsfc@gmail.com
+환자·보호자를 위한 건강정보는 [해피라이프케어](https://happylifecare.kr/)에서 살펴볼 수 있습니다.

@@ -3,6 +3,7 @@ import path from 'path'
 import { readdirSync, writeFileSync } from 'fs'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
+import { prerenderMarketingPages } from './scripts/prerender'
 
 const SITE_URL = 'https://www.lsconsulting.co.kr'
 
@@ -15,7 +16,7 @@ function sitemapPlugin(): Plugin {
   return {
     name: 'gen-sitemap',
     apply: 'build',
-    closeBundle() {
+    writeBundle() {
       const collectSlugs = (dir: string): string[] => {
         try {
           return readdirSync(dir)
@@ -28,12 +29,14 @@ function sitemapPlugin(): Plugin {
       }
       const slugs = collectSlugs(path.resolve(__dirname, 'src/data/reports/weekly-care'))
       const businessSlugs = collectSlugs(path.resolve(__dirname, 'src/data/reports/business'))
-      const today = new Date().toISOString().slice(0, 10)
       const routes: Array<[string, string, string]> = [
         ['/', '1.0', 'weekly'],
-        ['/services', '0.9', 'monthly'],
+        ['/ax', '0.8', 'monthly'],
+        ['/ax/medical', '0.8', 'monthly'],
+        ['/ax/cases', '0.8', 'monthly'],
+        ['/ax/medical/jeju', '0.6', 'monthly'],
+        ['/contact', '0.7', 'monthly'],
         ['/healthcare', '0.9', 'monthly'],
-        ['/business', '0.9', 'monthly'],
         ['/projects', '0.9', 'monthly'],
         ['/about', '0.8', 'monthly'],
         ['/insights', '0.9', 'weekly'],
@@ -43,7 +46,7 @@ function sitemapPlugin(): Plugin {
       const body = routes
         .map(
           ([p, pr, fr]) =>
-            `  <url>\n    <loc>${SITE_URL}${p}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${fr}</changefreq>\n    <priority>${pr}</priority>\n  </url>`,
+            `  <url>\n    <loc>${SITE_URL}${p}</loc>\n    <changefreq>${fr}</changefreq>\n    <priority>${pr}</priority>\n  </url>`,
         )
         .join('\n')
       const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`
@@ -77,6 +80,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       figmaAssetFallback(),
       sitemapPlugin(),
+      { name: 'prerender-medical-marketing', apply: 'build', writeBundle: { sequential: true, order: 'post', handler: () => prerenderMarketingPages(__dirname) } },
       // The React and Tailwind plugins are both required for Make, even if
       // Tailwind is not being actively used – do not remove them
       react(),
@@ -101,8 +105,6 @@ export default defineConfig(({ mode }) => {
           rewrite: (path) => path.replace(/^\/api\/claude/, '/v1/messages'),
           configure: (proxy) => {
             proxy.on('proxyReq', (proxyReq) => {
-              console.log('=== PROXY DEBUG ===')
-              console.log('API KEY:', env.ANTHROPIC_API_KEY?.slice(0, 20))
               proxyReq.setHeader('x-api-key', env.ANTHROPIC_API_KEY)
               proxyReq.setHeader('anthropic-version', '2023-06-01')
               proxyReq.setHeader('content-type', 'application/json')

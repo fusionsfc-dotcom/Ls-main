@@ -98,6 +98,34 @@ export function AiConsult() {
   const [isTyping, setIsTyping] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
   const chatEndRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!isOpen) return;
+    const previous = document.activeElement as HTMLElement | null;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const viewport = window.visualViewport;
+    const resize = () => {
+      const element = viewportRef.current;
+      if (!element) return;
+      if ((window.innerWidth < 768 || (window.innerWidth < 1024 && matchMedia('(pointer: coarse)').matches)) && viewport) {
+        element.style.height = `${viewport.height}px`;
+        element.style.top = `${viewport.offsetTop}px`;
+        element.style.bottom = 'auto';
+      } else { element.style.removeProperty('height'); element.style.removeProperty('top'); element.style.removeProperty('bottom'); }
+    };
+    const key = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { setIsOpen(false); return; }
+      if (event.key !== 'Tab') return;
+      const nodes = Array.from(viewportRef.current?.querySelectorAll<HTMLElement>('button:not([disabled]), input:not([disabled]), a[href]') || []);
+      const first = nodes[0], last = nodes[nodes.length-1];
+      if (event.shiftKey && document.activeElement === first) {event.preventDefault();last?.focus();}
+      else if (!event.shiftKey && document.activeElement === last) {event.preventDefault();first?.focus();}
+    };
+    resize();viewportRef.current?.querySelector<HTMLButtonElement>('[aria-label="닫기"]')?.focus();
+    viewport?.addEventListener('resize', resize);viewport?.addEventListener('scroll', resize);window.addEventListener('resize',resize);document.addEventListener('keydown',key);
+    return () => {document.body.style.overflow=overflow;viewport?.removeEventListener('resize',resize);viewport?.removeEventListener('scroll',resize);window.removeEventListener('resize',resize);document.removeEventListener('keydown',key);previous?.focus({preventScroll:true});};
+  }, [isOpen]);
 
   // Listen for custom event from Header
   useEffect(() => {
@@ -176,13 +204,13 @@ export function AiConsult() {
     <>
       {/* Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center">
+        <div ref={viewportRef} role="dialog" aria-modal="true" aria-labelledby="ls-ai-title" className="med-ai-overlay fixed inset-0 z-[100] flex items-center justify-center">
           {/* Backdrop */}
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
 
           {/* Panel */}
           <div
-            className="relative z-10 w-full h-full md:w-[680px] md:h-[85vh] md:max-h-[900px] md:rounded-2xl flex flex-col overflow-hidden shadow-2xl"
+            className="med-ai-panel relative z-10 w-full h-full md:w-[680px] md:h-[85vh] md:max-h-[900px] md:rounded-2xl flex flex-col overflow-hidden shadow-2xl"
             style={{ backgroundColor: '#FDFBF7' }}
           >
             {/* Header bar */}
@@ -191,20 +219,20 @@ export function AiConsult() {
                 <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm font-bold"
                      style={{ background: 'linear-gradient(135deg, var(--navy-500), var(--navy-700))' }}>LS</div>
                 <div>
-                  <h2 className="text-white text-sm font-semibold tracking-tight">LS 암상담</h2>
+                  <h2 id="ls-ai-title" className="text-white text-sm font-semibold tracking-tight">LS 암상담</h2>
                   <div className="flex items-center gap-1.5" style={{ color: 'var(--navy-300)' }}>
                     <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
                     <span className="text-xs">환자 데이터 기반 AI 상담</span>
                   </div>
                 </div>
               </div>
-              <button onClick={() => setIsOpen(false)} className="text-white/70 hover:text-white transition-colors p-1" aria-label="닫기">
+              <button onClick={() => setIsOpen(false)} className="text-white/70 hover:text-white transition-colors w-11 h-11 flex items-center justify-center shrink-0" aria-label="닫기">
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* Chat area */}
-            <div className="flex-1 overflow-y-auto px-4 py-4">
+            <div className="med-ai-messages flex-1 min-h-0 overflow-y-auto px-4 py-4">
               {showWelcome && (
                 <div className="pb-6">
                   {/* AI 인사 메시지 */}
@@ -307,14 +335,14 @@ export function AiConsult() {
             </div>
 
             {/* Input bar */}
-            <div className="bg-white border-t py-3 px-4" style={{ borderColor: 'var(--navy-100)' }}>
+            <div className="med-ai-input bg-white border-t py-3 px-4 shrink-0" style={{ borderColor: 'var(--navy-100)' }}>
               <div className="flex gap-2 items-center">
                 <input type="text" value={input} onChange={e => setInput(e.target.value)}
                   onKeyDown={e => e.key === 'Enter' && !e.nativeEvent.isComposing && handleSend()}
                   placeholder="암 치료에 대해 무엇이든 물어보세요..." disabled={isTyping}
                   className="flex-1 px-5 py-3 rounded-full text-sm outline-none transition-colors disabled:opacity-50"
                   style={{ backgroundColor: 'var(--navy-50)', border: '1.5px solid var(--navy-200)', color: 'var(--navy-900)' }} />
-                <button onClick={() => handleSend()} disabled={isTyping || !input.trim()}
+                <button aria-label="질문 보내기" onClick={() => handleSend()} disabled={isTyping || !input.trim()}
                   className="w-11 h-11 rounded-full flex items-center justify-center text-white flex-shrink-0 transition-opacity hover:opacity-85 disabled:opacity-40"
                   style={{ backgroundColor: 'var(--navy-900)' }}>
                   <Send className="w-4 h-4" />

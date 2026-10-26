@@ -12,7 +12,7 @@ export function SiteExperience() {
   const progress = useRef<HTMLDivElement>(null);
   useEffect(() => {
     document.body.classList.add('ax-immersive');
-    const header = document.querySelector('#root > div > header');
+    const header = document.querySelector('#root > div > header:not(.med-header)');
     header?.classList.add('ax-site-header');
     const scroll = () => {
       const max = document.documentElement.scrollHeight - innerHeight;

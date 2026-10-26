@@ -1,78 +1,33 @@
 import { Helmet } from 'react-helmet-async';
-import { useEffect, useState } from 'react';
-import ogImageDefault from "figma:asset/5a8a79283bcecb6ed5e53612f8a61afbebe0ef0a.png";
-
+import { useLocation } from 'react-router';
+import { brand } from '../data/medicalPositioning';
+import { isReportPathRequiringPassword } from '../constants/reportAccess';
 interface SEOProps {
   title?: string;
   description?: string;
   keywords?: string;
   image?: string;
   url?: string;
-  /** 페이지별 구조화 데이터(JSON-LD). 객체 또는 객체 배열 */
+  robots?: string;
   jsonLd?: object | object[];
 }
-
 export function SEO({
-  title = 'LS AX 컨설팅 — AI 전환(AX) 전문 기업 | 의료·기업 AI 컨설팅',
-  description = 'LS AX 컨설팅은 의료와 기업 현장의 업무를 AI로 전환(AX)하는 전문 컨설팅 기업입니다. AI 시장 진단, 업무 자동화, 병원 AI 검색 최적화(GEO/AEO), HappyLifeCare 플랫폼을 자체 개발·운영합니다.',
+  title = `${brand.specialty} | ${brand.name}`,
+  description = brand.description,
   keywords,
-  image,
-  url = 'https://www.lsconsulting.co.kr',
-  jsonLd,
+  image = '/images/repositioning/og-medical.png',
+  url,
+  robots,
+  jsonLd
 }: SEOProps) {
-  const jsonLdList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
-  const [absoluteImageUrl, setAbsoluteImageUrl] = useState('');
-
-  useEffect(() => {
-    // 기본 이미지를 절대 URL로 변환
-    const img = image || ogImageDefault;
-    if (img.startsWith('http')) {
-      setAbsoluteImageUrl(img);
-    } else {
-      // 상대 경로를 절대 URL로 변환
-      const origin = window.location.origin;
-      setAbsoluteImageUrl(`${origin}${img}`);
-    }
-  }, [image]);
-
-  return (
-    <>
-      <Helmet>
-      {/* 기본 메타 태그 */}
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      {keywords && <meta name="keywords" content={keywords} />}
-      <link rel="canonical" href={url} />
-      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-
-      {/* Open Graph (Facebook, KakaoTalk) */}
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      {absoluteImageUrl && <meta property="og:image" content={absoluteImageUrl} />}
-      <meta property="og:url" content={url} />
-      <meta property="og:locale" content="ko_KR" />
-      <meta property="og:site_name" content="LS AX 컨설팅" />
-      
-      {/* Twitter Card */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      {absoluteImageUrl && <meta name="twitter:image" content={absoluteImageUrl} />}
-      
-      {/* 카카오톡 전용 */}
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      </Helmet>
-
-      {/* 페이지별 구조화 데이터 — ld+json은 body 내에 있어도 유효 */}
-      {jsonLdList.map((obj, i) => (
-        <script
-          key={i}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(obj) }}
-        />
-      ))}
-    </>
-  );
+  const {
+    pathname
+  } = useLocation();
+  const canonical = url || `${brand.origin}${pathname}`;
+  const indexing = robots || (pathname.startsWith('/admin') || isReportPathRequiringPassword(pathname) ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1');
+  const absoluteImageUrl = new URL(image, brand.origin).href;
+  const schemas = jsonLd ? Array.isArray(jsonLd) ? jsonLd : [jsonLd] : [];
+  return <><Helmet><title>{title}</title><meta name="description" content={description} />{keywords && <meta name="keywords" content={keywords} />}<link rel="canonical" href={canonical} /><meta name="robots" content={indexing} /><meta property="og:type" content="website" /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:image" content={absoluteImageUrl} /><meta property="og:url" content={canonical} /><meta property="og:locale" content="ko_KR" /><meta property="og:site_name" content={brand.name} /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={absoluteImageUrl} /></Helmet>{schemas.map((schema, i) => <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{
+      __html: JSON.stringify(schema).replace(/</g, '\\u003c')
+    }} />)}</>;
 }

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "dev": "vite"
+    "dev": "NODE_OPTIONS='--max-http-header-size=131072' vite --host 127.0.0.1 --port 5173"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.81.0",

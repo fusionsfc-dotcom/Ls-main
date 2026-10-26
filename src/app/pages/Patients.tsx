@@ -1,8 +1,10 @@
+
 import { useState } from 'react';
 import { ChevronDown, ChevronRight, Check, Search, Mail } from 'lucide-react';
 import { Link } from 'react-router';
 import { projectId, publicAnonKey } from '/utils/supabase/info';
 import React from 'react';
+import { SEO } from '../components/SEO';
 
 export function Patients() {
   const [surveyStep, setSurveyStep] = useState(0);
@@ -62,7 +64,7 @@ export function Patients() {
   const handleSurveyAnswer = (questionId: string, answer: string) => {
     const newAnswers = { ...surveyAnswers, [questionId]: answer };
     setSurveyAnswers(newAnswers);
-    
+
     if (surveyStep < surveyQuestions.length - 1) {
       setSurveyStep(surveyStep + 1);
     } else {
@@ -332,7 +334,7 @@ export function Patients() {
   // 질문하기 폼 제출
   const handleQuestionSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!questionForm.consent) {
       alert('개인정보 수집 및 이용에 동의해주세요.');
       return;
@@ -361,7 +363,7 @@ export function Patients() {
       );
 
       const result = await response.json();
-      
+
       if (response.ok && result.success) {
         alert('질문이 접수되었습니다. 검토 후 이메일로 답변드리겠습니다.');
         setQuestionForm({
@@ -384,21 +386,22 @@ export function Patients() {
   };
 
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="med-patients min-h-screen bg-white pt-20">
+      <SEO title="환자·보호자 안내 | LS AX 컨설팅" description="환자의 질문과 경험을 바탕으로 정리한 안내, 질문과 상담 기능을 제공합니다." url="https://www.lsconsulting.co.kr/patients" />
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-8 lg:px-16">
         <div className="max-w-[1000px] mx-auto text-center">
-          <h1 
+          <h1
             className="text-4xl lg:text-6xl leading-tight tracking-tight mb-6"
             style={{ color: 'var(--navy-900)' }}
           >
             암 치료, 무엇을 먼저<br />결정해야 할까요?
           </h1>
           <p className="text-lg opacity-60 mb-12 leading-relaxed" style={{ color: 'var(--navy-900)' }}>
-            국내 최대 암 환자 니즈 분석 DB(PVM™)를 기반으로 정리한<br />
+            암 환자의 질문과 경험을 정리한 PVM을 바탕으로 살펴보는<br />
             환자 의사결정 플랫폼입니다.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <a
               href="#survey"
@@ -410,7 +413,7 @@ export function Patients() {
             <a
               href="#question"
               className="px-8 py-4 transition-all hover:opacity-90"
-              style={{ 
+              style={{
                 backgroundColor: 'white',
                 color: 'var(--navy-900)',
                 border: '1px solid var(--navy-900)'
@@ -420,6 +423,9 @@ export function Patients() {
             </a>
           </div>
 
+          <button type="button" className="mb-6 px-6 py-3 border border-slate-300 text-sm" onClick={() => window.dispatchEvent(new Event('toggle-ai-consult'))}>
+            기존 AI 상담 열기
+          </button>
           <p className="text-sm opacity-40" style={{ color: 'var(--navy-900)' }}>
             상업적 치료 유도 없이, 데이터 기반 정보만 제공합니다.
           </p>
@@ -429,7 +435,7 @@ export function Patients() {
       {/* Survey Section */}
       <section id="survey" className="py-20 px-8 lg:px-16" style={{ backgroundColor: 'var(--navy-50)' }}>
         <div className="max-w-[800px] mx-auto">
-          <h2 
+          <h2
             className="text-3xl lg:text-4xl mb-12 text-center tracking-tight"
             style={{ color: 'var(--navy-900)' }}
           >
@@ -446,9 +452,9 @@ export function Patients() {
                   </span>
                 </div>
                 <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                  <div 
+                  <div
                     className="h-full transition-all duration-300"
-                    style={{ 
+                    style={{
                       backgroundColor: 'var(--navy-900)',
                       width: `${((surveyStep + 1) / surveyQuestions.length) * 100}%`
                     }}
@@ -467,9 +473,9 @@ export function Patients() {
                       key={option}
                       onClick={() => handleSurveyAnswer(surveyQuestions[surveyStep].id, option)}
                       className="w-full p-4 text-left transition-all border hover:border-current"
-                      style={{ 
-                        borderColor: surveyAnswers[surveyQuestions[surveyStep].id] === option 
-                          ? 'var(--navy-900)' 
+                      style={{
+                        borderColor: surveyAnswers[surveyQuestions[surveyStep].id] === option
+                          ? 'var(--navy-900)'
                           : '#e5e7eb',
                         backgroundColor: surveyAnswers[surveyQuestions[surveyStep].id] === option
                           ? 'var(--navy-50)'
@@ -503,7 +509,7 @@ export function Patients() {
             /* Survey Result */
             <div className="bg-white p-8 lg:p-12">
               <div className="text-center mb-12">
-                <div 
+                <div
                   className="inline-block px-6 py-2 mb-4 text-sm text-white"
                   style={{ backgroundColor: 'var(--navy-900)' }}
                 >
@@ -589,7 +595,7 @@ export function Patients() {
                 <button
                   onClick={resetSurvey}
                   className="px-8 py-3 text-sm border transition-all hover:opacity-70"
-                  style={{ 
+                  style={{
                     borderColor: 'var(--navy-900)',
                     color: 'var(--navy-900)'
                   }}
@@ -605,7 +611,7 @@ export function Patients() {
       {/* Patient Journey Section */}
       <section className="py-20 px-8 lg:px-16">
         <div className="max-w-[1200px] mx-auto">
-          <h2 
+          <h2
             className="text-3xl lg:text-4xl mb-12 text-center tracking-tight"
             style={{ color: 'var(--navy-900)' }}
           >
@@ -677,7 +683,7 @@ export function Patients() {
       {/* FAQ Section */}
       <section className="py-20 px-8 lg:px-16" style={{ backgroundColor: 'var(--navy-50)' }}>
         <div className="max-w-[1000px] mx-auto">
-          <h2 
+          <h2
             className="text-3xl lg:text-4xl mb-12 text-center tracking-tight"
             style={{ color: 'var(--navy-900)' }}
           >
@@ -733,7 +739,7 @@ export function Patients() {
                       {faq.question}
                     </div>
                   </div>
-                  <ChevronDown 
+                  <ChevronDown
                     className={`w-6 h-6 flex-shrink-0 transition-transform ${expandedFaq === idx ? 'rotate-180' : ''}`}
                     style={{ color: 'var(--navy-900)' }}
                   />
@@ -763,6 +769,7 @@ export function Patients() {
           <h2 className="text-3xl lg:text-4xl mb-4 text-center tracking-tight">
             직접 질문하기
           </h2>
+
           <p className="text-center opacity-80 mb-12">
             남겨주신 질문은 익명으로 처리되며,<br />
             PVM 데이터 분석에 반영됩니다.
@@ -787,9 +794,9 @@ export function Patients() {
                         required
                         className="sr-only"
                       />
-                      <div 
+                      <div
                         className="w-5 h-5 rounded-full border-2 flex items-center justify-center"
-                        style={{ 
+                        style={{
                           borderColor: 'var(--navy-900)',
                           backgroundColor: questionForm.role === '환자' ? 'var(--navy-900)' : 'white'
                         }}
@@ -812,9 +819,9 @@ export function Patients() {
                         required
                         className="sr-only"
                       />
-                      <div 
+                      <div
                         className="w-5 h-5 rounded-full border-2 flex items-center justify-center"
-                        style={{ 
+                        style={{
                           borderColor: 'var(--navy-900)',
                           backgroundColor: questionForm.role === '보호자' ? 'var(--navy-900)' : 'white'
                         }}
@@ -950,9 +957,9 @@ export function Patients() {
                       required
                       className="sr-only"
                     />
-                    <div 
+                    <div
                       className="w-5 h-5 border-2 flex items-center justify-center"
-                      style={{ 
+                      style={{
                         borderColor: 'var(--navy-900)',
                         backgroundColor: questionForm.consent ? 'var(--navy-900)' : 'white'
                       }}
@@ -984,7 +991,7 @@ export function Patients() {
       {/* Bottom CTA */}
       <section className="py-20 px-8 lg:px-16" style={{ backgroundColor: 'var(--navy-50)' }}>
         <div className="max-w-[800px] mx-auto text-center">
-          <h2 
+          <h2
             className="text-2xl lg:text-3xl mb-4 tracking-tight"
             style={{ color: 'var(--navy-900)' }}
           >

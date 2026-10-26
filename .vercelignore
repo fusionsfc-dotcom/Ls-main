@@ -1,0 +1,11 @@
+.env*
+.git
+.claude
+node_modules
+dist
+docs
+output
+/supabase/
+guidelines
+LS_AX_*.html
+LS_CONSULTING_WEBSITE_COMPLETE_DOCUMENTATION.md

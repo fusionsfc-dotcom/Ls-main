@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router';
 import { ArrowLeft, Calendar, Clock, Database, BarChart2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { lsSupabase } from '../lib/lsSupabase';
+
+const ArchivedFebruaryReport = lazy(() => import('../app/pages/ReportDetail').then(module => ({ default: module.ReportDetail })));
 
 export function ReportDetail() {
   const { id } = useParams();
@@ -40,6 +42,12 @@ export function ReportDetail() {
         </div>
       </div>
     );
+  }
+
+  // This published sample predates database-backed reports; retain its original
+  // document when the database does not return it. Other IDs keep their error UI.
+  if ((error || !report) && id === '202602') {
+    return <Suspense fallback={<p className="pt-32 text-center">리포트를 불러오는 중...</p>}><ArchivedFebruaryReport /></Suspense>;
   }
 
   if (error || !report) {

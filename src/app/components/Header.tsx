@@ -1,143 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router';
-import { Phone, Menu, X } from 'lucide-react';
-
-const headerMenus = [
-  { label: 'AX', path: '/services' },
-  { label: '의료', path: '/healthcare' },
-  { label: '기업', path: '/business' },
-  { label: '프로젝트', path: '/projects' },
-  { label: '리포트', path: '/insights' },
-  { label: '소개', path: '/about' },
-] as const;
-
+import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { mainNavigation } from '../data/siteNavigation';
+export function BrandLogo() {
+  return <Link to="/" className="med-logo" aria-label="LS AX 컨설팅 홈"><span className="med-logo-mark" aria-hidden="true">LS</span><span className="med-logo-text"><strong>LS AX 컨설팅</strong><small>HEALTHCARE CONSULTING & AX</small></span></Link>;
+}
 export function Header() {
   const location = useLocation();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const isActive = (path: string) => location.pathname.startsWith(path);
-
+  const [open, setOpen] = useState(false);
+  const trigger = useRef<HTMLButtonElement>(null);
+  const dialog = useRef<HTMLDivElement>(null);
+  const close = useRef<HTMLButtonElement>(null);
+  const active = (path: string) => location.pathname === path || location.pathname.startsWith(path + '/');
+  useEffect(() => setOpen(false), [location.pathname, location.search, location.hash]);
   useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [location.pathname]);
-
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
+    if (!open) return;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    close.current?.focus();
+    const key = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setOpen(false);
+        return;
+      }
+      if (e.key !== 'Tab') return;
+      const focusable = Array.from(dialog.current?.querySelectorAll<HTMLElement>('a[href],button:not([disabled])') || []);
+      const first = focusable[0],
+        last = focusable.at(-1);
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last?.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first?.focus();
+      }
     };
-  }, [mobileMenuOpen]);
-
-  return (
-    <>
-      <header
-        className="sticky top-0 z-50 bg-white border-b"
-        style={{ borderColor: 'var(--navy-100)' }}
-      >
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16">
-          <div className="flex items-center justify-between h-20">
-            {/* 로고 */}
-            <Link to="/" className="text-2xl font-bold tracking-tight" style={{ color: 'var(--navy-900)' }}>
-              LS AX 컨설팅
-            </Link>
-
-            {/* 데스크톱 네비게이션 */}
-            <nav className="hidden md:flex items-center gap-10">
-              {headerMenus.map((menu) => (
-                <Link
-                  key={menu.path}
-                  to={menu.path}
-                  className="text-base transition-colors"
-                  style={{
-                    color: isActive(menu.path) ? 'var(--navy-900)' : 'var(--navy-700)',
-                    fontWeight: isActive(menu.path) ? 700 : 500,
-                    borderBottom: isActive(menu.path) ? '2px solid var(--navy-900)' : '2px solid transparent',
-                    paddingBottom: '2px',
-                  }}
-                >
-                  {menu.label}
-                </Link>
-              ))}
-            </nav>
-
-            {/* 데스크톱 CTA */}
-            <div className="hidden md:flex items-center">
-              <a
-                href="tel:+821092970940"
-                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white transition-all hover:opacity-90"
-                style={{ backgroundColor: 'var(--navy-900)' }}
-              >
-                <Phone className="w-4 h-4" />
-                <span>010-9297-0940</span>
-              </a>
-            </div>
-
-            {/* 모바일 햄버거 */}
-            <button
-              className="md:hidden p-2"
-              style={{ color: 'var(--navy-900)' }}
-              onClick={() => setMobileMenuOpen(true)}
-              aria-label="메뉴 열기"
-            >
-              <Menu className="w-6 h-6" />
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* 모바일 풀스크린 메뉴 */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[100] bg-white md:hidden flex flex-col">
-          <div
-            className="flex justify-between items-center px-8 py-5 border-b"
-            style={{ borderColor: 'var(--navy-100)' }}
-          >
-            <Link
-              to="/"
-              className="text-2xl font-bold tracking-tight"
-              style={{ color: 'var(--navy-900)' }}
-            >
-              LS AX 컨설팅
-            </Link>
-            <button
-              onClick={() => setMobileMenuOpen(false)}
-              style={{ color: 'var(--navy-900)' }}
-              aria-label="메뉴 닫기"
-            >
-              <X className="w-6 h-6" />
-            </button>
-          </div>
-          <nav className="flex-1 px-8 py-10 flex flex-col justify-between">
-            <div className="space-y-8">
-              {headerMenus.map((menu) => (
-                <Link
-                  key={menu.path}
-                  to={menu.path}
-                  className="block text-3xl font-medium transition-colors"
-                  style={{
-                    color: isActive(menu.path) ? 'var(--navy-900)' : 'var(--navy-700)',
-                    fontWeight: isActive(menu.path) ? 700 : 500,
-                  }}
-                >
-                  {menu.label}
-                </Link>
-              ))}
-            </div>
-            <a
-              href="tel:+821092970940"
-              className="inline-flex items-center justify-center gap-2 w-full py-4 text-base font-semibold text-white transition-all hover:opacity-90 mt-10"
-              style={{ backgroundColor: 'var(--navy-900)' }}
-            >
-              <Phone className="w-5 h-5" />
-              <span>전화 한 통이면 됩니다 · 010-9297-0940</span>
-            </a>
-          </nav>
-        </div>
-      )}
-    </>
-  );
+    const resize = () => {
+      if (window.innerWidth >= 1024) setOpen(false);
+    };
+    document.addEventListener('keydown', key);
+    window.addEventListener('resize', resize);
+    return () => {
+      document.body.style.overflow = overflow;
+      document.removeEventListener('keydown', key);
+      window.removeEventListener('resize', resize);
+      trigger.current?.focus();
+    };
+  }, [open]);
+  return <><a className="med-skip" href="#main-content">본문으로 바로가기</a><header className="med-header"><div className="med-wrap med-header-inner"><BrandLogo /><nav className="med-desktop-nav" aria-label="주 메뉴">{mainNavigation.map(n => <Link key={n.path} to={n.path} aria-current={active(n.path) ? 'page' : undefined}>{n.label}</Link>)}</nav><Link to="/contact" className="med-header-cta">병원 컨설팅 상담 ↗</Link><button ref={trigger} className="med-menu-button" aria-label="메뉴 열기" aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(true)}><Menu size={25} /></button></div></header>{open && <div className="med-header med-mobile-menu" id="mobile-navigation" ref={dialog} role="dialog" aria-modal="true" aria-label="사이트 메뉴"><div className="med-mobile-menu-top"><BrandLogo /><button ref={close} className="med-menu-button" aria-label="메뉴 닫기" onClick={() => setOpen(false)}><X size={26} /></button></div><nav aria-label="모바일 주 메뉴">{mainNavigation.map(n => <Link key={n.path} to={n.path} onClick={() => setOpen(false)} aria-current={active(n.path) ? 'page' : undefined}>{n.label}</Link>)}</nav><Link to="/contact" className="med-button" onClick={() => setOpen(false)}>병원 컨설팅 상담<ArrowUpRight size={18} /></Link></div>}</>;
 }
