@@ -1,0 +1,7 @@
+{
+  "baselineDeployment": "dpl_EJEHKfS2CA6TFC1bLa3HrCNroY1V",
+  "newUrl": "https://www.lsconsulting.co.kr/reports/patient/breast-patient-questions-2026-10-29.html",
+  "pdfSha256": "699d897071cab3b3c82a6912ba70a01e75ba0b1caf418652a1ed23b3d9336377",
+  "pdfSize": 435647,
+  "note": "Archive label and publication registry patch only. HTML and source PDF are deployed to the user-authorized website, not stored in this repository. The older main tree is not the current production source; apply only to the verified production baseline. No main synchronization included."
+}
