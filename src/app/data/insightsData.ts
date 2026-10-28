@@ -15,6 +15,14 @@ export interface InsightItem {
 
 export const insightsData: InsightItem[] = [
   {
+    domain: 'healthcare', category: 'LS AX 리포트',
+    title: 'LS AX 리포트 - 간병 급여화·비급여 관리·실손 전환에 대응하는 2차암병원 전략',
+    date: '2026.10.28',
+    excerpt: '간병 급여화·비급여 관리·실손 전환을 세 가지 경영 전략으로 연결합니다. 입원 적정성, 낙상·회복·정서 케어와 부서별 실행과제를 보도·확인 필요·운영 제안으로 구분합니다.',
+    readTime: '종합 리포트', highlights: ['경영 전략 3가지', '낙상 비교 차트', '부서별 실행과제', '출처와 확인 상태'], isFeatured: true,
+    link: '/reports/daily/ls-ax-2026-10-28.html',
+  },
+  {
     domain: 'healthcare', category: 'LS AX 병원 브리핑',
     title: '2차 암병원 아침 브리핑\n정책 변화와 병원의 다음 행동', date: '2026.10.26',
     excerpt: '정책·보험·암치료·회복·의료광고 이슈를 병원 유형과 부서별로 살펴봅니다. 자료의 기준일과 확인 범위를 구분한 차트·일정·실행 체크리스트.',
