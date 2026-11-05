@@ -1,0 +1,41 @@
+--- a/public/reports/daily/catalog.json
++++ b/public/reports/daily/catalog.json
+@@ -1,4 +1,11 @@
+ [
++  {
++    "date": "2026-11-06",
++    "version": 1,
++    "title": "LS AX 리포트 - 간병급여·비급여 법안과 재급식증후군 예방",
++    "path": "/reports/daily/ls-ax-2026-11-06.html",
++    "sha256": "2e4df41dba7f88a282e21a87a1055f59922baa04fc4a20b2ddf58fc191be04b7"
++  },
+   {
+     "date": "2026-11-04",
+     "version": 1,
+--- a/src/app/data/insightsData.ts
++++ b/src/app/data/insightsData.ts
+@@ -23,6 +23,24 @@
+   "domain": "healthcare",
+   "medicalBoard": "cancer-report",
+   "category": "LS AX 리포트",
++  "title": "LS AX 리포트 - 간병급여·비급여 법안과 재급식증후군 예방",
++  "date": "2026.11.06",
++  "publishedAt": "2026-11-05",
++  "excerpt": "간병급여 검토안과 비급여 관리 법안, 재급식증후군 예방 지침을 살펴봅니다. 수면·보호자 지원과 부서별 과제를 근거·불확실성·운영 제안으로 구분합니다.",
++  "readTime": "종합 리포트",
++  "highlights": [
++    "간병급여 검토안",
++    "비급여 법안",
++    "재급식 예방",
++    "보호자 지원"
++  ],
++  "isFeatured": true,
++  "link": "/reports/daily/ls-ax-2026-11-06.html"
++},
++  {
++  "domain": "healthcare",
++  "medicalBoard": "cancer-report",
++  "category": "LS AX 리포트",
+   "title": "LS AX 리포트 - 진료의뢰·청구 절차와 항암치료 중 발열 대응",
+   "date": "2026.11.04",
+   "publishedAt": "2026-11-03",

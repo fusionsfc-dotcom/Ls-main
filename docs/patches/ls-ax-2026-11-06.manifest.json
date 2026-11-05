@@ -1,0 +1,11 @@
+{
+  "reportDate": "2026-11-06",
+  "publishedAt": "2026-11-05",
+  "title": "LS AX 리포트 - 간병급여·비급여 법안과 재급식증후군 예방",
+  "url": "https://www.lsconsulting.co.kr/reports/daily/ls-ax-2026-11-06.html",
+  "publicationScope": "New report HTML and registration patch for insightsData.ts and daily/catalog.json only. Existing publications preserved.",
+  "sourceHtmlSha256": "2e4df41dba7f88a282e21a87a1055f59922baa04fc4a20b2ddf58fc191be04b7",
+  "builtHtmlSha256": "aba70e9b741abc6f17b71554496408dc12a5ce7feb89530e66c0b73b942ae4b2",
+  "registrationPatchSha256": "eed1c66b7dc39cb0d7dbad88b3eb2a82aa2ace4a3e61fc45e39a5184bd77969a",
+  "deploymentWarning": "This scoped branch is not a full reconciliation of production with main. Do not deploy this branch or old main over production. Apply the registration patch only to freshly verified production source. Full main synchronization is outside this publication scope."
+}
