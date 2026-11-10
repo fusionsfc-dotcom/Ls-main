@@ -1,0 +1,11 @@
+{
+  "reportDate": "2026-11-09",
+  "publishedAt": "2026-11-10",
+  "title": "LS AX 리포트 - 인력 등급·의료광고 관리와 항암 오심·구토 대응",
+  "url": "https://www.lsconsulting.co.kr/reports/daily/ls-ax-2026-11-09.html",
+  "publicationScope": "New report HTML and registration patch for insightsData.ts and daily/catalog.json only. Existing publications preserved.",
+  "sourceHtmlSha256": "dbe6215637fe5cca6e1b8af72093daffac9e45e64ef86b2acc982b8e70005542",
+  "builtHtmlSha256": "a72add83c7d629fe5ea9cf313147b37a9e9c08a26316658b5b72feb2ead08e50",
+  "registrationPatchSha256": "4eee695e22c1819b7e26bf94368df6dad6a21f0e52ffde82b69ae0258a9a63a5",
+  "deploymentWarning": "This scoped branch is not a full reconciliation of production with main. Do not deploy this branch or old main over production. Apply the registration patch only to freshly verified production source. Full main synchronization is outside this publication scope."
+}
