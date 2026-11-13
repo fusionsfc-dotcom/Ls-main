@@ -1,0 +1,66 @@
+--- a/src/app/data/insightsData.ts
++++ b/src/app/data/insightsData.ts
+@@ -23,6 +23,42 @@
+   "domain": "healthcare",
+   "medicalBoard": "cancer-report",
+   "category": "LS AX 리포트",
++  "title": "LS AX 리포트 - 실손 공제·지급보류와 구강점막염 관리",
++  "date": "2026.11.13",
++  "publishedAt": "2026-11-13",
++  "excerpt": "본인부담상한제 환급금의 실손 공제·지급보류와 계류 법안을 살펴봅니다. 구강점막염 관리·영양 지원, 원예 활동과 환자 응대의 적용 범위와 한계를 정리합니다.",
++  "readTime": "종합 리포트",
++  "highlights": [
++    "실손 공제·지급보류",
++    "구강점막염 관리",
++    "영양 지원",
++    "환자 응대"
++  ],
++  "isFeatured": true,
++  "link": "/reports/daily/ls-ax-2026-11-13.html"
++},
++  {
++  "domain": "healthcare",
++  "medicalBoard": "cancer-report",
++  "category": "LS AX 리포트",
++  "title": "LS AX 리포트 - 암환자 회송·환자분류와 특사경 법안 동향",
++  "date": "2026.11.11",
++  "publishedAt": "2026-11-13",
++  "excerpt": "암환자 전문회송 통계와 환자분류 기준, 특사경 법안의 진행 상황을 살펴봅니다. 회송 기록·시설 안전·환자 응대에 필요한 운영 과제를 정리합니다.",
++  "readTime": "종합 리포트",
++  "highlights": [
++    "암환자 회송",
++    "환자분류 기준",
++    "특사경 법안",
++    "시설 안전"
++  ],
++  "isFeatured": true,
++  "link": "/reports/daily/ls-ax-2026-11-11.html"
++},
++  {
++  "domain": "healthcare",
++  "medicalBoard": "cancer-report",
++  "category": "LS AX 리포트",
+   "title": "LS AX 리포트 - 인력 등급·의료광고 관리와 항암 오심·구토 대응",
+   "date": "2026.11.09",
+   "publishedAt": "2026-11-10",
+--- a/public/reports/daily/catalog.json
++++ b/public/reports/daily/catalog.json
+@@ -1,4 +1,18 @@
+ [
++  {
++    "date": "2026-11-13",
++    "version": 1,
++    "title": "LS AX 리포트 - 실손 공제·지급보류와 구강점막염 관리",
++    "path": "/reports/daily/ls-ax-2026-11-13.html",
++    "sha256": "d7de2c8e9ea5302ef5599d7c2825c7aaf424cf13bf7ae176499d230c2fab5781"
++  },
++  {
++    "date": "2026-11-11",
++    "version": 1,
++    "title": "LS AX 리포트 - 암환자 회송·환자분류와 특사경 법안 동향",
++    "path": "/reports/daily/ls-ax-2026-11-11.html",
++    "sha256": "904cc7d12284b09e58b6a3cdc00c7e82078ae1a92d9441942a82c3d7f6c53d41"
++  },
+   {
+     "date": "2026-11-09",
+     "version": 1,
