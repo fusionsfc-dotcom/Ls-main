@@ -1,0 +1,64 @@
+--- a/src/app/data/insightsData.ts
++++ b/src/app/data/insightsData.ts
+@@ -23,6 +23,40 @@
+   "domain": "healthcare",
+   "medicalBoard": "cancer-report",
+   "category": "LS AX 리포트",
++  "title": "LS AX 리포트 - 병동 이동·재활과 B형간염 재활성화 예방",
++  "date": "2026.11.18",
++  "publishedAt": "2026-11-18",
++  "excerpt": "병동 이동 증진과 혈액암 재활 사례를 살펴봅니다. B형간염 선별검사·예방약 확인, 퇴원 후 운동과 직장 복귀 지원의 적용 조건과 연구 한계를 정리합니다.",
++  "readTime": "종합 리포트",
++  "highlights": [
++    "종양 병동의 이동 보조 프로그램",
++    "B형간염 검사와 예방약 확인",
++    "이동 기록과 병동 내 재활"
++  ],
++  "isFeatured": true,
++  "link": "/reports/daily/ls-ax-2026-11-18.html"
++},
++  {
++  "domain": "healthcare",
++  "medicalBoard": "cancer-report",
++  "category": "LS AX 리포트",
++  "title": "LS AX 리포트 - 운동·영양 통합 재활과 퇴원 후 자기관리 지원",
++  "date": "2026.11.16",
++  "publishedAt": "2026-11-18",
++  "excerpt": "항암 중 재택 운동과 다학제 재활 연구를 살펴봅니다. GLIM 영양불량 진단, 간호 심리 지원, 운동 유지율과 직장 복귀 지원의 근거·한계를 정리합니다.",
++  "readTime": "종합 리포트",
++  "highlights": [
++    "항암 중 재택 운동의 국내 사례",
++    "다학제 재활의 성과와 한계",
++    "GLIM 영양불량 진단 절차"
++  ],
++  "isFeatured": true,
++  "link": "/reports/daily/ls-ax-2026-11-16.html"
++},
++  {
++  "domain": "healthcare",
++  "medicalBoard": "cancer-report",
++  "category": "LS AX 리포트",
+   "title": "LS AX 리포트 - 실손 공제·지급보류와 구강점막염 관리",
+   "date": "2026.11.13",
+   "publishedAt": "2026-11-13",
+--- a/public/reports/daily/catalog.json
++++ b/public/reports/daily/catalog.json
+@@ -1,4 +1,18 @@
+ [
++  {
++    "date": "2026-11-18",
++    "version": 1,
++    "title": "LS AX 리포트 - 병동 이동·재활과 B형간염 재활성화 예방",
++    "path": "/reports/daily/ls-ax-2026-11-18.html",
++    "sha256": "bd24d65da231bf6f44d9c59a13b880b21c0b2d4070edeb95e420402b6d0e46d2"
++  },
++  {
++    "date": "2026-11-16",
++    "version": 1,
++    "title": "LS AX 리포트 - 운동·영양 통합 재활과 퇴원 후 자기관리 지원",
++    "path": "/reports/daily/ls-ax-2026-11-16.html",
++    "sha256": "d8c4ecd3c9e93d9271ca1b8726424671f466fe443d1a48b458deeea50858671a"
++  },
+   {
+     "date": "2026-11-13",
+     "version": 1,
