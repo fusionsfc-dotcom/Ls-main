@@ -244,7 +244,7 @@ export function RadiotherapyPatientAnalysis() {
           
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {pvmDiagnostics.map((item, index) => (
-              <div key={index} className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#0F2B46' }}>
+              <div key={index} className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#0F2B46' }}>
                 <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: '#ef4444' }}>
                   <span className="text-white text-2xl font-bold">!</span>
                 </div>
@@ -290,7 +290,7 @@ export function RadiotherapyPatientAnalysis() {
           </div>
 
           {/* 탭 콘텐츠 */}
-          <div className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#EAEAEA' }}>
+          <div className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#EAEAEA' }}>
             <h3 className="text-xl font-bold mb-6" style={{ color: '#0F2B46' }}>
               📌 {activeTab} 환자 보이스
             </h3>
@@ -320,7 +320,7 @@ export function RadiotherapyPatientAnalysis() {
 
           <div className="space-y-8">
             {departments.map((dept, index) => (
-              <div key={index} className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#0F2B46' }}>
+              <div key={index} className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#0F2B46' }}>
                 <h3 className="text-2xl font-bold mb-6 flex items-center" style={{ color: '#0F2B46' }}>
                   <span className="w-10 h-10 rounded-full flex items-center justify-center mr-4 text-white font-bold" style={{ backgroundColor: '#3A6FF8' }}>
                     {index + 1}
@@ -330,7 +330,7 @@ export function RadiotherapyPatientAnalysis() {
                 
                 <div className="grid md:grid-cols-2 gap-4">
                   {dept.checklist.map((item, idx) => (
-                    <div key={idx} className="flex items-start space-x-3 p-4 rounded-lg hover:bg-gray-50 transition-colors">
+                    <div key={idx} className="flex items-start space-x-3 p-4 rounded-lg hover:bg-gray-50 transition-colors report-editorial-panel">
                       <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#3A6FF8' }} />
                       <span className="text-gray-700">{item}</span>
                     </div>
@@ -351,7 +351,7 @@ export function RadiotherapyPatientAnalysis() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {kpiCategories.map((category, index) => (
-              <div key={index} className="p-8 rounded-2xl" style={{ backgroundColor: '#0F2B46' }}>
+              <div key={index} className="p-8 rounded-2xl report-contrast-panel" style={{ backgroundColor: '#0F2B46' }}>
                 <h3 className="text-xl font-bold mb-6 text-white">
                   {category.title}
                 </h3>

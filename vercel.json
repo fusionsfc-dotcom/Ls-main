@@ -63,6 +63,34 @@
       "destination": "/contact/index.html"
     },
     {
+      "source": "/report/:slug",
+      "destination": "/report/:slug/index.html"
+    },
+    {
+      "source": "/reports/weekly/:slug",
+      "destination": "/reports/weekly/:slug/index.html"
+    },
+    {
+      "source": "/reports/business/:slug",
+      "destination": "/reports/business/:slug/index.html"
+    },
+    {
+      "source": "/reports/:slug",
+      "destination": "/reports/:slug/index.html"
+    },
+    {
+      "source": "/research/:slug",
+      "destination": "/research/:slug/index.html"
+    },
+    {
+      "source": "/disease/:slug",
+      "destination": "/disease/:slug/index.html"
+    },
+    {
+      "source": "/insights/report/202602",
+      "destination": "/insights/report/202602/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/app.html"
     }
@@ -137,6 +165,41 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/rss.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/rss+xml; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/admin/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
         }
       ]
     }

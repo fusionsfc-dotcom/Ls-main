@@ -61,10 +61,10 @@ export const medicalServices = [{
 }, {
   id: 'digital',
   number: '06',
-  title: '디지털 운영 설계',
-  description: '상담, 일정, 안내, 기록의 반복 업무를 살펴보고 병원에 필요한 프로그램과 도입 순서를 정합니다.',
-  output: '업무 흐름도 · 도입 우선순위 · 시스템 요구사항',
-  question: '필요한 업무 도구를 만들고 싶습니다'
+  title: '병원 업무 AI 전환(AX)',
+  description: '상담·행정·운영의 반복 업무를 분석해 AI 전환 과제를 정하고, 병원 현장에 맞는 서비스와 업무 플랫폼을 기획·개발합니다. 도입 후 운영과 유지보수까지 이어갑니다.',
+  output: 'AX 서비스 기획 · 웹·앱·업무 플랫폼 개발 · 운영·유지보수',
+  question: '병원 업무를 AI로 전환하고 싶습니다'
 }];
 export const medicalFaqs = [{
   question: '어떤 병원이 상담할 수 있나요?',

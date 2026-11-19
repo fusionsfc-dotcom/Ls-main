@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "dev": "NODE_OPTIONS='--max-http-header-size=131072' vite --host 127.0.0.1 --port 5173"
+    "dev": "NODE_OPTIONS='--max-http-header-size=131072' vite --host 127.0.0.1 --port 5173",
+    "search:notify": "node scripts/notify-search.mjs",
+    "deploy:production": "node scripts/deploy-production.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.81.0",

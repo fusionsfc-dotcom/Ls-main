@@ -132,7 +132,7 @@ export function LungCancerReport202603() {
           <BlogTopicList topics={[...blogTopics]} />
         </section>
 
-        <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-none">
+        <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-none report-editorial-panel">
           <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
             {`이달 데이터의 검색 주체 특성: 수술 전후 환자 본인 비중이 높고, 4기는 보호자 비중 높음.
 '흉강경 수술 후 + 증상/관리법' 형식의 롱테일 키워드가 검색량 높음.

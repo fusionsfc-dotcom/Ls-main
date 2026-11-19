@@ -54,6 +54,7 @@ http.createServer((req, res) => {
     return;
   }
   let target = candidate;
+  if (existsSync(path.join(candidate,'index.html'))) target=path.join(candidate,'index.html');
   if (!existsSync(target) || !statSync(target).isFile()) {
     const rewrite = config.rewrites.find(r => r.source === pathname) || config.rewrites.find(r => r.source === '/(.*)');
     target = path.join(root, rewrite.destination);

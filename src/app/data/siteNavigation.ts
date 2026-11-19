@@ -1,11 +1,11 @@
 export const mainNavigation = [{
-  label: '의료컨설팅',
+  label: '컨설팅',
   path: '/healthcare'
 }, {
-  label: '병원 프로젝트',
+  label: '프로젝트',
   path: '/projects'
 }, {
-  label: 'PVM 인사이트',
+  label: '암 리포트',
   path: '/insights'
 }, {
   label: 'AX',

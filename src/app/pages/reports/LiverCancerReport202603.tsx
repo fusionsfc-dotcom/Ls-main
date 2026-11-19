@@ -151,7 +151,7 @@ export function LiverCancerReport202603() {
           <ReportSectionTitle>Content &amp; blog</ReportSectionTitle>
           <div className="grid lg:grid-cols-2 gap-6 items-start">
             <BlogTopics topics={[...blogTopics]} />
-            <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-none h-full">
+            <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-none h-full report-editorial-panel">
               <h3 className="text-sm font-bold text-gray-900 mb-3">콘텐츠 전략 방향</h3>
               <p className="text-sm text-gray-700 leading-relaxed">
                 환자·보호자가 실제로 반복 질문하는 ‘응급 vs 지켜봄’, ‘식이·보조제 안전’, ‘이식 후 일상 복귀’

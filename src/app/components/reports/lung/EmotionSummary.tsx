@@ -15,7 +15,7 @@ export function EmotionSummary({ emotionData }: EmotionSummaryProps) {
       {emotionData.map((e) => (
         <div
           key={e.label}
-          className="rounded-xl border border-gray-100 bg-white p-4 shadow-none"
+          className="rounded-xl border border-gray-100 bg-white p-4 shadow-none report-editorial-panel"
         >
           <div className="text-2xl font-bold tabular-nums text-gray-900 mb-1">{e.pct}%</div>
           <div className="text-xs font-medium text-gray-600 leading-snug mb-3">{e.label}</div>

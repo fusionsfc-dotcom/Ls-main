@@ -3,12 +3,15 @@ import { Maximize2, X, ZoomIn, ZoomOut } from 'lucide-react';
 
 type Screen = { base: string; widths: number[]; width: number; height: number; caption: string; alt: string };
 export const caseScreens: Record<string, Screen> = {
-  'happy-life': { base: '/images/editorial-v1/happylife', widths: [480, 960], width: 960, height: 675, caption: '해피라이프케어 · 공개 홈페이지', alt: '해피라이프케어 공개 홈페이지 화면' },
+  'happylifecare-platform': { base: '/images/editorial-v1/happylife', widths: [480, 960], width: 960, height: 675, caption: '해피라이프케어 플랫폼 · 의료·건강 정보', alt: '해피라이프케어 공개 정보 플랫폼 홈페이지 화면' },
+  'happy-life': { base: '/images/happylife-app-v1/member-home', widths: [480, 1040], width: 1040, height: 1978, caption: '해피라이프 앱 · 로그인 후 홈', alt: '해피라이프 앱 홈: 주간 일정과 일상 안내' },
+  'happy-life-home': { base: '/images/happylife-app-v1/member-home', widths: [480, 1040], width: 1040, height: 1978, caption: '로그인 후 홈', alt: '해피라이프 앱 로그인 후 개인 홈: 주간 일정, 날씨와 오늘의 한마디' },
+  'happy-life-routine': { base: '/images/happylife-app-v1/routine', widths: [480, 780], width: 780, height: 1688, caption: '오늘의 루틴 · 데모 계정', alt: '해피라이프 앱의 오늘의 루틴 화면: 루틴 진행률과 일상 기록' },
   'happy-care': { base: '/images/happycare-v1/nutrition', widths: [480, 900, 1129], width: 1129, height: 656, caption: '해피케어 병원 프로그램 · 영양관리', alt: '해피케어 병원 프로그램의 영양관리 화면: 부서 워크리스트, 식수 인원과 상담 현황' },
   'spacecare': { base: '/images/spacecare-v2/hotel-dashboard', widths: [480, 900, 1315], width: 1315, height: 856, caption: '모두의 공간케어 · 호텔 운영 데모', alt: '모두의 공간케어 호텔 운영 데모: 객실 현황과 완료 기록' },
   'spacelink': { base: '/images/spacelink-v1/project-dashboard', widths: [480, 750], width: 750, height: 667, caption: '스페이스링크 · 내 프로젝트 샘플', alt: '스페이스링크 내 프로젝트 샘플: 프로젝트 개요와 작업 진행 현황' },
   'gaax': { base: '/images/gaax-v1/advisor', widths: [480, 900, 1440], width: 1440, height: 1000, caption: 'GAAX · 설계사 체험 · 가상 데이터', alt: 'GAAX 설계사 체험 화면: 고객, 만기, 일정과 보험 포트폴리오. 가상 데이터 예시' },
-  'namsung-chemical': { base: '/images/editorial-v1/namsung', widths: [480, 960], width: 960, height: 675, caption: '남성케미칼 · 공개 홈페이지', alt: '남성케미칼 공개 홈페이지 화면' },
+  'namsung-chemical': { base: '/images/editorial-v1/namsung', widths: [480, 960], width: 960, height: 675, caption: '제조·B2B 주문 AX 전환 · 공개 홈페이지', alt: '제조·B2B 주문 AX 전환 사례의 공개 홈페이지 화면' },
 };
 
 export function CaseScreenshot({ id, name }: { id: string; name: string }) {
@@ -33,6 +36,10 @@ export function CaseScreenshot({ id, name }: { id: string; name: string }) {
       opener.current?.focus({ preventScroll: true });
     };
   }, [open]);
+  if (id === 'happy-life') return <div className="ax-app-gallery" role="group" aria-label="해피라이프 앱 실제 화면">
+    <CaseScreenshot id="happy-life-home" name="해피라이프 앱 · 홈" />
+    <CaseScreenshot id="happy-life-routine" name="해피라이프 앱 · 오늘의 루틴" />
+  </div>;
   if (!screen) return null;
   const full = `${screen.base}-${screen.width}.webp`;
   const show = (target: HTMLElement) => { opener.current = target; setZoomed(window.matchMedia('(max-width:767px)').matches); setOpen(true); };

@@ -87,7 +87,7 @@ export function ReportDetail() {
         <meta property="og:title" content="2026년 2월 폐암 환자 온라인 니즈 분석 보고서" />
         <meta property="og:description" content="312건의 폐암 환자 보이스 분석 - 암 환자 니즈 기반 의료 전략 컨설팅" />
         <meta property="og:image" content="https://images.unsplash.com/photo-1766297248160-87aca6fa59ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWRpY2FsJTIwcmVzZWFyY2glMjBkYXRhJTIwYW5hbHlzaXN8ZW58MXx8fHwxNzcxNzcyMzE1fDA&ixlib=rb-4.1.0&q=80&w=1080" />
-        <meta property="og:url" content={`${window.location.origin}/insights/report/202602`} />
+        <meta property="og:url" content={`https://www.lsconsulting.co.kr/insights/report/202602`} />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -125,7 +125,7 @@ export function ReportDetail() {
         <h2 className="text-3xl font-bold mb-6" style={{ color: '#0F2B46' }}>
           Executive Summary
         </h2>
-        <div className="p-8 rounded-lg" style={{ backgroundColor: '#F7F7F7' }}>
+        <div className="p-8 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
           <p className="text-lg leading-relaxed mb-4" style={{ color: '#222222' }}>
             2026년 2월, 312건의 폐암 환자 온라인 보이스를 분석한 결과, 
             <strong> 표적치료와 면역항암에 대한 질문이 전체의 50.7%</strong>를 차지했으며, 
@@ -145,19 +145,19 @@ export function ReportDetail() {
         </h2>
         
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-lg" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-sm mb-2" style={{ color: '#666666' }}>분석 데이터</div>
             <div className="text-3xl font-bold" style={{ color: '#0F2B46' }}>312건</div>
             <div className="text-sm mt-2" style={{ color: '#666666' }}>폐암 환자 온라인 보이스</div>
           </div>
           
-          <div className="p-6 rounded-lg" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-sm mb-2" style={{ color: '#666666' }}>분석 기간</div>
             <div className="text-2xl font-bold" style={{ color: '#0F2B46' }}>2026년 2월</div>
             <div className="text-sm mt-2" style={{ color: '#666666' }}>1개월간 수집</div>
           </div>
           
-          <div className="p-6 rounded-lg" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-sm mb-2" style={{ color: '#666666' }}>분석 항목</div>
             <div className="text-lg font-bold" style={{ color: '#0F2B46' }}>치료/감정/제품/탐색</div>
             <div className="text-sm mt-2" style={{ color: '#666666' }}>다차원 분석</div>
@@ -171,7 +171,7 @@ export function ReportDetail() {
           치료 키워드 분포
         </h2>
         
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 report-editorial-panel">
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={treatmentData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -182,7 +182,7 @@ export function ReportDetail() {
             </BarChart>
           </ResponsiveContainer>
         </div>
-        <div className="mt-4 p-4 rounded-lg" style={{ backgroundColor: '#EBF4FF' }}>
+        <div className="mt-4 p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: '#EBF4FF' }}>
           <p className="text-sm" style={{ color: '#0F2B46' }}>
             항암치료 관련 질문이 가장 많으며, 특히 표적항암과 면역항암 치료법에 대한 관심이 높음
           </p>
@@ -195,7 +195,7 @@ export function ReportDetail() {
           감정 패턴 분석
         </h2>
         
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 report-editorial-panel">
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -216,7 +216,7 @@ export function ReportDetail() {
             </PieChart>
           </ResponsiveContainer>
         </div>
-        <div className="mt-4 p-4 rounded-lg" style={{ backgroundColor: '#EBF4FF' }}>
+        <div className="mt-4 p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: '#EBF4FF' }}>
           <p className="text-sm" style={{ color: '#0F2B46' }}>
             '궁금'(38%)과 '불안'(28%)이 전체의 66%를 차지. 정보 탐색과 심리적 안정 모두 필요
           </p>
@@ -231,7 +231,7 @@ export function ReportDetail() {
         
         <div className="space-y-4">
           {productMentions.map((item) => (
-            <div key={item.rank} className="flex items-center p-4 rounded-lg border border-gray-200">
+            <div key={item.rank} className="flex items-center p-4 rounded-lg border border-gray-200 report-editorial-panel">
               <div className="w-12 h-12 flex items-center justify-center rounded-full text-white font-bold mr-4" style={{ backgroundColor: '#0F2B46' }}>
                 {item.rank}
               </div>
@@ -255,7 +255,7 @@ export function ReportDetail() {
         
         <div className="space-y-6">
           {voices.map((voice, index) => (
-            <div key={index} className="p-6 rounded-lg border-l-4" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
+            <div key={index} className="p-6 rounded-lg border-l-4 report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
               <div className="flex items-center gap-3 mb-3">
                 <span className="px-3 py-1 rounded-full text-xs text-white" style={{ backgroundColor: '#0F2B46' }}>
                   {voice.tag}
@@ -266,7 +266,7 @@ export function ReportDetail() {
               </div>
               <div className="mb-2 font-bold" style={{ color: '#0F2B46' }}>니즈: {voice.need}</div>
               <div className="text-lg italic mb-4" style={{ color: '#222222' }}>{voice.quote}</div>
-              <div className="text-sm p-3 rounded" style={{ backgroundColor: '#E8F4F8', color: '#0F2B46' }}>
+              <div className="text-sm p-3 rounded report-editorial-panel" style={{ backgroundColor: '#E8F4F8', color: '#0F2B46' }}>
                 <strong>병원 Action:</strong> {voice.action}
               </div>
             </div>
@@ -276,7 +276,7 @@ export function ReportDetail() {
 
       {/* Strategic Implications */}
       <section className="py-16 px-6 lg:px-8 max-w-[960px] mx-auto">
-        <div className="rounded-xl p-8 lg:p-12" style={{ backgroundColor: '#0F2B46' }}>
+        <div className="rounded-xl p-8 lg:p-12 report-contrast-panel" style={{ backgroundColor: '#0F2B46' }}>
           <h2 className="text-3xl font-bold mb-8 text-white">
             Strategic Implications
           </h2>

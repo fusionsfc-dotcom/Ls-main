@@ -1,0 +1,22 @@
+{
+  "publishedAt": "2026-11-13",
+  "reports": [
+    {
+      "reportDate": "2026-11-11",
+      "title": "LS AX 리포트 - 암환자 회송·환자분류와 특사경 법안 동향",
+      "url": "https://www.lsconsulting.co.kr/reports/daily/ls-ax-2026-11-11.html",
+      "sourceHtmlSha256": "904cc7d12284b09e58b6a3cdc00c7e82078ae1a92d9441942a82c3d7f6c53d41",
+      "builtHtmlSha256": "5353bb73e3e017c67a7660f6b1929610f425954f0af3c8fbfc8085f4175b1b73"
+    },
+    {
+      "reportDate": "2026-11-13",
+      "title": "LS AX 리포트 - 실손 공제·지급보류와 구강점막염 관리",
+      "url": "https://www.lsconsulting.co.kr/reports/daily/ls-ax-2026-11-13.html",
+      "sourceHtmlSha256": "d7de2c8e9ea5302ef5599d7c2825c7aaf424cf13bf7ae176499d230c2fab5781",
+      "builtHtmlSha256": "cdf885c153af04ac460bd99a4cd0fa8a4f533ac0de39f909bcffa737642ea55e"
+    }
+  ],
+  "publicationScope": "Two new report HTML files and registration patch for insightsData.ts and daily/catalog.json only. Existing publication bodies preserved.",
+  "registrationPatchSha256": "084873ddf80c00116917c089dce1a659163ee5a6eeb35a68037ce2e0bf5fd703",
+  "deploymentWarning": "This scoped branch is not a full reconciliation of production with main. Do not deploy this branch or old main over production. Apply the registration patch only to freshly verified production source. Full main synchronization is outside this publication scope."
+}

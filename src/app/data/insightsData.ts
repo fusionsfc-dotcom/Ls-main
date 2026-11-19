@@ -3,9 +3,14 @@ export type InsightDomain = 'healthcare' | 'business' | 'architecture';
 export interface InsightItem {
   /** 상위 분류: 건강의료 / 기업. 미지정 시 'healthcare'로 간주 */
   domain?: InsightDomain;
+  /** Explicit archive mapping for imported patient reports; older reports retain their existing classification. */
+  medicalBoard?: 'patient-research' | 'cancer-report';
   category: 'Monthly Cancer Voice Report' | 'Weekly LS Cancer Report' | 'Healthcare Strategy Research' | 'Disease Insight Report' | 'Healthcare Strategy Notes' | string;
   title: string;
   date: string;
+  /** Exact ISO dates when known; do not invent dates for month-only archives. */
+  publishedAt?: string;
+  updatedAt?: string;
   excerpt: string;
   readTime: string;
   highlights?: string[];
@@ -15,8 +20,194 @@ export interface InsightItem {
 
 export const insightsData: InsightItem[] = [
   {
+  "domain": "healthcare",
+  "medicalBoard": "cancer-report",
+  "category": "LS AX 리포트",
+  "title": "LS AX 리포트 - 병동 이동·재활과 B형간염 재활성화 예방",
+  "date": "2026.11.18",
+  "publishedAt": "2026-11-18",
+  "excerpt": "병동 이동 증진과 혈액암 재활 사례를 살펴봅니다. B형간염 선별검사·예방약 확인, 퇴원 후 운동과 직장 복귀 지원의 적용 조건과 연구 한계를 정리합니다.",
+  "readTime": "종합 리포트",
+  "highlights": [
+    "종양 병동의 이동 보조 프로그램",
+    "B형간염 검사와 예방약 확인",
+    "이동 기록과 병동 내 재활"
+  ],
+  "isFeatured": true,
+  "link": "/reports/daily/ls-ax-2026-11-18.html"
+},
+  {
+  "domain": "healthcare",
+  "medicalBoard": "cancer-report",
+  "category": "LS AX 리포트",
+  "title": "LS AX 리포트 - 운동·영양 통합 재활과 퇴원 후 자기관리 지원",
+  "date": "2026.11.16",
+  "publishedAt": "2026-11-18",
+  "excerpt": "항암 중 재택 운동과 다학제 재활 연구를 살펴봅니다. GLIM 영양불량 진단, 간호 심리 지원, 운동 유지율과 직장 복귀 지원의 근거·한계를 정리합니다.",
+  "readTime": "종합 리포트",
+  "highlights": [
+    "항암 중 재택 운동의 국내 사례",
+    "다학제 재활의 성과와 한계",
+    "GLIM 영양불량 진단 절차"
+  ],
+  "isFeatured": true,
+  "link": "/reports/daily/ls-ax-2026-11-16.html"
+},
+  {
+  "domain": "healthcare",
+  "medicalBoard": "cancer-report",
+  "category": "LS AX 리포트",
+  "title": "LS AX 리포트 - 실손 공제·지급보류와 구강점막염 관리",
+  "date": "2026.11.13",
+  "publishedAt": "2026-11-13",
+  "excerpt": "본인부담상한제 환급금의 실손 공제·지급보류와 계류 법안을 살펴봅니다. 구강점막염 관리·영양 지원, 원예 활동과 환자 응대의 적용 범위와 한계를 정리합니다.",
+  "readTime": "종합 리포트",
+  "highlights": [
+    "실손 공제·지급보류",
+    "구강점막염 관리",
+    "영양 지원",
+    "환자 응대"
+  ],
+  "isFeatured": true,
+  "link": "/reports/daily/ls-ax-2026-11-13.html"
+},
+  {
+  "domain": "healthcare",
+  "medicalBoard": "cancer-report",
+  "category": "LS AX 리포트",
+  "title": "LS AX 리포트 - 암환자 회송·환자분류와 특사경 법안 동향",
+  "date": "2026.11.11",
+  "publishedAt": "2026-11-13",
+  "excerpt": "암환자 전문회송 통계와 환자분류 기준, 특사경 법안의 진행 상황을 살펴봅니다. 회송 기록·시설 안전·환자 응대에 필요한 운영 과제를 정리합니다.",
+  "readTime": "종합 리포트",
+  "highlights": [
+    "암환자 회송",
+    "환자분류 기준",
+    "특사경 법안",
+    "시설 안전"
+  ],
+  "isFeatured": true,
+  "link": "/reports/daily/ls-ax-2026-11-11.html"
+},
+  {
+  "domain": "healthcare",
+  "medicalBoard": "cancer-report",
+  "category": "LS AX 리포트",
+  "title": "LS AX 리포트 - 인력 등급·의료광고 관리와 항암 오심·구토 대응",
+  "date": "2026.11.09",
+  "publishedAt": "2026-11-10",
+  "excerpt": "요양병원 인력 등급과 의료광고 관리, 항암 오심·구토 보조요법의 근거와 한계를 살펴봅니다. 부서별 운영 과제와 확인할 일정을 정리합니다.",
+  "readTime": "종합 리포트",
+  "highlights": [
+    "인력 등급",
+    "의료광고 관리",
+    "오심·구토 보조요법",
+    "환자 응대"
+  ],
+  "isFeatured": true,
+  "link": "/reports/daily/ls-ax-2026-11-09.html"
+},
+  {
+  "domain": "healthcare",
+  "medicalBoard": "cancer-report",
+  "category": "LS AX 리포트",
+  "title": "LS AX 리포트 - 간병급여·비급여 법안과 재급식증후군 예방",
+  "date": "2026.11.06",
+  "publishedAt": "2026-11-05",
+  "excerpt": "간병급여 검토안과 비급여 관리 법안, 재급식증후군 예방 지침을 살펴봅니다. 수면·보호자 지원과 부서별 과제를 근거·불확실성·운영 제안으로 구분합니다.",
+  "readTime": "종합 리포트",
+  "highlights": [
+    "간병급여 검토안",
+    "비급여 법안",
+    "재급식 예방",
+    "보호자 지원"
+  ],
+  "isFeatured": true,
+  "link": "/reports/daily/ls-ax-2026-11-06.html"
+},
+  {
+  "domain": "healthcare",
+  "medicalBoard": "cancer-report",
+  "category": "LS AX 리포트",
+  "title": "LS AX 리포트 - 진료의뢰·청구 절차와 항암치료 중 발열 대응",
+  "date": "2026.11.04",
+  "publishedAt": "2026-11-03",
+  "excerpt": "요양병원 진료의뢰·청구 기준과 항암치료 중 발열 대응 시간을 살펴봅니다. 운동·불면 관리, 부서별 과제와 일정을 근거·적용 조건·운영 제안으로 구분합니다.",
+  "readTime": "종합 리포트",
+  "highlights": [
+    "의뢰·청구 적용 범위",
+    "발열 대응 시간",
+    "부서별 운영 제안",
+    "출처·확인 필요"
+  ],
+  "isFeatured": true,
+  "link": "/reports/daily/ls-ax-2026-11-04.html"
+},
+  {
+  "domain": "healthcare",
+  "medicalBoard": "cancer-report",
+  "category": "LS AX 리포트",
+  "title": "LS AX 리포트 - 비급여 설명과 한약 병용 관리, 2027년 예산을 준비하는 병원 운영 전략",
+  "date": "2026.11.02",
+  "publishedAt": "2026-11-01",
+  "excerpt": "비급여 진료 전 설명, 한약 병용의 안내 차이와 관찰 기록, 2027년 수가·인건비를 살펴봅니다. 재활·예방접종·환자 응대까지 부서별 준비 과제를 근거와 운영 제안으로 구분합니다.",
+  "readTime": "종합 리포트",
+  "highlights": [
+    "가격공개·수가 비교",
+    "전략 선택지 3가지",
+    "부서별 실행과제",
+    "출처·확인 필요"
+  ],
+  "isFeatured": true,
+  "link": "/reports/daily/ls-ax-2026-11-02.html"
+},
+  {
+  "domain": "healthcare",
+  "medicalBoard": "cancer-report",
+  "category": "LS AX 리포트",
+  "title": "LS AX 리포트 - 수가 개편과 입원 인정·항암 급여 변화에 대비하는 병원 운영 전략",
+  "date": "2026.10.30",
+  "publishedAt": "2026-10-30",
+  "excerpt": "수가 개편의 손익 추정, 실손 입원 인정의 기록과 조건, 항암 급여 변경을 살펴봅니다. 재활·퇴원 연계·정서 케어까지 부서별 준비 과제를 보도·권고·운영 제안으로 구분합니다.",
+  "readTime": "종합 리포트",
+  "highlights": [
+    "수가 비교 차트",
+    "전략 선택지 3가지",
+    "부서별 실행과제",
+    "출처·확인 필요"
+  ],
+  "isFeatured": true,
+  "link": "/reports/daily/ls-ax-2026-10-30.html"
+},
+  {
+  "domain": "healthcare",
+  "category": "LS PVM 환자 리포트",
+  "medicalBoard": "patient-research",
+  "title": "LS AX 리포트 - 유방암 환자의 불안과 진료실 밖 질문을 줄이는 병원 대응",
+  "date": "2026.10.29",
+  "publishedAt": "2026-10-29",
+  "excerpt": "유방암 커뮤니티 게시글 89건의 어려움·감정·치료 여정을 살펴보고, 검사 결과 설명과 치료 후 상담, 입원 안내를 부서별 실행 제안으로 연결합니다.",
+  "readTime": "12쪽 · 환자 분석",
+  "highlights": [
+    "89건 환자 목소리",
+    "분포 차트",
+    "부서별 실행 검토",
+    "원본 PDF"
+  ],
+  "isFeatured": true,
+  "link": "/reports/patient/breast-patient-questions-2026-10-29.html"
+},
+  {
+    domain: 'healthcare', category: 'LS AX 리포트',
+    title: 'LS AX 리포트 - 간병 급여화·비급여 관리·실손 전환에 대응하는 2차암병원 전략',
+    date: '2026.10.28', publishedAt: '2026-10-28',
+    excerpt: '간병 급여화·비급여 관리·실손 전환을 세 가지 경영 전략으로 연결합니다. 입원 적정성, 낙상·회복·정서 케어와 부서별 실행과제를 보도·확인 필요·운영 제안으로 구분합니다.',
+    readTime: '종합 리포트', highlights: ['경영 전략 3가지', '낙상 비교 차트', '부서별 실행과제', '출처와 확인 상태'], isFeatured: true,
+    link: '/reports/daily/ls-ax-2026-10-28.html',
+  },
+  {
     domain: 'healthcare', category: 'LS AX 병원 브리핑',
-    title: '2차 암병원 아침 브리핑\n정책 변화와 병원의 다음 행동', date: '2026.10.26',
+    title: 'LS AX 리포트 - 암병원 수가·보험 변화와 부서별 대응 과제', date: '2026.10.26',
     excerpt: '정책·보험·암치료·회복·의료광고 이슈를 병원 유형과 부서별로 살펴봅니다. 자료의 기준일과 확인 범위를 구분한 차트·일정·실행 체크리스트.',
     readTime: '종합 브리핑', highlights: ['부서별 이슈', '기관 수·보장률', '출처와 적용 범위', '실행 체크리스트'], isFeatured: true,
     link: '/reports/daily/ls-ax-2026-10-26.html',

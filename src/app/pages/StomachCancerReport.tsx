@@ -53,7 +53,7 @@ export function StomachCancerReport() {
         <meta property="og:title" content="2026년 2월 위암 환자 니즈 분석 리포트" />
         <meta property="og:description" content="수술 후 식이 관리와 회복 전략 - 암 환자 니즈 기반 의료 전략 컨설팅" />
         <meta property="og:image" content="https://images.unsplash.com/photo-1715111641899-b0118be16660?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWRpY2FsJTIwc3RvbWFjaCUyMGdhc3RyaWMlMjBoZWFsdGh8ZW58MXx8fHwxNzcxNzcyMzE2fDA&ixlib=rb-4.1.0&q=80&w=1080" />
-        <meta property="og:url" content={`${window.location.origin}/disease/stomach-cancer-report`} />
+        <meta property="og:url" content={`https://www.lsconsulting.co.kr/disease/stomach-cancer-report`} />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -97,17 +97,17 @@ export function StomachCancerReport() {
         </h2>
         
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-lg" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-sm mb-2" style={{ color: '#666666' }}>전체 데이터</div>
             <div className="text-3xl font-bold" style={{ color: '#0F2B46' }}>531건</div>
           </div>
           
-          <div className="p-6 rounded-lg" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-sm mb-2" style={{ color: '#666666' }}>분석 기준</div>
             <div className="text-lg font-bold" style={{ color: '#0F2B46' }}>치료 / 감정 / 제품 / 탐색 행동</div>
           </div>
           
-          <div className="p-6 rounded-lg" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-sm mb-2" style={{ color: '#666666' }}>특징</div>
             <div className="text-lg font-bold" style={{ color: '#0F2B46' }}>수술 이후 질문 비중 높음</div>
           </div>
@@ -120,7 +120,7 @@ export function StomachCancerReport() {
           치료 패턴 구조
         </h2>
         
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 report-editorial-panel">
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={treatmentData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -131,7 +131,7 @@ export function StomachCancerReport() {
             </BarChart>
           </ResponsiveContainer>
         </div>
-        <div className="mt-4 p-4 rounded-lg" style={{ backgroundColor: '#EBF4FF' }}>
+        <div className="mt-4 p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: '#EBF4FF' }}>
           <p className="text-sm" style={{ color: '#0F2B46' }}>
             위암은 다른 암종 대비 수술 이후의 생활 적응 문제가 핵심. 치료보다 "먹는 문제"가 일상 스트레스 1순위
           </p>
@@ -144,7 +144,7 @@ export function StomachCancerReport() {
           감정 패턴 분석
         </h2>
         
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 report-editorial-panel">
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -165,7 +165,7 @@ export function StomachCancerReport() {
             </PieChart>
           </ResponsiveContainer>
         </div>
-        <div className="mt-4 p-4 rounded-lg" style={{ backgroundColor: '#EBF4FF' }}>
+        <div className="mt-4 p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: '#EBF4FF' }}>
           <p className="text-sm" style={{ color: '#0F2B46' }}>
             급성 공포보다 생활 적응 스트레스가 큼. 환자는 "이게 정상인가?"를 반복 확인
           </p>
@@ -180,7 +180,7 @@ export function StomachCancerReport() {
         
         <div className="grid md:grid-cols-2 gap-6">
           {coreNeeds.map((need, index) => (
-            <div key={index} className="p-6 rounded-lg border border-gray-200">
+            <div key={index} className="p-6 rounded-lg border border-gray-200 report-editorial-panel">
               <h3 className="text-xl font-bold mb-4" style={{ color: '#0F2B46' }}>
                 {need.title}
               </h3>
@@ -199,7 +199,7 @@ export function StomachCancerReport() {
 
       {/* 전략 시사점 */}
       <section className="py-16 px-6 lg:px-8 max-w-[960px] mx-auto">
-        <div className="rounded-xl p-8 lg:p-12" style={{ backgroundColor: '#0F2B46' }}>
+        <div className="rounded-xl p-8 lg:p-12 report-contrast-panel" style={{ backgroundColor: '#0F2B46' }}>
           <h2 className="text-3xl font-bold mb-8 text-white">
             요양·재활 병원의 전략 기회
           </h2>
@@ -262,7 +262,7 @@ export function StomachCancerReport() {
 
       {/* 결론 강조 */}
       <section className="py-16 px-6 lg:px-8 max-w-[960px] mx-auto">
-        <div className="text-center p-12 rounded-xl border-2" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
+        <div className="text-center p-12 rounded-xl border-2 report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
           <p className="text-3xl lg:text-4xl leading-relaxed font-bold" style={{ color: '#0F2B46' }}>
             "위암 전략의 핵심은 수술이 아니라<br />회복 이후의 삶을 설계하는 것이다."
           </p>

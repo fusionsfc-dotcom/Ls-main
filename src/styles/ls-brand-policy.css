@@ -1,0 +1,94 @@
+/* LS AX brand guide v1.1: clear ink, light surfaces, functional blue. */
+.med-site,.med-header,.med-footer {
+  --med-ink:#233651;--med-muted:#526681;--med-green:#3659b8;
+  --med-line:#d9e1f0;--med-paper:#f7f9ff;
+  font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  color:var(--med-ink);
+}
+.med-site { background:#fff; }
+.med-site :is(p,li) { line-height:1.75; }
+.med-site :is(.med-lead,.med-service-card p,.med-featured-copy>p,.med-project-record p,.med-report-card>p,.med-service-detail p) { font-size:16px;line-height:1.7; }
+.med-site .med-insights-direct h1 { color:#233651; }
+.med-header:not(.med-mobile-menu) {
+  background:rgba(255,255,255,.94);border-bottom:1px solid #dce4f1;
+  box-shadow:none;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.med-header::before,.med-header::after,.med-contact-band::before,.med-contact-band::after { content:none; }
+.med-header .med-logo-mark,.med-footer .med-logo-mark { filter:none; }
+.med-logo-image { position:relative;overflow:hidden; }
+.med-logo-image img { position:absolute;width:155%;height:auto;max-width:none;left:50%;top:50%;transform:translate(-50%,-50%);mix-blend-mode:multiply; }
+.med-logo-text strong {
+  background:linear-gradient(90deg,#20b4be 0%,#5486f1 38%,#956fe8 70%,#d77fbd 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent!important;
+}
+.med-header .med-logo-text small,.med-footer .med-logo-text small { color:#233651; }
+.med-header .med-desktop-nav a { color:#233651; }
+.med-header .med-desktop-nav a:is(:hover,[aria-current=page]) { color:#3659b8;border-color:#3659b8;box-shadow:none; }
+.med-site .med-button,.med-header .med-header-cta,.med-mobile-menu .med-button,
+.med-header .med-happylife-link,.med-site .med-contact-band .med-button {
+  background:#3659b8;color:#fff;border:1px solid #3659b8;border-radius:999px;box-shadow:none;
+}
+.med-site .med-button:hover,.med-header .med-header-cta:hover,.med-site .med-contact-band .med-button:hover { background:#294799;border-color:#294799;box-shadow:none; }
+.med-site .med-button-secondary,.med-site .med-network-hero .med-button-secondary {
+  background:#fff;color:#3659b8;border:1px solid #b4c4e7;box-shadow:none;
+}
+.med-site .med-button-secondary:hover,.med-site .med-network-hero .med-button-secondary:hover { background:#f1eeff;color:#294799; }
+.med-site :is(a,button,summary,input):focus-visible,.med-header :is(a,button):focus-visible,.med-footer a:focus-visible { outline-color:#3659b8; }
+.med-site .med-eyebrow,.med-site .med-caption,.med-site .med-number { color:#3659b8; }
+.med-site .med-eyebrow>span { background:#3659b8;box-shadow:none; }
+.med-site :is(.med-network-hero,.med-mapped-hero) { color:#233651;background:#f7f9ff; }
+.med-site :is(.med-network-hero,.med-mapped-hero)::before {
+  inset:auto -10% 10% auto;width:45%;height:30%;border-radius:999px;
+  background:linear-gradient(110deg,#20b4be 0%,#5486f1 38%,#956fe8 70%,#d77fbd 100%);
+  opacity:.15;animation:none;
+}
+.med-site :is(.med-network-hero,.med-mapped-hero)::after { content:none; }
+.med-site :is(.med-network-hero,.med-mapped-hero) :is(h1,.med-lead) { color:#233651;text-shadow:none; }
+.med-site :is(.med-network-hero,.med-mapped-hero) .med-eyebrow { color:#3659b8; }
+.med-site .med-brand-english { font-family:Inter,'Noto Sans KR',sans-serif;color:#526681;margin-top:18px;font-size:16px; }
+.med-site .med-network-hero .med-hero-foot { color:#526681;border-color:#d9e1f0; }
+.med-site .med-network-hero .pvm-network-stage { opacity:.36;mix-blend-mode:multiply; }
+.med-site .med-mapped-hero .pvm-network-stage { opacity:.38;mix-blend-mode:multiply; }
+.med-site .pvm-network figcaption { background:#fff;border-color:#d9e1f0;box-shadow:none; }
+.med-site .pvm-network figcaption strong,.med-site .pvm-network figcaption span { color:#526681; }
+.med-site .med-pvm-evidence-hero .pvm-knowledge {
+  background:#233651 url('/images/optimized-v1/pvm-network.svg') center / cover no-repeat;border:0;border-radius:24px;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;
+}
+.ls-scroll-progress { background:#3659b8; }
+.med-site .med-paper,.med-site .med-project-showcase,.med-site .med-portfolio-section,.med-site .med-credentials { background:#f7f9ff; }
+.med-site .med-credentials .med-stats>div:nth-child(n) { background:#fff;border-color:#d9e1f0;box-shadow:none; }
+.med-site .med-credentials .med-stat-value,.med-site .med-credentials .med-stats>div:nth-child(n) .med-stat-value { color:#3659b8; }
+.med-site .med-credentials .med-stats h3 { color:#233651; }
+.med-site :is(.med-service-card,.med-featured-card,.med-project,.med-report-card,.med-ax-panel,.ax-hub-case) { border-color:#d9e1f0; }
+.med-site :is(.med-service-card,.med-featured-card,.med-project,.med-report-card):hover { box-shadow:none;border-color:#9eafd6; }
+.med-site :is(.med-service-card,.med-report-card)::before { content:none; }
+.med-site .med-contact-band { background:#f1eeff;color:#233651;border-top:1px solid #d9e1f0; }
+.med-site .med-contact-band h2,.med-site .med-contact-band p:not(.med-eyebrow) { color:#233651; }
+.med-site .med-contact-band .med-eyebrow { color:#3659b8; }
+.med-site .med-inline-banner { background:#f7f9ff;border-color:#d9e1f0;box-shadow:none; }
+.med-site .med-home-founder { grid-template-columns:189px minmax(0,1fr);gap:48px; }
+.med-site .med-home-founder .med-portrait { width:100%;padding:6px;border:1px solid #ffffffed;border-radius:20px;background:#ffffffb8;box-shadow:0 12px 32px #2336511a;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px); }
+.med-site .med-home-founder .med-portrait img { border-radius:14px; }
+.med-site .med-home-founder .med-portrait figcaption { padding:10px 2px 5px;text-align:center;background:transparent; }
+.med-site .pvm-practice { background:#f7f9ff;color:#233651; }
+.pvm-practice-tabs button::after { background:#3659b8; }
+.med-footer { background:#fff;color:#233651;border-top:1px solid #d9e1f0; }
+.med-footer .med-footer-intro,.med-footer-bottom { color:#526681; }
+.med-footer h2,.med-footer a:hover { color:#3659b8; }
+.med-footer-bottom { border-color:#d9e1f0; }
+.med-mobile-tabbar { background:rgba(255,255,255,.94);border-color:#d9e1f0;box-shadow:0 8px 24px #2336511a; }
+.med-mobile-tabbar::before { content:none; }
+.med-mobile-tabbar a { color:#233651; }
+.med-mobile-tabbar a[aria-current=page] { color:#3659b8;background:#f1eeff;box-shadow:none; }
+@media(max-width:767px) {
+  .med-site .med-home-founder { display:flow-root; }
+  .med-site .med-home-founder .med-portrait { float:right;width:128px;max-width:38%;margin:0 0 12px 18px;border-radius:18px; }
+  .med-site .med-home-founder .med-portrait figcaption { font-size:10px;line-height:1.45;white-space:nowrap; }
+  .med-site .med-about-founder .med-portrait figcaption { white-space:normal;word-break:keep-all; }
+  .med-site .med-home-founder .med-lead { clear:both;padding-top:8px; }
+  .med-header .med-happylife-link { background:#3659b8;box-shadow:none;border-color:#3659b8; }
+  .med-header .med-logo-text small { display:none; }
+  .med-site .med-pvm-evidence-hero .pvm-knowledge { background:#233651 url('/images/optimized-v1/pvm-network.svg') center / cover no-repeat;border-radius:20px; }
+  .med-site :is(.med-network-hero,.med-mapped-hero)::before { width:75%;height:17%; }
+}
+@media(prefers-reduced-motion:reduce) { .med-site :is(.med-network-hero,.med-mapped-hero)::before { animation:none; } }

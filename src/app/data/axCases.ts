@@ -11,15 +11,25 @@ export interface AxCase {
   tourUrl?: string;
 }
 export const medicalAxCases: AxCase[] = [{
+  id: 'happylifecare-platform',
+  name: '해피라이프케어 플랫폼',
+  eyebrow: 'HappyLifeCare · 의료·건강 정보 플랫폼',
+  status: '개발 사례',
+  summary: '환자와 보호자가 건강정보와 의료 소식, 병원 정보를 탐색하는 공개 정보 플랫폼입니다. 치료 여정에 맞는 콘텐츠와 병원찾기를 연결합니다.',
+  scope: ['치료 여정별 건강정보', '병원찾기와 병원 정보', '의료 소식과 자주 묻는 질문'],
+  workflow: ['정보 탐색', '건강 콘텐츠·의료 소식', '병원찾기·정보 확인'],
+  note: '누구나 정보를 살펴보는 공개 웹 플랫폼입니다. 개인의 루틴과 기록을 관리하는 해피라이프 앱과 구분됩니다.',
+  publicUrl: 'https://www.happylifecare.kr/'
+}, {
   id: 'happy-life',
   name: '해피라이프 앱',
   eyebrow: 'HappyLife · 환자와 보호자',
   status: '개발 사례',
-  summary: '환자와 보호자가 건강정보를 찾고 일상의 기록과 병원 소통을 이어갈 수 있도록 설계한 서비스입니다.',
-  scope: ['환자 홈과 건강정보', '일상의 루틴과 기록', '병원과의 소통 접점'],
-  workflow: ['환자 홈', '루틴·정보', '병원 연결'],
-  note: 'HappyLifeCare의 환자·보호자 서비스입니다.',
-  publicUrl: 'https://happylifecare.kr/'
+  summary: '환자와 보호자가 개인의 일정, 건강 루틴과 일상 기록을 관리하는 앱입니다. 나의 건강정보, 질문과 병원 소통을 개인화된 화면에서 이어갑니다.',
+  scope: ['개인 홈과 주간 일정', '건강 루틴과 일상 기록', '맞춤 건강정보·Q&A', '내 병원과의 연결'],
+  workflow: ['개인 홈·일정', '루틴 수행·기록', '건강정보·질문', '내 병원 연결'],
+  note: '개인 계정으로 이용하는 환자·보호자 앱입니다. 로그인 후 개인 홈, 루틴, Q&A, 건강정보, 이야기와 병원찾기를 이용합니다.',
+  publicUrl: 'https://www.happylifecare.kr/life/home'
 }, {
   id: 'happy-care',
   name: '해피케어 병원 프로그램',
@@ -56,7 +66,7 @@ export const industryAxCases: AxCase[] = [{
   summary: '제주 호텔·펜션의 객실 케어와 인력 운영을 연결하는 플랫폼입니다. 호텔 담당자는 객실 진행을 확인하고, 현장 파트너는 배정된 업무와 고객 요청을 처리하며, 완료 기록은 검수와 정산으로 이어집니다.',
   scope: ['객실 진행·인력 배정', '결원 대응·대기 인력', '사진·영상 기록과 검수', '객실 QR 요청·다국어 번역', '완료 내역 기반 정산'],
   workflow: ['객실·업무 배정', '파트너 수행·결원 대응', '사진·영상 기록·검수', '고객 요청·후속 처리', '완료 내역·정산'],
-  note: '지배인·오너·도급업체·위탁운영사의 업무를 역할별 화면으로 연결합니다. 공개 홈페이지와 서비스 둘러보기에 소개된 내용을 반영했습니다.',
+  note: '지배인·오너·도급업체·위탁운영사의 업무를 역할별 화면으로 연결합니다. 객실 운영부터 고객 요청, 검수와 정산까지 하나의 흐름으로 관리합니다.',
   publicUrl: 'https://www.mdspacecare.com/',
   tourUrl: 'https://www.mdspacecare.com/tour'
 }, {
@@ -81,10 +91,10 @@ export const industryAxCases: AxCase[] = [{
   tourUrl: 'https://gaax-dev.vercel.app/demo/advisor'
 }, {
   id: 'namsung-chemical',
-  name: '남성케미칼',
+  name: '제조·B2B 주문 AX 전환',
   eyebrow: 'Manufacturing · 제품과 주문',
   status: '구축 사례',
-  summary: '제조업의 회사·제품 정보와 디지털 카탈로그, 고객 주문 및 담당자 관리를 연결한 웹서비스 구축 사례입니다.',
+  summary: '건설 부자재를 만드는 기업의 제품 소개·주문 웹서비스입니다. 기업 고객은 디지털 카탈로그에서 제품을 찾아 주문하고, 회사는 고객 주문과 담당자를 관리합니다.',
   scope: ['제품 탐색과 디지털 카탈로그', '고객 주문과 담당자 관리', '한국어·영어 인터페이스'],
   workflow: ['제품 탐색', '고객 주문', '견적·진행 관리', '고객 소통'],
   note: '제품 정보부터 주문·처리 이력까지 연결하는 업무 구조를 구현했습니다.',

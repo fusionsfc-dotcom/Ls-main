@@ -41,7 +41,7 @@ export function BreastCancerReport() {
         <meta property="og:title" content="2026년 2월 유방암 환자 니즈 분석 리포트" />
         <meta property="og:description" content="140건 데이터 기반 유방암 환자 치료 패턴 및 감정 분석 - 의료 전략 컨설팅" />
         <meta property="og:image" content="https://images.unsplash.com/photo-1769029259587-6821e9648570?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxicmVhc3QlMjBjYW5jZXIlMjBhd2FyZW5lc3MlMjBtZWRpY2FsfGVufDF8fHx8MTc3MTc3MjMxNXww&ixlib=rb-4.1.0&q=80&w=1080" />
-        <meta property="og:url" content={`${window.location.origin}/disease/breast-cancer-report`} />
+        <meta property="og:url" content={`https://www.lsconsulting.co.kr/disease/breast-cancer-report`} />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -85,13 +85,13 @@ export function BreastCancerReport() {
         </h2>
         
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="p-6 rounded-lg" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-sm mb-2" style={{ color: '#666666' }}>전체 데이터</div>
             <div className="text-3xl font-bold" style={{ color: '#0F2B46' }}>전체 531건 중 140건</div>
             <div className="text-sm mt-2" style={{ color: '#666666' }}>전체 데이터의 26.9%</div>
           </div>
           
-          <div className="p-6 rounded-lg" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-sm mb-2" style={{ color: '#666666' }}>분석 항목</div>
             <div className="text-lg font-bold" style={{ color: '#0F2B46' }}>치료 / 감정 / 제품 / 탐색 행동</div>
           </div>
@@ -104,7 +104,7 @@ export function BreastCancerReport() {
           치료 패턴 분석
         </h2>
         
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 report-editorial-panel">
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={treatmentData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -115,7 +115,7 @@ export function BreastCancerReport() {
             </BarChart>
           </ResponsiveContainer>
         </div>
-        <div className="mt-4 p-4 rounded-lg" style={{ backgroundColor: '#EBF4FF' }}>
+        <div className="mt-4 p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: '#EBF4FF' }}>
           <p className="text-sm" style={{ color: '#0F2B46' }}>
             타목시펜 등 호르몬 치료 장기 복용이 가장 높은 비중. 5-10년 장기 관리에 대한 불안감이 두드러짐
           </p>
@@ -128,7 +128,7 @@ export function BreastCancerReport() {
           감정 패턴 분석
         </h2>
         
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 report-editorial-panel">
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -149,7 +149,7 @@ export function BreastCancerReport() {
             </PieChart>
           </ResponsiveContainer>
         </div>
-        <div className="mt-4 p-4 rounded-lg" style={{ backgroundColor: '#EBF4FF' }}>
+        <div className="mt-4 p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: '#EBF4FF' }}>
           <p className="text-sm" style={{ color: '#0F2B46' }}>
             "궁금"이 1위. 치료 방법보다 "이후 삶"에 대한 정보 탐색이 주를 이룸
           </p>
@@ -162,7 +162,7 @@ export function BreastCancerReport() {
           제품/약 언급 분석
         </h2>
         
-        <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden report-editorial-frame">
           {products.map((item) => (
             <div key={item.rank} className="p-4 border-b border-gray-100 last:border-b-0">
               <div className="flex items-center space-x-4 mb-2">
@@ -179,7 +179,7 @@ export function BreastCancerReport() {
 
       {/* 전략 시사점 */}
       <section className="py-16 px-6 lg:px-8 max-w-[960px] mx-auto">
-        <div className="rounded-xl p-8 lg:p-12" style={{ backgroundColor: '#0F2B46' }}>
+        <div className="rounded-xl p-8 lg:p-12 report-contrast-panel" style={{ backgroundColor: '#0F2B46' }}>
           <h2 className="text-3xl font-bold mb-8 text-white">
             요양·재활 병원의 전략 기회
           </h2>
@@ -229,7 +229,7 @@ export function BreastCancerReport() {
 
       {/* 결론 강조 */}
       <section className="py-16 px-6 lg:px-8 max-w-[960px] mx-auto">
-        <div className="text-center p-12 rounded-xl border-2" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
+        <div className="text-center p-12 rounded-xl border-2 report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
           <p className="text-3xl lg:text-4xl leading-relaxed font-bold" style={{ color: '#0F2B46' }}>
             "유방암 전략의 핵심은<br />완치가 아니라 회복 설계다."
           </p>

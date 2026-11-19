@@ -197,7 +197,7 @@ export function PatientPersonaExecution() {
           Executive Summary
         </h2>
         
-        <div className="p-8 rounded-lg mb-8" style={{ backgroundColor: '#F7F7F7' }}>
+        <div className="p-8 rounded-lg mb-8 report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
           <p className="text-lg leading-relaxed mb-4" style={{ color: '#222222' }}>
             PVM 전체 <strong>1,190건 분석 결과</strong>, 암환자와 보호자의 질문은 치료 정보 중심이 아니었습니다.
           </p>
@@ -207,35 +207,35 @@ export function PatientPersonaExecution() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 mb-8">
-          <div className="p-6 rounded-lg border-l-4" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg border-l-4 report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
             <div className="flex items-center space-x-2 mb-2">
               <span className="text-2xl">✓</span>
               <h3 className="text-lg font-bold" style={{ color: '#0F2B46' }}>내 상태가 정상인지</h3>
             </div>
           </div>
           
-          <div className="p-6 rounded-lg border-l-4" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg border-l-4 report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
             <div className="flex items-center space-x-2 mb-2">
               <span className="text-2xl">✓</span>
               <h3 className="text-lg font-bold" style={{ color: '#0F2B46' }}>이 치료를 계속해도 되는지</h3>
             </div>
           </div>
           
-          <div className="p-6 rounded-lg border-l-4" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg border-l-4 report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
             <div className="flex items-center space-x-2 mb-2">
               <span className="text-2xl">✓</span>
               <h3 className="text-lg font-bold" style={{ color: '#0F2B46' }}>부작용은 어떻게 관리해야 하는지</h3>
             </div>
           </div>
           
-          <div className="p-6 rounded-lg border-l-4" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg border-l-4 report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
             <div className="flex items-center space-x-2 mb-2">
               <span className="text-2xl">✓</span>
               <h3 className="text-lg font-bold" style={{ color: '#0F2B46' }}>앞으로의 시간 구조가 어떻게 되는지</h3>
             </div>
           </div>
 
-          <div className="p-6 rounded-lg border-l-4" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg border-l-4 report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
             <div className="flex items-center space-x-2 mb-2">
               <span className="text-2xl">✓</span>
               <h3 className="text-lg font-bold" style={{ color: '#0F2B46' }}>행정 절차가 안전한지</h3>
@@ -243,7 +243,7 @@ export function PatientPersonaExecution() {
           </div>
         </div>
 
-        <div className="p-8 rounded-lg text-center" style={{ backgroundColor: '#EBF4FF' }}>
+        <div className="p-8 rounded-lg text-center report-editorial-panel" style={{ backgroundColor: '#EBF4FF' }}>
           <p className="text-2xl font-bold" style={{ color: '#0F2B46' }}>
             즉, 병원은 <span className="underline">치료기관이 아니라 '확신 설계 기관'</span>이 되어야 합니다
           </p>
@@ -258,7 +258,7 @@ export function PatientPersonaExecution() {
         
         <div className="grid md:grid-cols-3 gap-6">
           {personas.map((persona, index) => (
-            <div key={index} className="p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
+            <div key={index} className="p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow report-editorial-panel">
               <div className="text-4xl mb-4">{persona.icon}</div>
               <h3 className="text-xl font-bold mb-2" style={{ color: '#0F2B46' }}>
                 {persona.title}
@@ -293,7 +293,7 @@ export function PatientPersonaExecution() {
 
         <div className="space-y-4">
           {departments.map((dept) => (
-            <div key={dept.id} className="border border-gray-200 rounded-lg overflow-hidden">
+            <div key={dept.id} className="border border-gray-200 rounded-lg overflow-hidden report-editorial-frame">
               <button
                 onClick={() => toggleAccordion(dept.id)}
                 className="w-full p-6 flex items-center justify-between hover:bg-gray-50 transition-colors"
@@ -318,7 +318,7 @@ export function PatientPersonaExecution() {
               {openAccordion === dept.id && (
                 <div className="p-6 pt-0 space-y-6">
                   {dept.items.map((item, idx) => (
-                    <div key={idx} className="p-4 rounded-lg" style={{ backgroundColor: '#F7F7F7' }}>
+                    <div key={idx} className="p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
                       <h4 className="font-bold mb-2" style={{ color: '#0F2B46' }}>
                         {idx + 1}. {item.title}
                       </h4>
@@ -336,7 +336,7 @@ export function PatientPersonaExecution() {
 
       {/* 전략 결론 */}
       <section className="py-16 px-6 lg:px-8 max-w-[960px] mx-auto">
-        <div className="rounded-xl p-8 lg:p-12" style={{ backgroundColor: '#0F2B46' }}>
+        <div className="rounded-xl p-8 lg:p-12 report-contrast-panel" style={{ backgroundColor: '#0F2B46' }}>
           <h2 className="text-3xl font-bold mb-8 text-white">
             최종 전략 결론
           </h2>
@@ -365,17 +365,17 @@ export function PatientPersonaExecution() {
         </h2>
         
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-lg text-center" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg text-center report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-4xl font-bold mb-2" style={{ color: '#0F2B46' }}>1,190건</div>
             <div className="text-sm" style={{ color: '#666666' }}>PVM 전체 데이터</div>
           </div>
           
-          <div className="p-6 rounded-lg text-center" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg text-center report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-4xl font-bold mb-2" style={{ color: '#0F2B46' }}>6대</div>
             <div className="text-sm" style={{ color: '#666666' }}>환자 페르소나 유형</div>
           </div>
           
-          <div className="p-6 rounded-lg text-center" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg text-center report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-4xl font-bold mb-2" style={{ color: '#0F2B46' }}>5개 부서</div>
             <div className="text-sm" style={{ color: '#666666' }}>실행 매뉴얼 제공</div>
           </div>

@@ -22,7 +22,7 @@ type PainPointCardProps = {
 
 export function PainPointCard({ icon, iconBg, count, title, subtitle, body, tags }: PainPointCardProps) {
   return (
-    <article className="rounded-xl border border-gray-100 bg-white p-6 shadow-none">
+    <article className="rounded-xl border border-gray-100 bg-white p-6 shadow-none report-editorial-panel">
       <div className="flex flex-wrap items-start gap-4 mb-4">
         <div
           className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-xl"

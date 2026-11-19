@@ -288,7 +288,7 @@ export function PvmKpiExecutionReport() {
           Executive Summary
         </h2>
         
-        <div className="p-8 rounded-lg" style={{ backgroundColor: '#F7F7F7' }}>
+        <div className="p-8 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
           <p className="text-lg leading-relaxed" style={{ color: '#222222' }}>
             PVM 전체 데이터 분석 결과, 암환자와 보호자는 치료 자체보다 <strong>상태 해석, 시간 구조, 부작용 관리, 생활 회복, 행정 안정성</strong>을 반복적으로 질문하고 있습니다.
           </p>
@@ -307,7 +307,7 @@ export function PvmKpiExecutionReport() {
         
         <div className="space-y-6">
           {hospitalKpis.map((kpi, index) => (
-            <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
+            <div key={index} className="border border-gray-200 rounded-lg overflow-hidden report-editorial-frame">
               <div className="p-4 font-bold text-white text-lg" style={{ backgroundColor: kpi.color }}>
                 {kpi.category}
               </div>
@@ -338,7 +338,7 @@ export function PvmKpiExecutionReport() {
 
         <div className="space-y-4">
           {departments.map((dept) => (
-            <div key={dept.id} className="border border-gray-200 rounded-lg overflow-hidden">
+            <div key={dept.id} className="border border-gray-200 rounded-lg overflow-hidden report-editorial-frame">
               <button
                 onClick={() => toggleAccordion(dept.id)}
                 className="w-full p-6 flex items-center justify-between hover:bg-gray-50 transition-colors"
@@ -360,7 +360,7 @@ export function PvmKpiExecutionReport() {
               {openAccordion === dept.id && (
                 <div className="p-6 pt-0 space-y-6">
                   {/* KPI */}
-                  <div className="p-5 rounded-lg border-l-4" style={{ backgroundColor: '#EBF4FF', borderColor: '#0F2B46' }}>
+                  <div className="p-5 rounded-lg border-l-4 report-editorial-panel" style={{ backgroundColor: '#EBF4FF', borderColor: '#0F2B46' }}>
                     <h4 className="font-bold mb-3 text-lg" style={{ color: '#0F2B46' }}>
                       📊 KPI
                     </h4>
@@ -381,7 +381,7 @@ export function PvmKpiExecutionReport() {
                     </h4>
                     <div className="space-y-4">
                       {dept.checklists.map((checklist, idx) => (
-                        <div key={idx} className="p-4 rounded-lg" style={{ backgroundColor: '#F7F7F7' }}>
+                        <div key={idx} className="p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
                           <h5 className="font-bold mb-3" style={{ color: '#0F2B46' }}>
                             {checklist.phase}
                           </h5>
@@ -406,7 +406,7 @@ export function PvmKpiExecutionReport() {
 
       {/* 전략 결론 블록 */}
       <section className="py-16 px-6 lg:px-8 max-w-[960px] mx-auto">
-        <div className="rounded-xl p-8 lg:p-12" style={{ backgroundColor: '#0F2B46' }}>
+        <div className="rounded-xl p-8 lg:p-12 report-contrast-panel" style={{ backgroundColor: '#0F2B46' }}>
           <h2 className="text-3xl font-bold mb-8 text-white">
             전략 결론
           </h2>
@@ -426,17 +426,17 @@ export function PvmKpiExecutionReport() {
         </h2>
         
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-lg text-center" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg text-center report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-4xl font-bold mb-2" style={{ color: '#0F2B46' }}>5개</div>
             <div className="text-sm" style={{ color: '#666666' }}>병원 전체 KPI 영역</div>
           </div>
           
-          <div className="p-6 rounded-lg text-center" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg text-center report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-4xl font-bold mb-2" style={{ color: '#0F2B46' }}>6개 부서</div>
             <div className="text-sm" style={{ color: '#666666' }}>실행 매뉴얼 제공</div>
           </div>
           
-          <div className="p-6 rounded-lg text-center" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg text-center report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-4xl font-bold mb-2" style={{ color: '#0F2B46' }}>1,190건</div>
             <div className="text-sm" style={{ color: '#666666' }}>PVM 데이터 분석</div>
           </div>

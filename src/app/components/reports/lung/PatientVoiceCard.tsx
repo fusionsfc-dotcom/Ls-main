@@ -13,7 +13,7 @@ type PatientVoiceCardProps = {
 export function PatientVoiceCard({ voice }: PatientVoiceCardProps) {
   return (
     <blockquote
-      className="rounded-r-xl border border-blue-100 border-l-4 border-l-[#185FA5] bg-blue-50 p-4 shadow-none"
+      className="rounded-r-xl border border-blue-100 border-l-4 border-l-[#185FA5] bg-blue-50 p-4 shadow-none report-editorial-panel report-voice"
       style={{ backgroundColor: '#EFF6FF' }}
     >
       <div className="text-3xl leading-none text-[#185FA5]/40 font-serif mb-2" aria-hidden>

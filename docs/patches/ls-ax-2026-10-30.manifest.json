@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-30",
+  "version": 1,
+  "title": "LS AX 리포트 - 수가 개편과 입원 인정·항암 급여 변화에 대비하는 병원 운영 전략",
+  "url": "https://www.lsconsulting.co.kr/reports/daily/ls-ax-2026-10-30.html",
+  "productionDeployment": "dpl_2eSWpd4gdkrJF6P7UZC6eYpnAkz9",
+  "baselineDeployment": "dpl_41V65NU1ZFY5ssWnb2qSDLffs5BN",
+  "htmlSourcePath": "public/reports/daily/ls-ax-2026-10-30.html",
+  "htmlSourceSha256": "86641140e8c8d8d9d02efb7f178781207b39c91a1ffc1cc9215e4e95c4411e59",
+  "deployedHtmlSha256": "55e18046a6d6909badd42f7fe07027d866c4b6d64ce6d4823cdd19bb311b1a58",
+  "registrationPatch": "docs/patches/ls-ax-2026-10-30.patch",
+  "patchTargets": [
+    "src/app/data/insightsData.ts",
+    "public/reports/daily/catalog.json"
+  ],
+  "validation": {
+    "publications": 30,
+    "healthcareArchiveLinks": 28,
+    "canonical": true,
+    "articleAndBreadcrumb": true,
+    "sitemap": true,
+    "rss": true,
+    "mobileViewport": 390
+  },
+  "note": "Only this publication is stored. Apply the registration patch to the verified production baseline; this branch is not a full production source reconciliation. Do not deploy the older main/branch snapshot over production. No original PDF, email headers, or credentials are included."
+}

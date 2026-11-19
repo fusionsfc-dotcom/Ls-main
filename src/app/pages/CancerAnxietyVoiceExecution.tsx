@@ -134,7 +134,7 @@ export function CancerAnxietyVoiceExecution() {
           </h2>
         </div>
 
-        <div className="mb-8 p-6 rounded-lg" style={{ backgroundColor: '#F8F9FA' }}>
+        <div className="mb-8 p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
           <h3 className="text-xl font-bold mb-6 text-center" style={{ color: '#0F2B46' }}>
             치료 여정 단계별 불안 점수 변화
           </h3>
@@ -179,7 +179,7 @@ export function CancerAnxietyVoiceExecution() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="p-6 rounded-lg border-2" style={{ borderColor: '#0F2B46' }}>
+          <div className="p-6 rounded-lg border-2 report-editorial-panel" style={{ borderColor: '#0F2B46' }}>
             <h4 className="font-bold mb-3" style={{ color: '#0F2B46' }}>핵심 패턴</h4>
             <ul className="space-y-2 text-sm" style={{ color: '#0F2B46', opacity: 0.8 }}>
               <li>• 진단 직후: 정보 과부하로 인한 불안</li>
@@ -188,7 +188,7 @@ export function CancerAnxietyVoiceExecution() {
               <li>• 검사 전: 재발 불안</li>
             </ul>
           </div>
-          <div className="p-6 rounded-lg border-2" style={{ borderColor: '#0F2B46' }}>
+          <div className="p-6 rounded-lg border-2 report-editorial-panel" style={{ borderColor: '#0F2B46' }}>
             <h4 className="font-bold mb-3" style={{ color: '#0F2B46' }}>전략적 시사점</h4>
             <ul className="space-y-2 text-sm" style={{ color: '#0F2B46', opacity: 0.8 }}>
               <li>• 단계별 맞춤 개입 필요</li>
@@ -210,7 +210,7 @@ export function CancerAnxietyVoiceExecution() {
         </div>
 
         {/* 환자보이스 인용 */}
-        <div className="mb-8 p-6 rounded-lg border-l-4" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
+        <div className="mb-8 p-6 rounded-lg border-l-4 report-editorial-panel" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
           <h3 className="text-sm font-semibold mb-3 opacity-60" style={{ color: '#0F2B46' }}>환자보이스</h3>
           <blockquote className="text-xl italic leading-relaxed" style={{ color: '#0F2B46' }}>
             "이게 말기인가요?"<br />
@@ -219,7 +219,7 @@ export function CancerAnxietyVoiceExecution() {
         </div>
 
         {/* 보이스 해석 */}
-        <div className="mb-8 p-6 rounded-lg" style={{ backgroundColor: '#FAFBFC' }}>
+        <div className="mb-8 p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#FAFBFC' }}>
           <h3 className="text-xl font-bold mb-4" style={{ color: '#0F2B46' }}>보이스 해석</h3>
           <div className="space-y-2">
             <p style={{ color: '#0F2B46', opacity: 0.8 }}>• <strong>정보 과부하:</strong> 한 번에 너무 많은 정보를 받아 처리 불가</p>
@@ -255,7 +255,7 @@ export function CancerAnxietyVoiceExecution() {
         </div>
 
         {/* 체크리스트 */}
-        <div className="p-6 border-2 rounded-lg" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
+        <div className="p-6 border-2 rounded-lg report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
           <h4 className="font-bold mb-4" style={{ color: '#0F2B46' }}>실행 체크리스트</h4>
           <div className="space-y-2">
             <label className="flex items-center space-x-3 cursor-pointer">
@@ -288,7 +288,7 @@ export function CancerAnxietyVoiceExecution() {
         </div>
 
         {/* 환자보이스 인용 */}
-        <div className="mb-8 p-6 rounded-lg border-l-4" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
+        <div className="mb-8 p-6 rounded-lg border-l-4 report-editorial-panel" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
           <h3 className="text-sm font-semibold mb-3 opacity-60" style={{ color: '#0F2B46' }}>환자보이스</h3>
           <blockquote className="text-xl italic leading-relaxed" style={{ color: '#0F2B46' }}>
             "이렇게 토하는 게 정상인가요?"<br />
@@ -324,7 +324,7 @@ export function CancerAnxietyVoiceExecution() {
         </div>
 
         {/* 체크리스트 */}
-        <div className="p-6 border-2 rounded-lg" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
+        <div className="p-6 border-2 rounded-lg report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
           <h4 className="font-bold mb-4" style={{ color: '#0F2B46' }}>실행 체크리스트</h4>
           <div className="space-y-2">
             <label className="flex items-center space-x-3 cursor-pointer">
@@ -357,7 +357,7 @@ export function CancerAnxietyVoiceExecution() {
         </div>
 
         {/* 환자보이스 인용 */}
-        <div className="mb-8 p-6 rounded-lg border-l-4" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
+        <div className="mb-8 p-6 rounded-lg border-l-4 report-editorial-panel" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
           <h3 className="text-sm font-semibold mb-3 opacity-60" style={{ color: '#0F2B46' }}>환자보이스</h3>
           <blockquote className="text-xl italic leading-relaxed" style={{ color: '#0F2B46' }}>
             "계속해야 하나요?"<br />
@@ -393,7 +393,7 @@ export function CancerAnxietyVoiceExecution() {
         </div>
 
         {/* 체크리스트 */}
-        <div className="p-6 border-2 rounded-lg" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
+        <div className="p-6 border-2 rounded-lg report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
           <h4 className="font-bold mb-4" style={{ color: '#0F2B46' }}>실행 체크리스트</h4>
           <div className="space-y-2">
             <label className="flex items-center space-x-3 cursor-pointer">
@@ -426,7 +426,7 @@ export function CancerAnxietyVoiceExecution() {
         </div>
 
         {/* 환자보이스 인용 */}
-        <div className="mb-8 p-6 rounded-lg border-l-4" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
+        <div className="mb-8 p-6 rounded-lg border-l-4 report-editorial-panel" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
           <h3 className="text-sm font-semibold mb-3 opacity-60" style={{ color: '#0F2B46' }}>환자보이스</h3>
           <blockquote className="text-xl italic leading-relaxed" style={{ color: '#0F2B46' }}>
             "집에 가면 잘할 수 있을까요?"
@@ -461,7 +461,7 @@ export function CancerAnxietyVoiceExecution() {
         </div>
 
         {/* 체크리스트 */}
-        <div className="p-6 border-2 rounded-lg" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
+        <div className="p-6 border-2 rounded-lg report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
           <h4 className="font-bold mb-4" style={{ color: '#0F2B46' }}>실행 체크리스트</h4>
           <div className="space-y-2">
             <label className="flex items-center space-x-3 cursor-pointer">
@@ -494,7 +494,7 @@ export function CancerAnxietyVoiceExecution() {
         </div>
 
         {/* 환자보이스 인용 */}
-        <div className="mb-8 p-6 rounded-lg border-l-4" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
+        <div className="mb-8 p-6 rounded-lg border-l-4 report-editorial-panel" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
           <h3 className="text-sm font-semibold mb-3 opacity-60" style={{ color: '#0F2B46' }}>환자보이스</h3>
           <blockquote className="text-xl italic leading-relaxed" style={{ color: '#0F2B46' }}>
             "이 통증이 재발인가요?"<br />
@@ -530,7 +530,7 @@ export function CancerAnxietyVoiceExecution() {
         </div>
 
         {/* 체크리스트 */}
-        <div className="p-6 border-2 rounded-lg" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
+        <div className="p-6 border-2 rounded-lg report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
           <h4 className="font-bold mb-4" style={{ color: '#0F2B46' }}>실행 체크리스트</h4>
           <div className="space-y-2">
             <label className="flex items-center space-x-3 cursor-pointer">
@@ -563,7 +563,7 @@ export function CancerAnxietyVoiceExecution() {
         </div>
 
         {/* 환자보이스 인용 */}
-        <div className="mb-8 p-6 rounded-lg border-l-4" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
+        <div className="mb-8 p-6 rounded-lg border-l-4 report-editorial-panel" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
           <h3 className="text-sm font-semibold mb-3 opacity-60" style={{ color: '#0F2B46' }}>환자보이스</h3>
           <blockquote className="text-xl italic leading-relaxed" style={{ color: '#0F2B46' }}>
             "수치가 조금 올랐습니다."<br />
@@ -599,7 +599,7 @@ export function CancerAnxietyVoiceExecution() {
         </div>
 
         {/* 체크리스트 */}
-        <div className="p-6 border-2 rounded-lg" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
+        <div className="p-6 border-2 rounded-lg report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
           <h4 className="font-bold mb-4" style={{ color: '#0F2B46' }}>실행 체크리스트</h4>
           <div className="space-y-2">
             <label className="flex items-center space-x-3 cursor-pointer">

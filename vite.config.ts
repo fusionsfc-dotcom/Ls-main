@@ -1,59 +1,10 @@
 import { defineConfig, loadEnv, type Plugin } from 'vite'
 import path from 'path'
-import { readdirSync, writeFileSync } from 'fs'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { prerenderMarketingPages } from './scripts/prerender'
 
 const SITE_URL = 'https://www.lsconsulting.co.kr'
-
-/**
- * 빌드 시 sitemap.xml 자동 생성.
- * 정적 페이지 + 주간 리포트(데이터 디렉터리에서 슬러그 자동 수집)를 포함하므로,
- * 리포트가 추가될 때마다 별도 작업 없이 사이트맵이 갱신된다.
- */
-function sitemapPlugin(): Plugin {
-  return {
-    name: 'gen-sitemap',
-    apply: 'build',
-    writeBundle() {
-      const collectSlugs = (dir: string): string[] => {
-        try {
-          return readdirSync(dir)
-            .filter((f) => f.endsWith('.ts') && f !== 'types.ts' && f !== 'index.ts')
-            .map((f) => f.replace(/\.ts$/, ''))
-            .sort()
-        } catch {
-          return []
-        }
-      }
-      const slugs = collectSlugs(path.resolve(__dirname, 'src/data/reports/weekly-care'))
-      const businessSlugs = collectSlugs(path.resolve(__dirname, 'src/data/reports/business'))
-      const routes: Array<[string, string, string]> = [
-        ['/', '1.0', 'weekly'],
-        ['/ax', '0.8', 'monthly'],
-        ['/ax/medical', '0.8', 'monthly'],
-        ['/ax/cases', '0.8', 'monthly'],
-        ['/ax/medical/jeju', '0.6', 'monthly'],
-        ['/contact', '0.7', 'monthly'],
-        ['/healthcare', '0.9', 'monthly'],
-        ['/projects', '0.9', 'monthly'],
-        ['/about', '0.8', 'monthly'],
-        ['/insights', '0.9', 'weekly'],
-        ...slugs.map((s) => [`/reports/weekly/${s}`, '0.7', 'monthly'] as [string, string, string]),
-        ...businessSlugs.map((s) => [`/reports/business/${s}`, '0.7', 'monthly'] as [string, string, string]),
-      ]
-      const body = routes
-        .map(
-          ([p, pr, fr]) =>
-            `  <url>\n    <loc>${SITE_URL}${p}</loc>\n    <changefreq>${fr}</changefreq>\n    <priority>${pr}</priority>\n  </url>`,
-        )
-        .join('\n')
-      const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`
-      writeFileSync(path.resolve(__dirname, 'dist/sitemap.xml'), xml)
-    },
-  }
-}
 
 /** Figma Make emits `figma:asset/...` imports; resolve to a local placeholder for Vite. */
 function figmaAssetFallback(): Plugin {
@@ -79,7 +30,6 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       figmaAssetFallback(),
-      sitemapPlugin(),
       { name: 'prerender-medical-marketing', apply: 'build', writeBundle: { sequential: true, order: 'post', handler: () => prerenderMarketingPages(__dirname) } },
       // The React and Tailwind plugins are both required for Make, even if
       // Tailwind is not being actively used – do not remove them

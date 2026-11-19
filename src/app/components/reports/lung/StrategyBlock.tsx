@@ -25,7 +25,7 @@ function voiceToCard(voice: string): PatientVoice {
 export function StrategyBlock({ type, title, body, voice, borderColor, labelColor }: StrategyBlockProps) {
   return (
     <div
-      className="rounded-xl border border-gray-100 bg-white p-5 shadow-none pl-4"
+      className="rounded-xl border border-gray-100 bg-white p-5 shadow-none pl-4 report-editorial-panel report-evidence-row"
       style={{ borderLeftWidth: 3, borderLeftStyle: 'solid', borderLeftColor: borderColor }}
     >
       <div

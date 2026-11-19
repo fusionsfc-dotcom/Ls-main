@@ -8,7 +8,7 @@ type StrategySectionProps = {
 export function StrategySection({ strategy }: StrategySectionProps) {
   return (
     <section
-      className="rounded-xl border p-5 sm:p-6 shadow-none"
+      className="rounded-xl border p-5 sm:p-6 shadow-none report-editorial-panel"
       style={{
         backgroundColor: strategy.bgColor,
         borderColor: strategy.borderColor,

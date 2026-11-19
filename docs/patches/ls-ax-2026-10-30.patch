@@ -1,0 +1,41 @@
+--- a/public/reports/daily/catalog.json
++++ b/public/reports/daily/catalog.json
+@@ -1,4 +1,11 @@
+ [
++  {
++    "date": "2026-10-30",
++    "version": 1,
++    "title": "LS AX 리포트 - 수가 개편과 입원 인정·항암 급여 변화에 대비하는 병원 운영 전략",
++    "path": "/reports/daily/ls-ax-2026-10-30.html",
++    "sha256": "86641140e8c8d8d9d02efb7f178781207b39c91a1ffc1cc9215e4e95c4411e59"
++  },
+   {
+     "date": "2026-10-28",
+     "version": 2,
+--- a/src/app/data/insightsData.ts
++++ b/src/app/data/insightsData.ts
+@@ -21,6 +21,24 @@
+ export const insightsData: InsightItem[] = [
+   {
+   "domain": "healthcare",
++  "medicalBoard": "cancer-report",
++  "category": "LS AX 리포트",
++  "title": "LS AX 리포트 - 수가 개편과 입원 인정·항암 급여 변화에 대비하는 병원 운영 전략",
++  "date": "2026.10.30",
++  "publishedAt": "2026-10-30",
++  "excerpt": "수가 개편의 손익 추정, 실손 입원 인정의 기록과 조건, 항암 급여 변경을 살펴봅니다. 재활·퇴원 연계·정서 케어까지 부서별 준비 과제를 보도·권고·운영 제안으로 구분합니다.",
++  "readTime": "종합 리포트",
++  "highlights": [
++    "수가 비교 차트",
++    "전략 선택지 3가지",
++    "부서별 실행과제",
++    "출처·확인 필요"
++  ],
++  "isFeatured": true,
++  "link": "/reports/daily/ls-ax-2026-10-30.html"
++},
++  {
++  "domain": "healthcare",
+   "category": "LS PVM 환자 리포트",
+   "medicalBoard": "patient-research",
+   "title": "LS AX 리포트 - 유방암 환자의 불안과 진료실 밖 질문을 줄이는 병원 대응",

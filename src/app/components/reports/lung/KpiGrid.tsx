@@ -23,7 +23,7 @@ export function KpiGrid({ items }: KpiGridProps) {
       {items.map((item) => (
         <div
           key={item.label}
-          className="rounded-xl bg-gray-50 p-4 border border-gray-100 shadow-none"
+          className="rounded-xl bg-gray-50 p-4 border border-gray-100 shadow-none report-editorial-panel"
         >
           <div
             className="text-2xl sm:text-3xl font-bold tabular-nums mb-2"

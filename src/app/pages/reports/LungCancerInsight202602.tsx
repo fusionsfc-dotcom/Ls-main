@@ -132,7 +132,7 @@ export function LungCancerInsight202602() {
       {/* Executive Summary */}
       <section className="py-16 px-8 lg:px-16" style={{ backgroundColor: '#F8F9FA' }}>
         <div className="max-w-[960px] mx-auto">
-          <div className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#0F2B46' }}>
+          <div className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#0F2B46' }}>
             <div className="flex items-center space-x-3 mb-6">
               <FileText className="w-6 h-6" style={{ color: '#0F2B46' }} />
               <h2 className="text-2xl font-bold" style={{ color: '#0E1B3D' }}>Executive Summary</h2>
@@ -167,12 +167,12 @@ export function LungCancerInsight202602() {
           
           <div className="grid gap-6">
             {questionTypes.map((item, index) => (
-              <div key={index} className="p-8 rounded-xl border-2 transition-all hover:shadow-lg" style={{ borderColor: '#EAEAEA', backgroundColor: 'white' }}>
+              <div key={index} className="p-8 rounded-xl border-2 transition-all hover:shadow-lg report-editorial-panel" style={{ borderColor: '#EAEAEA', backgroundColor: 'white' }}>
                 <h3 className="text-2xl font-bold mb-4" style={{ color: '#0E1B3D' }}>
                   {index + 1}. {item.title}
                 </h3>
                 
-                <div className="p-4 rounded-lg mb-6" style={{ backgroundColor: '#F8F9FA' }}>
+                <div className="p-4 rounded-lg mb-6 report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
                   <p className="text-lg italic" style={{ color: '#0F2B46' }}>
                     환자보이스: {item.voice}
                   </p>
@@ -204,7 +204,7 @@ export function LungCancerInsight202602() {
             폐암 환자 불안 구조 시각화
           </h2>
           
-          <div className="bg-white p-8 lg:p-12 rounded-2xl border" style={{ borderColor: '#EAEAEA' }}>
+          <div className="bg-white p-8 lg:p-12 rounded-2xl border report-editorial-panel" style={{ borderColor: '#EAEAEA' }}>
             {/* 타임라인 그래프 */}
             <div className="mb-8">
               {/* Y축과 그래프 영역 */}
@@ -277,7 +277,7 @@ export function LungCancerInsight202602() {
           
           <div className="grid md:grid-cols-2 gap-6">
             {departments.map((dept, index) => (
-              <div key={index} className="p-6 rounded-xl border-2" style={{ borderColor: '#0F2B46', backgroundColor: 'white' }}>
+              <div key={index} className="p-6 rounded-xl border-2 report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: 'white' }}>
                 <h3 className="text-xl font-bold mb-4" style={{ color: '#0F2B46' }}>
                   {dept.name}
                 </h3>

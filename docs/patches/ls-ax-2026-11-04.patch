@@ -1,0 +1,41 @@
+--- a/public/reports/daily/catalog.json
++++ b/public/reports/daily/catalog.json
+@@ -1,4 +1,11 @@
+ [
++  {
++    "date": "2026-11-04",
++    "version": 1,
++    "title": "LS AX 리포트 - 진료의뢰·청구 절차와 항암치료 중 발열 대응",
++    "path": "/reports/daily/ls-ax-2026-11-04.html",
++    "sha256": "a518f1f376aca49396e095341b57d6ff9b7f2bb1dca0336d86d86611a58ebf60"
++  },
+   {
+     "date": "2026-11-02",
+     "version": 1,
+--- a/src/app/data/insightsData.ts
++++ b/src/app/data/insightsData.ts
+@@ -23,6 +23,24 @@
+   "domain": "healthcare",
+   "medicalBoard": "cancer-report",
+   "category": "LS AX 리포트",
++  "title": "LS AX 리포트 - 진료의뢰·청구 절차와 항암치료 중 발열 대응",
++  "date": "2026.11.04",
++  "publishedAt": "2026-11-03",
++  "excerpt": "요양병원 진료의뢰·청구 기준과 항암치료 중 발열 대응 시간을 살펴봅니다. 운동·불면 관리, 부서별 과제와 일정을 근거·적용 조건·운영 제안으로 구분합니다.",
++  "readTime": "종합 리포트",
++  "highlights": [
++    "의뢰·청구 적용 범위",
++    "발열 대응 시간",
++    "부서별 운영 제안",
++    "출처·확인 필요"
++  ],
++  "isFeatured": true,
++  "link": "/reports/daily/ls-ax-2026-11-04.html"
++},
++  {
++  "domain": "healthcare",
++  "medicalBoard": "cancer-report",
++  "category": "LS AX 리포트",
+   "title": "LS AX 리포트 - 비급여 설명과 한약 병용 관리, 2027년 예산을 준비하는 병원 운영 전략",
+   "date": "2026.11.02",
+   "publishedAt": "2026-11-01",

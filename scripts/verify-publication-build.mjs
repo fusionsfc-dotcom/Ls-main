@@ -1,0 +1,48 @@
+import assert from 'node:assert/strict';
+import {readFileSync, existsSync} from 'node:fs';
+import {build} from 'esbuild';
+const origin='https://www.lsconsulting.co.kr';
+const read=p=>readFileSync(p,'utf8');
+const decode=s=>s.replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#x27;|&#39;|&apos;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>');
+const attrs=tag=>Object.fromEntries([...tag.matchAll(/([\w:-]+)=["']([^"']*)["']/g)].map(m=>[m[1],decode(m[2])]));
+const flatten=x=>Array.isArray(x)?x.flatMap(flatten):x&&typeof x==='object'?[x,...flatten(x['@graph']||[])]:[];
+const publications=JSON.parse(read('dist/publication-index.json'));
+assert.equal(new Set(publications.map(p=>p.url)).size,publications.length,'unique publication URLs');
+const sitemap=read('dist/sitemap.xml'),rss=read('dist/rss.xml');
+const archive=read('dist/insights/index.html')+read('dist/ax/cases/index.html');
+for(const report of publications){
+ const path=new URL(report.url).pathname;
+ const html=read('dist'+path+(path.endsWith('.html')?'':'/index.html'));
+ const head=html.split('</head>')[0];
+ const metas=[...head.matchAll(/<meta\b[^>]*>/g)].map(m=>attrs(m[0]));
+ const links=[...head.matchAll(/<link\b[^>]*>/g)].map(m=>attrs(m[0]));
+ assert.equal([...head.matchAll(/<title\b[^>]*>/g)].length,1,path+' unique title');
+ assert(decode(head.match(/<title\b[^>]*>([\s\S]*?)<\/title>/)[1]).includes(report.title),path+' registered title');
+ assert.deepEqual(links.filter(m=>m.rel==='canonical').map(m=>m.href),[report.url],path+' canonical');
+ for(const key of ['description','robots'])assert.equal(metas.filter(m=>m.name===key).length,1,path+' '+key);
+ assert(!metas.find(m=>m.name==='robots').content.includes('noindex'),path+' indexable');
+ assert.equal(metas.find(m=>m.property==='og:url')?.content,report.url,path+' OG URL');
+ assert.equal(metas.find(m=>m.property==='og:type')?.content,'article',path+' OG type');
+ const schemas=[...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].flatMap(m=>flatten(JSON.parse(m[1])));
+ const articles=schemas.filter(x=>['Article','BlogPosting','NewsArticle'].includes(x['@type']));
+ const crumbs=schemas.filter(x=>x['@type']==='BreadcrumbList');
+ assert.equal(articles.length,1,path+' one article entity');assert.equal(crumbs.length,1,path+' one breadcrumb');
+ assert.equal(articles[0].headline,report.title,path+' schema headline');
+ assert.equal(articles[0].datePublished,report.datePublished,path+' no invented published date');
+ assert.equal(articles[0].dateModified,report.dateModified,path+' no invented modified date');
+ assert.equal(crumbs[0].itemListElement.at(-1).item,report.url,path+' breadcrumb URL');
+ assert(/<h1(?:\s|>)/.test(html),path+' initial body');
+ assert(archive.includes('href="'+path+'"'),path+' real archive link');
+ assert(sitemap.includes('<loc>'+report.url+'</loc>'),path+' sitemap');
+ assert(rss.includes('<link>'+report.url+'</link>'),path+' RSS');
+}
+assert(!rss.includes('Invalid Date'),'valid RSS dates');
+assert(read('dist/app.html').includes('noindex, follow'),'utility fallback remains noindex');
+assert(!existsSync('dist/admin'),'admin not rendered');
+// Exercise timestamp handling: a date-only record must not gain an invented 09:00 time.
+const bundle=await build({entryPoints:['src/app/data/publication.ts'],bundle:true,format:'esm',platform:'node',write:false});
+const helpers=await import('data:text/javascript;base64,'+Buffer.from(bundle.outputFiles[0].text).toString('base64'));
+assert.equal(helpers.publicationFeedDate({publishedAt:'2026-10-28'}),undefined);
+assert.equal(helpers.publicationFeedDate({publishedAt:'2026-01-02T03:04:05+09:00'}),'Thu, 01 Jan 2026 18:04:05 GMT');
+assert.equal(helpers.publicationFeedDate({publishedAt:'not-a-date'}),undefined);
+console.log(`PASS ${publications.length} public reports: initial HTML, unique metadata/schema, archive href, sitemap/RSS, timestamp handling and noindexed admin fallback.`);

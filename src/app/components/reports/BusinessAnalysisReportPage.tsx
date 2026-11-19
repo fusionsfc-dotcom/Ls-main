@@ -41,7 +41,7 @@ function Block({ block }: { block: AnalysisBlock }) {
           {block.items.map((s, i) => (
             <div
               key={i}
-              className="rounded-2xl p-5 bg-white"
+              className="rounded-2xl p-5 bg-white report-editorial-panel"
               style={{ border: '1px solid var(--navy-100)', boxShadow: '0 6px 18px -12px rgba(15,43,70,.25)' }}
             >
               <div className="text-[32px] font-extrabold leading-none tracking-tight" style={{ color: s.warn ? '#E5484D' : 'var(--navy-700)' }}>
@@ -56,7 +56,7 @@ function Block({ block }: { block: AnalysisBlock }) {
 
     case 'funnel':
       return (
-        <div className="rounded-2xl p-6 my-6 bg-white" style={{ border: '1px solid var(--navy-100)', boxShadow: '0 6px 18px -12px rgba(15,43,70,.25)' }}>
+        <div className="rounded-2xl p-6 my-6 bg-white report-editorial-panel" style={{ border: '1px solid var(--navy-100)', boxShadow: '0 6px 18px -12px rgba(15,43,70,.25)' }}>
           <div className="text-sm font-extrabold" style={{ color: 'var(--navy-900)' }}>{block.title}</div>
           {block.subtitle && <div className="text-xs mt-1 mb-5" style={{ color: 'var(--navy-400)' }}>{block.subtitle}</div>}
           <div className="space-y-3">
@@ -85,7 +85,7 @@ function Block({ block }: { block: AnalysisBlock }) {
 
     case 'hbars':
       return (
-        <div className="rounded-2xl p-6 my-6 bg-white" style={{ border: '1px solid var(--navy-100)', boxShadow: '0 6px 18px -12px rgba(15,43,70,.25)' }}>
+        <div className="rounded-2xl p-6 my-6 bg-white report-editorial-panel" style={{ border: '1px solid var(--navy-100)', boxShadow: '0 6px 18px -12px rgba(15,43,70,.25)' }}>
           <div className="text-sm font-extrabold" style={{ color: 'var(--navy-900)' }}>{block.title}</div>
           {block.subtitle && <div className="text-xs mt-1 mb-5" style={{ color: 'var(--navy-400)' }}>{block.subtitle}</div>}
           <div className="space-y-3.5">
@@ -108,7 +108,7 @@ function Block({ block }: { block: AnalysisBlock }) {
       return (
         <div className="grid sm:grid-cols-2 gap-3.5 my-6">
           {block.cards.map((c, i) => (
-            <div key={i} className="rounded-2xl p-5 bg-white" style={{ border: '1px solid var(--navy-100)' }}>
+            <div key={i} className="rounded-2xl p-5 bg-white report-editorial-panel" style={{ border: '1px solid var(--navy-100)' }}>
               <h4 className="text-xs font-extrabold uppercase tracking-wide mb-3" style={{ color: 'var(--navy-500)' }}>{c.title}</h4>
               {c.rows.map((r, j) => (
                 <div
@@ -141,7 +141,7 @@ function Block({ block }: { block: AnalysisBlock }) {
           {block.items.map((t, i) => (
             <div
               key={i}
-              className="flex gap-3.5 rounded-2xl p-4 bg-white"
+              className="flex gap-3.5 rounded-2xl p-4 bg-white report-editorial-panel"
               style={{ border: '1px solid var(--navy-100)', boxShadow: '0 6px 18px -12px rgba(15,43,70,.25)' }}
             >
               <span
@@ -235,7 +235,7 @@ export function BusinessAnalysisReportPage({ data, canonicalPath }: Props) {
         </header>
 
         {/* 핵심 요약 */}
-        <div className="rounded-2xl p-6 sm:p-7 mt-8" style={{ background: 'linear-gradient(155deg, var(--navy-100) 0%, var(--navy-50) 60%)', border: '1px solid var(--navy-100)' }}>
+        <div className="rounded-2xl p-6 sm:p-7 mt-8 report-editorial-panel" style={{ background: 'linear-gradient(155deg, var(--navy-100) 0%, var(--navy-50) 60%)', border: '1px solid var(--navy-100)' }}>
           <h2 className="text-[14px] font-extrabold uppercase tracking-wide mb-3" style={{ color: 'var(--navy-700)' }}>핵심 요약</h2>
           {summary.map((s, i) => (
             <p key={i} className="text-[15.5px] leading-relaxed mb-2.5 last:mb-0" style={{ color: 'var(--navy-700)' }}>

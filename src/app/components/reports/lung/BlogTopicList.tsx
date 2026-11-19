@@ -13,7 +13,7 @@ export function BlogTopicList({ topics }: BlogTopicListProps) {
       {topics.map((t) => (
         <div
           key={t.title}
-          className="flex items-start gap-3 rounded-xl border border-gray-100 bg-white p-4 shadow-none transition-colors hover:bg-gray-50"
+          className="flex items-start gap-3 rounded-xl border border-gray-100 bg-white p-4 shadow-none transition-colors hover:bg-gray-50 report-editorial-panel"
         >
           <span className="text-lg shrink-0" aria-hidden>
             🔎

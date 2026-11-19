@@ -1,0 +1,31 @@
+{
+  "reportDate": "2026-11-02",
+  "publishedAt": "2026-11-01",
+  "title": "LS AX 리포트 - 비급여 설명과 한약 병용 관리, 2027년 예산을 준비하는 병원 운영 전략",
+  "url": "https://www.lsconsulting.co.kr/reports/daily/ls-ax-2026-11-02.html",
+  "publicationScope": "New report HTML and registration patch for insightsData.ts and daily/catalog.json only. Existing publications and originals are preserved.",
+  "sourceHtmlSha256": "0c03d09952d2b212008d1f6a2a2743668e659eb317425aa6a7e18d0318e1c455",
+  "builtHtmlSha256": "4eaffbfa7a30696eb529a01b88a3c39d24c404fc0ef7b7c4b44fafb5acedd55b",
+  "registrationPatchSha256": "cfe90a323e95109d30c498e56da74843f942de5716f242802f24e52133c2f296",
+  "verifiedProductionBase": "dpl_2eSWpd4gdkrJF6P7UZC6eYpnAkz9",
+  "deployedProduction": "dpl_FKfeHFgZsLvEDC1UE2z5g39E5Qxz",
+  "deploymentStatus": "READY",
+  "verification": {
+    "publications": 31,
+    "staticArchiveLink": true,
+    "titleCanonicalArticleBreadcrumb": true,
+    "sitemapRss": true,
+    "mobileWidths": [
+      320,
+      390,
+      768,
+      1440
+    ],
+    "filtersChartsSourcesChecklist": true,
+    "patientOriginalPdfUnchanged": true,
+    "sourceUrlsPreserved": 16,
+    "koreanFinalTextReview": true,
+    "verifiedAt": "2026-11-01T23:44:56.135531+00:00"
+  },
+  "deploymentWarning": "This scoped branch is not a full reconciliation of production with main. Do not deploy this branch or old main over production. Apply the registration patch only to the freshly verified production source. Full main synchronization is outside this publication scope."
+}

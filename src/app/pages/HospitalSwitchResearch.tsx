@@ -41,17 +41,17 @@ export function HospitalSwitchResearch() {
         </h2>
         
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-lg" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-sm mb-2" style={{ color: '#666666' }}>분석 데이터</div>
             <div className="text-2xl font-bold" style={{ color: '#0F2B46' }}>2026년 2월 PVM 531건</div>
           </div>
           
-          <div className="p-6 rounded-lg" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-sm mb-2" style={{ color: '#666666' }}>분석 항목</div>
             <div className="text-lg font-bold" style={{ color: '#0F2B46' }}>니즈 / 감정 / 탐색 행동 / 치료 단계</div>
           </div>
           
-          <div className="p-6 rounded-lg" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-sm mb-2" style={{ color: '#666666' }}>목적</div>
             <div className="text-lg font-bold" style={{ color: '#0F2B46' }}>병원 이탈 시점 구조 분석</div>
           </div>
@@ -65,7 +65,7 @@ export function HospitalSwitchResearch() {
         </h2>
         
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-xl" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-xl report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-4xl mb-4">🔍</div>
             <h3 className="text-xl font-bold mb-3" style={{ color: '#0F2B46' }}>
               관리 불안이 이탈을 만든다
@@ -75,7 +75,7 @@ export function HospitalSwitchResearch() {
             </p>
           </div>
           
-          <div className="p-6 rounded-xl" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-xl report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-4xl mb-4">⚠️</div>
             <h3 className="text-xl font-bold mb-3" style={{ color: '#0F2B46' }}>
               상담 초기 '확신 부족'이 위험 구간
@@ -85,7 +85,7 @@ export function HospitalSwitchResearch() {
             </p>
           </div>
           
-          <div className="p-6 rounded-xl" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-xl report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-4xl mb-4">🔄</div>
             <h3 className="text-xl font-bold mb-3" style={{ color: '#0F2B46' }}>
               치료 지속 가능성에 대한 불안 반복
@@ -104,7 +104,7 @@ export function HospitalSwitchResearch() {
         </h2>
         
         <div className="space-y-8">
-          <div className="p-6 rounded-lg border-2" style={{ borderColor: '#E5E7EB' }}>
+          <div className="p-6 rounded-lg border-2 report-editorial-panel" style={{ borderColor: '#E5E7EB' }}>
             <div className="text-sm mb-3 font-bold" style={{ color: '#666666' }}>기존 이해</div>
             <div className="flex flex-wrap items-center gap-3">
               <div className="px-4 py-2 rounded-lg bg-gray-100" style={{ color: '#666666' }}>증상</div>
@@ -117,7 +117,7 @@ export function HospitalSwitchResearch() {
             </div>
           </div>
           
-          <div className="p-6 rounded-lg" style={{ backgroundColor: '#EBF4FF' }}>
+          <div className="p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#EBF4FF' }}>
             <div className="text-sm mb-3 font-bold" style={{ color: '#0F2B46' }}>실제 발견된 구조</div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <div className="px-4 py-3 rounded-lg text-sm text-center" style={{ backgroundColor: '#0F2B46', color: 'white' }}>증상</div>
@@ -138,7 +138,7 @@ export function HospitalSwitchResearch() {
 
       {/* 전략 시사점 */}
       <section className="py-16 px-6 lg:px-8 max-w-[960px] mx-auto">
-        <div className="rounded-xl p-8 lg:p-12" style={{ backgroundColor: '#0F2B46' }}>
+        <div className="rounded-xl p-8 lg:p-12 report-contrast-panel" style={{ backgroundColor: '#0F2B46' }}>
           <h2 className="text-3xl font-bold mb-8 text-white">
             병원이 당장 바꿔야 할 3가지
           </h2>
@@ -188,7 +188,7 @@ export function HospitalSwitchResearch() {
 
       {/* 결론 강조 박스 */}
       <section className="py-16 px-6 lg:px-8 max-w-[960px] mx-auto">
-        <div className="text-center p-12 rounded-xl border-2" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
+        <div className="text-center p-12 rounded-xl border-2 report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
           <p className="text-2xl lg:text-3xl leading-relaxed font-medium" style={{ color: '#0F2B46' }}>
             "환자는 치료가 마음에 안 들어서<br />병원을 바꾸지 않는다.<br /><br />
             <strong>혼자라고 느낄 때 바꾼다.</strong>"

@@ -20,7 +20,7 @@ export function HorizontalBarChart({ data, title, unit = '건' }: HorizontalBarC
   const max = Math.max(...data.map((d) => d.count), 1);
 
   return (
-    <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-none">
+    <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-none report-editorial-panel">
       <h3 className="text-sm font-bold text-gray-800 mb-4">{title}</h3>
       <div className="h-[320px] w-full min-w-0">
         <ResponsiveContainer width="100%" height="100%">

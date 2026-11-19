@@ -23,7 +23,7 @@ try{
   }
   await p.goto(base+'/projects');await p.getByRole('button',{name:'메뉴 열기',exact:true}).tap();
   const dialog=p.getByRole('dialog',{name:'사이트 메뉴'});const box=await dialog.boundingBox();assert.equal(box.height,height);
-  const target=dialog.getByRole('link',{name:'의료컨설팅',exact:true});await target.scrollIntoViewIfNeeded();await target.tap();await p.waitForURL(base+'/healthcare');assert.notEqual(await p.evaluate(()=>document.body.style.overflow),'hidden');
+  const target=dialog.getByRole('link',{name:'병원컨설팅',exact:true});await target.scrollIntoViewIfNeeded();await target.tap();await p.waitForURL(base+'/healthcare');assert.notEqual(await p.evaluate(()=>document.body.style.overflow),'hidden');
   checks.push(`${width}×${height}: 11 pages, no overflow, 44px controls, form fonts, touch menu navigation`);console.log('PASS',checks.at(-1));
  }
  await p.setViewportSize({width:390,height:844});await p.goto(base+'/projects');
@@ -33,7 +33,7 @@ try{
  await p.goto(base+'/patients');
  const survey=p.locator('#survey');for(const name of ['진단 직후','병원 선택','보호자 있음','회복'])await survey.getByRole('button',{name,exact:true}).tap();await survey.getByText('진단 결과',{exact:true}).waitFor();
  checks.push('Existing four-step patient survey reaches its result');
- await p.getByRole('button',{name:'기존 AI 상담 열기'}).tap();
+ await p.getByRole('button',{name:'AI 상담 열기'}).tap();
  const chat=p.getByRole('dialog',{name:'LS 암상담'});await chat.waitFor();
  await p.setViewportSize({width:390,height:420});
  const input=chat.getByPlaceholder('암 치료에 대해 무엇이든 물어보세요...');await input.tap();await input.fill('모바일 입력 UI 테스트');
@@ -43,11 +43,10 @@ try{
  await p.screenshot({path:`${out}/ai-compact.png`});
  await chat.getByRole('button',{name:'닫기',exact:true}).tap();assert.equal(await chat.count(),0);assert.notEqual(await p.evaluate(()=>document.body.style.overflow),'hidden');
  checks.push('AI dialog: small-height viewport, touch input, mocked response, close and scroll restoration (no live message sent)');
- const password=readFileSync('src/app/constants/reportAccess.ts','utf8').match(/REPORT_ACCESS_PASSWORD\s*=\s*['"]([^'"]+)/)[1];
- await p.setViewportSize({width:360,height:800});await p.goto(base+'/disease/breast-cancer-report');await p.getByPlaceholder('비밀번호',{exact:true}).fill(password);await p.getByRole('button',{name:'확인',exact:true}).tap();
+ await p.setViewportSize({width:360,height:800});
  const paths=[...new Set([...readFileSync('src/app/data/insightsData.ts','utf8').matchAll(/link:\s*['"]([^'"]+)/g)].map(m=>m[1]))];
  let wideTables=0;
- for(const route of paths){await p.goto(base+route);await p.locator('main h1').first().waitFor();assert((await p.locator('main').innerText()).length>500,`${route}: readable report`);assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${route}: no report overflow`);
+ for(const route of paths){await p.goto(base+route);await p.locator('h1').first().waitFor();assert((await p.locator('body').innerText()).length>500,`${route}: readable report`);assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${route}: no report overflow`);
   const tables=await p.locator('main table').all();for(const table of tables){const status=await table.evaluate(el=>{if(el.getBoundingClientRect().right<=innerWidth+1)return 'fits';let parent=el.parentElement;while(parent){if(/auto|scroll/.test(getComputedStyle(parent).overflowX)&&parent.scrollWidth>parent.clientWidth){parent.scrollLeft=70;return parent.scrollLeft>0?'scrolls':'blocked';}parent=parent.parentElement;}return 'uncontained';});assert.notEqual(status,'blocked');assert.notEqual(status,'uncontained');if(status==='scrolls')wideTables++;}}
  checks.push(`${paths.length} existing reports readable; ${wideTables} wide tables retain horizontal scrolling`);
  assert.deepEqual(errors,[]);writeFileSync(`${out}/verification.json`,JSON.stringify({base,checks,errors},null,2));checks.slice(-4).forEach(c=>console.log('PASS',c));

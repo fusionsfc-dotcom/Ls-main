@@ -16,14 +16,25 @@ for (const route of pages) {
 const fallback = readFileSync('dist/app.html', 'utf8');
 assert(fallback.includes('<div id="root"></div>'));
 assert(!fallback.includes('<h1'));
-for (const route of ['report', 'reports', 'disease', 'admin']) assert(!existsSync(`dist/${route}`), 'No private or report body prerender');
+assert(!existsSync('dist/admin'), 'Admin is never prerendered');
+assert(fallback.includes('noindex, follow'));
+const publications=JSON.parse(readFileSync('dist/publication-index.json','utf8'));
+for(const report of publications){
+ const pathname=new URL(report.url).pathname;
+ const html=readFileSync(pathname.endsWith('.html')?'dist'+pathname:'dist'+pathname+'/index.html','utf8');
+ assert(html.includes('<h1'),pathname+' public report has initial HTML');
+ assert(html.includes(report.url),pathname+' canonical');
+}
 const sitemap = readFileSync('dist/sitemap.xml', 'utf8');
 for (const route of pages) assert(sitemap.includes(`<loc>${origin}${route}</loc>`));
 assert(!/<loc>[^<]*(\/admin|\/services|\/business)<\/loc>/.test(sitemap));
-assert(!sitemap.includes('<lastmod>'), 'Do not invent report update dates');
+for(const report of publications)assert(sitemap.includes('<loc>'+report.url+'</loc>'));
+assert(!/비밀번호 필요|소개 사진|기존 AI 상담 열기/.test(pages.map(route=>readFileSync(route==='/'?'dist/index.html':`dist${route}/index.html`,'utf8')).join('')));
+assert(readFileSync('dist/index.html','utf8').includes('naver-site-verification'));
+assert(readFileSync('dist/index.html','utf8').includes('google-site-verification'));
 assert(existsSync('dist/images/repositioning/og-medical.png'));
 console.log('PASS 10 prerendered pages: unique metadata, canonical, H1, valid JSON-LD, no old claims or internal paths.');
-console.log('PASS Empty report SPA fallback, no report-body prerender, sitemap and OG asset.');
+console.log('PASS Public report HTML, noindexed utility fallback, verified search ownership tags, sitemap and OG asset.');
 if (process.env.PREVIEW_URL) {
   const base = process.env.PREVIEW_URL;
   for (const [from, to] of [['/services', '/ax'], ['/business', '/ax/cases']]) {
@@ -41,8 +52,8 @@ if (process.env.PREVIEW_URL) {
   }
   const report = await fetch(base + '/disease/breast-cancer-report');
   assert.equal(report.status, 200);
-  assert((await report.text()).includes('<div id="root"></div>'));
+  assert((await report.text()).includes('<h1'));
   const png = await fetch(base + '/images/repositioning/og-medical.png');
   assert.equal(png.headers.get('content-type'), 'image/png');
-  console.log('PASS Local built-site HTTP: initial page metadata, permanent redirects with query retention, protected-route fallback and static assets.');
+  console.log('PASS Local built-site HTTP: initial page metadata, permanent redirects with query retention, public report body and static assets.');
 }

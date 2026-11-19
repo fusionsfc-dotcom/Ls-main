@@ -78,17 +78,17 @@ export function ColonCancerReport() {
         </h2>
         
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-lg" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-sm mb-2" style={{ color: '#666666' }}>전체 데이터</div>
             <div className="text-3xl font-bold" style={{ color: '#0F2B46' }}>531건</div>
           </div>
           
-          <div className="p-6 rounded-lg" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-sm mb-2" style={{ color: '#666666' }}>분석 항목</div>
             <div className="text-lg font-bold" style={{ color: '#0F2B46' }}>치료 / 감정 / 제품 / 탐색</div>
           </div>
           
-          <div className="p-6 rounded-lg" style={{ backgroundColor: '#F7F7F7' }}>
+          <div className="p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F7F7F7' }}>
             <div className="text-sm mb-2" style={{ color: '#666666' }}>특징</div>
             <div className="text-lg font-bold" style={{ color: '#0F2B46' }}>배변 변화와 장 기능 적응</div>
           </div>
@@ -101,7 +101,7 @@ export function ColonCancerReport() {
           치료 패턴 구조
         </h2>
         
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 report-editorial-panel">
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={treatmentData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -112,7 +112,7 @@ export function ColonCancerReport() {
             </BarChart>
           </ResponsiveContainer>
         </div>
-        <div className="mt-4 p-4 rounded-lg" style={{ backgroundColor: '#EBF4FF' }}>
+        <div className="mt-4 p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: '#EBF4FF' }}>
           <p className="text-sm" style={{ color: '#0F2B46' }}>
             치료 성공 이후 "정상적인 생활 가능 여부"에 대한 질문이 많음. 생활 리듬 붕괴 스트레스가 큼
           </p>
@@ -125,7 +125,7 @@ export function ColonCancerReport() {
           감정 패턴 분석
         </h2>
         
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 report-editorial-panel">
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -146,7 +146,7 @@ export function ColonCancerReport() {
             </PieChart>
           </ResponsiveContainer>
         </div>
-        <div className="mt-4 p-4 rounded-lg" style={{ backgroundColor: '#EBF4FF' }}>
+        <div className="mt-4 p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: '#EBF4FF' }}>
           <p className="text-sm" style={{ color: '#0F2B46' }}>
             배변 문제는 말하기 어려운 주제라 온라인에서 질문 비중이 높음. 재발 불안 지속적
           </p>
@@ -161,7 +161,7 @@ export function ColonCancerReport() {
         
         <div className="grid md:grid-cols-2 gap-6">
           {coreNeeds.map((need, index) => (
-            <div key={index} className="p-6 rounded-lg border border-gray-200">
+            <div key={index} className="p-6 rounded-lg border border-gray-200 report-editorial-panel">
               <h3 className="text-xl font-bold mb-4" style={{ color: '#0F2B46' }}>
                 {need.title}
               </h3>
@@ -177,7 +177,7 @@ export function ColonCancerReport() {
           ))}
         </div>
         
-        <div className="mt-8 p-6 rounded-lg" style={{ backgroundColor: '#FFF8E1' }}>
+        <div className="mt-8 p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#FFF8E1' }}>
           <h3 className="text-lg font-bold mb-3" style={{ color: '#0F2B46' }}>제품/보조요법 언급</h3>
           <div className="grid md:grid-cols-3 gap-4 text-sm" style={{ color: '#666666' }}>
             <div className="flex items-center space-x-2">
@@ -209,7 +209,7 @@ export function ColonCancerReport() {
 
       {/* 전략 시사점 */}
       <section className="py-16 px-6 lg:px-8 max-w-[960px] mx-auto">
-        <div className="rounded-xl p-8 lg:p-12" style={{ backgroundColor: '#0F2B46' }}>
+        <div className="rounded-xl p-8 lg:p-12 report-contrast-panel" style={{ backgroundColor: '#0F2B46' }}>
           <h2 className="text-3xl font-bold mb-8 text-white">
             요양·재활 병원의 전략 기회
           </h2>
@@ -272,7 +272,7 @@ export function ColonCancerReport() {
 
       {/* 결론 강조 */}
       <section className="py-16 px-6 lg:px-8 max-w-[960px] mx-auto">
-        <div className="text-center p-12 rounded-xl border-2" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
+        <div className="text-center p-12 rounded-xl border-2 report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#F7F7F7' }}>
           <p className="text-3xl lg:text-4xl leading-relaxed font-bold" style={{ color: '#0F2B46' }}>
             "대장암 전략의 핵심은 치료가 아니라<br />장 기능 안정화와 일상 복귀다."
           </p>

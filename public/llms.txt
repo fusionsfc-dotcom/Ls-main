@@ -9,7 +9,7 @@
 - 암환자 1,000명 이상을 직접 상담했습니다. PVM 자료 건수와 별개의 이력입니다.
 - 위 수치는 2026년 10월 대표 수행 이력 기준입니다.
 
-## 의료컨설팅
+## 병원컨설팅
 
 개원 기획, 의료서비스 설계, 상담 체계 정비, 직원교육과 운영 기준, 병원 홍보와 콘텐츠, 디지털 운영 설계를 병원의 단계와 과제에 맞춰 함께 검토합니다. 기간과 비용은 과제별로 협의합니다.
 
@@ -20,16 +20,16 @@
 ## AX 개발 사례
 
 - 의료 AX: 해피라이프 환자·보호자 앱, 해피케어 병원 프로그램, AI 최적화 웹사이트, 병원 오피스 기획·개발.
-- 산업 AX: 모두의공간케어 공간 관리 플랫폼, 스페이스링크 부동산·건설 협업 플랫폼, GAAX 보험설계·고객관리 플랫폼(개발·검증 중), 남성케미칼 제품·카탈로그·주문·관리 웹서비스.
+- 산업 AX: 모두의공간케어 공간 관리 플랫폼, 스페이스링크 부동산·건설 협업 플랫폼, GAAX 보험설계·고객관리 플랫폼(개발·검증 중), 제조·B2B 주문 AX 전환(건설 부자재 제조 기업의 제품·카탈로그·주문·관리 웹서비스).
 - 스페이스링크는 개발 진행 중입니다. 각 사례의 개발 범위와 공개 상태는 해당 페이지를 확인하세요.
 - AI 검색 인용이나 검색 순위를 보장하지 않습니다.
 
 ## 주요 페이지
 
-- [의료컨설팅](https://www.lsconsulting.co.kr/healthcare)
-- [병원 프로젝트](https://www.lsconsulting.co.kr/projects)
-- [PVM 인사이트](https://www.lsconsulting.co.kr/insights)
-- [AX 소개](https://www.lsconsulting.co.kr/ax)
+- [병원컨설팅](https://www.lsconsulting.co.kr/healthcare)
+- [병원프로젝트](https://www.lsconsulting.co.kr/projects)
+- [인사이트](https://www.lsconsulting.co.kr/insights)
+- [AX 개발 사례](https://www.lsconsulting.co.kr/ax)
 - [의료 AX](https://www.lsconsulting.co.kr/ax/medical)
 - [AX 기술사례](https://www.lsconsulting.co.kr/ax/cases)
 - [제주 병의원 서비스](https://www.lsconsulting.co.kr/ax/medical/jeju)

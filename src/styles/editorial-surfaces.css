@@ -1,0 +1,236 @@
+/* Open, content-led surfaces. Explicit selectors leave reports and controls intact. */
+.med-header .med-logo-text strong,.med-footer .med-logo-text strong {
+  color:#285ca6;
+  background:linear-gradient(105deg,#147d79,#2c65b7 35%,#7049ab 70%,#a43e70);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.med-header .med-logo-mark,.med-footer .med-logo-mark { filter:none; }
+@media(forced-colors:active) {
+  .med-header .med-logo-text strong,.med-footer .med-logo-text strong { background:none;-webkit-text-fill-color:CanvasText;color:CanvasText; }
+}
+.med-site { --editorial-rule:#b9ccd7; }
+.med-site :is(.med-service-card,.med-featured-card,.med-project,.med-ax-panel,.med-service-detail,.med-newsletter,.med-contact-card,.ax-hub-case,.med-price,.med-workflow,.med-portrait) {
+  border-radius:0;background:transparent;border:0;box-shadow:none;
+}
+.med-site :is(.med-service-card,.med-featured-card,.med-project,.med-report-card):hover {
+  transform:none;background:transparent;box-shadow:none;
+}
+.med-site :is(.med-service-card,.med-report-card)::before { content:none; }
+
+/* Services: photographs and type sit directly on the page. */
+.med-site .med-service-grid { gap:48px 32px; }
+.med-site .med-service-card { padding:0 0 25px;border-bottom:1px solid var(--editorial-rule);overflow:visible; }
+.med-site .med-service-card .med-service-photo { width:100%;margin:0 0 24px; }
+.med-site .med-service-card .med-number { padding:0;border:0;background:none;font-size:34px;font-weight:350;line-height:1.2;letter-spacing:-.06em; }
+.med-site .med-service-card h3 { margin-top:12px; }
+.med-site .med-service-card>svg { position:static;margin-top:12px; }
+.med-site .med-service-output { margin-bottom:0; }
+.med-site .med-service-detail { padding:38px 0;margin:0;border-top:1px solid var(--editorial-rule); }
+.med-site .med-service-detail:last-child { border-bottom:1px solid var(--editorial-rule); }
+.med-site .med-deliverables { background:none;border:0;border-radius:0;padding:5px 0; }
+.med-site .med-deliverables .med-caption { color:#697b8e;font-size:11px;letter-spacing:.04em; }
+.med-site .med-deliverables li { border:0;background:none;padding:0; }
+
+/* Work: larger, unframed images with captions separated by fine rules. */
+.med-site .med-featured-grid,.med-site .med-project-grid { gap:44px 32px; }
+.med-site .med-featured-card,.med-site .med-project { overflow:visible;border-bottom:1px solid var(--editorial-rule); }
+.med-site .med-featured-copy { padding:24px 0; }
+.med-site .med-project-content { padding:24px 0 32px; }
+.med-site .med-ax-preview { gap:44px; }
+.med-site .med-ax-panel { padding:0 0 28px;border-bottom:1px solid var(--editorial-rule); }
+.med-site .med-ax-panel>.ed-screen { width:100%;margin:0 0 26px; }
+.med-site .ax-hub-list { gap:42px; }
+.med-site .ax-hub-case { overflow:visible;border-top:1px solid var(--editorial-rule); }
+.med-site .ax-hub-case-heading { padding:23px 0 20px; }
+.med-site .ax-hub-case-info { padding:18px 0 0; }
+.med-site :is(.ed-screen,.ed-hospital-photo,.ax-screen) { border-radius:3px;box-shadow:none; }
+.med-site .med-portrait { overflow:hidden; }
+.med-site .med-mini-tags span,.med-site .med-pill { background:none;border:0;border-radius:0;padding:4px 0;color:#3b6b80; }
+.med-site .med-mini-tags span+span::before { content:"/";color:#9bacbb;margin-right:10px; }
+
+/* Research archive: a journal index, not a repeated illustration/card grid. */
+.med-site .med-report-grid { display:block; }
+.med-site .med-report-card {
+  display:grid;grid-template-columns:150px minmax(0,1fr) 145px;gap:12px 30px;
+  padding:30px 0;background:none;border:0;border-top:1px solid var(--editorial-rule);border-radius:0;box-shadow:none;overflow:visible;
+}
+.med-site .med-report-card:last-child { border-bottom:1px solid var(--editorial-rule); }
+.med-site .med-report-access { grid-column:1;grid-row:1 / span 2;align-self:start;margin:0; }
+.med-site .med-report-card h3 { grid-column:2;grid-row:1;margin:0;font-size:24px;white-space:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden; }
+.med-site .med-report-card>p { grid-column:2;grid-row:2;margin:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden; }
+.med-site .med-report-meta { grid-column:3;grid-row:1 / span 2;align-self:start;display:flex;align-items:start;gap:14px;margin:4px 0 0;padding:0;border:0;line-height:1.8; }
+.med-site .med-report-meta svg { flex-shrink:0; }
+.med-site .med-report-meta span { word-break:keep-all;overflow-wrap:normal; }
+.ax-app-gallery { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start;min-width:0; }
+.ax-app-gallery .ax-screen-trigger { aspect-ratio:780/1688;padding:0;background:#f4f6fa; }
+.ax-app-gallery .ax-screen figcaption { padding:10px 0;background:none;gap:4px; }
+.ax-app-gallery .ax-screen { border:0; }
+.ax-app-gallery .ax-screen-badge { right:8px;bottom:8px; }
+.med-ax-panel>.ax-app-gallery { margin-bottom:26px; }
+@media(max-width:767px) {
+  .ax-app-gallery { display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:18px;padding-bottom:12px; }
+  .ax-app-gallery>.ax-screen { flex:0 0 78%;min-width:220px;scroll-snap-align:start; }
+}
+.med-site .med-report-card:hover h3 { color:#2b6990; }
+.med-site .med-filters { gap:8px 20px; }
+.med-site .med-filters button,.med-site .ax-hub-jumps a {
+  border:0;border-bottom:2px solid transparent;border-radius:0;background:none;box-shadow:none;padding:10px 0;
+}
+.med-site .med-filters button[aria-pressed=true] { color:#304f9a;border-bottom-color:#5367b9;background:none;box-shadow:none;font-weight:700; }
+.med-site .med-filters button:hover,.med-site .ax-hub-jumps a:hover { color:#304f9a;border-bottom-color:#a6bad6;background:none; }
+.med-site .med-contact-options button { border:0;border-bottom:1px solid var(--editorial-rule);border-radius:0;background:none;padding:16px 0; }
+.med-site .med-contact-options button[aria-pressed=true] { background:none;color:#304f9a;border-bottom:2px solid #5367b9; }
+.med-site .med-newsletter { max-width:900px;padding:38px 0;border-top:2px solid #6c8eab; }
+
+/* Evidence and practical information: typography, rules and generous spacing. */
+.med-site .med-credentials .med-stats>div:nth-child(n) { background:linear-gradient(125deg,#ffffffad,var(--credential-tint,#d8eef5));border:0;border-radius:0;box-shadow:none;padding:28px 26px 30px; }
+.med-site .med-credentials .med-stats>div:nth-child(2) { --credential-tint:#d9efe8; }
+.med-site .med-credentials .med-stats>div:nth-child(3) { --credential-tint:#f6e6dc; }
+.med-site .med-credentials .med-stats h3 { margin-top:20px;margin-bottom:9px; }
+.med-site .med-credentials .med-stats>div>p:last-child { line-height:1.85;margin-bottom:0; }
+.med-site .med-credentials .med-note { margin-top:24px;margin-bottom:5px; }
+.med-site .med-credentials .med-stats>div+div { border-left:0; }
+.med-site .med-values article { border-top:1px solid var(--editorial-rule);padding-top:24px; }
+.med-site .ed-principle-icon { background:none;border:0;box-shadow:none;border-radius:0;justify-content:flex-start;padding:0; }
+.med-site .med-price { padding:28px 0;border-top:2px solid #7199aa; }
+.med-site .med-price:nth-child(2) { border-color:#7aab9e; }
+.med-site .med-price:nth-child(3) { border-color:#a28ab9; }
+.med-site .med-contact-card { padding:0 0 0 36px;border-left:1px solid var(--editorial-rule); }
+.med-site .med-workflow { padding:24px 0;border-top:1px solid var(--editorial-rule); }
+.med-site .ed-case-details { border:0;border-bottom:1px solid var(--editorial-rule);background:none; }
+.med-site .ed-case-details summary { padding-left:0;padding-right:0; }
+.med-site .ed-case-details .med-workflow { padding-left:0;padding-right:0; }
+.med-site .med-inline-banner { border:0;border-top:1px solid var(--editorial-rule);border-bottom:1px solid var(--editorial-rule);border-radius:0;background:none;box-shadow:none;padding:30px 0; }
+.med-site .med-pvm-evidence-hero .pvm-knowledge { border-radius:0;box-shadow:none;border:0;border-left:1px solid #b7dae33d; }
+.med-site .med-lab-flow { border:0;border-top:1px solid #78989d55;background:transparent; }
+.med-site .med-lab-flow article { padding-left:24px;padding-right:24px; }
+.med-site .med-lab-action { background:#c9e3d9; }
+.med-patients .patient-reading-panel { background:transparent;border-top:1px solid #a8bfce;padding-left:0;padding-right:0; }
+.med-patients .patient-guide-entry { border-width:1px 0 0;padding:24px 0;box-shadow:none;border-radius:0; }
+@media(min-width:768px) and (max-width:1023px) {
+  .med-site .med-featured-copy { padding:0 0 24px 28px; }
+  .med-site .med-report-card { grid-template-columns:120px minmax(0,1fr);gap:12px 24px; }
+  .med-site .med-report-meta { grid-column:2;grid-row:3; }
+}
+@media(max-width:767px) {
+  .med-site .med-service-grid,.med-site .med-featured-grid,.med-site .med-project-grid { gap:36px; }
+  .med-site .med-service-detail { padding:28px 0; }
+  .med-site .med-deliverables { padding:14px 0 0;border:0; }
+  .med-site .med-service-detail>div:nth-child(2) { padding:0; }
+  .med-site .med-service-detail .med-deliverables { margin:0;padding:16px 0 0; }
+  .med-site .med-service-detail .med-deliverables li { background:none;border:0;padding:0; }
+  .med-site .med-service-detail .med-deliverables li+li::before { content:"/";margin-right:8px;color:#8299a8; }
+  .med-site .med-featured-copy,.med-site .med-project-content { padding:22px 0; }
+  .med-site .med-report-card { grid-template-columns:minmax(0,1fr);gap:13px;padding:25px 0; }
+  .med-site .med-report-access,.med-site .med-report-card h3,.med-site .med-report-card>p,.med-site .med-report-meta { grid-column:1;grid-row:auto; }
+  .med-site .med-report-card h3 { font-size:23px; }
+  .med-site .med-report-meta { justify-content:space-between;margin-top:6px; }
+  .med-site .med-credentials .med-stats>div:nth-child(n) { padding:24px 20px;column-gap:18px;row-gap:7px;grid-template-columns:96px minmax(0,1fr); }
+  .med-site .med-credentials .med-stats h3 { margin:0; }
+  .med-site .med-contact-card { border-left:0;border-top:1px solid var(--editorial-rule);padding:30px 0 0; }
+  .med-site .med-newsletter { padding:30px 0; }
+  .med-site .med-pvm-evidence-hero .pvm-knowledge { border-left:0;border-top:1px solid #b7dae34d;padding-left:10px;padding-right:10px; }
+  .med-site .med-lab-flow article { padding:24px 12px; }
+}
+
+/* The topics belong to the full-bleed field, without a separate card or hub diagram. */
+.med-site .med-pvm-evidence-hero .pvm-knowledge { background:none;border:0;box-shadow:none;backdrop-filter:none; }
+.pvm-constellation { position:relative;height:390px;margin:16px -10px 40px; }
+.pvm-constellation-topic { position:absolute;transform:translate(-50%,-50%);text-align:left;white-space:nowrap;text-shadow:0 2px 8px #071d2f,0 0 16px #071d2f; }
+.pvm-constellation-anchor { display:block;width:5px;height:5px;border-radius:50%;background:var(--topic-color);box-shadow:0 0 14px var(--topic-color);margin-bottom:11px; }
+.pvm-constellation-topic strong { display:block;font-size:16px;font-weight:600;color:var(--topic-color);line-height:1.5; }
+.pvm-constellation-topic span { display:block;font-size:10px;color:#d5e5ed;line-height:1.8;margin-top:3px; }
+@media(max-width:767px) {
+  .pvm-constellation { height:350px;margin:18px 0 38px; }
+  .pvm-constellation-topic strong { font-size:14px; }
+  .pvm-constellation-topic span { font-size:9px; }
+  .med-site .med-pvm-evidence-hero::after { background:linear-gradient(180deg,#102b40aa 0%,#102b4080 37%,#102b4010 68%,#102b4055); }
+}
+@media(max-width:359px) { .pvm-constellation-topic strong { font-size:13px; }.pvm-constellation-topic span { font-size:8px; } }
+
+@media(max-width:767px) { .med-site .pvm-network figcaption { right:76px;left:20px;max-width:none; } }
+
+/* PVM practice: one editorial story, with a clear question → interpretation → action hierarchy. */
+.med-site .pvm-practice { background:radial-gradient(ellipse at 0 45%,#d9f3ef85,transparent 55%),linear-gradient(115deg,#f7fafb,#f0f3fc);color:#17364a; }
+.pvm-practice-heading { align-items:flex-end;gap:50px;margin-bottom:48px; }
+.pvm-practice-heading>p { font-size:16px;line-height:1.9;color:#546c7c;max-width:390px;margin:0 0 5px; }
+.pvm-practice-tabs { display:flex;gap:36px;border-bottom:1px solid #213d521e; }
+.pvm-practice-tabs button { position:relative;display:flex;align-items:center;gap:12px;min-height:56px;padding:8px 0 20px;background:none;border:0;color:#63798a;font-size:15px;cursor:pointer; }
+.pvm-practice-tabs button>span { font-size:10px;letter-spacing:.1em;opacity:.65; }
+.pvm-practice-tabs button::after { content:"";position:absolute;height:2px;bottom:-1px;left:0;right:0;background:linear-gradient(90deg,#229c99,#7772c6);transform:scaleX(0);transform-origin:left;transition:transform .25s; }
+.pvm-practice-tabs button[aria-selected=true] { color:#194a60;font-weight:650; }
+.pvm-practice-tabs button[aria-selected=true]::after { transform:scaleX(1); }
+.pvm-practice-tabs button:focus-visible,.pvm-practice-panel:focus-visible { outline:2px solid #3781a4;outline-offset:6px; }
+.pvm-practice-layout { display:grid;grid-template-columns:1.05fr 1fr;gap:110px;padding:52px 0 42px;animation:med-lab-in .4s ease both; }
+.pvm-practice-label { display:block;font-size:11px;letter-spacing:.08em;color:#39778c;font-weight:550; }
+.pvm-practice-story { position:relative;min-width:0;padding-right:15px; }
+.pvm-practice-quote { display:block;font:100px/1 Georgia,serif;color:#329b9b66;height:82px;margin-top:24px; }
+.med-site .pvm-practice-story h3 { font-size:clamp(28px,3vw,42px);line-height:1.45;letter-spacing:-.045em;font-weight:550;max-width:470px;margin:0; }
+.pvm-practice-story>p { font-size:15px;line-height:1.9;color:#577080;margin-top:25px; }
+.pvm-practice-example { display:block;font-size:11px;color:#738998;margin-top:38px; }
+.pvm-practice-detail article+article { margin-top:30px;padding-top:30px;border-top:1px solid #213d521e; }
+.pvm-practice-detail ul { list-style:none;padding:0;margin:20px 0 0; }
+.pvm-practice-detail li { position:relative;padding:5px 0 5px 16px;font-size:15px;line-height:1.8;color:#4d6675;word-break:keep-all; }
+.pvm-practice-detail li::before { content:"";position:absolute;left:0;top:17px;width:4px;height:4px;background:#5e979e;border-radius:50%; }
+.med-site .pvm-practice-result h3 { font-size:27px;line-height:1.5;font-weight:550;letter-spacing:-.035em;margin:17px 0 0;color:#204e61; }
+.pvm-practice-foot { display:flex;align-items:center;justify-content:space-between;gap:30px;padding-top:25px;border-top:1px solid #213d521e; }
+.pvm-practice-foot p { color:#6b808c;font-size:11px;line-height:1.8;max-width:650px; }
+.pvm-practice-foot a { display:inline-flex;align-items:center;gap:12px;min-height:44px;white-space:nowrap;color:#286580;font-size:13px; }
+@media(max-width:1023px) { .pvm-practice-layout { gap:56px; }.pvm-practice-heading { align-items:flex-start;flex-direction:column;gap:24px; } }
+@media(max-width:767px) {
+  .pvm-practice-heading { margin-bottom:28px; }
+  .pvm-practice-heading>p { font-size:14px; }
+  .pvm-practice-tabs { gap:0;justify-content:space-between; }
+  .pvm-practice-tabs button { font-size:13px;gap:6px;min-height:52px;padding-bottom:16px; }
+  .pvm-practice-tabs button>span { font-size:9px; }
+  .pvm-practice-layout { grid-template-columns:1fr;gap:36px;padding:32px 0; }
+  .pvm-practice-story { padding-right:0; }
+  .pvm-practice-quote { font-size:80px;height:58px;margin-top:16px; }
+  .med-site .pvm-practice-story h3 { font-size:29px;max-width:440px; }
+  .pvm-practice-story>p { font-size:14px;margin-top:18px; }
+  .pvm-practice-example { margin-top:20px;font-size:10px; }
+  .pvm-practice-detail { padding-top:28px;border-top:1px solid #213d521e; }
+  .pvm-practice-detail li { font-size:14px; }
+  .med-site .pvm-practice-result h3 { font-size:24px; }
+  .pvm-practice-foot { align-items:flex-start;flex-direction:column;gap:12px; }
+}
+@media(prefers-reduced-motion:reduce) { .pvm-practice-layout { animation:none; }.pvm-practice-tabs button::after { transition:none; } }
+
+@media(max-width:359px) { .med-site .med-credentials .med-stats>div:nth-child(n) { padding:22px 16px;grid-template-columns:82px minmax(0,1fr);column-gap:14px; }.med-site .med-credentials .med-stat-value { font-size:30px; } }
+
+/* Representative career: real hospital photos and a shared, complete project register. */
+.hospital-career { scroll-margin-top:100px; }
+.hospital-career-photos { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 32px; }
+.hospital-career-photos figure { min-width:0;margin:0; }
+.hospital-career-photos a { display:block;color:inherit; }
+.hospital-career-photo { aspect-ratio:16/9;overflow:hidden;background:#e2edf1; }
+.hospital-career-photo img { display:block;width:100%;height:100%;object-fit:cover; }
+.hospital-career-photos figcaption { display:flex;justify-content:space-between;gap:24px;align-items:center;padding:18px 0;border-bottom:1px solid #c4d6df; }
+.hospital-career-photos strong { display:block;font-size:20px;font-weight:550;letter-spacing:-.03em; }
+.hospital-career-photos small { display:block;color:#5e7888;font-size:12px;margin-top:7px; }
+.hospital-career-photos figcaption>span:last-child { font-size:23px;color:#39718c; }
+.hospital-career-records { margin-top:64px; }
+.hospital-career-list-heading { display:flex;justify-content:space-between;align-items:center;gap:20px;padding-bottom:22px; }
+.hospital-career-list-heading h3 { font-size:24px;font-weight:550;letter-spacing:-.03em; }
+.hospital-career-list-heading>span { color:#5b7685;font-size:12px; }
+.hospital-career-records ol,.hospital-career-records ul { padding:0;margin:0;list-style:none; }
+.hospital-career-records>ol>li { display:grid;grid-template-columns:minmax(210px,.8fr) minmax(0,1.5fr);gap:34px;padding:24px 0;border-top:1px solid #c4d6df; }
+.hospital-career-records>ol>li:last-child { border-bottom:1px solid #c4d6df; }
+.hospital-career-records h4 { margin:0;font-size:17px;font-weight:550;line-height:1.7;word-break:keep-all; }
+.hospital-career-records h4 a { display:inline-flex;gap:14px;align-items:baseline;color:#193b52; }
+.hospital-career-records h4 span { font-size:14px;color:#42798d; }
+.hospital-career-records ul>li { display:grid;grid-template-columns:70px minmax(0,1fr);gap:16px;align-items:baseline; }
+.hospital-career-records ul>li+li { margin-top:10px; }
+.hospital-career-records ul>li>span { font-size:12px;color:#3e7790;line-height:1.8; }
+.hospital-career-records p { font-size:14px;line-height:1.85;color:#526d7d;margin:0;word-break:keep-all; }
+.hospital-career a:focus-visible { outline:2px solid #357c9c;outline-offset:6px; }
+.hospital-career a:hover strong,.hospital-career h4 a:hover { color:#2b7e98; }
+.hospital-career .med-note { margin-top:24px;max-width:850px; }
+@media(max-width:767px) {
+ .hospital-career-photos { grid-template-columns:1fr;gap:30px; }
+ .hospital-career-photos strong { font-size:19px; }
+ .hospital-career-records { margin-top:44px; }
+ .hospital-career-list-heading h3 { font-size:21px; }
+ .hospital-career-records>ol>li { grid-template-columns:1fr;gap:12px;padding:22px 0; }
+ .hospital-career-records ul>li { grid-template-columns:58px minmax(0,1fr);gap:12px; }
+}

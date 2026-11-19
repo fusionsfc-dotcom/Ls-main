@@ -1,4 +1,5 @@
 export const PUBLIC_SAMPLE_REPORT_LINKS = [
+  '/reports/daily/ls-ax-2026-10-28.html',
   '/reports/daily/ls-ax-2026-10-26.html',
   '/report/breast-cancer-stage-care-strategy',
   '/reports/liver-cancer-2026-03',

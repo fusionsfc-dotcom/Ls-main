@@ -345,7 +345,7 @@ export function BreastCancerStageCareStrategyReport() {
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               {summaryCards.map((card, idx) => (
-                <div key={idx} className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: NAVY_900 }}>
+                <div key={idx} className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: NAVY_900 }}>
                   <div className="inline-block px-3 py-1 rounded-full text-xs text-white mb-5" style={{ backgroundColor: NAVY_900 }}>
                     SUMMARY {idx + 1}
                   </div>
@@ -374,7 +374,7 @@ export function BreastCancerStageCareStrategyReport() {
               620건 기준 질문 카테고리·감정 키워드 분포를 한눈에 확인합니다.
             </p>
             <div className="grid lg:grid-cols-2 gap-8 items-stretch">
-              <div className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#EAEAEA' }}>
+              <div className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#EAEAEA' }}>
                 <div className="text-sm font-semibold mb-6" style={{ color: NAVY_900 }}>
                   질문 카테고리별 비중
                 </div>
@@ -400,7 +400,7 @@ export function BreastCancerStageCareStrategyReport() {
                   ))}
                 </div>
               </div>
-              <div className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#EAEAEA' }}>
+              <div className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#EAEAEA' }}>
                 <div className="text-sm font-semibold mb-6" style={{ color: NAVY_900 }}>
                   감정 키워드 비중 (요약)
                 </div>
@@ -425,7 +425,7 @@ export function BreastCancerStageCareStrategyReport() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-8 p-6 rounded-xl border-2" style={{ borderColor: NAVY_900, backgroundColor: '#F8F9FA' }}>
+                <div className="mt-8 p-6 rounded-xl border-2 report-editorial-panel" style={{ borderColor: NAVY_900, backgroundColor: '#F8F9FA' }}>
                   <div className="text-sm font-semibold mb-2" style={{ color: NAVY_900 }}>
                     해석
                   </div>
@@ -448,7 +448,7 @@ export function BreastCancerStageCareStrategyReport() {
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {DEPT_FOCUS_CARDS.map((c) => (
-                <div key={c.title} className="p-8 rounded-2xl border-2 shadow-sm" style={{ borderColor: '#E8EAEF', backgroundColor: c.bg }}>
+                <div key={c.title} className="p-8 rounded-2xl border-2 shadow-sm report-editorial-panel" style={{ borderColor: '#E8EAEF', backgroundColor: c.bg }}>
                   <div className="text-4xl font-extrabold tabular-nums mb-2" style={{ color: NAVY_900 }}>
                     {c.percent}%
                   </div>
@@ -473,7 +473,7 @@ export function BreastCancerStageCareStrategyReport() {
               <p className="text-xl text-gray-600">질문 비율 92% — 병원 설명의 ‘시점’과 환자 관리의 ‘기간’ 사이에 공백이 존재합니다</p>
             </div>
             <div className="grid lg:grid-cols-3 gap-8">
-              <div className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#EAEAEA' }}>
+              <div className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#EAEAEA' }}>
                 <div className="text-sm font-semibold mb-2" style={{ color: NAVY_900 }}>
                   데이터 포인트
                 </div>
@@ -489,9 +489,9 @@ export function BreastCancerStageCareStrategyReport() {
                   을 요구합니다.
                 </p>
               </div>
-              <div className="p-8 rounded-2xl bg-white border-2 lg:col-span-2" style={{ borderColor: '#EAEAEA' }}>
+              <div className="p-8 rounded-2xl bg-white border-2 lg:col-span-2 report-editorial-panel" style={{ borderColor: '#EAEAEA' }}>
                 <div className="grid sm:grid-cols-2 gap-6">
-                  <div className="p-6 rounded-xl" style={{ backgroundColor: '#F8F9FA' }}>
+                  <div className="p-6 rounded-xl report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
                     <div className="text-xs font-semibold mb-2" style={{ color: NAVY_900 }}>
                       병원
                     </div>
@@ -504,7 +504,7 @@ export function BreastCancerStageCareStrategyReport() {
                       관리 ‘기간’의 운영 기준은 비어 있습니다.
                     </p>
                   </div>
-                  <div className="p-6 rounded-xl" style={{ backgroundColor: '#F8F9FA' }}>
+                  <div className="p-6 rounded-xl report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
                     <div className="text-xs font-semibold mb-2" style={{ color: NAVY_900 }}>
                       환자
                     </div>
@@ -518,7 +518,7 @@ export function BreastCancerStageCareStrategyReport() {
                     </p>
                   </div>
                 </div>
-                <div className="mt-6 p-6 rounded-xl border-2" style={{ borderColor: NAVY_900 }}>
+                <div className="mt-6 p-6 rounded-xl border-2 report-editorial-panel" style={{ borderColor: NAVY_900 }}>
                   <div className="text-sm font-semibold mb-2" style={{ color: NAVY_900 }}>
                     한줄 정리
                   </div>
@@ -538,7 +538,7 @@ export function BreastCancerStageCareStrategyReport() {
             </h2>
             <div className="grid lg:grid-cols-2 gap-8">
               {needsTop5.map((item) => (
-                <div key={item.rank} className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#EAEAEA' }}>
+                <div key={item.rank} className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#EAEAEA' }}>
                   <div className="flex items-start justify-between gap-4 mb-5">
                     <div>
                       <div className="text-sm font-semibold mb-2" style={{ color: NAVY_900 }}>
@@ -568,7 +568,7 @@ export function BreastCancerStageCareStrategyReport() {
                     ))}
                   </div>
                   {item.emphasis && (
-                    <div className="mt-6 p-6 rounded-xl border-2" style={{ borderColor: NAVY_900, backgroundColor: '#F8F9FA' }}>
+                    <div className="mt-6 p-6 rounded-xl border-2 report-editorial-panel" style={{ borderColor: NAVY_900, backgroundColor: '#F8F9FA' }}>
                       <div className="text-sm font-semibold mb-2" style={{ color: NAVY_900 }}>
                         환자 발화
                       </div>
@@ -589,7 +589,7 @@ export function BreastCancerStageCareStrategyReport() {
               감정 데이터 분석
             </h2>
             <div className="grid lg:grid-cols-2 gap-8 items-stretch">
-              <div className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#EAEAEA' }}>
+              <div className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#EAEAEA' }}>
                 <div className="text-sm font-semibold mb-6" style={{ color: NAVY_900 }}>
                   감정 키워드 비중 (그래프)
                 </div>
@@ -617,7 +617,7 @@ export function BreastCancerStageCareStrategyReport() {
                     </div>
                   </div>
                 </div>
-                <div className="mt-8 p-6 rounded-xl border-2" style={{ borderColor: NAVY_900, backgroundColor: '#F8F9FA' }}>
+                <div className="mt-8 p-6 rounded-xl border-2 report-editorial-panel" style={{ borderColor: NAVY_900, backgroundColor: '#F8F9FA' }}>
                   <div className="text-sm font-semibold mb-2" style={{ color: NAVY_900 }}>
                     결론
                   </div>
@@ -628,7 +628,7 @@ export function BreastCancerStageCareStrategyReport() {
                   </div>
                 </div>
               </div>
-              <div className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#EAEAEA' }}>
+              <div className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#EAEAEA' }}>
                 <div className="text-sm font-semibold mb-6" style={{ color: NAVY_900 }}>
                   환자 발화 (인용)
                 </div>
@@ -638,7 +638,7 @@ export function BreastCancerStageCareStrategyReport() {
                     '“정상인지 아닌지를 누가 기준으로 말해주나요?”',
                     '“치료를 받는 게 아니라 버티는 방법이 필요해요.”',
                   ].map((q) => (
-                    <div key={q} className="p-6 rounded-xl border-2" style={{ borderColor: '#EAEAEA', backgroundColor: '#F8F9FA' }}>
+                    <div key={q} className="p-6 rounded-xl border-2 report-editorial-panel" style={{ borderColor: '#EAEAEA', backgroundColor: '#F8F9FA' }}>
                       <div className="text-lg font-semibold leading-relaxed" style={{ color: NAVY_900 }}>
                         {q}
                       </div>
@@ -657,7 +657,7 @@ export function BreastCancerStageCareStrategyReport() {
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               {insights.map((it, idx) => (
-                <div key={it.title} className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: NAVY_900 }}>
+                <div key={it.title} className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: NAVY_900 }}>
                   <div className="text-sm font-semibold mb-3" style={{ color: BLUE }}>
                     INSIGHT {idx + 1}
                   </div>
@@ -665,7 +665,7 @@ export function BreastCancerStageCareStrategyReport() {
                     {it.title}
                   </h3>
                   <div className="text-base font-semibold mb-6 text-gray-700">{it.core}</div>
-                  <div className="p-6 rounded-xl border-2" style={{ borderColor: '#EAEAEA', backgroundColor: '#F8F9FA' }}>
+                  <div className="p-6 rounded-xl border-2 report-editorial-panel" style={{ borderColor: '#EAEAEA', backgroundColor: '#F8F9FA' }}>
                     <div className="text-sm font-semibold mb-2" style={{ color: NAVY_900 }}>
                       실행 전략
                     </div>
@@ -689,7 +689,7 @@ export function BreastCancerStageCareStrategyReport() {
             </div>
             <div className="space-y-8">
               {hospitalStrategies.map((s, idx) => (
-                <div key={s.title} className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: NAVY_900 }}>
+                <div key={s.title} className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: NAVY_900 }}>
                   <div>
                     <div className="text-sm font-semibold mb-2" style={{ color: BLUE }}>
                       STRATEGY {idx + 1}
@@ -699,7 +699,7 @@ export function BreastCancerStageCareStrategyReport() {
                     </h3>
                   </div>
                   <div className="grid lg:grid-cols-2 gap-6 mt-8">
-                    <div className="p-6 rounded-xl border-2" style={{ borderColor: '#EAEAEA', backgroundColor: '#F8F9FA' }}>
+                    <div className="p-6 rounded-xl border-2 report-editorial-panel" style={{ borderColor: '#EAEAEA', backgroundColor: '#F8F9FA' }}>
                       <div className="text-sm font-semibold mb-3" style={{ color: NAVY_900 }}>
                         구성
                       </div>
@@ -714,7 +714,7 @@ export function BreastCancerStageCareStrategyReport() {
                         ))}
                       </ul>
                     </div>
-                    <div className="p-6 rounded-xl border-2" style={{ borderColor: '#EAEAEA', backgroundColor: '#F8F9FA' }}>
+                    <div className="p-6 rounded-xl border-2 report-editorial-panel" style={{ borderColor: '#EAEAEA', backgroundColor: '#F8F9FA' }}>
                       <div className="text-sm font-semibold mb-3" style={{ color: NAVY_900 }}>
                         KPI
                       </div>
@@ -748,7 +748,7 @@ export function BreastCancerStageCareStrategyReport() {
             </div>
             <div className="space-y-8">
               {departmentCareGuides.map((d) => (
-                <div key={d.index} className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: NAVY_900 }}>
+                <div key={d.index} className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: NAVY_900 }}>
                   <div className="mb-6 flex flex-col sm:flex-row sm:items-start gap-4">
                     <span
                       className="inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-bold text-white shrink-0"
@@ -760,7 +760,7 @@ export function BreastCancerStageCareStrategyReport() {
                       {d.titleRest}
                     </h3>
                   </div>
-                  <div className="p-6 rounded-xl border-2 mb-6" style={{ borderColor: NAVY_900, backgroundColor: '#F8F9FA' }}>
+                  <div className="p-6 rounded-xl border-2 mb-6 report-editorial-panel" style={{ borderColor: NAVY_900, backgroundColor: '#F8F9FA' }}>
                     <div className="text-sm font-semibold mb-3" style={{ color: NAVY_900 }}>
                       환자의 목소리:
                     </div>
@@ -772,7 +772,7 @@ export function BreastCancerStageCareStrategyReport() {
                       ))}
                     </div>
                   </div>
-                  <div className="p-6 rounded-xl border-2 mb-6" style={{ borderColor: '#EAEAEA', backgroundColor: '#F8F9FA' }}>
+                  <div className="p-6 rounded-xl border-2 mb-6 report-editorial-panel" style={{ borderColor: '#EAEAEA', backgroundColor: '#F8F9FA' }}>
                     <div className="text-sm font-semibold mb-2" style={{ color: BLUE }}>
                       케어 방향:
                     </div>
@@ -780,7 +780,7 @@ export function BreastCancerStageCareStrategyReport() {
                       {d.careDirection}
                     </div>
                   </div>
-                  <div className="p-6 rounded-xl border-2" style={{ borderColor: '#EAEAEA', backgroundColor: '#F8F9FA' }}>
+                  <div className="p-6 rounded-xl border-2 report-editorial-panel" style={{ borderColor: '#EAEAEA', backgroundColor: '#F8F9FA' }}>
                     <div className="text-sm font-semibold mb-3" style={{ color: NAVY_900 }}>
                       솔루션
                     </div>

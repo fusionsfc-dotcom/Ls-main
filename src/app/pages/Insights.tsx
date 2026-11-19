@@ -20,5 +20,5 @@ export function Insights() {
         url: brand.origin + r.link
       }))
     }} />
-    <section className="med-section med-paper med-research-section med-insights-direct"><div className="med-wrap"><div className="med-section-heading"><div><Eyebrow>PVM · RESEARCH ARCHIVE</Eyebrow><h1>환자와 병원을 위한 인사이트</h1><p className="med-lead">의료 보고서와 연구를 주제별로 살펴보세요. 각 보고서의 공개 범위와 자료 기준을 함께 확인할 수 있습니다.</p></div></div><ReportArchive /></div></section><Newsletter /><ContactBand /></div>;
+    <section className="med-section med-paper med-research-section med-insights-direct"><div className="med-wrap"><div className="med-section-heading"><div><Eyebrow>PVM · RESEARCH ARCHIVE</Eyebrow><h1>환자와 병원을 위한 인사이트</h1><p className="med-lead">환자의 경험과 의료 현장의 변화를 읽고, 병원 운영에 필요한 인사이트를 만나보세요.</p></div></div><ReportArchive /></div></section><Newsletter /><ContactBand /></div>;
 }

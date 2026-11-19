@@ -160,7 +160,7 @@ export function PatientDischargeTransferStructure() {
             환자의 퇴원 및 전원은 왜 발생하는가
           </h2>
           
-          <div className="p-8 lg:p-12 rounded-2xl bg-white border" style={{ borderColor: '#EAEAEA' }}>
+          <div className="p-8 lg:p-12 rounded-2xl bg-white border report-editorial-panel" style={{ borderColor: '#EAEAEA' }}>
             <div className="space-y-6 text-lg leading-relaxed" style={{ color: '#0E1B3D' }}>
               <p>
                 대부분의 질문은 3차병원 치료(수술·항암·방사선)에 집중되어 있습니다.<br />
@@ -172,13 +172,13 @@ export function PatientDischargeTransferStructure() {
               
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
                 {['병원 경험', '치료 부담', '행정 스트레스', '심리 불안'].map((item, idx) => (
-                  <div key={idx} className="p-4 rounded-lg text-center font-semibold" style={{ backgroundColor: '#0F2B46', color: 'white' }}>
+                  <div key={idx} className="p-4 rounded-lg text-center font-semibold report-contrast-panel" style={{ backgroundColor: '#0F2B46', color: 'white' }}>
                     {item}
                   </div>
                 ))}
               </div>
               
-              <div className="p-6 rounded-xl mt-6" style={{ backgroundColor: '#0F2B46' }}>
+              <div className="p-6 rounded-xl mt-6 report-contrast-panel" style={{ backgroundColor: '#0F2B46' }}>
                 <p className="text-xl lg:text-2xl font-bold text-white text-center leading-relaxed">
                   이 네 가지가 누적되면<br />
                   환자는 이동을 결심합니다.
@@ -198,7 +198,7 @@ export function PatientDischargeTransferStructure() {
           
           <div className="space-y-8">
             {stressFourAxes.map((axis, index) => (
-              <div key={index} className="p-8 rounded-2xl border-2" style={{ borderColor: '#EAEAEA', backgroundColor: 'white' }}>
+              <div key={index} className="p-8 rounded-2xl border-2 report-editorial-panel" style={{ borderColor: '#EAEAEA', backgroundColor: 'white' }}>
                 <h3 className="text-2xl font-bold mb-6" style={{ color: '#0F2B46' }}>
                   {axis.title}
                 </h3>
@@ -211,7 +211,7 @@ export function PatientDischargeTransferStructure() {
                   ))}
                 </div>
                 
-                <div className="flex items-start space-x-3 p-4 rounded-lg" style={{ backgroundColor: '#F8F9FA' }}>
+                <div className="flex items-start space-x-3 p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
                   <ArrowRight className="w-5 h-5 mt-1 flex-shrink-0" style={{ color: '#0F2B46' }} />
                   <p className="font-semibold" style={{ color: '#0E1B3D' }}>
                     {axis.result}
@@ -230,7 +230,7 @@ export function PatientDischargeTransferStructure() {
             퇴원 결정 흐름
           </h2>
           
-          <div className="p-8 lg:p-12 rounded-2xl bg-white border" style={{ borderColor: '#EAEAEA' }}>
+          <div className="p-8 lg:p-12 rounded-2xl bg-white border report-editorial-panel" style={{ borderColor: '#EAEAEA' }}>
             <div className="space-y-4">
               {decisionFlow.map((step, index) => (
                 <div key={index}>
@@ -238,7 +238,7 @@ export function PatientDischargeTransferStructure() {
                     <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0" style={{ backgroundColor: index === 1 ? '#ef4444' : '#0F2B46' }}>
                       {index + 1}
                     </div>
-                    <div className="flex-1 p-4 rounded-lg" style={{ backgroundColor: index === 1 ? '#fef2f2' : '#F8F9FA', borderLeft: index === 1 ? '4px solid #ef4444' : 'none' }}>
+                    <div className="flex-1 p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: index === 1 ? '#fef2f2' : '#F8F9FA', borderLeft: index === 1 ? '4px solid #ef4444' : 'none' }}>
                       <p className="font-semibold text-lg" style={{ color: '#0E1B3D' }}>
                         {step}
                       </p>
@@ -251,7 +251,7 @@ export function PatientDischargeTransferStructure() {
               ))}
             </div>
             
-            <div className="mt-8 p-6 rounded-xl" style={{ backgroundColor: '#0F2B46' }}>
+            <div className="mt-8 p-6 rounded-xl report-contrast-panel" style={{ backgroundColor: '#0F2B46' }}>
               <p className="text-xl lg:text-2xl font-bold text-white text-center leading-relaxed">
                 개입은 2단계에서 이루어져야 합니다.
               </p>
@@ -267,7 +267,7 @@ export function PatientDischargeTransferStructure() {
             2차 암요양·재활 병원의 전략
           </h2>
           
-          <div className="p-8 lg:p-12 rounded-2xl mb-12" style={{ backgroundColor: '#0F2B46' }}>
+          <div className="p-8 lg:p-12 rounded-2xl mb-12 report-contrast-panel" style={{ backgroundColor: '#0F2B46' }}>
             <p className="text-2xl lg:text-3xl font-bold text-white text-center leading-relaxed">
               2차병원은 치료를 대신하는 곳이 아닙니다.<br />
               치료를 버티게 하는 곳입니다.
@@ -276,7 +276,7 @@ export function PatientDischargeTransferStructure() {
           
           <div className="space-y-8">
             {strategies.map((strategy, index) => (
-              <div key={index} className="p-8 rounded-2xl border-2" style={{ borderColor: '#0F2B46', backgroundColor: 'white' }}>
+              <div key={index} className="p-8 rounded-2xl border-2 report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: 'white' }}>
                 <h3 className="text-2xl font-bold mb-6" style={{ color: '#0F2B46' }}>
                   {strategy.title}
                 </h3>
@@ -290,7 +290,7 @@ export function PatientDischargeTransferStructure() {
                   ))}
                 </div>
                 
-                <div className="p-4 rounded-lg border-l-4" style={{ borderColor: '#0F2B46', backgroundColor: '#F8F9FA' }}>
+                <div className="p-4 rounded-lg border-l-4 report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#F8F9FA' }}>
                   <p className="text-sm font-semibold mb-1" style={{ color: '#0E1B3D', opacity: 0.7 }}>목표</p>
                   <p className="font-semibold text-lg" style={{ color: '#0E1B3D' }}>
                     {strategy.goal}
@@ -310,12 +310,12 @@ export function PatientDischargeTransferStructure() {
           </h2>
           
           {/* 상담팀 */}
-          <div className="mb-8 p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#0F2B46' }}>
+          <div className="mb-8 p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#0F2B46' }}>
             <h3 className="text-2xl font-bold mb-6" style={{ color: '#0F2B46' }}>
               상담팀
             </h3>
             
-            <div className="p-4 rounded-lg" style={{ backgroundColor: '#F8F9FA' }}>
+            <div className="p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
               <div className="space-y-2">
                 {[
                   '전원 고민 발언 탐지',
@@ -335,12 +335,12 @@ export function PatientDischargeTransferStructure() {
           </div>
 
           {/* 간호팀 */}
-          <div className="mb-8 p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#0F2B46' }}>
+          <div className="mb-8 p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#0F2B46' }}>
             <h3 className="text-2xl font-bold mb-6" style={{ color: '#0F2B46' }}>
               간호팀
             </h3>
             
-            <div className="p-4 rounded-lg" style={{ backgroundColor: '#F8F9FA' }}>
+            <div className="p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
               <div className="space-y-2">
                 {[
                   '증상 악화 기준 명확화',
@@ -359,12 +359,12 @@ export function PatientDischargeTransferStructure() {
           </div>
 
           {/* 영양팀 */}
-          <div className="mb-8 p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#0F2B46' }}>
+          <div className="mb-8 p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#0F2B46' }}>
             <h3 className="text-2xl font-bold mb-6" style={{ color: '#0F2B46' }}>
               영양팀
             </h3>
             
-            <div className="p-4 rounded-lg" style={{ backgroundColor: '#F8F9FA' }}>
+            <div className="p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
               <div className="space-y-2">
                 {[
                   '체중 주간 기록',
@@ -383,12 +383,12 @@ export function PatientDischargeTransferStructure() {
           </div>
 
           {/* 재활팀 */}
-          <div className="mb-8 p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#0F2B46' }}>
+          <div className="mb-8 p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#0F2B46' }}>
             <h3 className="text-2xl font-bold mb-6" style={{ color: '#0F2B46' }}>
               재활팀
             </h3>
             
-            <div className="p-4 rounded-lg" style={{ backgroundColor: '#F8F9FA' }}>
+            <div className="p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
               <div className="space-y-2">
                 {[
                   '활동 목표 설정',
@@ -407,12 +407,12 @@ export function PatientDischargeTransferStructure() {
           </div>
 
           {/* 병원 운영팀 */}
-          <div className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#0F2B46' }}>
+          <div className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#0F2B46' }}>
             <h3 className="text-2xl font-bold mb-6" style={{ color: '#0F2B46' }}>
               병원 운영팀
             </h3>
             
-            <div className="p-4 rounded-lg" style={{ backgroundColor: '#F8F9FA' }}>
+            <div className="p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
               <div className="space-y-2">
                 {[
                   '이탈 위험 환자 리스트 관리',
@@ -454,7 +454,7 @@ export function PatientDischargeTransferStructure() {
             ))}
           </div>
 
-          <div className="p-8 rounded-xl" style={{ backgroundColor: 'rgba(255,255,255,0.15)' }}>
+          <div className="p-8 rounded-xl report-editorial-panel" style={{ backgroundColor: 'rgba(255,255,255,0.15)' }}>
             <p className="text-xl lg:text-2xl font-bold text-white text-center leading-relaxed">
               이 다섯 가지를 구조화하면<br />
               퇴원은 줄고 장기 재활 만족도는 상승합니다.

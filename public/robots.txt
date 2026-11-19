@@ -4,59 +4,76 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /api/
 
 # 한국 검색엔진
 User-agent: Yeti
 Allow: /
 Disallow: /admin/
+Disallow: /api/
 User-agent: Daumoa
 Allow: /
 Disallow: /admin/
+Disallow: /api/
 
 # 글로벌 검색엔진
 User-agent: Googlebot
 Allow: /
 Disallow: /admin/
+Disallow: /api/
 User-agent: Bingbot
 Allow: /
 Disallow: /admin/
+Disallow: /api/
 
 # 생성형 AI / LLM 크롤러 (ChatGPT·Claude·Perplexity·Gemini 등 인용 허용)
 User-agent: GPTBot
 Allow: /
 Disallow: /admin/
+Disallow: /api/
 User-agent: OAI-SearchBot
 Allow: /
 Disallow: /admin/
+Disallow: /api/
 User-agent: ChatGPT-User
 Allow: /
 Disallow: /admin/
+Disallow: /api/
 User-agent: ClaudeBot
 Allow: /
 Disallow: /admin/
+Disallow: /api/
 User-agent: Claude-Web
 Allow: /
 Disallow: /admin/
+Disallow: /api/
 User-agent: anthropic-ai
 Allow: /
 Disallow: /admin/
+Disallow: /api/
 User-agent: PerplexityBot
 Allow: /
 Disallow: /admin/
+Disallow: /api/
 User-agent: Perplexity-User
 Allow: /
 Disallow: /admin/
+Disallow: /api/
 User-agent: Google-Extended
 Allow: /
 Disallow: /admin/
+Disallow: /api/
 User-agent: CCBot
 Allow: /
 Disallow: /admin/
+Disallow: /api/
 User-agent: Applebot
 Allow: /
 Disallow: /admin/
+Disallow: /api/
 User-agent: Applebot-Extended
 Allow: /
 Disallow: /admin/
+Disallow: /api/
 
 Sitemap: https://www.lsconsulting.co.kr/sitemap.xml

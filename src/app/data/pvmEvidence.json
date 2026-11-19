@@ -1,0 +1,9 @@
+{
+  "asOf": "2026-10-26",
+  "documents": 4185,
+  "patientVoiceDocuments": 3095,
+  "medicalKnowledgeDocuments": 670,
+  "carePracticeDocuments": 377,
+  "resolvedConnections": 20856,
+  "method": "주제 분류 폴더의 Markdown 문서. 숨김·백업·템플릿 제외. 연결은 실제 파일로 유일하게 해석되는 위키링크를 무방향으로 중복 제거."
+}

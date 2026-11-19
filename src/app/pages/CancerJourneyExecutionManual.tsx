@@ -119,7 +119,7 @@ export function CancerJourneyExecutionManual() {
           </h2>
         </div>
 
-        <div className="mb-8 p-6 rounded-lg" style={{ backgroundColor: '#F8F9FA' }}>
+        <div className="mb-8 p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
           <h3 className="text-xl font-bold mb-3" style={{ color: '#0F2B46' }}>목표</h3>
           <p className="text-lg" style={{ color: '#0F2B46', opacity: 0.8 }}>
             환자가 "이 병원은 나를 이해한다"고 느끼도록 합니다.
@@ -152,7 +152,7 @@ export function CancerJourneyExecutionManual() {
           </ul>
         </div>
 
-        <div className="p-6 border-2 rounded-lg" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
+        <div className="p-6 border-2 rounded-lg report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
           <h4 className="font-bold mb-4" style={{ color: '#0F2B46' }}>체크리스트</h4>
           <div className="space-y-2">
             <label className="flex items-center space-x-3 cursor-pointer">
@@ -180,14 +180,14 @@ export function CancerJourneyExecutionManual() {
           </h2>
         </div>
 
-        <div className="mb-8 p-6 rounded-lg" style={{ backgroundColor: '#F8F9FA' }}>
+        <div className="mb-8 p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
           <h3 className="text-xl font-bold mb-3" style={{ color: '#0F2B46' }}>목표</h3>
           <p className="text-lg" style={{ color: '#0F2B46', opacity: 0.8 }}>
             불확실성을 줄이고 방문 결정을 돕습니다.
           </p>
         </div>
 
-        <div className="mb-8 p-6 rounded-lg border-l-4" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
+        <div className="mb-8 p-6 rounded-lg border-l-4 report-editorial-panel" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
           <h3 className="text-xl font-bold mb-4" style={{ color: '#0F2B46' }}>3분 구조 상담 구성</h3>
           <div className="space-y-3">
             <div className="flex items-start space-x-3">
@@ -214,7 +214,7 @@ export function CancerJourneyExecutionManual() {
           </div>
         </div>
 
-        <div className="p-6 border-2 rounded-lg" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
+        <div className="p-6 border-2 rounded-lg report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
           <h4 className="font-bold mb-4" style={{ color: '#0F2B46' }}>실행 체크리스트</h4>
           <div className="space-y-2">
             <label className="flex items-center space-x-3 cursor-pointer">
@@ -242,7 +242,7 @@ export function CancerJourneyExecutionManual() {
           </h2>
         </div>
 
-        <div className="mb-8 p-6 rounded-lg" style={{ backgroundColor: '#F8F9FA' }}>
+        <div className="mb-8 p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
           <h3 className="text-xl font-bold mb-3" style={{ color: '#0F2B46' }}>목표</h3>
           <p className="text-lg" style={{ color: '#0F2B46', opacity: 0.8 }}>
             확신을 제공합니다.
@@ -271,7 +271,7 @@ export function CancerJourneyExecutionManual() {
           </ul>
         </div>
 
-        <div className="p-6 border-2 rounded-lg" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
+        <div className="p-6 border-2 rounded-lg report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
           <h4 className="font-bold mb-4" style={{ color: '#0F2B46' }}>체크리스트</h4>
           <div className="space-y-2">
             <label className="flex items-center space-x-3 cursor-pointer">
@@ -299,7 +299,7 @@ export function CancerJourneyExecutionManual() {
           </h2>
         </div>
 
-        <div className="mb-8 p-6 rounded-lg" style={{ backgroundColor: '#F8F9FA' }}>
+        <div className="mb-8 p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
           <h3 className="text-xl font-bold mb-3" style={{ color: '#0F2B46' }}>목표</h3>
           <p className="text-lg" style={{ color: '#0F2B46', opacity: 0.8 }}>
             회복 구조를 시작합니다.
@@ -328,7 +328,7 @@ export function CancerJourneyExecutionManual() {
           </ul>
         </div>
 
-        <div className="p-6 border-2 rounded-lg" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
+        <div className="p-6 border-2 rounded-lg report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#FAFBFC' }}>
           <h4 className="font-bold mb-4" style={{ color: '#0F2B46' }}>체크리스트</h4>
           <div className="space-y-2">
             <label className="flex items-center space-x-3 cursor-pointer">
@@ -356,7 +356,7 @@ export function CancerJourneyExecutionManual() {
           </h2>
         </div>
 
-        <div className="mb-8 p-6 rounded-lg" style={{ backgroundColor: '#F8F9FA' }}>
+        <div className="mb-8 p-6 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
           <h3 className="text-xl font-bold mb-3" style={{ color: '#0F2B46' }}>목표</h3>
           <p className="text-lg" style={{ color: '#0F2B46', opacity: 0.8 }}>
             관리 가능한 상태를 만듭니다.
@@ -396,25 +396,25 @@ export function CancerJourneyExecutionManual() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="p-6 rounded-lg border-2" style={{ borderColor: '#0F2B46' }}>
+          <div className="p-6 rounded-lg border-2 report-editorial-panel" style={{ borderColor: '#0F2B46' }}>
             <h3 className="text-xl font-bold mb-3" style={{ color: '#0F2B46' }}>암종별 회복 클리닉</h3>
             <p style={{ color: '#0F2B46', opacity: 0.7 }}>
               암종별 특성에 맞춘 맞춤형 회복 프로그램 운영
             </p>
           </div>
-          <div className="p-6 rounded-lg border-2" style={{ borderColor: '#0F2B46' }}>
+          <div className="p-6 rounded-lg border-2 report-editorial-panel" style={{ borderColor: '#0F2B46' }}>
             <h3 className="text-xl font-bold mb-3" style={{ color: '#0F2B46' }}>영양 재건 프로그램</h3>
             <p style={{ color: '#0F2B46', opacity: 0.7 }}>
               체중 회복 및 영양 균형 관리 시스템
             </p>
           </div>
-          <div className="p-6 rounded-lg border-2" style={{ borderColor: '#0F2B46' }}>
+          <div className="p-6 rounded-lg border-2 report-editorial-panel" style={{ borderColor: '#0F2B46' }}>
             <h3 className="text-xl font-bold mb-3" style={{ color: '#0F2B46' }}>근력 회복 프로그램</h3>
             <p style={{ color: '#0F2B46', opacity: 0.7 }}>
               단계별 운동 재활 프로그램 제공
             </p>
           </div>
-          <div className="p-6 rounded-lg border-2" style={{ borderColor: '#0F2B46' }}>
+          <div className="p-6 rounded-lg border-2 report-editorial-panel" style={{ borderColor: '#0F2B46' }}>
             <h3 className="text-xl font-bold mb-3" style={{ color: '#0F2B46' }}>정서 안정 프로그램</h3>
             <p style={{ color: '#0F2B46', opacity: 0.7 }}>
               불안 관리 및 심리 상담 제공
@@ -430,25 +430,25 @@ export function CancerJourneyExecutionManual() {
         </h2>
 
         <div className="space-y-4">
-          <div className="p-5 rounded-lg border-l-4" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
+          <div className="p-5 rounded-lg border-l-4 report-editorial-panel" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
             <h3 className="font-bold mb-2" style={{ color: '#0F2B46' }}>증상 관리 교육</h3>
             <p className="text-sm" style={{ color: '#0F2B46', opacity: 0.7 }}>
               퇴원 후 발생 가능한 증상 관리 방법
             </p>
           </div>
-          <div className="p-5 rounded-lg border-l-4" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
+          <div className="p-5 rounded-lg border-l-4 report-editorial-panel" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
             <h3 className="font-bold mb-2" style={{ color: '#0F2B46' }}>검사 일정 안내</h3>
             <p className="text-sm" style={{ color: '#0F2B46', opacity: 0.7 }}>
               정기 검사 및 추적 관찰 일정 제공
             </p>
           </div>
-          <div className="p-5 rounded-lg border-l-4" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
+          <div className="p-5 rounded-lg border-l-4 report-editorial-panel" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
             <h3 className="font-bold mb-2" style={{ color: '#0F2B46' }}>보호자 응급 대응 교육</h3>
             <p className="text-sm" style={{ color: '#0F2B46', opacity: 0.7 }}>
               응급 상황 판단 기준 및 대처 방법
             </p>
           </div>
-          <div className="p-5 rounded-lg border-l-4" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
+          <div className="p-5 rounded-lg border-l-4 report-editorial-panel" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
             <h3 className="font-bold mb-2" style={{ color: '#0F2B46' }}>보험 절차 안내</h3>
             <p className="text-sm" style={{ color: '#0F2B46', opacity: 0.7 }}>
               보험 청구 및 행정 절차 가이드
@@ -464,25 +464,25 @@ export function CancerJourneyExecutionManual() {
         </h2>
 
         <div className="space-y-4">
-          <div className="p-5 rounded-lg border-l-4" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
+          <div className="p-5 rounded-lg border-l-4 report-editorial-panel" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
             <h3 className="font-bold mb-2" style={{ color: '#0F2B46' }}>월간 전화 점검</h3>
             <p className="text-sm" style={{ color: '#0F2B46', opacity: 0.7 }}>
               정기적인 상태 확인 및 상담 제공
             </p>
           </div>
-          <div className="p-5 rounded-lg border-l-4" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
+          <div className="p-5 rounded-lg border-l-4 report-editorial-panel" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
             <h3 className="font-bold mb-2" style={{ color: '#0F2B46' }}>3개월 회복 리뷰</h3>
             <p className="text-sm" style={{ color: '#0F2B46', opacity: 0.7 }}>
               회복 단계별 평가 및 피드백
             </p>
           </div>
-          <div className="p-5 rounded-lg border-l-4" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
+          <div className="p-5 rounded-lg border-l-4 report-editorial-panel" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
             <h3 className="font-bold mb-2" style={{ color: '#0F2B46' }}>재발 불안 상담</h3>
             <p className="text-sm" style={{ color: '#0F2B46', opacity: 0.7 }}>
               심리적 불안 관리 및 전문 상담 연결
             </p>
           </div>
-          <div className="p-5 rounded-lg border-l-4" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
+          <div className="p-5 rounded-lg border-l-4 report-editorial-panel" style={{ backgroundColor: '#F8F9FA', borderColor: '#0F2B46' }}>
             <h3 className="font-bold mb-2" style={{ color: '#0F2B46' }}>건강 유지 프로그램 안내</h3>
             <p className="text-sm" style={{ color: '#0F2B46', opacity: 0.7 }}>
               장기적 건강 관리 프로그램 연결

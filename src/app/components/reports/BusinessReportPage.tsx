@@ -106,7 +106,7 @@ export function BusinessReportPage({ data, canonicalPath }: BusinessReportPagePr
 
         {/* 데이터 근거 */}
         <section className="mt-8">
-          <div className="rounded-2xl p-5" style={{ backgroundColor: 'var(--navy-50)', border: '1px solid var(--navy-100)' }}>
+          <div className="rounded-2xl p-5 report-editorial-panel" style={{ backgroundColor: 'var(--navy-50)', border: '1px solid var(--navy-100)' }}>
             <div className="text-xs font-bold tracking-widest uppercase mb-2" style={{ color: 'var(--navy-500)' }}>
               데이터 근거
             </div>
@@ -138,7 +138,7 @@ export function BusinessReportPage({ data, canonicalPath }: BusinessReportPagePr
 
                 <div className="grid md:grid-cols-2 gap-4">
                   {/* 핵심 신호 / 데이터 */}
-                  <div className="rounded-2xl p-5" style={{ backgroundColor: 'var(--navy-50)', border: '1px solid var(--navy-100)' }}>
+                  <div className="rounded-2xl p-5 report-editorial-panel" style={{ backgroundColor: 'var(--navy-50)', border: '1px solid var(--navy-100)' }}>
                     <div className="flex items-center gap-2 mb-3">
                       <TrendingUp className="w-4 h-4" style={{ color: 'var(--navy-600)' }} />
                       <span className="text-xs font-bold tracking-widest uppercase" style={{ color: 'var(--navy-600)' }}>
@@ -157,7 +157,7 @@ export function BusinessReportPage({ data, canonicalPath }: BusinessReportPagePr
 
                   {/* 시사점 · 실행안 */}
                   <div
-                    className="rounded-2xl p-5"
+                    className="rounded-2xl p-5 report-editorial-panel"
                     style={{ background: 'linear-gradient(155deg, var(--navy-100) 0%, var(--navy-50) 60%)', border: '1px solid var(--navy-100)' }}
                   >
                     <div className="flex items-center gap-2 mb-3">
@@ -178,7 +178,7 @@ export function BusinessReportPage({ data, canonicalPath }: BusinessReportPagePr
                 </div>
 
                 {section.note && (
-                  <div className="mt-4 rounded-2xl p-4" style={{ backgroundColor: '#FFF8EC', border: '1px solid #F1E2C4' }}>
+                  <div className="mt-4 rounded-2xl p-4 report-editorial-panel" style={{ backgroundColor: '#FFF8EC', border: '1px solid #F1E2C4' }}>
                     <p className="text-sm leading-relaxed" style={{ color: '#7A5B16' }}>
                       <span className="font-bold">참고 · </span>
                       {section.note}

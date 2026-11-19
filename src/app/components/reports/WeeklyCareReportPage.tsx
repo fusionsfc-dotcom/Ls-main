@@ -241,7 +241,7 @@ export function WeeklyCareReportPage({
                   )}
 
                   {section.note && (
-                    <div className="mt-6 rounded-2xl p-5" style={{ backgroundColor: 'var(--navy-50)', border: '1px solid var(--navy-100)' }}>
+                    <div className="mt-6 rounded-2xl p-5 report-editorial-panel" style={{ backgroundColor: 'var(--navy-50)', border: '1px solid var(--navy-100)' }}>
                       <p className="text-sm leading-relaxed" style={{ color: 'var(--navy-700)' }}>{section.note}</p>
                     </div>
                   )}

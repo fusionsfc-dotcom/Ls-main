@@ -112,7 +112,7 @@ try {
     exact: true
   }).click();
   await page.getByRole('dialog').getByRole('link', {
-    name: '의료컨설팅',
+    name: '병원컨설팅',
     exact: true
   }).click();
   await page.waitForURL('**/healthcare');

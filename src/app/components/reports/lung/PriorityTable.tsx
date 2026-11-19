@@ -27,7 +27,7 @@ function difficultyClass(d: string): string {
 
 export function PriorityTable({ rows }: PriorityTableProps) {
   return (
-    <div className="rounded-xl border border-gray-100 bg-white overflow-hidden shadow-none">
+    <div className="rounded-xl border border-gray-100 bg-white overflow-hidden shadow-none report-editorial-frame">
       <div className="overflow-x-auto">
         <table className="w-full text-left text-sm min-w-[640px]">
           <thead>

@@ -277,7 +277,7 @@ export function CancerTreatmentTypeCareStrategy() {
           
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {pvmDiagnostics.map((item, index) => (
-              <div key={index} className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#0F2B46' }}>
+              <div key={index} className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#0F2B46' }}>
                 <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: '#ef4444' }}>
                   <span className="text-white text-2xl font-bold">!</span>
                 </div>
@@ -292,7 +292,7 @@ export function CancerTreatmentTypeCareStrategy() {
           </div>
 
           {/* 데이터 블록 추가 */}
-          <div className="mb-12 p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#3A6FF8' }}>
+          <div className="mb-12 p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#3A6FF8' }}>
             <h3 className="text-xl font-bold mb-6" style={{ color: '#0F2B46' }}>
               최근 PVM DB 2월 분석 기준
             </h3>
@@ -310,7 +310,7 @@ export function CancerTreatmentTypeCareStrategy() {
             </div>
           </div>
 
-          <div className="p-8 lg:p-12 rounded-2xl text-center" style={{ backgroundColor: '#0F2B46' }}>
+          <div className="p-8 lg:p-12 rounded-2xl text-center report-contrast-panel" style={{ backgroundColor: '#0F2B46' }}>
             <p className="text-2xl lg:text-3xl font-bold text-white leading-relaxed">
               치료는 3차병원에서 이루어지지만<br />
               지속 가능성은 2차병원이 결정합니다.
@@ -358,7 +358,7 @@ export function CancerTreatmentTypeCareStrategy() {
 
             {/* 2차병원 전략 + KPI */}
             <div className="space-y-6">
-              <div className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#EAEAEA' }}>
+              <div className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#EAEAEA' }}>
                 <h3 className="text-xl font-bold mb-6" style={{ color: '#0F2B46' }}>
                   🎯 2차병원 전략
                 </h3>
@@ -377,7 +377,7 @@ export function CancerTreatmentTypeCareStrategy() {
                 </div>
               </div>
 
-              <div className="p-6 rounded-xl" style={{ backgroundColor: '#0F2B46' }}>
+              <div className="p-6 rounded-xl report-contrast-panel" style={{ backgroundColor: '#0F2B46' }}>
                 <h4 className="text-sm font-semibold mb-4 text-gray-300">📈 핵심 KPI</h4>
                 <div className="space-y-2">
                   {[
@@ -437,7 +437,7 @@ export function CancerTreatmentTypeCareStrategy() {
 
             {/* 2차병원 전략 + KPI */}
             <div className="space-y-6">
-              <div className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#EAEAEA' }}>
+              <div className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#EAEAEA' }}>
                 <h3 className="text-xl font-bold mb-6" style={{ color: '#0F2B46' }}>
                   🎯 2차병원 전략
                 </h3>
@@ -456,7 +456,7 @@ export function CancerTreatmentTypeCareStrategy() {
                 </div>
               </div>
 
-              <div className="p-6 rounded-xl" style={{ backgroundColor: '#0F2B46' }}>
+              <div className="p-6 rounded-xl report-contrast-panel" style={{ backgroundColor: '#0F2B46' }}>
                 <h4 className="text-sm font-semibold mb-4 text-gray-300">📈 핵심 KPI</h4>
                 <div className="space-y-2">
                   {[
@@ -515,7 +515,7 @@ export function CancerTreatmentTypeCareStrategy() {
 
             {/* 2차병원 전략 + KPI */}
             <div className="space-y-6">
-              <div className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#EAEAEA' }}>
+              <div className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#EAEAEA' }}>
                 <h3 className="text-xl font-bold mb-6" style={{ color: '#0F2B46' }}>
                   🎯 2차병원 전략
                 </h3>
@@ -535,7 +535,7 @@ export function CancerTreatmentTypeCareStrategy() {
                 </div>
               </div>
 
-              <div className="p-6 rounded-xl" style={{ backgroundColor: '#0F2B46' }}>
+              <div className="p-6 rounded-xl report-contrast-panel" style={{ backgroundColor: '#0F2B46' }}>
                 <h4 className="text-sm font-semibold mb-4 text-gray-300">📈 핵심 KPI</h4>
                 <div className="space-y-2">
                   {[
@@ -595,7 +595,7 @@ export function CancerTreatmentTypeCareStrategy() {
 
             {/* 2차병원 전략 + KPI */}
             <div className="space-y-6">
-              <div className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#EAEAEA' }}>
+              <div className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#EAEAEA' }}>
                 <h3 className="text-xl font-bold mb-6" style={{ color: '#0F2B46' }}>
                   🎯 2차병원 전략
                 </h3>
@@ -615,7 +615,7 @@ export function CancerTreatmentTypeCareStrategy() {
                 </div>
               </div>
 
-              <div className="p-6 rounded-xl" style={{ backgroundColor: '#0F2B46' }}>
+              <div className="p-6 rounded-xl report-contrast-panel" style={{ backgroundColor: '#0F2B46' }}>
                 <h4 className="text-sm font-semibold mb-4 text-gray-300">📈 핵심 KPI</h4>
                 <div className="space-y-2">
                   {[
@@ -674,7 +674,7 @@ export function CancerTreatmentTypeCareStrategy() {
 
             {/* 2차병원 전략 + KPI */}
             <div className="space-y-6">
-              <div className="p-8 rounded-2xl bg-white border-2" style={{ borderColor: '#EAEAEA' }}>
+              <div className="p-8 rounded-2xl bg-white border-2 report-editorial-panel" style={{ borderColor: '#EAEAEA' }}>
                 <h3 className="text-xl font-bold mb-6" style={{ color: '#0F2B46' }}>
                   🎯 2차병원 전략
                 </h3>
@@ -721,7 +721,7 @@ export function CancerTreatmentTypeCareStrategy() {
                 </div>
               </div>
 
-              <div className="p-6 rounded-xl" style={{ backgroundColor: '#0F2B46' }}>
+              <div className="p-6 rounded-xl report-contrast-panel" style={{ backgroundColor: '#0F2B46' }}>
                 <h4 className="text-sm font-semibold mb-4 text-gray-300">📈 핵심 KPI</h4>
                 <div className="space-y-2">
                   {[

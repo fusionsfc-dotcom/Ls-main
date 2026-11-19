@@ -7,7 +7,8 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
-import { ReportPasswordGate } from './components/auth/ReportPasswordGate';
+import { ReportDocument } from './components/reports/ReportDocument';
+const ArchivedFebruaryReport = lazy(() => import('./pages/ReportDetail').then(m => ({ default: m.ReportDetail })));
 const InsightsReportRoute = lazy(() => import('./components/auth/InsightsReportRoute').then(m => ({ default: m.InsightsReportRoute })));
 
 // 핵심 마케팅 페이지 — 즉시 로드
@@ -139,26 +140,27 @@ function AppContent() {
             <Route path="/experience" element={<Experience />} />
             <Route path="/insights" element={<Insights />} />
             <Route path="/patients" element={<Patients />} />
-            <Route path="/insights/report/:id" element={<InsightsReportRoute />} />
-            <Route path="/research/pvm-hospital-switch" element={<HospitalSwitchResearch />} />
-            <Route path="/research/patient-persona-execution" element={<PatientPersonaExecution />} />
-            <Route path="/research/pvm-kpi-execution-report" element={<ReportPasswordGate><PvmKpiExecutionReport /></ReportPasswordGate>} />
-            <Route path="/disease/breast-cancer-report" element={<ReportPasswordGate><BreastCancerReport /></ReportPasswordGate>} />
-            <Route path="/disease/stomach-cancer-report" element={<ReportPasswordGate><StomachCancerReport /></ReportPasswordGate>} />
-            <Route path="/disease/colon-cancer-report" element={<ReportPasswordGate><ColonCancerReport /></ReportPasswordGate>} />
-            <Route path="/report/cancer-journey-execution-manual" element={<ReportPasswordGate><CancerJourneyExecutionManual /></ReportPasswordGate>} />
-            <Route path="/report/cancer-anxiety-voice-execution" element={<ReportPasswordGate><CancerAnxietyVoiceExecution /></ReportPasswordGate>} />
-            <Route path="/report/lung-cancer-insight-202602" element={<ReportPasswordGate><LungCancerInsight202602 /></ReportPasswordGate>} />
-            <Route path="/report/stomach-cancer-pvm-analysis" element={<ReportPasswordGate><StomachCancerPvmAnalysis /></ReportPasswordGate>} />
-            <Route path="/report/patient-discharge-transfer-structure" element={<ReportPasswordGate><PatientDischargeTransferStructure /></ReportPasswordGate>} />
-            <Route path="/report/cancer-treatment-type-care-strategy" element={<ReportPasswordGate><CancerTreatmentTypeCareStrategy /></ReportPasswordGate>} />
-            <Route path="/report/radiotherapy-patient-analysis" element={<ReportPasswordGate><RadiotherapyPatientAnalysis /></ReportPasswordGate>} />
-            <Route path="/report/breast-cancer-stage-care-strategy" element={<BreastCancerStageCareStrategyReport />} />
-            <Route path="/reports/liver-cancer-2026-03" element={<LiverCancerReport202603 />} />
-            <Route path="/reports/lung-cancer-2026-03" element={<ReportPasswordGate><LungCancerReport202603 /></ReportPasswordGate>} />
-            <Route path="/reports/breast-cancer-community-2026-04-w1" element={<ReportPasswordGate><BreastCancerCommunityReport202604 /></ReportPasswordGate>} />
-            <Route path="/reports/weekly/:slug" element={<WeeklyCareReportRoute />} />
-            <Route path="/reports/business/:slug" element={<BusinessReportRoute />} />
+            <Route path="/insights/report/202602" element={<ReportDocument><ArchivedFebruaryReport /></ReportDocument>} />
+            <Route path="/insights/report/:id" element={<ReportDocument><InsightsReportRoute /></ReportDocument>} />
+            <Route path="/research/pvm-hospital-switch" element={<ReportDocument><HospitalSwitchResearch /></ReportDocument>} />
+            <Route path="/research/patient-persona-execution" element={<ReportDocument><PatientPersonaExecution /></ReportDocument>} />
+            <Route path="/research/pvm-kpi-execution-report" element={<ReportDocument><PvmKpiExecutionReport /></ReportDocument>} />
+            <Route path="/disease/breast-cancer-report" element={<ReportDocument><BreastCancerReport /></ReportDocument>} />
+            <Route path="/disease/stomach-cancer-report" element={<ReportDocument><StomachCancerReport /></ReportDocument>} />
+            <Route path="/disease/colon-cancer-report" element={<ReportDocument><ColonCancerReport /></ReportDocument>} />
+            <Route path="/report/cancer-journey-execution-manual" element={<ReportDocument><CancerJourneyExecutionManual /></ReportDocument>} />
+            <Route path="/report/cancer-anxiety-voice-execution" element={<ReportDocument><CancerAnxietyVoiceExecution /></ReportDocument>} />
+            <Route path="/report/lung-cancer-insight-202602" element={<ReportDocument><LungCancerInsight202602 /></ReportDocument>} />
+            <Route path="/report/stomach-cancer-pvm-analysis" element={<ReportDocument><StomachCancerPvmAnalysis /></ReportDocument>} />
+            <Route path="/report/patient-discharge-transfer-structure" element={<ReportDocument><PatientDischargeTransferStructure /></ReportDocument>} />
+            <Route path="/report/cancer-treatment-type-care-strategy" element={<ReportDocument><CancerTreatmentTypeCareStrategy /></ReportDocument>} />
+            <Route path="/report/radiotherapy-patient-analysis" element={<ReportDocument><RadiotherapyPatientAnalysis /></ReportDocument>} />
+            <Route path="/report/breast-cancer-stage-care-strategy" element={<ReportDocument><BreastCancerStageCareStrategyReport /></ReportDocument>} />
+            <Route path="/reports/liver-cancer-2026-03" element={<ReportDocument><LiverCancerReport202603 /></ReportDocument>} />
+            <Route path="/reports/lung-cancer-2026-03" element={<ReportDocument><LungCancerReport202603 /></ReportDocument>} />
+            <Route path="/reports/breast-cancer-community-2026-04-w1" element={<ReportDocument><BreastCancerCommunityReport202604 /></ReportDocument>} />
+            <Route path="/reports/weekly/:slug" element={<ReportDocument><WeeklyCareReportRoute /></ReportDocument>} />
+            <Route path="/reports/business/:slug" element={<ReportDocument><BusinessReportRoute /></ReportDocument>} />
             <Route path="/insights/pvm-report" element={<PvmReport />} />
             <Route path="/admin/report-generator" element={<ReportGenerator />} />
             <Route path="*" element={<div className="med-site med-section"><SEO title="페이지를 찾을 수 없습니다 | LS AX 컨설팅" robots="noindex, follow" /><div className="med-wrap"><h1>페이지를 찾을 수 없습니다.</h1><p className="med-lead">주소를 확인하거나 상단 메뉴에서 필요한 정보를 찾아보세요.</p><a className="med-text-link" href="/">홈으로 이동 →</a></div></div>} />

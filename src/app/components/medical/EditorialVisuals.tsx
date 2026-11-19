@@ -5,7 +5,7 @@ import { hospitalProjects } from '../../data/hospitalProjects';
 export function HospitalPhoto({id='seoul-healing',caption}: {id?:string;caption?:string}) {
   const project=hospitalProjects.find(p=>p.id===id)!;
   if(!project.image)return null;
-  return <figure className="ed-hospital-photo"><img src={project.image.src} srcSet={project.image.srcSet} sizes="(max-width: 767px) calc(100vw - 40px), 560px" width="720" height="480" alt={project.image.alt} loading="lazy" decoding="async" fetchPriority="low"/><figcaption><span>{project.name}</span>{caption||'기존 병원 프로젝트 소개 사진'}</figcaption></figure>;
+  return <figure className="ed-hospital-photo"><img src={project.image.src} srcSet={project.image.srcSet} sizes="(max-width: 767px) calc(100vw - 40px), 560px" width="720" height="480" alt={project.image.alt} loading="lazy" decoding="async" fetchPriority="low"/><figcaption><span>{project.name}</span>{caption}</figcaption></figure>;
 }
 
 export function PvmAtlas() {

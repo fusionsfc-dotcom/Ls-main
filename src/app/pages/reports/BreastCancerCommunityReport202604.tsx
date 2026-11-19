@@ -1,4 +1,3 @@
-import { useLayoutEffect, useRef } from 'react';
 import { Link } from 'react-router';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft } from 'lucide-react';
@@ -13,14 +12,6 @@ const description =
 
 export function BreastCancerCommunityReport202604() {
   const canonical = 'https://www.lsconsulting.co.kr/reports/breast-cancer-community-2026-04-w1';
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    const el = containerRef.current;
-    if (el && reportBody) {
-      el.innerHTML = reportBody;
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-white pt-20">
@@ -53,7 +44,7 @@ export function BreastCancerCommunityReport202604() {
 
       <div className="max-w-[1200px] mx-auto overflow-x-auto pb-16 px-0 sm:px-4">
         <div
-          ref={containerRef}
+          dangerouslySetInnerHTML={{ __html: reportBody }}
           className="shadow-sm border border-gray-100 sm:rounded-lg min-w-0 w-full bg-white"
           aria-label="리포트 본문"
         />

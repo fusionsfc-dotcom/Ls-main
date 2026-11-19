@@ -1,0 +1,211 @@
+/* Shared HappyLifeCare palette, scoped to the consulting site.
+   Report documents, application logic and network rendering are unchanged. */
+.med-site,.med-header,.med-footer {
+  --med-ink:#142f42;
+  --med-muted:#52677a;
+  --med-green:#256b8c;
+  --med-paper:#f0f7fa;
+  --med-line:#d4e3eb;
+  --brand-mint:#75d3c3;
+  --brand-warm:#ad4e23;
+}
+.med-site { background:#fbfdfe; }
+.med-header {
+  background:#142f42;
+  border-color:#29485b;
+  box-shadow:0 5px 24px #102c3e12;
+}
+.med-header .med-logo,.med-header .med-logo-text strong { color:#f0fafc; }
+.med-header .med-logo-mark { filter:brightness(0) invert(1); }
+.med-header .med-logo-text small { color:#a9c7d8; }
+.med-header .med-desktop-nav a { color:#ccdfeb; }
+.med-header .med-desktop-nav a:hover,
+.med-header .med-desktop-nav a[aria-current=page] { color:#92e6d8;border-color:#75d3c3; }
+.med-header .med-header-cta { background:#ad4e23;color:#fff;border-color:#c1714c;border-radius:10px; }
+.med-header .med-header-cta:hover { background:#963e1a; }
+.med-header .med-menu-button { color:#d9f4f0;border-radius:10px; }
+.med-header .med-menu-button:hover { background:#284b60; }
+.med-header.med-mobile-menu { background:linear-gradient(155deg,#142f42,#1b495c); }
+.med-mobile-menu nav a { color:#e6f4f8;border-color:#3b5e71; }
+.med-mobile-menu nav a[aria-current=page] { color:#92e6d8; }
+.med-site .med-button,.med-mobile-menu .med-button {
+  background:linear-gradient(110deg,#a94720,#ba5b2b);
+  color:#fff;border-color:transparent;border-radius:10px;
+  box-shadow:0 4px 12px #ad4e2320;
+}
+.med-site .med-button:hover,.med-mobile-menu .med-button:hover { background:#963e1a;box-shadow:0 7px 18px #ad4e2330; }
+.med-site .med-button-secondary { background:#eef6fa;border-color:#c0d9e5;color:#245c77;box-shadow:none; }
+.med-site .med-button-secondary:hover { background:#dfeff6; }
+.med-site :is(a,button,summary,input):focus-visible,
+.med-header :is(a,button):focus-visible,.med-footer a:focus-visible { outline-color:#df9b62; }
+.med-site .med-eyebrow>span { border-radius:50%;box-shadow:0 0 0 4px #256b8c0d; }
+.med-site .med-text-link { border-color:#9ac5d6; }
+.med-site .med-text-link:hover { color:#167c83; }
+
+/* The PVM canvas remains full bleed; the left gradient protects the copy. */
+.med-site .med-network-hero,.med-site .med-mapped-hero { background:#102b40; }
+.med-site .med-network-hero::before,.med-site .med-mapped-hero::before {
+  background:radial-gradient(ellipse at 82% 24%,#168e9b55,transparent 55%),
+    radial-gradient(ellipse at 38% 95%,#306ca944,transparent 55%),#102b40;
+}
+.med-site .med-network-hero::after,.med-site .med-mapped-hero::after {
+  background:linear-gradient(90deg,#102b40ed 0%,#102b40b8 38%,#102b4030 75%,#102b4010);
+}
+.med-site .med-network-hero h1 em { color:#95e8d9; }
+.med-site :is(.med-network-hero,.med-mapped-hero) .med-eyebrow { color:#99dfd7; }
+.med-site :is(.med-network-hero,.med-mapped-hero) .med-lead { color:#d0e0eb; }
+.med-site :is(.med-network-hero,.med-mapped-hero) .med-button-secondary {
+  background:#183f55b3;border-color:#7da5b5;color:#e9f6fa;
+}
+.med-site .med-dark { background:radial-gradient(ellipse at 100% 0%,#176c773d,transparent 65%),#142f42; }
+.med-site .med-dark .med-eyebrow { color:#99dfd7; }
+.med-site .med-dark .med-text-link { color:#e9f6fa; }
+.med-site .med-paper { background:linear-gradient(125deg,#edf6fb,#edf8f5); }
+.med-project-showcase,.med-portfolio-section { background:linear-gradient(135deg,#f0f7fb,#edf7f3); }
+
+/* Evidence stays crisp, with distinct colors for experience, projects and people. */
+.med-site .med-credentials { background:#eaf3f8;color:var(--med-ink);border-bottom:1px solid #d2e2e9; }
+.med-site .med-credentials .med-stats { gap:20px; }
+.med-site .med-credentials .med-stats>div { padding:24px;border:1px solid #cbdfea;border-radius:16px;background:#e0eff8; }
+.med-site .med-credentials .med-stats>div:nth-child(2) { background:#e0f2e9;border-color:#c5e2d4; }
+.med-site .med-credentials .med-stats>div:nth-child(3) { background:#fff0e3;border-color:#ecd9c9; }
+.med-site .med-credentials .med-stat-value { color:#216580; }
+.med-site .med-credentials .med-stats>div:nth-child(2) .med-stat-value { color:#197451; }
+.med-site .med-credentials .med-stats>div:nth-child(3) .med-stat-value { color:#9d4a20; }
+.med-site .med-credentials .med-stats h3 { color:#142f42; }
+.med-site .med-credentials .med-stat-value span,
+.med-site .med-credentials .med-stats>div>p:last-child,
+.med-site .med-credentials .med-note { color:#52677a; }
+.med-service-card,.med-featured-card,.med-project,.med-report-card,
+.med-ax-panel,.med-service-detail,.med-newsletter,.med-contact-card,
+.ax-hub-case,.med-portrait { border-radius:16px;border-color:#d4e3eb;box-shadow:0 5px 22px #173e4f06; }
+.med-project,.med-portrait,.ax-hub-case { overflow:hidden; }
+.med-service-card::before,.med-report-card::before { background:linear-gradient(90deg,#287896,#59c3b3); }
+.med-service-card:nth-child(3n+2)::before { background:linear-gradient(90deg,#1f8b75,#9edac7); }
+.med-service-card:nth-child(3n)::before { background:linear-gradient(90deg,#b56538,#efbf8f); }
+.med-service-card .med-number { border-radius:7px;background:#e6f2f8;border-color:#c9dfe9;color:#25647f; }
+.med-service-card:nth-child(3n+2) .med-number { background:#e8f5ed;color:#247356;border-color:#cfe5d8; }
+.med-service-card:nth-child(3n) .med-number { background:#fff0e4;color:#9d4a20;border-color:#ecdacb; }
+.med-mini-tags span,.med-pill { border-radius:6px;background:#e8f3f8;color:#25647f;border-color:#cedfe8; }
+.med-ax-panel { background:linear-gradient(145deg,#eaf5fb,#fff);box-shadow:inset 0 3px #287896; }
+.med-ax-panel:nth-child(2) { background:linear-gradient(145deg,#eaf6ef,#fff);box-shadow:inset 0 3px #2a9580; }
+.med-service-detail { background:#fff; }
+.med-deliverables,.med-inline-banner { border-radius:12px;background:#e7f3f7;border-color:#59a5b4; }
+.med-workflow { border-radius:12px;background:#edf6fa;box-shadow:inset 0 3px #287896; }
+.med-process article { border-radius:12px;border-color:#d2e2e9;border-top-color:#287896; }
+.med-process article:nth-child(3n+2) { border-top-color:#2a9580;background:#f4faf6; }
+.med-process article:nth-child(3n) { border-top-color:#bc7649;background:#fff9f3; }
+.med-question-list a:hover { background:#e9f5f8; }
+.med-timeline article::before { background:#287896;box-shadow:0 0 0 5px #e5f3f6; }
+.med-filters button,.ax-hub-jumps a,.med-contact-options button { border-radius:10px; }
+.med-filters button[aria-pressed=true] { background:#256b8c;border-color:#256b8c;color:#fff; }
+.med-contact-options button[aria-pressed=true] { background:#e2f2f7;color:#215f7c;border-color:#77adbf; }
+.med-contact-card { background:linear-gradient(140deg,#e6f2f9,#ecf7f1);box-shadow:inset 0 3px #287896; }
+.ed-screen,.ed-hospital-photo { border-radius:12px;overflow:hidden;border-color:#cddfe9; }
+.ed-browser-bar { background:#e8f2f7;border-color:#d4e3eb; }
+.ax-screen-trigger { background:#edf4f9; }
+.ax-screen-badge { border-radius:7px;background:#183f55; }
+.ax-image-dialog { border-radius:14px; }
+.med-site .med-contact-band {
+  background:radial-gradient(ellipse at 100% 0%,#137d8077,transparent 65%),linear-gradient(120deg,#142f42,#1e5667);
+}
+.med-contact-band::before { background:linear-gradient(90deg,#287896,#75d3c3,transparent); }
+.med-footer { background:#112a3c;color:#d6e8f0; }
+.med-footer h2 { color:#86d8cb; }
+.med-footer a:hover { color:#92e6d8; }
+.med-footer-bottom { border-color:#35556a;color:#b4cad6; }
+@media(hover:hover) and (pointer:fine) {
+  .med-service-card:hover,.med-featured-card:hover,.med-project:hover,.med-report-card:hover {
+    border-color:#82b7c9;box-shadow:0 16px 35px -16px #20556b55;
+  }
+}
+@media(max-width:767px) {
+  .med-site .med-credentials .med-stats { grid-template-columns:1fr;gap:12px; }
+  .med-site .med-credentials .med-stats>div {
+    display:grid;grid-template-columns:clamp(92px,22vw,108px) minmax(0,1fr);
+    column-gap:16px;row-gap:5px;align-items:center;min-height:116px;
+    padding:20px 18px;border:1px solid var(--med-line);border-radius:16px;
+  }
+  .med-site .med-credentials .med-stat-value {
+    grid-column:1;grid-row:1 / span 2;align-self:center;margin:0;
+    font-size:clamp(32px,8.7vw,36px);letter-spacing:-.055em;white-space:nowrap;
+  }
+  .med-site .med-credentials .med-stat-value span { display:block;margin:6px 0 0;font-size:12px;line-height:1.5; }
+  .med-site .med-credentials .med-stats h3 { grid-column:2;grid-row:1;align-self:end;margin:0;font-size:15px;line-height:1.6; }
+  .med-site .med-credentials .med-stats>div>p:last-child { grid-column:2;grid-row:2;align-self:start;margin:0;font-size:13px;line-height:1.75;word-break:keep-all;overflow-wrap:anywhere; }
+  .med-site .med-credentials .med-note { margin-top:18px!important;padding:0 2px; }
+  .med-site .med-network-hero::after,.med-site .med-mapped-hero::after {
+    background:linear-gradient(90deg,#102b40ed,#102b40a8 65%,#102b4080);
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .med-site :is(.med-button,.med-service-card,.med-featured-card,.med-project,.med-report-card):hover { transform:none; }
+}
+
+/* Readable topic hubs over the full-width, actual document network. */
+.med-pvm-evidence-hero .med-hero-grid { display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center; }
+.med-pvm-evidence-hero .pvm-knowledge { min-width:0;position:relative; }
+.med-site .pvm-knowledge-kicker { display:flex;align-items:center;gap:9px;font-size:9px;letter-spacing:.16em;color:#a5d8e1;margin-bottom:18px; }
+.pvm-knowledge-kicker>span { width:6px;height:6px;border-radius:50%;background:#94e9d8;box-shadow:0 0 12px #94e9d8; }
+.med-site .pvm-knowledge h2 { font-size:clamp(22px,2.1vw,29px);font-weight:550;line-height:1.5;color:#f1f9fc;letter-spacing:-.04em; }
+.pvm-knowledge h2 em { font-style:normal;color:#9ce6d8; }
+.pvm-topic-map { position:relative;aspect-ratio:520/480;margin:0 -8px;isolation:isolate; }
+.pvm-topic-map::before { content:"";position:absolute;inset:15%;background:radial-gradient(ellipse,#48c3b21c,transparent 68%);border-radius:50%; }
+.pvm-topic-map svg { position:absolute;width:100%;height:100%;inset:0;overflow:visible; }
+.pvm-map-orbit { stroke:#76b7ce30;stroke-width:.8; }
+.pvm-map-orbit-inner { stroke:#92dfce20;stroke-dasharray:3 9; }
+.pvm-map-blue { --topic-color:#92cffa; }
+.pvm-map-mint { --topic-color:#9ae8d7; }
+.pvm-map-warm { --topic-color:#efc89a; }
+.pvm-map-link>path { stroke:var(--topic-color);stroke-opacity:.32;stroke-width:1; }
+.pvm-map-link>.pvm-map-signal { stroke-opacity:.9;stroke-width:1.8;stroke-dasharray:3 97;animation:pvm-topic-flow 7s linear infinite; }
+.pvm-map-core { position:absolute;left:50%;top:45.4%;transform:translate(-50%,-50%);width:124px;height:124px;display:flex;align-items:center;justify-content:center;flex-direction:column;border-radius:50%;border:1px solid #8ce1d380;background:radial-gradient(circle at 35% 20%,#306a7e,#133344 75%);box-shadow:0 0 0 8px #91d9d006,0 0 0 21px #91d9d005,0 0 50px #5dd7c025;text-align:center; }
+.pvm-map-core>span { font-size:27px;line-height:1.3;letter-spacing:.12em;color:#b3f5e9;font-weight:650; }
+.pvm-map-core>strong { font-size:11px;font-weight:450;line-height:1.6;color:#d4e9ee;margin-top:6px; }
+.pvm-map-topic { position:absolute;transform:translate(-50%,-50%);text-align:center;white-space:nowrap;text-shadow:0 2px 8px #071e2d,0 0 18px #071e2d; }
+.pvm-map-topic i { display:block;width:6px;height:6px;margin:0 auto 10px;background:var(--topic-color);border-radius:50%;box-shadow:0 0 0 5px #9cded90b,0 0 16px var(--topic-color); }
+.pvm-map-topic strong { display:block;color:var(--topic-color);font-size:16px;font-weight:650;line-height:1.5; }
+.pvm-map-topic span { display:block;color:#c4dbe6;font-size:10px;line-height:1.6;margin-top:5px; }
+.pvm-evidence { display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #8fbfc34a;padding-top:21px;gap:16px; }
+.pvm-evidence>div+div { border-left:1px solid #8fbfc333;padding-left:20px; }
+.pvm-evidence strong { display:block;font-size:30px;line-height:1.3;font-weight:500;letter-spacing:-.04em;color:#d0f4ee;font-variant-numeric:tabular-nums; }
+.pvm-evidence span { display:block;font-size:11px;color:#b9d4df;margin-top:6px; }
+.pvm-evidence-footer { display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:21px;color:#aec7d4;font-size:9px; }
+.pvm-evidence-footer a { color:#a6e7d9;font-size:11px;padding:7px 0; }
+.med-pvm-evidence-hero .med-hero-foot { max-width:none;margin-top:45px; }
+.med-pvm-evidence-hero:has(.pvm-network[data-paused=true]) .pvm-map-signal { animation-play-state:paused; }
+@keyframes pvm-topic-flow { to { stroke-dashoffset:-100; } }
+@media(min-width:768px) and (max-width:1100px) {
+  .med-pvm-evidence-hero .med-hero-grid { gap:30px; }
+  .pvm-map-topic strong { font-size:14px; }
+  .pvm-map-topic span { font-size:9px; }
+  .pvm-map-core { width:100px;height:100px; }
+  .pvm-evidence strong { font-size:25px; }
+  .pvm-evidence>div+div { padding-left:12px; }
+}
+@media(max-width:767px) {
+  .med-pvm-evidence-hero .med-hero-grid { grid-template-columns:1fr;gap:52px; }
+  .med-pvm-evidence-hero .pvm-knowledge { border-top:1px solid #8fbfc333;padding-top:27px; }
+  .med-site .pvm-knowledge h2 { font-size:24px; }
+  .pvm-topic-map { margin:8px 0 0; }
+  .pvm-map-topic strong { font-size:14px; }
+  .pvm-map-topic span { font-size:9px;letter-spacing:-.03em; }
+  .pvm-map-core { width:96px;height:96px; }
+  .pvm-map-core>span { font-size:23px; }
+  .pvm-map-core>strong { font-size:10px; }
+  .pvm-evidence { gap:10px;padding-top:18px; }
+  .pvm-evidence strong { font-size:25px; }
+  .pvm-evidence span { font-size:10px; }
+  .pvm-evidence>div+div { padding-left:10px; }
+  .pvm-evidence-footer { font-size:8px;gap:8px; }
+  .pvm-evidence-footer a { min-height:44px;display:flex;align-items:center;font-size:10px; }
+  .pvm-map-signal { animation-duration:10s; }
+}
+@media(max-width:360px) {
+  .pvm-map-topic strong { font-size:12px; }
+  .pvm-map-topic span { font-size:8px; }
+  .pvm-map-core { width:80px;height:80px; }
+  .pvm-map-core>span { font-size:20px; }
+  .pvm-evidence strong { font-size:22px; }
+}
+@media(prefers-reduced-motion:reduce) { .pvm-map-link>.pvm-map-signal { animation:none; } }

@@ -1,6 +1,5 @@
-import { PvmAtlas } from './EditorialVisuals';
 import { useId, useRef, useState } from 'react';
-import { ArrowDown, ArrowUpRight, Layers3, MessagesSquare, ClipboardCheck } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router';
 import { Eyebrow } from './MedicalUI';
 
@@ -14,10 +13,10 @@ export function PvmPractice() {
   const id = useId();
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const selected = scenarios[active];
-  return <section className="med-section med-pvm-lab">
+  return <section id="pvm-practice" className="med-section pvm-practice">
     <div className="med-wrap">
-      <div className="med-section-heading"><div><Eyebrow>PVM / FROM VOICE TO PRACTICE</Eyebrow><h2>질문을 읽는 깊이가,<br />서비스의 차이를 만듭니다.</h2></div></div>
-      <div className="ed-lab-overview"><PvmAtlas /><p><span>VOICE → CONTEXT → ACTION</span>질문 하나를 읽고,<br/><strong>서비스의 다음 장면을 설계합니다.</strong><small>아래에서 환자 여정별 적용 예시를 선택해 보세요.</small></p></div><div className="med-lab-toolbar"><span className="med-lab-caption">서비스 설계 예시</span><div role="tablist" aria-label="PVM 서비스 설계 사례">{scenarios.map((s,i)=><button key={s.label} ref={el=>{tabs.current[i]=el;}} type="button" role="tab" id={`${id}-tab-${i}`} aria-selected={active===i} aria-controls={`${id}-panel`} tabIndex={active===i?0:-1} onClick={()=>setActive(i)} onKeyDown={e=>{
+      <div className="med-section-heading pvm-practice-heading"><div><Eyebrow>PVM / FROM VOICE TO PRACTICE</Eyebrow><h2>질문을 읽는 깊이가,<br />서비스의 차이를 만듭니다.</h2></div><p>환자의 질문에서 맥락을 찾고,<br />병원에서 실행할 수 있는 서비스로 연결합니다.</p></div>
+      <div className="pvm-practice-tabs" role="tablist" aria-label="PVM 서비스 설계 사례">{scenarios.map((s,i)=><button key={s.label} ref={el=>{tabs.current[i]=el;}} type="button" role="tab" id={`${id}-tab-${i}`} aria-selected={active===i} aria-controls={`${id}-panel`} tabIndex={active===i?0:-1} onClick={()=>setActive(i)} onKeyDown={e=>{
         let next=i;
         if(e.key==='ArrowRight')next=(i+1)%scenarios.length;
         else if(e.key==='ArrowLeft')next=(i+scenarios.length-1)%scenarios.length;
@@ -25,15 +24,23 @@ export function PvmPractice() {
         else if(e.key==='End')next=scenarios.length-1;
         else return;
         e.preventDefault();setActive(next);tabs.current[next]?.focus();
-      }}><span>0{i+1}</span>{s.label}</button>)}</div></div>
-      <div id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-tab-${active}`} tabIndex={0} className="med-lab-panel">
-        <div key={active} className="med-lab-flow">
-          <article className="med-lab-voice"><div className="med-lab-step"><span>01 / VOICE</span><MessagesSquare size={20}/></div><span className="med-lab-label">질문 예시</span><h3>{selected.question}</h3><p>환자·보호자가 궁금해하는 상황을<br />서비스 검토의 출발점으로 삼습니다.</p><span className="med-lab-node" aria-hidden="true"/></article>
-          <article className="med-lab-context"><div className="med-lab-step"><span>02 / CONTEXT</span><Layers3 size={20}/></div><span className="med-lab-label">함께 살펴볼 맥락</span><ul>{selected.context.map(t=><li key={t}>{t}</li>)}</ul><p>반복되는 주제와 정보의 빈틈을 정리하고<br />병원의 실제 업무와 대조합니다.</p><ArrowDown className="med-lab-mobile-arrow" aria-hidden="true" size={18}/></article>
-          <article className="med-lab-action"><div className="med-lab-step"><span>03 / ACTION</span><ClipboardCheck size={20}/></div><span className="med-lab-label">현장 적용 제안</span><h3>{selected.action}</h3><ul>{selected.outputs.map(t=><li key={t}>{t}</li>)}</ul></article>
+      }}><span>0{i+1}</span>{s.label}</button>)}</div>
+      <div id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-tab-${active}`} tabIndex={0} className="pvm-practice-panel">
+        <div key={active} className="pvm-practice-layout">
+          <article className="pvm-practice-story">
+            <span className="pvm-practice-label">01 — 환자의 질문</span>
+            <span className="pvm-practice-quote" aria-hidden="true">“</span>
+            <h3>{selected.question}</h3>
+            <p>환자와 보호자가 궁금해하는 상황에서<br />서비스의 다음 장면을 찾습니다.</p>
+            <span className="pvm-practice-example">환자 여정에 따른 서비스 설계 예시</span>
+          </article>
+          <div className="pvm-practice-detail">
+            <article><span className="pvm-practice-label">02 — 함께 읽는 맥락</span><ul>{selected.context.map(t=><li key={t}>{t}</li>)}</ul></article>
+            <article className="pvm-practice-result"><span className="pvm-practice-label">03 — 병원의 실행으로</span><h3>{selected.action}</h3><ul>{selected.outputs.map(t=><li key={t}>{t}</li>)}</ul></article>
+          </div>
         </div>
       </div>
-      <div className="med-lab-foot"><p>이해를 돕기 위한 설계 예시입니다. 실제 과업과 산출물은 병원의 상황에 맞춰 검토합니다.</p><Link to="/insights#medical-reports">PVM 보고서 살펴보기<ArrowUpRight size={17}/></Link></div>
+      <div className="pvm-practice-foot"><p>이해를 돕기 위한 설계 예시입니다. 실제 과업과 산출물은 병원의 상황에 맞춰 검토합니다.</p><Link to="/insights#medical-reports">PVM 보고서 살펴보기<ArrowUpRight size={17}/></Link></div>
     </div>
   </section>;
 }

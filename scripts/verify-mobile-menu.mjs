@@ -35,7 +35,7 @@ try {
       }), `${width}x${height} visible and clickable item ${i}`);
     }
     if (height>=600) await page.screenshot({ path:`${out}/menu-${width}.png` });
-    const target = dialog.getByRole('link', { name:'의료컨설팅', exact:true });
+    const target = dialog.getByRole('link', { name:'병원컨설팅', exact:true });
     if (height < 600) await target.scrollIntoViewIfNeeded();
     const rect = await target.boundingBox();
     await page.mouse.click(rect.x + rect.width/2, rect.y + rect.height/2);

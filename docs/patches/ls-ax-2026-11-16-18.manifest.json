@@ -1,0 +1,16 @@
+{
+  "baselineDeployment": "dpl_Aop84z2gzEmZckrLMiW2JdVMnZ8b",
+  "changes": {
+    "public/reports/daily/ls-ax-2026-11-16.html": "d8c4ecd3c9e93d9271ca1b8726424671f466fe443d1a48b458deeea50858671a",
+    "public/reports/daily/ls-ax-2026-11-18.html": "bd24d65da231bf6f44d9c59a13b880b21c0b2d4070edeb95e420402b6d0e46d2",
+    "src/app/data/insightsData.ts": "ad2a4c1ab49c565e30480d277af3fa084c44c605c643ddb27405425b96be21a9",
+    "public/reports/daily/catalog.json": "23ce21978ab97ff5c01a8f2208c2ba59c4405f83148918fe9c4bca0972e29d62"
+  },
+  "fullMainSynchronization": false,
+  "originalPdfUpload": false,
+  "publicationDates": {
+    "2026-11-16": "2026-11-18",
+    "2026-11-18": "2026-11-18"
+  },
+  "note": "Scoped article archive and registration patch only; not a full production checkout. Do not deploy this archive branch."
+}

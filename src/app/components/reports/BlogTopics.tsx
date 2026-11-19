@@ -4,7 +4,7 @@ type BlogTopicsProps = {
 
 export function BlogTopics({ topics }: BlogTopicsProps) {
   return (
-    <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-none">
+    <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-none report-editorial-panel">
       <ul className="space-y-3">
         {topics.map((topic) => (
           <li key={topic} className="flex gap-3 text-sm text-gray-800 leading-relaxed">

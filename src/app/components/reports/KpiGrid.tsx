@@ -21,7 +21,7 @@ export function KpiGrid({ items }: KpiGridProps) {
       {items.map((item) => (
         <div
           key={item.label}
-          className="rounded-2xl p-6 transition-all hover:-translate-y-0.5 hover:shadow-md"
+          className="rounded-2xl p-6 transition-all hover:-translate-y-0.5 hover:shadow-md report-editorial-panel"
           style={{ background: 'linear-gradient(155deg, var(--navy-100) 0%, var(--navy-50) 60%)' }}
         >
           <div className="text-3xl sm:text-4xl font-bold tabular-nums mb-2" style={{ color: colorMap[item.color] }}>

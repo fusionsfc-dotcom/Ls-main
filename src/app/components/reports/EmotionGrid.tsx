@@ -17,7 +17,7 @@ export function EmotionGrid({ items }: EmotionGridProps) {
       {items.map((item) => (
         <div
           key={item.title}
-          className="rounded-xl border border-gray-100 p-5 shadow-none"
+          className="rounded-xl border border-gray-100 p-5 shadow-none report-editorial-panel"
           style={{ backgroundColor: item.colorBg }}
         >
           <div className="text-2xl font-bold tabular-nums mb-2" style={{ color: item.colorText }}>

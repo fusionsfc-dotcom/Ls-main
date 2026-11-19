@@ -1,0 +1,32 @@
+{
+  "reportDate": "2026-11-04",
+  "publishedAt": "2026-11-03",
+  "title": "LS AX 리포트 - 진료의뢰·청구 절차와 항암치료 중 발열 대응",
+  "url": "https://www.lsconsulting.co.kr/reports/daily/ls-ax-2026-11-04.html",
+  "publicationScope": "New report HTML and registration patch for insightsData.ts and daily/catalog.json only. Existing publications and originals are preserved.",
+  "sourceHtmlSha256": "a518f1f376aca49396e095341b57d6ff9b7f2bb1dca0336d86d86611a58ebf60",
+  "builtHtmlSha256": "5ece4cb93eca1462698ee9740b483ff915cc0a1849e2420a5bca1ab3db152a57",
+  "registrationPatchSha256": "4519f5439710fb5051ce1549aa2deb67618884da1b508f158494c16bd5933d37",
+  "verifiedProductionBase": "dpl_FKfeHFgZsLvEDC1UE2z5g39E5Qxz",
+  "deploymentWarning": "This scoped branch is not a full reconciliation of production with main. Do not deploy this branch or old main over production. Apply the registration patch only to freshly verified production source. Full main synchronization is outside this publication scope.",
+  "deployedProduction": "dpl_ATqNcJaEvu6WmGNS4sYTFfdGQ2zr",
+  "deploymentStatus": "READY",
+  "verification": {
+    "publications": 32,
+    "staticArchiveLink": true,
+    "titleCanonicalArticleBreadcrumb": true,
+    "sitemapRss": true,
+    "mobileWidths": [
+      320,
+      390,
+      768,
+      1440
+    ],
+    "filtersChartsSourcesChecklist": true,
+    "patientOriginalPdfUnchanged": true,
+    "sourceUrlsPreserved": 15,
+    "koreanFinalTextReview": true,
+    "liveMatchesValidatedBuild": true,
+    "verifiedAt": "2026-11-03T23:15:13.702084+00:00"
+  }
+}

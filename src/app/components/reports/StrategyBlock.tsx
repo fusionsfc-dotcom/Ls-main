@@ -20,7 +20,7 @@ export function StrategyBlock({ type, title, body, color }: StrategyBlockProps) 
   const line = accentMap[color];
   return (
     <div
-      className="rounded-2xl bg-white p-6 transition-all hover:shadow-md"
+      className="rounded-2xl bg-white p-6 transition-all hover:shadow-md report-editorial-panel report-evidence-row"
       style={{ borderLeftWidth: 4, borderLeftStyle: 'solid', borderLeftColor: line, boxShadow: '0 1px 3px rgba(10,22,40,0.06)' }}
     >
       <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide mb-2" style={{ color: line }}>

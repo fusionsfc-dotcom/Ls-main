@@ -5,9 +5,9 @@ export function OurClients() {
   const clients = [
     { name: '서울힐링요양병원', image: 'https://srlyxadncjladllbwmdk.supabase.co/storage/v1/object/public/img/heal.jpeg', projects: '개원컨설팅/상담/교육/홍보/홈페이지 등', website: 'https://www.seoulhealinghospital.co.kr/' },
     { name: '흥덕우리요양병원', image: 'https://srlyxadncjladllbwmdk.supabase.co/storage/v1/object/public/img/hd.jpeg', projects: '홍보/홈페이지 등', website: 'http://hdwoori.com/' },
-    { name: '러스크서울병원', image: 'https://srlyxadncjladllbwmdk.supabase.co/storage/v1/object/public/img/rh.jpeg', projects: '암분야도입 컨설팅/교육/홍보/홈페이지 등', website: 'https://ruskseoul.co.kr/' },
+    { name: '러스크서울병원', image: 'https://srlyxadncjladllbwmdk.supabase.co/storage/v1/object/public/img/rh.jpeg', projects: '암병동 유치 컨설팅 및 의료진·스태프 교육', website: 'https://ruskseoul.co.kr/' },
     { name: '태동의료재단 춘천태동요양병원', image: 'https://srlyxadncjladllbwmdk.supabase.co/storage/v1/object/public/img/tae.jpeg', projects: '법인개설 및 개원컨설팅/상담/교육/경영지원/홍보/홈페이지 등', website: 'https://www.taedonghp.co.kr/' },
-    { name: '뷰티풀한방병원', image: 'https://srlyxadncjladllbwmdk.supabase.co/storage/v1/object/public/img/bt.jpeg', projects: '컨설팅/교육/홍보/홈페이지 등', website: 'https://www.btful.co.kr/' },
+    { name: '뷰티풀한방병원', image: 'https://srlyxadncjladllbwmdk.supabase.co/storage/v1/object/public/img/bt.jpeg', projects: '2026 · AI 최적화 홈페이지 구축', website: 'https://www.btful.co.kr/' },
     { name: '네이처요양병원', image: 'https://srlyxadncjladllbwmdk.supabase.co/storage/v1/object/public/img/nat.jpeg', projects: '홈페이지 등', website: 'https://www.naturehospital.co.kr/' }
   ];
 

@@ -1,0 +1,86 @@
+/* Report reading surfaces. Only explicitly marked content blocks are flattened;
+   chart marks, controls, tables, status colors and contrast sections retain meaning. */
+.ls-report-document { --report-rule: #d5dfe5; --report-ink: #183247; }
+.ls-report-document .report-editorial-panel {
+  border: 0 !important;
+  border-top: 1px solid var(--report-rule) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 24px 0 28px !important;
+  transform: none !important;
+}
+.ls-report-document .report-editorial-panel .report-editorial-panel {
+  padding: 18px 0 20px !important;
+  border-top-color: #e3e9ed !important;
+}
+.ls-report-document .report-contrast-panel {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.ls-report-document .report-editorial-frame {
+  border-radius: 0 !important;
+  border-inline: 0 !important;
+  border-block-width: 1px !important;
+  border-color: var(--report-rule) !important;
+  box-shadow: none !important;
+}
+.ls-report-document .report-contrast-panel .report-editorial-panel {
+  --report-rule: #ffffff38;
+}
+.ls-report-document .report-editorial-panel :is(p,li) {
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+.ls-report-document .report-editorial-panel :is(h3,h4) {
+  line-height: 1.5;
+  letter-spacing: -.025em;
+}
+/* Source/reference in a dedicated column, followed by the voice or strategy. */
+.ls-report-document .report-evidence-row {
+  display: grid;
+  grid-template-columns: 104px minmax(0,1fr);
+  column-gap: 28px;
+  align-items: baseline;
+}
+.ls-report-document .report-evidence-row > :first-child { grid-row: 1 / span 2; }
+.ls-report-document .report-evidence-row > h4 { margin: 0 0 10px; font-size: 18px; }
+.ls-report-document .report-evidence-row > p { margin: 0; font-size: 15px; }
+.ls-report-document .report-evidence-row > :first-child > span { display: none; }
+.ls-report-document .report-evidence-row > div:last-child:not(:first-child) { grid-column: 2; }
+.ls-report-document .report-voice { margin-inline: 0; }
+.ls-report-document .report-voice > p { font-size: 16px; font-style: normal; line-height: 1.9; }
+.ls-report-document .report-voice > div:first-child[aria-hidden] { display: none; }
+.ls-report-document .report-voice span { background: transparent !important; border: 0; border-radius: 0; padding-inline: 0; }
+.ls-report-document .report-voice span + span::before { content: ' / '; color: #9aa9b4; padding-right: 8px; }
+/* Remove accent rails from legacy inline quote paragraphs, not chart/timeline axes. */
+.ls-report-document :is(p,blockquote)[class*="border-l-"] {
+  border-left: 0 !important;
+  padding-left: 0 !important;
+}
+.ls-report-document div[class*="overflow-hidden"][class*="rounded"]:has(> .overflow-x-auto > table),
+.ls-report-document div[class*="overflow-hidden"][class*="rounded"]:has(> table) {
+  border-radius: 0;
+  border-inline: 0 !important;
+}
+/* Reviewed enterprise / real estate documents have their own semantic classes. */
+.ls-report-document .ls-report :is(.insight,.summary-box,.compare,.decision-box,.small-cards>div,.evidence-cards>div,.roadmap>div) {
+  border: 0;
+  border-top: 1px solid var(--report-rule);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 26px 0;
+}
+.ls-report-document .ls-report .insight { border-top: 1px solid #9aaebd; }
+.ls-report-document .ls-report .summary-box { border-top: 2px solid var(--ink); }
+@media(max-width:640px) {
+  .ls-report-document .report-evidence-row { grid-template-columns: minmax(0,1fr); gap: 8px; }
+  .ls-report-document .report-evidence-row > :first-child { grid-row: auto; margin-bottom: 2px; font-size: 11px; }
+  .ls-report-document .report-evidence-row > div:last-child:not(:first-child) { grid-column: 1; }
+  .ls-report-document .report-evidence-row > h4 { font-size: 17px; margin-bottom: 2px; }
+  .ls-report-document .report-editorial-panel { padding-block: 22px 26px !important; }
+}
+@media print {
+  .ls-report-document .report-editorial-panel { box-shadow: none !important; break-inside: avoid; }
+}

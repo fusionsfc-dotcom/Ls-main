@@ -424,7 +424,7 @@ export function Patients() {
           </div>
 
           <button type="button" className="mb-6 px-6 py-3 border border-slate-300 text-sm" onClick={() => window.dispatchEvent(new Event('toggle-ai-consult'))}>
-            기존 AI 상담 열기
+            AI 상담 열기
           </button>
           <p className="text-sm opacity-40" style={{ color: 'var(--navy-900)' }}>
             상업적 치료 유도 없이, 데이터 기반 정보만 제공합니다.
@@ -443,7 +443,7 @@ export function Patients() {
           </h2>
 
           {!patientType ? (
-            <div className="bg-white p-8 lg:p-12">
+            <div className="patient-reading-panel bg-white p-8 lg:p-12">
               {/* Progress Bar */}
               <div className="mb-8">
                 <div className="flex justify-between items-center mb-2">
@@ -507,7 +507,7 @@ export function Patients() {
             </div>
           ) : (
             /* Survey Result */
-            <div className="bg-white p-8 lg:p-12">
+            <div className="patient-reading-panel bg-white p-8 lg:p-12">
               <div className="text-center mb-12">
                 <div
                   className="inline-block px-6 py-2 mb-4 text-sm text-white"
@@ -644,7 +644,7 @@ export function Patients() {
 
           {/* Journey Details */}
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="p-8 border" style={{ borderColor: 'var(--navy-200)' }}>
+            <div className="patient-guide-entry p-8 border" style={{ borderColor: 'var(--navy-200)' }}>
               <h4 className="text-sm font-semibold mb-2 opacity-60" style={{ color: 'var(--navy-900)' }}>
                 {journeyStages[selectedJourney].key}
               </h4>
@@ -652,7 +652,7 @@ export function Patients() {
                 {journeyStages[selectedJourney].value}
               </p>
             </div>
-            <div className="p-8 border" style={{ borderColor: 'var(--navy-200)' }}>
+            <div className="patient-guide-entry p-8 border" style={{ borderColor: 'var(--navy-200)' }}>
               <h4 className="text-sm font-semibold mb-2 opacity-60" style={{ color: 'var(--navy-900)' }}>
                 {journeyStages[selectedJourney].duration}
               </h4>
@@ -660,7 +660,7 @@ export function Patients() {
                 {journeyStages[selectedJourney].durationValue}
               </p>
             </div>
-            <div className="p-8 border" style={{ borderColor: 'var(--navy-200)' }}>
+            <div className="patient-guide-entry p-8 border" style={{ borderColor: 'var(--navy-200)' }}>
               <h4 className="text-sm font-semibold mb-2 opacity-60" style={{ color: 'var(--navy-900)' }}>
                 {journeyStages[selectedJourney].cost}
               </h4>
@@ -668,7 +668,7 @@ export function Patients() {
                 {journeyStages[selectedJourney].costValue}
               </p>
             </div>
-            <div className="p-8 border" style={{ borderColor: 'var(--navy-200)' }}>
+            <div className="patient-guide-entry p-8 border" style={{ borderColor: 'var(--navy-200)' }}>
               <h4 className="text-sm font-semibold mb-2 opacity-60" style={{ color: 'var(--navy-900)' }}>
                 {journeyStages[selectedJourney].anxiety}
               </h4>
@@ -775,7 +775,7 @@ export function Patients() {
             PVM 데이터 분석에 반영됩니다.
           </p>
 
-          <form onSubmit={handleQuestionSubmit} className="bg-white p-8 lg:p-12 text-gray-900">
+          <form onSubmit={handleQuestionSubmit} className="patient-reading-panel bg-white p-8 lg:p-12 text-gray-900">
             <div className="space-y-6">
               {/* Role Selection */}
               <div>

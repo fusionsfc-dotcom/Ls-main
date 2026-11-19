@@ -10,7 +10,7 @@ export function WeeklyCareDonutChart({ title, data }: WeeklyCareDonutChartProps)
   const total = data.reduce((s, d) => s + d.count, 0);
 
   return (
-    <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-none">
+    <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-none report-editorial-panel">
       <h3 className="text-sm font-bold text-gray-800 mb-4">{title}</h3>
       <div className="flex flex-col lg:flex-row items-start gap-8">
         <div className="h-[240px] w-full max-w-[240px] shrink-0 mx-auto lg:mx-0">

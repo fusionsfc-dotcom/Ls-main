@@ -112,7 +112,7 @@ export function StomachCancerPvmAnalysis() {
             위암 환자의 불안은 이렇게 시작됩니다
           </h2>
           
-          <div className="p-8 lg:p-12 rounded-2xl bg-white border" style={{ borderColor: '#EAEAEA' }}>
+          <div className="p-8 lg:p-12 rounded-2xl bg-white border report-editorial-panel" style={{ borderColor: '#EAEAEA' }}>
             <p className="text-lg mb-8 leading-relaxed" style={{ color: '#0E1B3D' }}>
               위암 환자의 질문은 단순한 정보 요청이 아닙니다.<br />
               그 배경에는 다음과 같은 신체적 변화가 있습니다.
@@ -120,14 +120,14 @@ export function StomachCancerPvmAnalysis() {
             
             <div className="grid gap-4 mb-8">
               {physicalChanges.map((change, index) => (
-                <div key={index} className="flex items-center space-x-4 p-4 rounded-lg border-l-4" style={{ borderColor: '#0F2B46', backgroundColor: '#F8F9FA' }}>
+                <div key={index} className="flex items-center space-x-4 p-4 rounded-lg border-l-4 report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: '#F8F9FA' }}>
                   <Activity className="w-6 h-6 flex-shrink-0" style={{ color: '#0F2B46' }} />
                   <span className="text-lg font-semibold" style={{ color: '#0E1B3D' }}>{change}</span>
                 </div>
               ))}
             </div>
             
-            <div className="p-8 rounded-xl text-center" style={{ backgroundColor: '#0F2B46' }}>
+            <div className="p-8 rounded-xl text-center report-contrast-panel" style={{ backgroundColor: '#0F2B46' }}>
               <p className="text-xl lg:text-2xl font-bold text-white leading-relaxed">
                 이 변화가 지속되면<br />
                 환자는 "재발"을 먼저 의심합니다.
@@ -151,7 +151,7 @@ export function StomachCancerPvmAnalysis() {
             </h3>
             
             {/* 환자 보이스 */}
-            <div className="p-6 rounded-xl mb-6" style={{ backgroundColor: '#F8F9FA' }}>
+            <div className="p-6 rounded-xl mb-6 report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
               <div className="flex items-start space-x-3 mb-4">
                 <AlertCircle className="w-6 h-6 flex-shrink-0 mt-1" style={{ color: '#0F2B46' }} />
                 <p className="text-sm font-semibold" style={{ color: '#0E1B3D', opacity: 0.7 }}>환자 보이스</p>
@@ -165,17 +165,17 @@ export function StomachCancerPvmAnalysis() {
             <div className="mb-6">
               <h4 className="text-lg font-bold mb-4" style={{ color: '#0E1B3D' }}>환자 상태 해석</h4>
               <div className="grid md:grid-cols-3 gap-4">
-                <div className="p-4 border-l-4 rounded" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
+                <div className="p-4 border-l-4 rounded report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
                   <p className="text-sm leading-relaxed" style={{ color: '#0E1B3D' }}>
                     금식 → 공복 상태 →<br />저혈당·탈수 위험
                   </p>
                 </div>
-                <div className="p-4 border-l-4 rounded" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
+                <div className="p-4 border-l-4 rounded report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
                   <p className="text-sm leading-relaxed" style={{ color: '#0E1B3D' }}>
                     복약 여부 불확실 →<br />심리 불안 상승
                   </p>
                 </div>
-                <div className="p-4 border-l-4 rounded" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
+                <div className="p-4 border-l-4 rounded report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
                   <p className="text-sm leading-relaxed" style={{ color: '#0E1B3D' }}>
                     보호자가 일정 관리 중<br />과부하 상태
                   </p>
@@ -184,7 +184,7 @@ export function StomachCancerPvmAnalysis() {
             </div>
             
             {/* 상담팀 실행 매뉴얼 */}
-            <div className="p-8 rounded-xl border-2 mb-4" style={{ borderColor: '#0F2B46', backgroundColor: 'white' }}>
+            <div className="p-8 rounded-xl border-2 mb-4 report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: 'white' }}>
               <h4 className="text-xl font-bold mb-6" style={{ color: '#0F2B46' }}>상담팀 실행 매뉴얼</h4>
               
               <div className="mb-6">
@@ -206,7 +206,7 @@ export function StomachCancerPvmAnalysis() {
                 </div>
               </div>
               
-              <div className="p-4 rounded-lg mb-6" style={{ backgroundColor: '#F8F9FA' }}>
+              <div className="p-4 rounded-lg mb-6 report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
                 <p className="text-sm font-semibold mb-3" style={{ color: '#0E1B3D' }}>체크리스트</p>
                 <div className="space-y-2">
                   {['검사 일정 재확인', '금식 시간 설명', '항암 복약 여부 명확 안내', '보호자 이해도 확인'].map((item, idx) => (
@@ -237,7 +237,7 @@ export function StomachCancerPvmAnalysis() {
               ② 항암 부작용 – 설사/급박변
             </h3>
             
-            <div className="p-6 rounded-xl mb-6" style={{ backgroundColor: '#F8F9FA' }}>
+            <div className="p-6 rounded-xl mb-6 report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
               <div className="flex items-start space-x-3 mb-4">
                 <AlertCircle className="w-6 h-6 flex-shrink-0 mt-1" style={{ color: '#0F2B46' }} />
                 <p className="text-sm font-semibold" style={{ color: '#0E1B3D', opacity: 0.7 }}>환자 보이스</p>
@@ -250,23 +250,23 @@ export function StomachCancerPvmAnalysis() {
             <div className="mb-6">
               <h4 className="text-lg font-bold mb-4" style={{ color: '#0E1B3D' }}>환자 상태 해석</h4>
               <div className="grid md:grid-cols-3 gap-4">
-                <div className="p-4 border-l-4 rounded" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
+                <div className="p-4 border-l-4 rounded report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
                   <p className="text-sm" style={{ color: '#0E1B3D' }}>설사 3회 이상 →<br />탈수 위험</p>
                 </div>
-                <div className="p-4 border-l-4 rounded" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
+                <div className="p-4 border-l-4 rounded report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
                   <p className="text-sm" style={{ color: '#0E1B3D' }}>전해질 불균형 가능성</p>
                 </div>
-                <div className="p-4 border-l-4 rounded" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
+                <div className="p-4 border-l-4 rounded report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
                   <p className="text-sm" style={{ color: '#0E1B3D' }}>공황 상태 동반 가능</p>
                 </div>
               </div>
             </div>
             
-            <div className="p-8 rounded-xl border-2" style={{ borderColor: '#0F2B46', backgroundColor: 'white' }}>
+            <div className="p-8 rounded-xl border-2 report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: 'white' }}>
               <h4 className="text-xl font-bold mb-6" style={{ color: '#0F2B46' }}>간호팀 케어 프로토콜</h4>
               
               {/* 1단계 */}
-              <div className="mb-6 p-4 rounded-lg" style={{ backgroundColor: '#F8F9FA' }}>
+              <div className="mb-6 p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
                 <p className="font-semibold mb-3" style={{ color: '#0E1B3D' }}>1단계 – 상태 분류</p>
                 <div className="pl-4 space-y-2">
                   {['설사 횟수', '혈변 여부', '어지럼/탈수 증상'].map((item, idx) => (
@@ -279,7 +279,7 @@ export function StomachCancerPvmAnalysis() {
               </div>
 
               {/* 2단계 */}
-              <div className="mb-6 p-4 rounded-lg" style={{ backgroundColor: '#F8F9FA' }}>
+              <div className="mb-6 p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
                 <p className="font-semibold mb-3" style={{ color: '#0E1B3D' }}>2단계 – 즉시 행동 지침</p>
                 <div className="pl-4 space-y-2">
                   {['ORS 수분 섭취', '자극 음식 중단', '휴식'].map((item, idx) => (
@@ -292,7 +292,7 @@ export function StomachCancerPvmAnalysis() {
               </div>
 
               {/* 3단계 */}
-              <div className="mb-6 p-4 rounded-lg" style={{ backgroundColor: '#F8F9FA' }}>
+              <div className="mb-6 p-4 rounded-lg report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
                 <p className="font-semibold mb-3" style={{ color: '#0E1B3D' }}>3단계 – 응급 기준 명확화</p>
                 <div className="pl-4 space-y-2">
                   {['38도 이상 발열', '혈변', '의식 저하'].map((item, idx) => (
@@ -304,7 +304,7 @@ export function StomachCancerPvmAnalysis() {
                 </div>
               </div>
               
-              <div className="p-4 rounded-lg mb-6" style={{ backgroundColor: '#F8F9FA' }}>
+              <div className="p-4 rounded-lg mb-6 report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
                 <p className="text-sm font-semibold mb-3" style={{ color: '#0E1B3D' }}>체크리스트</p>
                 <div className="space-y-2">
                   {['설사 횟수 기록', '수분 섭취 안내', '응급 기준 설명', '다음 진료 시 보고 항목 전달'].map((item, idx) => (
@@ -335,7 +335,7 @@ export function StomachCancerPvmAnalysis() {
               ③ 체중 감소·식이 문제
             </h3>
             
-            <div className="p-6 rounded-xl mb-6" style={{ backgroundColor: '#F8F9FA' }}>
+            <div className="p-6 rounded-xl mb-6 report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
               <div className="flex items-start space-x-3 mb-4">
                 <AlertCircle className="w-6 h-6 flex-shrink-0 mt-1" style={{ color: '#0F2B46' }} />
                 <p className="text-sm font-semibold" style={{ color: '#0E1B3D', opacity: 0.7 }}>환자 보이스</p>
@@ -349,19 +349,19 @@ export function StomachCancerPvmAnalysis() {
             <div className="mb-6">
               <h4 className="text-lg font-bold mb-4" style={{ color: '#0E1B3D' }}>환자 상태 해석</h4>
               <div className="grid md:grid-cols-3 gap-4">
-                <div className="p-4 border-l-4 rounded" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
+                <div className="p-4 border-l-4 rounded report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
                   <p className="text-sm" style={{ color: '#0E1B3D' }}>단백질 섭취 부족</p>
                 </div>
-                <div className="p-4 border-l-4 rounded" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
+                <div className="p-4 border-l-4 rounded report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
                   <p className="text-sm" style={{ color: '#0E1B3D' }}>근육 감소 시작</p>
                 </div>
-                <div className="p-4 border-l-4 rounded" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
+                <div className="p-4 border-l-4 rounded report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
                   <p className="text-sm" style={{ color: '#0E1B3D' }}>재발 불안 증가</p>
                 </div>
               </div>
             </div>
             
-            <div className="p-8 rounded-xl border-2" style={{ borderColor: '#0F2B46', backgroundColor: 'white' }}>
+            <div className="p-8 rounded-xl border-2 report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: 'white' }}>
               <h4 className="text-xl font-bold mb-6" style={{ color: '#0F2B46' }}>영양팀 실행 매뉴얼</h4>
               
               <div className="space-y-3 mb-6">
@@ -378,7 +378,7 @@ export function StomachCancerPvmAnalysis() {
                 ))}
               </div>
 
-              <div className="p-4 rounded-lg mb-6" style={{ backgroundColor: '#F8F9FA' }}>
+              <div className="p-4 rounded-lg mb-6 report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
                 <p className="text-sm font-semibold mb-3" style={{ color: '#0E1B3D' }}>구체적 케어 기준</p>
                 <div className="space-y-2">
                   {[
@@ -394,7 +394,7 @@ export function StomachCancerPvmAnalysis() {
                 </div>
               </div>
               
-              <div className="p-4 rounded-lg mb-6" style={{ backgroundColor: '#F8F9FA' }}>
+              <div className="p-4 rounded-lg mb-6 report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
                 <p className="text-sm font-semibold mb-3" style={{ color: '#0E1B3D' }}>체크리스트</p>
                 <div className="space-y-2">
                   {['최근 3일 섭취량 기록', '체중 변화 기록', '대체 식단 안내', '영양 상담 예약'].map((item, idx) => (
@@ -428,7 +428,7 @@ export function StomachCancerPvmAnalysis() {
               ④ 생활 기능 문제
             </h3>
             
-            <div className="p-6 rounded-xl mb-6" style={{ backgroundColor: '#F8F9FA' }}>
+            <div className="p-6 rounded-xl mb-6 report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
               <div className="flex items-start space-x-3 mb-4">
                 <AlertCircle className="w-6 h-6 flex-shrink-0 mt-1" style={{ color: '#0F2B46' }} />
                 <p className="text-sm font-semibold" style={{ color: '#0E1B3D', opacity: 0.7 }}>환자 보이스</p>
@@ -441,19 +441,19 @@ export function StomachCancerPvmAnalysis() {
             <div className="mb-6">
               <h4 className="text-lg font-bold mb-4" style={{ color: '#0E1B3D' }}>환자 상태 해석</h4>
               <div className="grid md:grid-cols-3 gap-4">
-                <div className="p-4 border-l-4 rounded" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
+                <div className="p-4 border-l-4 rounded report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
                   <p className="text-sm" style={{ color: '#0E1B3D' }}>배뇨 기능 장애</p>
                 </div>
-                <div className="p-4 border-l-4 rounded" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
+                <div className="p-4 border-l-4 rounded report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
                   <p className="text-sm" style={{ color: '#0E1B3D' }}>자가 관리 스트레스</p>
                 </div>
-                <div className="p-4 border-l-4 rounded" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
+                <div className="p-4 border-l-4 rounded report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: 'white', border: '1px solid #EAEAEA' }}>
                   <p className="text-sm" style={{ color: '#0E1B3D' }}>보호자 피로 증가</p>
                 </div>
               </div>
             </div>
             
-            <div className="p-8 rounded-xl border-2" style={{ borderColor: '#0F2B46', backgroundColor: 'white' }}>
+            <div className="p-8 rounded-xl border-2 report-editorial-panel" style={{ borderColor: '#0F2B46', backgroundColor: 'white' }}>
               <h4 className="text-xl font-bold mb-6" style={{ color: '#0F2B46' }}>케어코디네이터 실행 매뉴얼</h4>
               
               <div className="space-y-3 mb-6">
@@ -470,7 +470,7 @@ export function StomachCancerPvmAnalysis() {
                 ))}
               </div>
 
-              <div className="p-4 rounded-lg mb-6" style={{ backgroundColor: '#F8F9FA' }}>
+              <div className="p-4 rounded-lg mb-6 report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
                 <p className="text-sm font-semibold mb-3" style={{ color: '#0E1B3D' }}>추가 케어</p>
                 <div className="space-y-2">
                   {['보호자 실습 교육', '영상 매뉴얼 제공'].map((item, idx) => (
@@ -482,7 +482,7 @@ export function StomachCancerPvmAnalysis() {
                 </div>
               </div>
               
-              <div className="p-4 rounded-lg mb-6" style={{ backgroundColor: '#F8F9FA' }}>
+              <div className="p-4 rounded-lg mb-6 report-editorial-panel" style={{ backgroundColor: '#F8F9FA' }}>
                 <p className="text-sm font-semibold mb-3" style={{ color: '#0E1B3D' }}>체크리스트</p>
                 <div className="space-y-2">
                   {['제품 규격 확인', '구매처 안내', '보호자 교육 완료', '간호 연계'].map((item, idx) => (
@@ -528,7 +528,7 @@ export function StomachCancerPvmAnalysis() {
               '영양·체중 추적 시스템',
               '생활 문제 해결 가이드'
             ].map((item, idx) => (
-              <div key={idx} className="p-6 rounded-xl" style={{ backgroundColor: 'rgba(255,255,255,0.15)' }}>
+              <div key={idx} className="p-6 rounded-xl report-editorial-panel" style={{ backgroundColor: 'rgba(255,255,255,0.15)' }}>
                 <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg" style={{ backgroundColor: 'rgba(255,255,255,0.25)' }}>
                     {idx + 1}
@@ -539,7 +539,7 @@ export function StomachCancerPvmAnalysis() {
             ))}
           </div>
 
-          <div className="p-8 rounded-xl" style={{ backgroundColor: 'rgba(255,255,255,0.15)' }}>
+          <div className="p-8 rounded-xl report-editorial-panel" style={{ backgroundColor: 'rgba(255,255,255,0.15)' }}>
             <p className="text-xl lg:text-2xl font-bold text-white text-center leading-relaxed">
               환자는 치료 결과가 아니라<br />
               관리의 안정성을 보고 병원을 평가합니다.

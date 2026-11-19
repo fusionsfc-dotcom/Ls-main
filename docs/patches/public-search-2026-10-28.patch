@@ -1,0 +1,246 @@
+--- a/scripts/prerender.ts
++++ b/scripts/prerender.ts
+@@ -5,6 +5,16 @@
+ import path from 'node:path';
+ const origin='https://www.lsconsulting.co.kr';
+ const xml=(value:string)=>value.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');
++// Strip only article/breadcrumb entities regenerated from the publication record.
++// Preserve unrelated structured data; malformed JSON fails the build for review.
++const withoutPublicationSchema=(value:any):any=>{
++  if(Array.isArray(value))return value.map(withoutPublicationSchema).filter(Boolean);
++  if(!value||typeof value!=='object')return value;
++  const types=[value['@type']].flat();
++  if(types.some(t=>['Article','BlogPosting','NewsArticle','BreadcrumbList'].includes(t)))return null;
++  if(value['@graph'])return {...value,'@graph':withoutPublicationSchema(value['@graph'])};
++  return value;
++};
+ const cdata=(value:string)=>'<![CDATA['+value.replace(/\]\]>/g,']]]]><![CDATA[>')+']]>';
+ const feedBody=(html:string)=>html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,'').replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,'').replace(/<(?:button|nav|form)\b[^>]*>[\s\S]*?<\/(?:button|nav|form)>/gi,'').replace(/(href|src)="\/(?!\/)/g,`$1="${origin}/`);
+ 
+@@ -28,9 +38,10 @@
+       import {insightsData} from ${JSON.stringify(path.join(root,'src/app/data/insightsData'))};
+       import {RelatedReports} from ${JSON.stringify(path.join(root,'src/app/components/reports/RelatedReports'))};
+       export function renderRelatedReports(pathname:string){return renderToString(<RelatedReports pathname={pathname}/>);}
+-      export {insightsData};
++      import {isReportPathRequiringPassword} from ${JSON.stringify(path.join(root,'src/app/constants/reportAccess'))};
++      export {insightsData,isReportPathRequiringPassword};
+       export {renderPublicMarketingPages} from ${JSON.stringify(path.join(root,'src/prerender'))};
+-      export {publicationSchema,exactPublicationDate,publicationSortTime} from ${JSON.stringify(path.join(root,'src/app/data/publication'))};
++      export {publicationSchema,publicationBreadcrumb,publicationFeedDate,exactPublicationDate,publicationSortTime} from ${JSON.stringify(path.join(root,'src/app/data/publication'))};
+       ${imports}
+       const routes=[${routes.map(r=>`{path:${JSON.stringify(r.path)},Page:${r.name}}`).join(',')}];
+       export function renderReportPages(){return insightsData.filter(r=>!r.link.endsWith('.html')).map(report=>{
+@@ -43,6 +54,13 @@
+     const input=path.join(temporary,'entry.tsx'),output=path.join(temporary,'render.cjs');writeFileSync(input,entry);
+     await build({entryPoints:[input],outfile:output,bundle:true,platform:'node',format:'cjs',packages:'external',jsx:'automatic',alias:{'@':path.join(root,'src')},plugins:[{name:'root-utils',setup(build){build.onResolve({filter:/^\/utils\//},args=>({path:path.join(root,args.path+'.tsx')}));}}],loader:{'.css':'empty'}});
+     const render=createRequire(import.meta.url)(output);
++    const seen=new Set<string>();
++    for(const report of render.insightsData){
++      if(!/^\/(?!\/)[^?#]+$/.test(report.link)||report.link.split('/').includes('..')||/^\/(?:admin|api)(?:\/|$)/.test(report.link)||render.isReportPathRequiringPassword(report.link))throw new Error('Non-public or invalid publication URL: '+report.link);
++      if(seen.has(report.link))throw new Error('Duplicate publication URL: '+report.link);
++      seen.add(report.link);
++      for(const value of [report.publishedAt,report.updatedAt].filter(Boolean))if(!/^\d{4}-\d{2}-\d{2}(?:T.*(?:Z|[+-]\d{2}:\d{2}))?$/.test(value)||!Number.isFinite(Date.parse(value)))throw new Error('Invalid publication date: '+report.link);
++    }
+     const marketing=render.renderPublicMarketingPages(),reports=render.renderReportPages();
+     const reportCss=readdirSync(path.join(dist,'assets')).filter(f=>f.endsWith('.css')&&!template.includes('/assets/'+f)).map(f=>`<link rel="stylesheet" href="/assets/${f}"/>`).join('');
+     for(const report of reports)report.head+=reportCss;
+@@ -52,9 +70,19 @@
+     const publications=render.insightsData;
+     for(const report of publications.filter((r:any)=>r.link.endsWith('.html'))){
+       const target=path.join(dist,report.link.slice(1));let html=readFileSync(target,'utf8');
+-      html=html.replace(/<link[^>]+rel=["']canonical["'][^>]*>/gi,'').replace(/<meta[^>]+name=["']robots["'][^>]*>/gi,'');
+-      const schema=JSON.stringify(render.publicationSchema(report)).replace(/</g,'\\u003c');
+-      html=html.replace('</head>',`<link rel="canonical" href="${origin+report.link}"/><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1"/><link rel="alternate" type="application/rss+xml" title="LS AX 인사이트" href="${origin}/rss.xml"/><script type="application/ld+json">${schema}</script></head>`);
++      if((html.match(/<meta\b[^>]*>/gi)||[]).some(tag=>/name=["']robots["']/i.test(tag)&&/content=["'][^"']*noindex/i.test(tag)))throw new Error('Refusing to index an explicitly noindexed report: '+report.link);
++      html=html.replace(/<title\b[^>]*>[\s\S]*?<\/title>/gi,'')
++        .replace(/<link[^>]+rel=["']canonical["'][^>]*>/gi,'')
++        .replace(/<meta[^>]+(?:name|property)=["'](?:robots|description|og:(?:title|description|url|type|image)|twitter:(?:card|title|description|image)|article:(?:published_time|modified_time))["'][^>]*>/gi,'')
++        .replace(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi,(_tag,json)=>{
++          const kept=withoutPublicationSchema(JSON.parse(json));
++          return kept?`<script type="application/ld+json">${JSON.stringify(kept).replace(/</g,'\\u003c')}</script>`:'';
++        });
++      const title=xml(report.title.replace(/\n/g,' ')),description=xml(report.excerpt),url=xml(origin+report.link);
++      const schema=JSON.stringify([render.publicationSchema(report),render.publicationBreadcrumb(report)]).replace(/</g,'\\u003c');
++      const image=origin+'/images/brand-v1/ls-user-logo-20261027.png';
++      const published=render.exactPublicationDate(report);
++      html=html.replace('</head>',`<title>${title}</title><meta name="description" content="${description}"/><link rel="canonical" href="${url}"/><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1"/><meta property="og:type" content="article"/><meta property="og:title" content="${title}"/><meta property="og:description" content="${description}"/><meta property="og:url" content="${url}"/><meta property="og:image" content="${image}"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="${title}"/><meta name="twitter:description" content="${description}"/><meta name="twitter:image" content="${image}"/>${published?`<meta property="article:published_time" content="${xml(published)}"/>`:''}${report.updatedAt?`<meta property="article:modified_time" content="${xml(report.updatedAt)}"/>`:''}<link rel="alternate" type="application/rss+xml" title="LS AX 인사이트" href="${origin}/rss.xml"/><script type="application/ld+json">${schema}</script></head>`);
+       const relatedCss=readFileSync(path.join(root,'src/app/components/reports/related-reports.css'),'utf8');
+       html=html.replace('</head>',`<style id="ls-related-styles">${relatedCss}</style></head>`);
+       html=html.replace('</main>',`</main>${render.renderRelatedReports(report.link)}`);
+@@ -63,7 +91,7 @@
+     const paths=[...new Set([...marketing.map((p:any)=>p.path),...publications.map((r:any)=>r.link)])];
+     writeFileSync(path.join(dist,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${paths.map(url=>{const report=publications.find((r:any)=>r.link===url);const modified=report&&(report.updatedAt||render.exactPublicationDate(report));return `<url><loc>${xml(origin+url)}</loc>${modified?`<lastmod>${xml(modified)}</lastmod>`:''}</url>`;}).join('\n')}\n</urlset>\n`);
+     const sorted=[...publications].sort((a,b)=>render.publicationSortTime(b)-render.publicationSortTime(a));
+-    const rss=sorted.map(report=>{const doc=reports.find((r:any)=>r.path===report.link);const body=doc?doc.body.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1]||doc.body:readFileSync(path.join(dist,report.link.slice(1)),'utf8').match(/<body\b[^>]*>([\s\S]*?)<\/body>/i)?.[1]||'';const date=report.updatedAt||render.exactPublicationDate(report);return `<item><title>${xml(report.title.replace(/\n/g,' '))}</title><link>${xml(origin+report.link)}</link><guid isPermaLink="true">${xml(origin+report.link)}</guid><category>${xml(report.category)}</category><description>${xml(report.excerpt)}</description><content:encoded>${cdata(feedBody(body))}</content:encoded>${date?`<pubDate>${new Date(date+'T09:00:00+09:00').toUTCString()}</pubDate>`:''}</item>`;});
++    const rss=sorted.map(report=>{const doc=reports.find((r:any)=>r.path===report.link);const body=doc?doc.body.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1]||doc.body:readFileSync(path.join(dist,report.link.slice(1)),'utf8').match(/<body\b[^>]*>([\s\S]*?)<\/body>/i)?.[1]||'';const date=render.publicationFeedDate(report);return `<item><title>${xml(report.title.replace(/\n/g,' '))}</title><link>${xml(origin+report.link)}</link><guid isPermaLink="true">${xml(origin+report.link)}</guid><category>${xml(report.category)}</category><description>${xml(report.excerpt)}</description><content:encoded>${cdata(feedBody(body))}</content:encoded>${date?`<pubDate>${date}</pubDate>`:''}</item>`;});
+     writeFileSync(path.join(dist,'rss.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>LS AX 인사이트</title><link>${origin}/insights</link><description>암요양·암재활 의료서비스, PVM 환자 경험과 기업 AX 연구</description><language>ko</language><atom:link href="${origin}/rss.xml" rel="self" type="application/rss+xml"/>${rss.join('\n')}</channel></rss>\n`);
+     writeFileSync(path.join(dist,'publication-index.json'),JSON.stringify(publications.map((r:any)=>({contentHash:createHash('sha256').update(JSON.stringify(r)+(reports.find((p:any)=>p.path===r.link)?.body||readFileSync(path.join(dist,r.link.slice(1)),'utf8'))).digest('hex'),title:r.title.replace(/\n/g,' '),url:origin+r.link,description:r.excerpt,category:r.category,...(render.exactPublicationDate(r)?{datePublished:render.exactPublicationDate(r)}:{}),...(r.updatedAt?{dateModified:r.updatedAt}:{})})),null,2));
+     const llms=readFileSync(path.join(root,'public/llms.txt'),'utf8');
+--- a/src/app/components/SEO.tsx
++++ b/src/app/components/SEO.tsx
+@@ -1,5 +1,6 @@
+ import { Helmet } from 'react-helmet-async';
+ import { useLocation } from 'react-router';
++import { insightsData } from '../data/insightsData';
+ import { brand } from '../data/medicalPositioning';
+ import { isReportPathRequiringPassword } from '../constants/reportAccess';
+ interface SEOProps {
+@@ -10,6 +11,7 @@
+   url?: string;
+   robots?: string;
+   jsonLd?: object | object[];
++  publicationMetadata?: boolean;
+ }
+ export function SEO({
+   title = `${brand.specialty} | ${brand.name}`,
+@@ -18,7 +20,8 @@
+   image = '/images/brand-v1/ls-user-logo-20261027.png',
+   url,
+   robots,
+-  jsonLd
++  jsonLd,
++  publicationMetadata = false
+ }: SEOProps) {
+   const {
+     pathname
+@@ -26,7 +29,13 @@
+   const canonical = url || `${brand.origin}${pathname}`;
+   const indexing = robots || (pathname.startsWith('/admin') || isReportPathRequiringPassword(pathname) ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1');
+   const absoluteImageUrl = new URL(image, brand.origin).href;
+-  const schemas = jsonLd ? Array.isArray(jsonLd) ? jsonLd : [jsonLd] : [];
++  const suppliedSchemas = jsonLd ? Array.isArray(jsonLd) ? jsonLd : [jsonLd] : [];
++  // ReportDocument owns article and breadcrumb data for registered public reports.
++  // Keep unrelated schemas (e.g. Organization) supplied by nested page components.
++  const registeredReport = insightsData.some(report => report.link === pathname);
++  const schemas = registeredReport && !publicationMetadata
++    ? suppliedSchemas.filter(schema => !['Article', 'BlogPosting', 'NewsArticle', 'BreadcrumbList'].includes((schema as Record<string, any>)['@type']))
++    : suppliedSchemas;
+   return <><Helmet><title>{title}</title><meta name="description" content={description} />{keywords && <meta name="keywords" content={keywords} />}<link rel="canonical" href={canonical} /><meta name="robots" content={indexing} /><meta property="og:type" content="website" /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:image" content={absoluteImageUrl} /><meta property="og:url" content={canonical} /><meta property="og:locale" content="ko_KR" /><meta property="og:site_name" content={brand.name} /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={absoluteImageUrl} /></Helmet>{schemas.map((schema, i) => <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{
+       __html: JSON.stringify(schema).replace(/</g, '\\u003c')
+     }} />)}</>;
+--- a/src/app/components/reports/ReportDocument.tsx
++++ b/src/app/components/reports/ReportDocument.tsx
+@@ -5,11 +5,11 @@
+ import { Helmet } from 'react-helmet-async';
+ import { SEO } from '../SEO';
+ import { insightsData } from '../../data/insightsData';
+-import { publicationOrigin, publicationSchema, exactPublicationDate } from '../../data/publication';
++import { publicationOrigin, publicationSchema, publicationBreadcrumb, exactPublicationDate } from '../../data/publication';
+ export function ReportDocument({ children }: { children: ReactNode }) {
+   const { pathname }=useLocation();
+   const report=insightsData.find(item=>item.link===pathname);
+   if(!report) return <div className="ls-report-document">{children}</div>;
+   const published=exactPublicationDate(report);
+-  return <><div className="ls-report-document">{children}</div><RelatedReports pathname={pathname}/><SEO title={`${report.title.replace(/\n/g,' ')} | LS AX 컨설팅`} description={report.excerpt} url={publicationOrigin+report.link} robots="index, follow, max-image-preview:large, max-snippet:-1" jsonLd={[publicationSchema(report),{'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'LS AX 컨설팅',item:publicationOrigin+'/'},{'@type':'ListItem',position:2,name:'인사이트',item:publicationOrigin+'/insights'},{'@type':'ListItem',position:3,name:report.title.replace(/\n/g,' '),item:publicationOrigin+report.link}]}]}/><Helmet><meta property="og:type" content="article"/>{published&&<meta property="article:published_time" content={published}/ >}{report.updatedAt&&<meta property="article:modified_time" content={report.updatedAt}/>}</Helmet></>;
++  return <><div className="ls-report-document">{children}</div><RelatedReports pathname={pathname}/><SEO publicationMetadata title={`${report.title.replace(/\n/g,' ')} | LS AX 컨설팅`} description={report.excerpt} url={publicationOrigin+report.link} robots="index, follow, max-image-preview:large, max-snippet:-1" jsonLd={[publicationSchema(report),publicationBreadcrumb(report)]}/><Helmet><meta property="og:type" content="article"/>{published&&<meta property="article:published_time" content={published}/ >}{report.updatedAt&&<meta property="article:modified_time" content={report.updatedAt}/>}</Helmet></>;
+ }
+--- a/src/app/data/publication.ts
++++ b/src/app/data/publication.ts
+@@ -13,7 +13,7 @@
+     headline:report.title.replace(/\n/g,' '), description:report.excerpt, url,
+     mainEntityOfPage:{'@type':'WebPage','@id':url}, inLanguage:'ko-KR', isAccessibleForFree:true,
+     author:{'@type':'Organization',name:'LS AX 컨설팅',url:publicationOrigin+'/about'},
+-    publisher:{'@id':publicationOrigin+'/#org'},
++    publisher:{'@type':'Organization','@id':publicationOrigin+'/#org',name:'LS AX 컨설팅',url:publicationOrigin},
+     image:[publicationOrigin+'/images/brand-v1/ls-user-logo-20261027.png'],
+     articleSection:report.category,
+     ...(date ? {datePublished:date} : {}), ...(report.updatedAt ? {dateModified:report.updatedAt} : {})
+@@ -23,3 +23,23 @@
+   const value=report.updatedAt||exactPublicationDate(report)||report.date;
+   return Date.parse(value.replace(/\./g,'-'))||0;
+ }
++
++/** Breadcrumbs describe the actual public archive hierarchy, without invented categories. */
++export function publicationBreadcrumb(report: InsightItem) {
++  const business = report.domain === 'business' || report.domain === 'architecture';
++  return {
++    '@context':'https://schema.org', '@type':'BreadcrumbList',
++    itemListElement:[
++      {'@type':'ListItem',position:1,name:'LS AX 컨설팅',item:publicationOrigin+'/'},
++      {'@type':'ListItem',position:2,name:business?'AX 사례':'인사이트',item:publicationOrigin+(business?'/ax/cases':'/insights')},
++      {'@type':'ListItem',position:3,name:report.title.replace(/\n/g,' '),item:publicationOrigin+report.link}
++    ]
++  };
++}
++/** RSS requires a time and timezone. Do not manufacture either for date-only records. */
++export function publicationFeedDate(report: InsightItem): string | undefined {
++  const value=report.updatedAt||report.publishedAt;
++  if(!value || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?(?:Z|[+-]\d{2}:\d{2})$/.test(value))return undefined;
++  const time=Date.parse(value);
++  return Number.isFinite(time)?new Date(time).toUTCString():undefined;
++}
+--- /dev/null
++++ b/scripts/verify-publication-build.mjs
+@@ -0,0 +1,48 @@
++import assert from 'node:assert/strict';
++import {readFileSync, existsSync} from 'node:fs';
++import {build} from 'esbuild';
++const origin='https://www.lsconsulting.co.kr';
++const read=p=>readFileSync(p,'utf8');
++const decode=s=>s.replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#x27;|&#39;|&apos;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>');
++const attrs=tag=>Object.fromEntries([...tag.matchAll(/([\w:-]+)=["']([^"']*)["']/g)].map(m=>[m[1],decode(m[2])]));
++const flatten=x=>Array.isArray(x)?x.flatMap(flatten):x&&typeof x==='object'?[x,...flatten(x['@graph']||[])]:[];
++const publications=JSON.parse(read('dist/publication-index.json'));
++assert.equal(new Set(publications.map(p=>p.url)).size,publications.length,'unique publication URLs');
++const sitemap=read('dist/sitemap.xml'),rss=read('dist/rss.xml');
++const archive=read('dist/insights/index.html')+read('dist/ax/cases/index.html');
++for(const report of publications){
++ const path=new URL(report.url).pathname;
++ const html=read('dist'+path+(path.endsWith('.html')?'':'/index.html'));
++ const head=html.split('</head>')[0];
++ const metas=[...head.matchAll(/<meta\b[^>]*>/g)].map(m=>attrs(m[0]));
++ const links=[...head.matchAll(/<link\b[^>]*>/g)].map(m=>attrs(m[0]));
++ assert.equal([...head.matchAll(/<title\b[^>]*>/g)].length,1,path+' unique title');
++ assert(decode(head.match(/<title\b[^>]*>([\s\S]*?)<\/title>/)[1]).includes(report.title),path+' registered title');
++ assert.deepEqual(links.filter(m=>m.rel==='canonical').map(m=>m.href),[report.url],path+' canonical');
++ for(const key of ['description','robots'])assert.equal(metas.filter(m=>m.name===key).length,1,path+' '+key);
++ assert(!metas.find(m=>m.name==='robots').content.includes('noindex'),path+' indexable');
++ assert.equal(metas.find(m=>m.property==='og:url')?.content,report.url,path+' OG URL');
++ assert.equal(metas.find(m=>m.property==='og:type')?.content,'article',path+' OG type');
++ const schemas=[...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].flatMap(m=>flatten(JSON.parse(m[1])));
++ const articles=schemas.filter(x=>['Article','BlogPosting','NewsArticle'].includes(x['@type']));
++ const crumbs=schemas.filter(x=>x['@type']==='BreadcrumbList');
++ assert.equal(articles.length,1,path+' one article entity');assert.equal(crumbs.length,1,path+' one breadcrumb');
++ assert.equal(articles[0].headline,report.title,path+' schema headline');
++ assert.equal(articles[0].datePublished,report.datePublished,path+' no invented published date');
++ assert.equal(articles[0].dateModified,report.dateModified,path+' no invented modified date');
++ assert.equal(crumbs[0].itemListElement.at(-1).item,report.url,path+' breadcrumb URL');
++ assert(/<h1(?:\s|>)/.test(html),path+' initial body');
++ assert(archive.includes('href="'+path+'"'),path+' real archive link');
++ assert(sitemap.includes('<loc>'+report.url+'</loc>'),path+' sitemap');
++ assert(rss.includes('<link>'+report.url+'</link>'),path+' RSS');
++}
++assert(!rss.includes('Invalid Date'),'valid RSS dates');
++assert(read('dist/app.html').includes('noindex, follow'),'utility fallback remains noindex');
++assert(!existsSync('dist/admin'),'admin not rendered');
++// Exercise timestamp handling: a date-only record must not gain an invented 09:00 time.
++const bundle=await build({entryPoints:['src/app/data/publication.ts'],bundle:true,format:'esm',platform:'node',write:false});
++const helpers=await import('data:text/javascript;base64,'+Buffer.from(bundle.outputFiles[0].text).toString('base64'));
++assert.equal(helpers.publicationFeedDate({publishedAt:'2026-10-28'}),undefined);
++assert.equal(helpers.publicationFeedDate({publishedAt:'2026-01-02T03:04:05+09:00'}),'Thu, 01 Jan 2026 18:04:05 GMT');
++assert.equal(helpers.publicationFeedDate({publishedAt:'not-a-date'}),undefined);
++console.log(`PASS ${publications.length} public reports: initial HTML, unique metadata/schema, archive href, sitemap/RSS, timestamp handling and noindexed admin fallback.`);
+--- /dev/null
++++ b/docs/PUBLICATION_SEARCH_CHECKS.md
+@@ -0,0 +1,21 @@
++# 공개 글 검색 기술 검증 규약
++
++2026-10-28 패치안. 운영 배포 전 검토 단계입니다.
++
++## 새 글 발행
++
++1. 이미 공개 승인된 글만 대상으로 합니다. 비밀번호·회원·비공개 자료를 검색 목적으로 공개 전환하지 않습니다. 등록 경로가 접근 제한 대상으로 판정되거나 HTML에 명시적 noindex가 있으면 빌드가 중단됩니다.
++2. `src/app/data/insightsData.ts`에 제목·요약·고유 경로·실제 발행일을 등록합니다. 본문의 제목·날짜도 일치시킵니다. 해시나 쿼리만으로 글을 구분하지 않고 기존 URL을 보존합니다.
++3. React 글은 `ReportDocument`와 명시적 라우트를 사용합니다. 독립 HTML 글은 `public/reports/`에 저장합니다. 등록한 글의 정적 렌더러나 파일이 없으면 빌드가 실패합니다.
++4. 빌드가 초기 본문 HTML, 등록 정보 기반 메타데이터, Article 계열 데이터와 Breadcrumb 각 하나, sitemap·RSS·발행 색인을 생성합니다. 검색 처리로 글 본문·출처·불확실성을 수정하지 않습니다.
++5. `publishedAt`/`updatedAt`은 실제 날짜 또는 시간대가 있는 ISO 시각만 기록합니다. 월 단위 자료의 날짜를 추정하지 않습니다. 날짜만 아는 글에는 RSS pubDate의 시각을 만들지 않고, Article·sitemap에 날짜를 유지합니다.
++6. `npm run build`, `node scripts/verify-marketing-build.mjs`, `node scripts/verify-publication-build.mjs`를 실행합니다. 초기 본문, 고유 URL/canonical, 중복 없는 메타/Article/Breadcrumb, 목록의 실제 링크와 sitemap/RSS를 검사합니다.
++7. 배포 승인 후 최신 운영 소스와 파일 해시를 다시 대조합니다. 새 글 및 관련 변경만 반영하고, 배포 후 로그인 없는 HTTP 본문과 목록→상세, 모바일을 확인합니다. 색인이나 검색 순위·AI 인용을 보장하지 않습니다.
++
++## 접근·크롤링 정책
++
++- 검색 수집과 AI 학습 허용은 별개입니다. OAI-SearchBot 등 검색용 봇 접근과 GPTBot 등 학습용 사용을 혼동하지 않습니다. 이번 패치는 robots.txt와 인증·공개 여부 판정 코드를 변경하지 않습니다.
++- 현재 robots.txt에는 학습용 봇의 기존 허용도 있습니다. 이를 검색 허용만으로 오해하지 않도록 별도 정책 결정 대상으로 남깁니다. 이번 작업에서 허용 범위를 확대하지 않습니다.
++- llms.txt는 보조 안내입니다. 검색·AI 노출의 핵심 해결책이나 보장 수단으로 삼지 않습니다.
++- 이번 패치 단계에서는 운영 배포, 포털 로그인·소유권 확인, 외부 제출·IndexNow 호출, 새 키·권한 변경을 수행하지 않습니다. 기존 등록 기록은 이번 작업의 등록 성공 증거가 아닙니다.
++- GitHub main과 운영 소스는 다릅니다. 오래된 main에서 이 패치를 곧바로 배포하지 마세요. 전체 main 동기화는 별도 승인 대기입니다.

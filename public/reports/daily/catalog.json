@@ -1,9 +1,79 @@
 [
   {
-    "date": "2026-10-26",
+    "date": "2026-11-18",
     "version": 1,
-    "title": "2차 암병원 아침 브리핑 — 정책 변화와 병원의 다음 행동",
+    "title": "LS AX 리포트 - 병동 이동·재활과 B형간염 재활성화 예방",
+    "path": "/reports/daily/ls-ax-2026-11-18.html",
+    "sha256": "bd24d65da231bf6f44d9c59a13b880b21c0b2d4070edeb95e420402b6d0e46d2"
+  },
+  {
+    "date": "2026-11-16",
+    "version": 1,
+    "title": "LS AX 리포트 - 운동·영양 통합 재활과 퇴원 후 자기관리 지원",
+    "path": "/reports/daily/ls-ax-2026-11-16.html",
+    "sha256": "d8c4ecd3c9e93d9271ca1b8726424671f466fe443d1a48b458deeea50858671a"
+  },
+  {
+    "date": "2026-11-13",
+    "version": 1,
+    "title": "LS AX 리포트 - 실손 공제·지급보류와 구강점막염 관리",
+    "path": "/reports/daily/ls-ax-2026-11-13.html",
+    "sha256": "d7de2c8e9ea5302ef5599d7c2825c7aaf424cf13bf7ae176499d230c2fab5781"
+  },
+  {
+    "date": "2026-11-11",
+    "version": 1,
+    "title": "LS AX 리포트 - 암환자 회송·환자분류와 특사경 법안 동향",
+    "path": "/reports/daily/ls-ax-2026-11-11.html",
+    "sha256": "904cc7d12284b09e58b6a3cdc00c7e82078ae1a92d9441942a82c3d7f6c53d41"
+  },
+  {
+    "date": "2026-11-09",
+    "version": 1,
+    "title": "LS AX 리포트 - 인력 등급·의료광고 관리와 항암 오심·구토 대응",
+    "path": "/reports/daily/ls-ax-2026-11-09.html",
+    "sha256": "dbe6215637fe5cca6e1b8af72093daffac9e45e64ef86b2acc982b8e70005542"
+  },
+  {
+    "date": "2026-11-06",
+    "version": 1,
+    "title": "LS AX 리포트 - 간병급여·비급여 법안과 재급식증후군 예방",
+    "path": "/reports/daily/ls-ax-2026-11-06.html",
+    "sha256": "2e4df41dba7f88a282e21a87a1055f59922baa04fc4a20b2ddf58fc191be04b7"
+  },
+  {
+    "date": "2026-11-04",
+    "version": 1,
+    "title": "LS AX 리포트 - 진료의뢰·청구 절차와 항암치료 중 발열 대응",
+    "path": "/reports/daily/ls-ax-2026-11-04.html",
+    "sha256": "a518f1f376aca49396e095341b57d6ff9b7f2bb1dca0336d86d86611a58ebf60"
+  },
+  {
+    "date": "2026-11-02",
+    "version": 1,
+    "title": "LS AX 리포트 - 비급여 설명과 한약 병용 관리, 2027년 예산을 준비하는 병원 운영 전략",
+    "path": "/reports/daily/ls-ax-2026-11-02.html",
+    "sha256": "0c03d09952d2b212008d1f6a2a2743668e659eb317425aa6a7e18d0318e1c455"
+  },
+  {
+    "date": "2026-10-30",
+    "version": 1,
+    "title": "LS AX 리포트 - 수가 개편과 입원 인정·항암 급여 변화에 대비하는 병원 운영 전략",
+    "path": "/reports/daily/ls-ax-2026-10-30.html",
+    "sha256": "86641140e8c8d8d9d02efb7f178781207b39c91a1ffc1cc9215e4e95c4411e59"
+  },
+  {
+    "date": "2026-10-28",
+    "version": 2,
+    "title": "LS AX 리포트 - 간병 급여화·비급여 관리·실손 전환에 대응하는 2차암병원 전략",
+    "path": "/reports/daily/ls-ax-2026-10-28.html",
+    "sha256": "81cff57e6cea2e5f1f10edc0aaca14e501a2b6c322ca8b110cea859d2fe39d69"
+  },
+  {
+    "date": "2026-10-26",
+    "version": 2,
+    "title": "LS AX 리포트 - 암병원 수가·보험 변화와 부서별 대응 과제",
     "path": "/reports/daily/ls-ax-2026-10-26.html",
-    "sha256": "dfae872ff0713adc6d02c81ebbf2b2350d3ff306b763a0ba560f321b1c6759a4"
+    "sha256": "a46b8e22d011f0f83e1f245c15034a643e630d94c9aea46429947b6ea4c2aa85"
   }
 ]
